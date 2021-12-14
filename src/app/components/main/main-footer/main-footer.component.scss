@@ -1,0 +1,33 @@
+.container {
+  height: 400px;
+  width: 100%;
+  background-color: black;
+  color: rgb(153, 153, 153);
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    margin-top: 40px;
+    height: 80%;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    .call_me {
+      margin-bottom: 40px;
+    }
+    .link_list {
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+      .link_item {
+        width: 25%;
+        margin-bottom: 15px;
+      }
+      .link_item:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
