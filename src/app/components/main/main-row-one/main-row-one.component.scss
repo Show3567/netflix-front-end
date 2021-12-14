@@ -1,7 +1,6 @@
-.main_row_first {
+.container {
   height: 750px;
   width: 100%;
-  // padding-top: 80px;
   background-image: url("../../../../assets/netflix_main.jpeg");
   background-size: cover;
   color: white;
@@ -18,7 +17,7 @@
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.9)
     );
-    .row_first_content {
+    .content {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -29,13 +28,13 @@
         width: 100%;
         margin-top: 10px;
       }
-      .row_first_h1 {
+      .content_h1 {
         font-size: 3.425rem;
       }
-      .row_first_h2 {
+      .content_h2 {
         font-size: 1.625rem;
       }
-      .row_first_h3 {
+      .content_h3 {
         font-size: 1.2rem;
       }
       .start_form {
