@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="content">
+    <div class="content_1">
+      <div class="content_1_header">{{ header }}</div>
+      <div class="content_1_content">{{ content }}</div>
+    </div>
+
+    <div class="content_2" *ngIf="templatePic === 'tv'">
+      <img src="../../../../assets/tv.png" alt="" />
+    </div>
+    <div class="content_2" *ngIf="templatePic === 'device'">
+      <img src="../../../../assets/device-pile.png" alt="" />
+    </div>
+
+    <video
+      #video_holder
+      [muted]="true"
+      [loop]="true"
+      [ngClass]="{
+        content_tv: templatePic === 'tv',
+        content_device: templatePic === 'device'
+      }"
+    >
+      <source [src]="video" type="video/mp4" />
+    </video>
+  </div>
+</div>

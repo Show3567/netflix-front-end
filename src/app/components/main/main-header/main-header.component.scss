@@ -1,0 +1,34 @@
+.home_header {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0);
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .header_content {
+    height: 100%;
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .netflix_icon {
+      height: 60%;
+    }
+    .signIn_btn {
+      border: none;
+      background-color: #e50914;
+      color: white;
+      font-weight: 400;
+      font-size: 1rem;
+      border-radius: 3px;
+      height: 45%;
+      width: 80px;
+    }
+  }
+}

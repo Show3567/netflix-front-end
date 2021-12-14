@@ -1,0 +1,58 @@
+.container {
+  height: 500px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content {
+    position: relative;
+    display: flex;
+    width: 1000px;
+    height: 80%;
+    .content_1 {
+      height: 100%;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .content_1_header {
+        font-size: 3.125rem;
+      }
+      .content_1_content {
+        margin-top: 15px;
+        font-size: 1.625rem;
+        line-height: 35px;
+      }
+    }
+    .content_2,
+    .content_tv,
+    .content_device {
+      position: absolute;
+      z-index: 2;
+      top: -20px;
+      right: 0;
+      width: 500px;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+      }
+    }
+    .content_tv {
+      z-index: 1;
+      top: 55px;
+      right: 67px;
+      width: 385px;
+      height: 235px;
+    }
+    .content_device {
+      z-index: 1;
+      top: -25px;
+      right: 100px;
+      width: 310px;
+      height: 300px;
+    }
+  }
+}
