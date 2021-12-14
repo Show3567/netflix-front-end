@@ -14,6 +14,8 @@ import { MainRowOneComponent } from './components/main/main-row-one/main-row-one
 import { MainHeaderComponent } from './components/main/main-header/main-header.component';
 import { MainRowTwoComponent } from './components/main/main-row-two/main-row-two.component';
 import { MainRowThreeComponent } from './components/main/main-row-three/main-row-three.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainFooterComponent } from './components/main/main-footer/main-footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { MainRowThreeComponent } from './components/main/main-row-three/main-row
     MainHeaderComponent,
     MainRowTwoComponent,
     MainRowThreeComponent,
+    MainFooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { MainRowThreeComponent } from './components/main/main-row-three/main-row
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
