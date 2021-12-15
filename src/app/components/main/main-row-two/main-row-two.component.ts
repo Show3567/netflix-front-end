@@ -16,7 +16,7 @@ export class MainRowTwoComponent implements OnInit {
 
   video = '';
   video_class = '';
-  baseAssets = '../../../../assets/';
+  baseAssets = '../../../../assets/home/';
 
   constructor() {}
 

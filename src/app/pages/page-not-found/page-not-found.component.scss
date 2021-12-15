@@ -1,0 +1,82 @@
+:host {
+  overflow: hidden;
+}
+.header {
+  background-color: black;
+  padding: 0 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+}
+.main {
+  position: fixed;
+  top: 100px;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  background-color: green;
+  background-image: url("../../../assets/notfound/bg-lost-in-space.png");
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .error_msg_container {
+    display: flex;
+    padding: 40px 40px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0)
+    );
+    .msg_title {
+      font-size: 5rem;
+      line-height: 5.5rem;
+    }
+    .msg_detail {
+      margin-top: 40px;
+      font-size: 2rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.1rem;
+      text-align: center;
+      width: 900px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 40px;
+      font-size: 1.6rem;
+    }
+    .error_code {
+      border-left: 5px solid red;
+      font-size: 2rem;
+      margin-top: 200px;
+      padding: 40px 40px;
+      span {
+        color: rgb(199, 255, 255);
+      }
+    }
+  }
+  .short_msg {
+    margin: 30px 50px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    color: white;
+    font-size: 1rem;
+    span {
+      height: 100%;
+      line-height: 100%;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      color: rgb(146, 203, 253);
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,1 +1,15 @@
-<p>page-not-found works!</p>
+<header class="header">
+  <img src="../../../assets/notfound/logo_v7.png" alt="" />
+</header>
+<main class="main">
+  <div class="error_msg_container">
+    <div class="msg_title">Lost your ways?</div>
+    <div class="msg_detail">
+      Sorry, we can't find that page. You'll find lots to explore on the home
+      page.
+    </div>
+    <button mat-raised-button [routerLink]="['/home']">Netflix Home</button>
+    <div class="error_code"><span>Error Code</span> NSES 404</div>
+  </div>
+  <div class="short_msg"><span>FROM</span> LOST IN SPACE</div>
+</main>
