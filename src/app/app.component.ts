@@ -12,15 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild('netflix_trailer', { static: true }) netflixTrailer?: ElementRef;
-  @ViewChild('HBO_trailer', { static: true }) hboTrailer?: ElementRef;
-  constructor(private fb: FormBuilder) {}
+export class AppComponent implements OnInit {
+  constructor() {}
 
-  ngOnInit(): void {
-    this.netflixTrailer?.nativeElement.play();
-    this.hboTrailer?.nativeElement.play();
-  }
-
-  ngOnDestroy(): void {}
+  ngOnInit(): void {}
 }

@@ -16,6 +16,7 @@ import { MainRowTwoComponent } from './components/main/main-row-two/main-row-two
 import { MainRowThreeComponent } from './components/main/main-row-three/main-row-three.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainFooterComponent } from './components/main/main-footer/main-footer.component';
+import { MainQuestionsComponent } from './components/main/main-questions/main-questions.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MainFooterComponent } from './components/main/main-footer/main-footer.c
     MainRowTwoComponent,
     MainRowThreeComponent,
     MainFooterComponent,
+    MainQuestionsComponent,
   ],
   imports: [
     BrowserModule,
