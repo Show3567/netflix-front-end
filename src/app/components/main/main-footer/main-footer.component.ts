@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-footer',
@@ -6,25 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-footer.component.scss'],
 })
 export class MainFooterComponent implements OnInit {
-  linkList = [
-    'FAQ',
-    'Help Center',
-    'Account',
-    'Media Center',
-    'Investor Relations',
-    'Jobs',
-    'Redeem Gift Cards',
-    'By Gift Cards',
-    'Ways to Watch',
-    'Terms of Use',
-    'Privacy',
-    'Cookie Preferences',
-    'Corporate Information',
-    'Contact Us',
-    'Speed Test',
-    'Legal Notices',
-    'Only on Netflix',
-  ];
+  @Input() linkList: string[] = [];
+  @Input() backgroundColor: string = 'black';
 
   constructor() {}
 

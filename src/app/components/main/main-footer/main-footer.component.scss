@@ -19,7 +19,7 @@
     }
     .link_list {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       flex-wrap: wrap;
       .link_item {
         width: 25%;

@@ -1,0 +1,145 @@
+.header {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../../../assets/login/background.jpeg");
+  background-size: cover;
+  color: white;
+
+  .glass_layer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.9)
+    );
+    .login_container {
+      margin-top: 100px;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-content: center;
+
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      height: 700px;
+
+      padding: 65px;
+
+      .title {
+        color: white;
+        font-size: 2.625rem;
+        line-height: 3rem;
+      }
+      .login_form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 35px;
+
+        mat-label {
+          color: rgba(255, 255, 255, 0.664);
+        }
+        ::ng-deep .mat-form-field-flex {
+          margin-top: 20px;
+          color: white;
+          height: 60px;
+          font-size: 1rem;
+          background-color: rgb(51, 51, 51);
+        }
+        ::ng-deep .mat-form-field-underline::before,
+        ::ng-deep .mat-form-field-ripple {
+          background-color: rgb(232, 124, 3);
+        }
+        mat-error {
+          font-size: 1rem;
+          color: rgb(232, 124, 3);
+        }
+
+        button {
+          color: white;
+          background-color: red;
+          font-size: 1.2rem;
+          padding: 10px 0;
+          margin: 40px 0 20px 0;
+        }
+
+        .rem_holder {
+          height: 24px;
+          line-height: 24px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: rgb(179, 179, 179);
+          mat-checkbox {
+            height: 100%;
+            margin-right: 10px;
+            ::ng-deep .mat-checkbox-inner-container {
+              height: 24px;
+              width: 24px;
+              line-height: 24px;
+              background-color: rgb(115, 115, 115);
+            }
+          }
+          a {
+            text-decoration: none;
+            color: rgb(179, 179, 179);
+          }
+        }
+      }
+      .login_fb {
+        height: 24px;
+        line-height: 24px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 20px 0;
+        color: rgb(115, 115, 115);
+        img {
+          height: 100%;
+          width: auto;
+          margin-right: 10px;
+        }
+      }
+      .sign_up_nav {
+        margin-bottom: 15px;
+        color: rgb(115, 115, 115);
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+      .right_description {
+        color: rgb(115, 115, 115);
+        a {
+          text-decoration: none;
+          color: rgb(1, 113, 235);
+        }
+      }
+    }
+  }
+}
+app-main-footer {
+  width: 100vw;
+  height: 270px;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+}

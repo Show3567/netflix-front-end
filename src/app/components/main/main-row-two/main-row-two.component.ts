@@ -22,6 +22,6 @@ export class MainRowTwoComponent implements OnInit {
 
   ngOnInit(): void {
     this.video = this.baseAssets + this.videoIncome;
-    this.videoHolder?.nativeElement.play();
+    // this.videoHolder?.nativeElement.play();
   }
 }

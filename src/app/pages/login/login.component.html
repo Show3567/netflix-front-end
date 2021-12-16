@@ -1,1 +1,75 @@
-<p>login works!</p>
+<header class="header">
+  <img src="../../../assets/notfound/logo_v7.png" alt="" />
+</header>
+<main class="container">
+  <div class="glass_layer">
+    <div class="login_container">
+      <!-- ----------------------- ----------------------- -->
+      <div class="title">Sign In</div>
+      <!-- ----------------------- ----------------------- -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form">
+        <mat-form-field class="login_username" appearance="fill">
+          <mat-label>Email or phone number</mat-label>
+          <input type="email" matInput formControlName="username" />
+
+          <mat-error
+            *ngIf="
+              username?.hasError('email') && !username?.hasError('required')
+            "
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="username?.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="login_password" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="text" matInput formControlName="password" />
+
+          <mat-error *ngIf="password?.hasError('required')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="password?.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit">Sign In</button>
+        <div class="rem_holder">
+          <div class="rem_me">
+            <mat-checkbox
+              type="checkbox"
+              id="rem_me_box"
+              formControlName="loginFacebook"
+            ></mat-checkbox>
+            <label for="rem_me_box">Remember me</label>
+          </div>
+          <a href="">Need Help?</a>
+        </div>
+      </form>
+      <!-- ----------------------- ----------------------- -->
+      <div class="login_fb">
+        <img src="../../../assets/login/FB-f-Logo__blue_57.png" alt="" />
+        <label for="">Login with Facebook</label>
+      </div>
+      <!-- ----------------------- ----------------------- -->
+      <div class="sign_up_nav">
+        New to Netflix?
+        <a [routerLink]="['/home']">Sign up now</a>.
+      </div>
+      <!-- ----------------------- ----------------------- -->
+      <p class="right_description">
+        This page is protected by Goodle reCAPTCHA to ensure you're not a bot.
+        <a href="">Learn more.</a>
+      </p>
+      <!-- ----------------------- ----------------------- -->
+    </div>
+  </div>
+</main>
+
+<app-main-footer
+  [linkList]="linkList"
+  [backgroundColor]="backgroundColor"
+></app-main-footer>
