@@ -17,6 +17,7 @@ import { MainRowThreeComponent } from './components/main/main-row-three/main-row
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainFooterComponent } from './components/main/main-footer/main-footer.component';
 import { MainQuestionsComponent } from './components/main/main-questions/main-questions.component';
+import { PageOneComponent } from './components/register/page-one/page-one.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MainQuestionsComponent } from './components/main/main-questions/main-qu
     MainRowThreeComponent,
     MainFooterComponent,
     MainQuestionsComponent,
+    PageOneComponent,
   ],
   imports: [
     BrowserModule,
