@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   backgroundColor = 'rgba(0, 0, 0, 0.8)';
   linkList = [
     'FAQ',
@@ -17,7 +18,6 @@ export class LoginComponent implements OnInit {
     'Corporate Information',
   ];
   loginForm!: FormGroup;
-  hide = true;
   get username() {
     return this.loginForm.get('username');
   }

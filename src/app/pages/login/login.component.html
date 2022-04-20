@@ -25,10 +25,13 @@
         </mat-form-field>
 
         <mat-form-field class="login_password" appearance="fill">
-          <mat-label>Password</mat-label>
-          <input type="text" matInput formControlName="password" />
+          <mat-label>Enter your Password</mat-label>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            matInput
+            formControlName="password"
+          />
           <button
-            class="hidepwd_icon"
             mat-icon-button
             matSuffix
             (click)="hide = !hide"
@@ -45,7 +48,9 @@
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button type="submit">Sign In</button>
+        <button class="submit_btn" mat-raised-button type="submit">
+          Sign In
+        </button>
         <div class="rem_holder">
           <div class="rem_me">
             <mat-checkbox

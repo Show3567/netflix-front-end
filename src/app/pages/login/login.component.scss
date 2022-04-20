@@ -72,7 +72,7 @@
           color: rgb(232, 124, 3);
         }
 
-        button {
+        .submit_btn {
           color: white;
           background-color: red;
           font-size: 1.2rem;
@@ -132,6 +132,7 @@
           text-decoration: none;
           color: rgb(1, 113, 235);
         }
+        margin-bottom: 30px;
       }
     }
   }
