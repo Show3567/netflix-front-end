@@ -6,6 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./main-footer.component.scss'],
 })
 export class MainFooterComponent implements OnInit {
+  phoneNumber = '+86 185-1841-8130';
+
   @Input() linkList: string[] = [];
   @Input() backgroundColor: string = 'black';
 

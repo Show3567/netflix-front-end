@@ -31,6 +31,7 @@
     );
     .login_container {
       margin-top: 100px;
+      margin-bottom: 100px;
       width: 500px;
       display: flex;
       flex-direction: column;
@@ -143,4 +144,10 @@ app-main-footer {
   position: fixed;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0);
+}
+
+@media screen and (max-width: 680px) {
+  app-main-footer {
+    position: relative;
+  }
 }
