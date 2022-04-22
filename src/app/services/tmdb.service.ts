@@ -1,4 +1,8 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { DiscoverMovie } from './interfaces/discoverMovies.interface';
+import { map } from 'rxjs/operators';
+import { TMDBAPIKEY } from '../app.module';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +19,33 @@ export class TmdbService {
    * https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
    */
 
-  tmdbBaseUrl = 'https://api.themoviedb.org/3/';
-  APIKEY = 'ac7e1f44cec0dd6e260391374208b0cc';
+  private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
+  private readonly DiscoverMovies = 'discover/movie?';
+  private readonly baseDiscoverMovies: DiscoverMovie = {
+    api_key: this.myApiKey,
+    page: 1,
+    language: 'en-US',
+    sort_by: 'popularity.desc',
+    with_watch_monetization_types: 'flatrate',
+    include_adult: false,
+    include_video: false,
+  };
 
-  constructor() {}
+  constructor(
+    private http: HttpClient,
+    @Inject(TMDBAPIKEY) private readonly myApiKey: string
+  ) {}
+
+  getDiscoverMovie(search: DiscoverMovie) {
+    const discover = { ...this.baseDiscoverMovies, ...search };
+    let url = [this.tmdbBaseUrl, this.DiscoverMovies].join('/');
+    Object.entries(discover).forEach(([key, value]) => {
+      url += `&${key}=${'' + value}`;
+    });
+    return this.http.get(url).pipe(map((movies: any) => movies.results));
+  }
+
+  getBaseUrl() {
+    return this.tmdbBaseUrl;
+  }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,8 @@ import { PageOneComponent } from './components/register/page-one/page-one.compon
 import { PageTwoComponent } from './components/register/page-two/page-two.component';
 import { PageThreeComponent } from './components/register/page-three/page-three.component';
 import { PageFourComponent } from './components/register/page-four/page-four.component';
+
+export const TMDBAPIKEY = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { PageFourComponent } from './components/register/page-four/page-four.com
     SharedModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
