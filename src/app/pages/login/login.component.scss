@@ -30,37 +30,37 @@
       rgba(0, 0, 0, 0.9)
     );
     .login_container {
-      margin-top: 100px;
-      margin-bottom: 100px;
-      width: 500px;
+      margin-top: 70px;
+      margin-bottom: 70px;
+      width: 400px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-content: center;
 
       background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 5px;
-      height: 700px;
+      border-radius: 4px;
+      height: 600px;
 
-      padding: 65px;
+      padding: 40px;
 
       .title {
         color: white;
-        font-size: 2.625rem;
-        line-height: 3rem;
+        font-size: 2.3rem;
+        line-height: 2.5rem;
       }
       .login_form {
         display: flex;
         flex-direction: column;
-        margin-top: 35px;
+        margin-top: 25px;
 
         mat-label {
           color: rgba(255, 255, 255, 0.664);
         }
         ::ng-deep .mat-form-field-flex {
-          margin-top: 20px;
+          margin-top: 18px;
           color: white;
-          height: 60px;
+          height: 55px;
           font-size: 1rem;
           background-color: rgb(51, 51, 51);
         }
@@ -78,7 +78,7 @@
           background-color: red;
           font-size: 1.2rem;
           padding: 10px 0;
-          margin: 40px 0 20px 0;
+          margin: 30px 0 20px 0;
         }
 
         .rem_holder {
@@ -140,7 +140,7 @@
 }
 app-main-footer {
   width: 100vw;
-  height: 270px;
+  height: 200px;
   position: fixed;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0);
