@@ -1,0 +1,85 @@
+.main_container {
+  width: 100vw;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 30px;
+    width: 1100px;
+    background-color: aqua;
+    .icon_check_circle {
+      mat-icon {
+        color: red;
+        font-size: 4rem;
+        transform: translate(-22px, 0);
+      }
+    }
+    .step,
+    .p_1,
+    .p_2,
+    .p_3,
+    .p_4 {
+      width: 100%;
+      margin-top: 2px;
+      mat-icon {
+        color: red;
+        margin-right: 3px;
+        transform: translate(0, 5px);
+      }
+    }
+
+    .p_1 {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+    .p_2,
+    .p_3,
+    .p_4 {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+    .plan_table {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .plan_icon {
+        background-color: antiquewhite;
+        height: 150px;
+        width: 100%;
+      }
+      .row {
+        height: 60px;
+        line-height: 30px;
+        display: flex;
+        width: 100%;
+      }
+      .description {
+        padding: 15px;
+
+        width: 500px;
+      }
+      .val_container {
+        padding: 15px;
+        width: 200px;
+        text-align: center;
+      }
+      .border_bt {
+        border-bottom: 1px solid black;
+      }
+    }
+    button {
+      margin-top: 30px;
+      background-color: red;
+      color: white;
+      font-size: 1.5rem;
+      width: 300px;
+      height: 60px;
+    }
+  }
+}

@@ -18,6 +18,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainFooterComponent } from './components/main/main-footer/main-footer.component';
 import { MainQuestionsComponent } from './components/main/main-questions/main-questions.component';
 import { PageOneComponent } from './components/register/page-one/page-one.component';
+import { PageTwoComponent } from './components/register/page-two/page-two.component';
+import { PageThreeComponent } from './components/register/page-three/page-three.component';
+import { PageFourComponent } from './components/register/page-four/page-four.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { PageOneComponent } from './components/register/page-one/page-one.compon
     MainFooterComponent,
     MainQuestionsComponent,
     PageOneComponent,
+    PageTwoComponent,
+    PageThreeComponent,
+    PageFourComponent,
   ],
   imports: [
     BrowserModule,

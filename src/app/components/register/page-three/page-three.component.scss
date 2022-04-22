@@ -1,42 +1,53 @@
 .main_container {
   width: 100vw;
   height: calc(100vh - 80px);
-  //   background-color: aqua;
   display: flex;
   justify-content: center;
   align-items: center;
+
   .container {
-    // background-color: beige;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: 200px;
+    padding-bottom: 300px;
     width: 350px;
-    img {
-      width: 80%;
-      height: auto;
+    .icon_check_circle {
+      mat-icon {
+        color: red;
+        font-size: 4rem;
+        transform: translate(-22px, 0);
+      }
     }
     .step,
     .p_1,
     .p_2,
-    .p_3 {
+    .p_3,
+    .p_4 {
+      width: 100%;
       margin-top: 20px;
-      font-size: 0.8rem;
-      line-height: 1rem;
+      mat-icon {
+        color: red;
+        margin-right: 3px;
+        transform: translate(0, 5px);
+      }
+    }
+    .step {
       text-align: center;
     }
     .p_1 {
       font-size: 2rem;
       line-height: 2.5rem;
+      text-align: center;
     }
     .p_2,
-    .p_3 {
-      font-size: 1.2rem;
+    .p_3,
+    .p_4 {
+      font-size: 1rem;
       line-height: 1.5rem;
     }
     button {
-      margin-top: 20px;
+      margin-top: 30px;
       background-color: red;
       color: white;
       font-size: 1.5rem;

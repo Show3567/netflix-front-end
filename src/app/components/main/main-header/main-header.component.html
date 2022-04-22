@@ -1,6 +1,10 @@
 <header class="home_header">
   <div class="header_content">
-    <img class="netflix_icon" src="../assets/home/netflix_icon.png" alt="" />
+    <img
+      class="netflix_icon"
+      src="../assets/home/netflix_icon.png"
+      [routerLink]="['/home']"
+    />
     <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
       Sign In
     </button>

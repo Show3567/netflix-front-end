@@ -1,0 +1,53 @@
+<main class="main_container">
+  <div class="container">
+    <div class="step">STEP 4 OF 3</div>
+    <div class="p_1">Choose the plan that't right for you</div>
+    <div class="p_2">
+      <mat-icon>done</mat-icon>
+      Watch all you want. Ad-free.
+    </div>
+    <div class="p_3">
+      <mat-icon>done</mat-icon>
+      Recommendations just for you.
+    </div>
+    <div class="p_4">
+      <mat-icon>done</mat-icon>
+      Change or cancel your plan anytime.
+    </div>
+    <div class="plan_table">
+      <div class="plan_icon">
+        <div></div>
+        <div class="val_container"></div>
+        <div class="val_container"></div>
+        <div class="val_container"></div>
+      </div>
+      <div class="m_price border_bt row">
+        <div class="description">Monthly price</div>
+        <div class="val_container">{{ 9.99 | currency }}</div>
+        <div class="val_container">{{ 15.49 | currency }}</div>
+        <div class="val_container">{{ 19.99 | currency }}</div>
+      </div>
+      <div class="v_quality border_bt row">
+        <div class="description">Video quality</div>
+        <div class="val_container">Good</div>
+        <div class="val_container">Better</div>
+        <div class="val_container">Best</div>
+      </div>
+      <div class="resolution border_bt row">
+        <div class="description">Resolution</div>
+        <div class="val_container">480p</div>
+        <div class="val_container">1080p</div>
+        <div class="val_container">4K + HDR</div>
+      </div>
+      <div class="device row">
+        <div class="description">
+          Watch on your TV, computer, mobile phone and tablet
+        </div>
+        <div class="val_container"><mat-icon>done</mat-icon></div>
+        <div class="val_container"><mat-icon>done</mat-icon></div>
+        <div class="val_container"><mat-icon>done</mat-icon></div>
+      </div>
+    </div>
+    <button mat-raised-button [routerLink]="['/register/step2']">Next</button>
+  </div>
+</main>
