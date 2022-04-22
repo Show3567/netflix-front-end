@@ -1,3 +1,9 @@
+// :host {
+//   position: relative;
+//   height: 100vh;
+//   width: 100vw;
+// }
+
 hr {
   height: 2px;
   margin-top: 80px;
@@ -7,6 +13,6 @@ hr {
 app-main-footer {
   width: 100vw;
   height: 200px;
-  position: relative;
+  position: fixed;
   bottom: 0;
 }

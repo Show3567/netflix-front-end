@@ -16,36 +16,75 @@
     </div>
     <div class="plan_table">
       <div class="plan_icon">
-        <div></div>
-        <div class="val_container"></div>
-        <div class="val_container"></div>
-        <div class="val_container"></div>
+        <div class="description"></div>
+        <div [ngClass]="{ val_container: true }" (click)="selectPlan(0)">
+          <div [ngClass]="{ plan: true, plan_selected: selecedColumn === 0 }">
+            <div [ngClass]="{ arrow: true }" *ngIf="selecedColumn === 0"></div>
+            Basic
+          </div>
+        </div>
+        <div [ngClass]="{ val_container: true }" (click)="selectPlan(1)">
+          <div [ngClass]="{ plan: true, plan_selected: selecedColumn === 1 }">
+            <div [ngClass]="{ arrow: true }" *ngIf="selecedColumn === 1"></div>
+            Standard
+          </div>
+        </div>
+        <div [ngClass]="{ val_container: true }" (click)="selectPlan(2)">
+          <div [ngClass]="{ plan: true, plan_selected: selecedColumn === 2 }">
+            <div [ngClass]="{ arrow: true }" *ngIf="selecedColumn === 2"></div>
+            Premium
+          </div>
+        </div>
       </div>
       <div class="m_price border_bt row">
         <div class="description">Monthly price</div>
-        <div class="val_container">{{ 9.99 | currency }}</div>
-        <div class="val_container">{{ 15.49 | currency }}</div>
-        <div class="val_container">{{ 19.99 | currency }}</div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+          {{ plans.Basic.MonthlyPrice | currency }}
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+          {{ plans.Standard.MonthlyPrice | currency }}
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+          {{ plans.Premium.MonthlyPrice | currency }}
+        </div>
       </div>
       <div class="v_quality border_bt row">
         <div class="description">Video quality</div>
-        <div class="val_container">Good</div>
-        <div class="val_container">Better</div>
-        <div class="val_container">Best</div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+          {{ plans.Basic.VideoQuality }}
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+          {{ plans.Standard.VideoQuality }}
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+          {{ plans.Premium.VideoQuality }}
+        </div>
       </div>
       <div class="resolution border_bt row">
         <div class="description">Resolution</div>
-        <div class="val_container">480p</div>
-        <div class="val_container">1080p</div>
-        <div class="val_container">4K + HDR</div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+          {{ plans.Basic.Resolution }}
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+          {{ plans.Standard.Resolution }}
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+          {{ plans.Premium.Resolution }}
+        </div>
       </div>
       <div class="device row">
         <div class="description">
           Watch on your TV, computer, mobile phone and tablet
         </div>
-        <div class="val_container"><mat-icon>done</mat-icon></div>
-        <div class="val_container"><mat-icon>done</mat-icon></div>
-        <div class="val_container"><mat-icon>done</mat-icon></div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+          <mat-icon>done</mat-icon>
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+          <mat-icon>done</mat-icon>
+        </div>
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+          <mat-icon>done</mat-icon>
+        </div>
       </div>
     </div>
     <button mat-raised-button [routerLink]="['/register/step2']">Next</button>
