@@ -20,8 +20,11 @@ export class TmdbService {
    */
 
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
-  private readonly DiscoverMovies = 'discover/movie?';
-  private readonly baseDiscoverMovies: DiscoverMovie = {
+  private readonly discoverPath = 'discover/movie?';
+
+  private readonly baseMovieImage = 'https://image.tmdb.org/t/p/w500';
+
+  private readonly baseDiscoverMovie: DiscoverMovie = {
     api_key: this.myApiKey,
     page: 1,
     language: 'en-US',
@@ -37,15 +40,11 @@ export class TmdbService {
   ) {}
 
   getDiscoverMovie(search: DiscoverMovie) {
-    const discover = { ...this.baseDiscoverMovies, ...search };
-    let url = [this.tmdbBaseUrl, this.DiscoverMovies].join('/');
+    const discover = { ...this.baseDiscoverMovie, ...search };
+    let url = [this.tmdbBaseUrl, this.discoverPath].join('/');
     Object.entries(discover).forEach(([key, value]) => {
       url += `&${key}=${'' + value}`;
     });
     return this.http.get(url).pipe(map((movies: any) => movies.results));
-  }
-
-  getBaseUrl() {
-    return this.tmdbBaseUrl;
   }
 }

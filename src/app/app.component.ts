@@ -12,7 +12,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const search: DiscoverMovie = {
-      page: 3,
+      page: 1,
+      year: 2022,
+      include_video: true,
     };
     this.tmdbService.getDiscoverMovie(search).subscribe((data) => {
       console.log(data);
