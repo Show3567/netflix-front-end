@@ -1,0 +1,87 @@
+.newbox {
+  position: relative;
+  margin: 20px 20px;
+  height: 460px;
+  width: 90%;
+  border: 1px solid #000;
+
+  .bk-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+    opacity: 0.1;
+    transform: skew(2deg, 2deg);
+  }
+
+  .content {
+    position: absolute;
+    bottom: 100px;
+    padding: 20px;
+    transform: translateY(100px);
+    text-align: start;
+
+    .movie_poster {
+      position: absolute;
+      top: -250px;
+      height: 18em;
+      width: 14em;
+      right: 20px;
+      transition: 0.5s;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+    h3 {
+      margin: 0 0 10px;
+      padding: 0;
+      font-size: 20px;
+      font-weight: 500;
+      color: rgb(255, 252, 238);
+    }
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      font-style: italic;
+      color: #fff;
+    }
+    a {
+      position: relative;
+      margin: 20px 0 0;
+      padding: 10px 20px;
+      text-decoration: none;
+      border: 1px solid #fff;
+      display: inline-block;
+      color: #fff;
+      transition: 0.5s;
+      transform: translateY(-40px);
+      opacity: 0;
+      visibility: hidden;
+    }
+    a:hover {
+      color: #000;
+      background: #fff;
+    }
+  }
+}
+.newbox:hover {
+  .content {
+    .movie_poster {
+      top: -260px;
+      height: 20em;
+      width: 14em;
+      box-shadow: 0 0 5px white;
+      border-radius: 5px;
+    }
+    a {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

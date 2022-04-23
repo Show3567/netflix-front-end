@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -21,6 +22,8 @@ import { PageOneComponent } from './components/register/page-one/page-one.compon
 import { PageTwoComponent } from './components/register/page-two/page-two.component';
 import { PageThreeComponent } from './components/register/page-three/page-three.component';
 import { PageFourComponent } from './components/register/page-four/page-four.component';
+import { MoviesComponent } from './pages/movies/movies.component';
+import { ItemComponent } from './components/movies/item/item.component';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 
@@ -41,11 +44,14 @@ export const TMDBAPIKEY = new InjectionToken<string>('');
     PageTwoComponent,
     PageThreeComponent,
     PageFourComponent,
+    MoviesComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    CoreModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,

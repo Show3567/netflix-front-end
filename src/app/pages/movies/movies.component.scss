@@ -1,0 +1,12 @@
+.movie_list {
+  background-color: black;
+  border: 1px solid black;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .movie_item {
+    width: 400px;
+  }
+}

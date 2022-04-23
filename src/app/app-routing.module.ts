@@ -6,12 +6,14 @@ import { PageThreeComponent } from './components/register/page-three/page-three.
 import { PageTwoComponent } from './components/register/page-two/page-two.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { MoviesComponent } from './pages/movies/movies.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'movies', component: MoviesComponent },
   {
     path: 'register',
     component: RegisterComponent,

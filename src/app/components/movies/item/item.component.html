@@ -1,0 +1,19 @@
+<div class="newbox">
+  <div
+    class="bk-image"
+    [ngStyle]="{
+      'background-image': 'url(' + poster_img_url + ')',
+      'object-fit': 'fill'
+    }"
+  ></div>
+  <div class="content">
+    <div class="movie_poster">
+      <img [src]="poster_img_url" alt="" />
+    </div>
+    <h3>{{ movie.title }}</h3>
+    <p>
+      {{ movie.overview | overviewControl }}
+    </p>
+    <a href="">Read More</a>
+  </div>
+</div>

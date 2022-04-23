@@ -47,4 +47,8 @@ export class TmdbService {
     });
     return this.http.get(url).pipe(map((movies: any) => movies.results));
   }
+
+  getMovieImage(path: string): string {
+    return [this.baseMovieImage, path].join('/');
+  }
 }
