@@ -3,7 +3,7 @@
   margin: 20px 20px;
   height: 460px;
   width: 90%;
-  border: 1px solid #000;
+  background: linear-gradient(270deg, #89ff00, #00bcd4);
 
   .bk-image {
     position: absolute;
@@ -12,8 +12,16 @@
     object-fit: fill;
     height: 100%;
     width: 100%;
-    opacity: 0.1;
     transform: skew(2deg, 2deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .bk-cover {
+      height: 99%;
+      width: 99%;
+      background-color: black;
+      opacity: 0.8;
+    }
   }
 
   .content {
@@ -73,10 +81,7 @@
   .content {
     .movie_poster {
       top: -260px;
-      height: 20em;
-      width: 14em;
-      box-shadow: 0 0 5px white;
-      border-radius: 5px;
+      box-shadow: 5px 5px 0 white;
     }
     a {
       transform: translateY(0);

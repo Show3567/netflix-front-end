@@ -21,7 +21,12 @@
             formControlName="email"
             placeholder="Email Address"
           />
-          <button mat-raised-button class="start_btn" type="submit">
+          <button
+            mat-raised-button
+            class="start_btn"
+            type="submit"
+            [routerLink]="['/register/step1']"
+          >
             Get Started >
           </button>
         </div>
