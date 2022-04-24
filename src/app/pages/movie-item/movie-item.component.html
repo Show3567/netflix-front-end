@@ -1,0 +1,20 @@
+<div class="host">
+  <div class="container">
+    <h1>Hello world!</h1>
+  </div>
+
+  <youtube-player
+    [videoId]="movieVideo.key"
+    suggestedQuality="highres"
+    [playerVars]="{
+      autoplay: 1,
+      controls: 0,
+      playlist: movieVideo.key,
+      loop: 1,
+      modestbranding: 1
+    }"
+    [height]="size.height"
+    [width]="size.width"
+  >
+  </youtube-player>
+</div>

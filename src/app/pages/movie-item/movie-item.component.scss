@@ -1,0 +1,23 @@
+.host {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: bisque;
+
+  .container {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+
+    h1 {
+      position: relative;
+
+      color: white;
+      z-index: 2;
+    }
+  }
+}

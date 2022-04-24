@@ -3,7 +3,7 @@
   margin: 20px 20px;
   height: 460px;
   width: 90%;
-  background: linear-gradient(270deg, #89ff00, #00bcd4);
+  background: linear-gradient(270deg, #e91e63, #5d02ff);
 
   .bk-image {
     position: absolute;
@@ -17,8 +17,8 @@
     justify-content: center;
     align-items: center;
     .bk-cover {
-      height: 99%;
-      width: 99%;
+      height: 100%;
+      width: 100%;
       background-color: black;
       opacity: 0.8;
     }
@@ -33,12 +33,13 @@
 
     .movie_poster {
       position: absolute;
-      top: -250px;
-      height: 18em;
-      width: 14em;
+      top: -220px;
+      height: 16em;
+      width: 12em;
       right: 20px;
       transition: 0.5s;
       img {
+        // border: 1px solid #6c0d2d;
         height: 100%;
         width: 100%;
         border-radius: 5px;
@@ -80,8 +81,8 @@
 .newbox:hover {
   .content {
     .movie_poster {
-      top: -260px;
-      box-shadow: 5px 5px 0 white;
+      top: -240px;
+      box-shadow: 0 0 10px #6c0d2d;
     }
     a {
       transform: translateY(0);

@@ -15,7 +15,7 @@ export class MoviesComponent implements OnInit {
   ngOnInit(): void {
     const search: DiscoverMovie = {
       page: 1,
-      year: 2022,
+      year: 2002,
       include_video: true,
     };
     this.tmdbService.getDiscoverMovie(search).subscribe((data) => {

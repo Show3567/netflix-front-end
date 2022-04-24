@@ -21,6 +21,7 @@ export class TmdbService {
 
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
   private readonly discoverPath = 'discover/movie?';
+  private readonly moviePath = 'movie';
 
   private readonly baseMovieImage = 'https://image.tmdb.org/t/p/w500';
 
@@ -50,5 +51,19 @@ export class TmdbService {
 
   getMovieImage(path: string): string {
     return [this.baseMovieImage, path].join('/');
+  }
+
+  getMovie(id: number) {
+    const url = `${[this.tmdbBaseUrl, this.moviePath, id].join('/')}?api_key=${
+      this.baseDiscoverMovie.api_key
+    }`;
+    return this.http.get(url);
+  }
+
+  getVideo(id: number) {
+    const url = `${[this.tmdbBaseUrl, this.moviePath, id].join(
+      '/'
+    )}/videos?api_key=${this.baseDiscoverMovie.api_key}`;
+    return this.http.get(url);
   }
 }

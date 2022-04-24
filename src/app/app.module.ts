@@ -2,6 +2,7 @@ import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { YouTubePlayerModule, YouTubePlayer } from '@angular/youtube-player';
 
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { PageThreeComponent } from './components/register/page-three/page-three.
 import { PageFourComponent } from './components/register/page-four/page-four.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { ItemComponent } from './components/movies/item/item.component';
+import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 
@@ -46,6 +48,7 @@ export const TMDBAPIKEY = new InjectionToken<string>('');
     PageFourComponent,
     MoviesComponent,
     ItemComponent,
+    MovieItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +59,11 @@ export const TMDBAPIKEY = new InjectionToken<string>('');
     ReactiveFormsModule,
     SharedModule,
     BrowserAnimationsModule,
+    YouTubePlayerModule,
   ],
   providers: [
     { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
+    YouTubePlayer,
   ],
   bootstrap: [AppComponent],
 })
