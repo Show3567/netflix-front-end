@@ -12,9 +12,9 @@
     <div class="movie_poster">
       <img [src]="poster_img_url" alt="" />
     </div>
-    <h3>{{ movie.title }}</h3>
+    <h3>{{ movie.title | overviewControl: 20 }}</h3>
     <p>
-      {{ movie.overview | overviewControl }}
+      {{ movie.overview | overviewControl: 120 }}
     </p>
     <a href="">Read More</a>
   </div>

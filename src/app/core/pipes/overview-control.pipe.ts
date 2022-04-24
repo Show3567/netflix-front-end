@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'overviewControl',
 })
 export class OverviewControlPipe implements PipeTransform {
-  transform(value: string, ...args: any[]): string {
-    return value.length < 120 ? value : value.substring(0, 120) + '...';
+  transform(value: string, len: number): string {
+    return value.length < len ? value : value.substring(0, len) + '...';
   }
 }

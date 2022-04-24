@@ -3,10 +3,28 @@
   border: 1px solid black;
 
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  .movie_item {
-    width: 400px;
+  .movie_Recommend {
+    position: relative;
+    height: 70vh;
+    width: 100vw;
+    background-color: bisque;
+  }
+  .movie_list {
+    position: relative;
+    width: 90vw;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .movie_item {
+      width: 350px;
+    }
   }
 }

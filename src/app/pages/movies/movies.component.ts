@@ -9,18 +9,18 @@ import { TmdbService } from 'src/app/services/tmdb.service';
 })
 export class MoviesComponent implements OnInit {
   movies: any = [];
+  moviesRecommend: any = [];
+  search: DiscoverMovie = {
+    page: 2,
+  };
 
   constructor(private tmdbService: TmdbService) {}
 
   ngOnInit(): void {
-    const search: DiscoverMovie = {
-      page: 1,
-      year: 2002,
-      include_video: true,
-    };
-    this.tmdbService.getDiscoverMovie(search).subscribe((data) => {
-      // console.log('data from backend: ', data);
+    this.tmdbService.getDiscoverMovie(this.search).subscribe((data) => {
       this.movies = [...data];
+      this.moviesRecommend = [...this.movies.slice(0, 6)];
+      console.log(this.moviesRecommend);
     });
   }
 }

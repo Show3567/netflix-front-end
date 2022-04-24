@@ -43,6 +43,7 @@ export class MovieItemComponent implements OnInit {
     this.tmdbService.getVideo(+this.movieRef.id).subscribe((video: any) => {
       if (video && video.results.length) {
         this.movieVideo = video.results[0];
+        console.log(this.movieVideo);
       }
     });
   }
