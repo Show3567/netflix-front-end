@@ -11,7 +11,72 @@
     position: relative;
     height: 70vh;
     width: 100vw;
-    background-color: bisque;
+    background-color: rgb(29, 17, 2);
+
+    .cover_img_bottom {
+      position: absolute;
+      bottom: 0;
+      height: 30%;
+      width: 100%;
+      background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .button_container {
+        position: absolute;
+        bottom: 30px;
+        width: 90vw;
+        padding: 30px;
+
+        button {
+          margin-right: 10px;
+        }
+      }
+    }
+    .cover_img_left {
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(to right, black, rgba(0, 0, 0, 0));
+    }
+    .cover_img_right {
+      position: absolute;
+      right: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(to left, black, rgba(0, 0, 0, 0));
+    }
+
+    .recommend_list {
+      position: absolute;
+      right: 10em;
+      background-color: rgba(0, 0, 0, 0);
+      height: 50%;
+      width: 30em;
+      margin-top: 10em;
+      z-index: 5;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+
+      .recommend_item {
+        text-align: right;
+        background-color: rgba(0, 0, 0, 0);
+        height: 14%;
+        line-height: 14%;
+        width: 100%;
+        font-size: 1.2em;
+        color: rgb(204, 204, 204);
+      }
+      .recommend_item:hover {
+        font-size: 1.8em;
+        color: white;
+      }
+    }
   }
   .movie_list {
     position: relative;

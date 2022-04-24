@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { DiscoverMovie } from './interfaces/discoverMovies.interface';
 import { map } from 'rxjs/operators';
 import { TMDBAPIKEY } from '../app.module';
+import { DiscoverTv } from './interfaces/discoverTv.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,11 @@ export class TmdbService {
    */
 
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
-  private readonly discoverPath = 'discover/movie?';
+  private readonly discoverMoviePath = 'discover/movie?';
+  private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
 
-  private readonly baseMovieImage = 'https://image.tmdb.org/t/p/w500';
+  private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
 
   private readonly baseDiscoverMovie: DiscoverMovie = {
     api_key: this.myApiKey,
@@ -34,6 +36,11 @@ export class TmdbService {
     include_adult: false,
     include_video: false,
   };
+  private readonly baseDiscoverTv: DiscoverTv = {
+    api_key: this.myApiKey,
+    page: 1,
+    language: 'en-US',
+  };
 
   constructor(
     private http: HttpClient,
@@ -42,15 +49,24 @@ export class TmdbService {
 
   getDiscoverMovie(search: DiscoverMovie) {
     const discover = { ...this.baseDiscoverMovie, ...search };
-    let url = [this.tmdbBaseUrl, this.discoverPath].join('/');
+    let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
     Object.entries(discover).forEach(([key, value]) => {
       url += `&${key}=${'' + value}`;
     });
     return this.http.get(url).pipe(map((movies: any) => movies.results));
   }
 
-  getMovieImage(path: string): string {
-    return [this.baseMovieImage, path].join('/');
+  getDiscoverTV(search: DiscoverTv) {
+    const discover = { ...this.baseDiscoverTv, ...search };
+    let url = [this.tmdbBaseUrl, this.discoverTvPath].join('/');
+    Object.entries(discover).forEach(([key, value]) => {
+      url += `&${key}=${'' + value}`;
+    });
+    return this.http.get(url).pipe(map((tv: any) => tv.results));
+  }
+
+  getMovieImagePath(path: string, quality: string): string {
+    return [this.baseMovieImage, quality, path].join('/');
   }
 
   getMovie(id: number) {

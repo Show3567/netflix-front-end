@@ -12,10 +12,20 @@
     <div class="movie_poster">
       <img [src]="poster_img_url" alt="" />
     </div>
-    <h3>{{ movie.title | overviewControl: 20 }}</h3>
-    <p>
-      {{ movie.overview | overviewControl: 120 }}
-    </p>
+    <h3>
+      {{ movie.title ? movie.title : (movie.name | overviewControl: 20) }}
+    </h3>
+    <div class="simple_inof">
+      <div class="yr_len_vo">
+        <span class="publish_year">{{ year }}</span>
+        <span class="lenguage">{{ movie.original_language | uppercase }}</span>
+        <span class="vote">{{ movie.vote_average }}</span>
+      </div>
+      <p>
+        {{ movie.overview | overviewControl: 85 }}
+      </p>
+    </div>
+
     <a href="">Read More</a>
   </div>
 </div>

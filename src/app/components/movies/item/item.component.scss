@@ -30,6 +30,7 @@
     padding: 20px;
     transform: translateY(100px);
     text-align: start;
+    width: 100%;
 
     .movie_poster {
       position: absolute;
@@ -46,18 +47,37 @@
       }
     }
     h3 {
-      margin: 0 0 10px;
+      margin: 0 0 5px;
       padding: 0;
       font-size: 20px;
       font-weight: 500;
       color: rgb(255, 252, 238);
     }
-    p {
+    .simple_inof {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 70px;
       font-size: 16px;
       font-style: italic;
       color: #fff;
+      .yr_len_vo {
+        // background-color: #e91e63;
+        width: 100%;
+        height: 1.5em;
+        font-size: 0.8em;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        span {
+          background-color: #8d143c;
+          line-height: 100%;
+          padding: 2px 30px;
+          border-radius: 20px;
+          text-align: center;
+        }
+      }
     }
     a {
       position: relative;

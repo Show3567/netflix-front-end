@@ -1,5 +1,45 @@
 <div class="movie_list">
-  <div class="movie_Recommend"></div>
+  <div
+    class="movie_Recommend"
+    [ngStyle]="{
+      'background-image': 'url(' + showRecommendImg + ')',
+      'background-size': 'auto 100%',
+      'background-position': 'center'
+    }"
+  >
+    <app-main-header></app-main-header>
+    <div class="recommend_list">
+      <div
+        class="recommend_item"
+        *ngFor="let item of recommend"
+        (mouseover)="handleHoverRecommend(item.id)"
+      >
+        {{ item.title ? item.title : (item.name | overviewControl: 18) }}
+      </div>
+    </div>
+    <div class="cover_img_bottom">
+      <div class="button_container">
+        <button
+          class="movies"
+          mat-raised-button
+          color="accent"
+          (click)="switchToMoiveList()"
+        >
+          Movies
+        </button>
+        <button
+          class="tv"
+          mat-raised-button
+          color="accent"
+          (click)="switchToTvList()"
+        >
+          Tv Show
+        </button>
+      </div>
+    </div>
+    <div class="cover_img_left"></div>
+    <div class="cover_img_right"></div>
+  </div>
 
   <div class="movie_list">
     <div class="movie_item" *ngFor="let movie of movies">
