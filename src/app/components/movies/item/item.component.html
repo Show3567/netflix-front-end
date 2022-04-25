@@ -22,10 +22,10 @@
         <span class="vote">{{ movie.vote_average }}</span>
       </div>
       <p>
-        {{ movie.overview | overviewControl: 85 }}
+        {{ movie.overview | overviewControl: 95 }}
       </p>
     </div>
 
-    <a href="">Read More</a>
+    <a [routerLink]="['/movies', movie.id]">Read More</a>
   </div>
 </div>

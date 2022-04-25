@@ -25,7 +25,6 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
-      console.log(data);
       this.movies = [...data];
       this.recommend = [...this.movies.slice(0, 7)];
 
