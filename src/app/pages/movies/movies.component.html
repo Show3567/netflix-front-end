@@ -14,7 +14,7 @@
         *ngFor="let item of recommend"
         (mouseover)="handleHoverRecommend(item.id)"
       >
-        {{ item.title ? item.title : (item.name | overviewControl: 18) }}
+        {{ (item.title ? item.title : item.name) | overviewControl: 18 }}
       </div>
     </div>
     <div class="cover_img_bottom">

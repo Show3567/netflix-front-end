@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb.service';
+import { Movie } from '../../services/interfaces/movie.interface';
 
 @Component({
   selector: 'app-movies',
@@ -9,8 +10,8 @@ import { TmdbService } from 'src/app/services/tmdb.service';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit {
-  movies: any = [];
-  recommend: any = [];
+  movies: Movie[] = [];
+  recommend: any[] = [];
   showRecommendImg: string = '';
   searchMovie: DiscoverMovie = {
     page: 1,
@@ -26,22 +27,25 @@ export class MoviesComponent implements OnInit {
     this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
       this.movies = [...data];
       this.recommend = [...this.movies.slice(0, 7)];
-      this.handleHoverRecommend(this.recommend[0].id);
+
+      this.recommend[0].id &&
+        this.handleHoverRecommend(this.recommend[0].id + '');
     });
   }
 
   handleHoverRecommend(id: string) {
-    const movie = this.recommend.find((item: any) => +item.id === +id);
-    this.showRecommendImg = this.tmdbService.getMovieImagePath(
-      movie.backdrop_path,
-      'w1280'
-    );
+    const movie = this.recommend.find((item: Movie | any) => +item.id === +id);
+    this.showRecommendImg =
+      movie && movie.backdrop_path
+        ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
+        : '';
   }
   switchToMoiveList() {
     this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
       this.movies = [...data];
       this.recommend = [...this.movies.slice(0, 7)];
-      this.handleHoverRecommend(this.recommend[0].id);
+      this.recommend[0].id &&
+        this.handleHoverRecommend(this.recommend[0].id + '');
     });
   }
 
@@ -49,7 +53,8 @@ export class MoviesComponent implements OnInit {
     this.tmdbService.getDiscoverTV(this.searchTv).subscribe((data) => {
       this.movies = [...data];
       this.recommend = [...this.movies.slice(0, 7)];
-      this.handleHoverRecommend(this.recommend[0].id);
+      this.recommend[0].id &&
+        this.handleHoverRecommend(this.recommend[0].id + '');
     });
   }
 }

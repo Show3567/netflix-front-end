@@ -25,7 +25,7 @@
       align-items: center;
       .button_container {
         position: absolute;
-        bottom: 30px;
+        bottom: 0px;
         width: 90vw;
         padding: 30px;
 
@@ -56,7 +56,7 @@
       height: 50%;
       width: 30em;
       margin-top: 10em;
-      z-index: 5;
+      z-index: 10;
 
       display: flex;
       flex-direction: column;
