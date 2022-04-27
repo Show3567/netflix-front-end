@@ -49,7 +49,7 @@
               {{ movie.homepage }}
             </a>
           </p>
-          <p *ngIf="movie.genres.length">
+          <p *ngIf="movie.genres?.length">
             Genres:
             <button mat-raised-button *ngFor="let genre of movie.genres">
               {{ genre.name }}
