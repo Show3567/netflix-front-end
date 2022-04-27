@@ -4,6 +4,8 @@ import { DiscoverMovie } from './interfaces/discoverMovies.interface';
 import { map } from 'rxjs/operators';
 import { TMDBAPIKEY } from '../app.module';
 import { DiscoverTv } from './interfaces/discoverTv.interface';
+import { Observable } from 'rxjs';
+import { Movie } from './interfaces/movie.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +23,10 @@ export class TmdbService {
    */
 
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
+  private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
   private readonly discoverMoviePath = 'discover/movie?';
   private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
-
-  private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
 
   private readonly baseDiscoverMovie: DiscoverMovie = {
     api_key: this.myApiKey,
@@ -69,17 +70,20 @@ export class TmdbService {
     return [this.baseMovieImage, quality, path].join('/');
   }
 
-  getMovie(id: number) {
+  getMovie(id: number): Observable<Movie> {
     const url = `${[this.tmdbBaseUrl, this.moviePath, id].join('/')}?api_key=${
       this.baseDiscoverMovie.api_key
     }`;
-    return this.http.get(url);
+    return this.http.get<Movie>(url);
   }
 
   getVideo(id: number) {
-    const url = `${[this.tmdbBaseUrl, this.moviePath, id].join(
-      '/'
-    )}/videos?api_key=${this.baseDiscoverMovie.api_key}`;
+    const url = [
+      this.tmdbBaseUrl,
+      this.moviePath,
+      id,
+      `videos?api_key=${this.baseDiscoverMovie.api_key}`,
+    ].join('/');
     return this.http.get(url);
   }
 }
