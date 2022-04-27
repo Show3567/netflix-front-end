@@ -13,6 +13,7 @@ export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   recommend: any[] = [];
   showRecommendImg: string = '';
+  currentPage = 1;
   searchMovie: DiscoverMovie = {
     page: 1,
     year: 2022,
@@ -43,6 +44,20 @@ export class MoviesComponent implements OnInit {
   switchToMoiveList() {
     this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
       this.movies = [...data];
+      this.recommend = [...this.movies.slice(0, 7)];
+      this.recommend[0].id &&
+        this.handleHoverRecommend(this.recommend[0].id + '');
+    });
+  }
+
+  onScroll() {
+    const movieQuery = {
+      ...this.searchMovie,
+      page: ++this.currentPage,
+    };
+    this.tmdbService.getDiscoverMovie(movieQuery).subscribe((data) => {
+      this.movies = [...this.movies, ...data];
+      console.log(this.movies);
       this.recommend = [...this.movies.slice(0, 7)];
       this.recommend[0].id &&
         this.handleHoverRecommend(this.recommend[0].id + '');

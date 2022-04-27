@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 import { ComponentsModule } from './components/components.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 
@@ -40,6 +41,7 @@ export const TMDBAPIKEY = new InjectionToken<string>('');
     BrowserAnimationsModule,
     YouTubePlayerModule,
     ComponentsModule,
+    InfiniteScrollModule,
   ],
   providers: [
     { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },

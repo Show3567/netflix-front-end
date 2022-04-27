@@ -45,5 +45,16 @@
     <div class="movie_item" *ngFor="let movie of movies">
       <app-item [movie]="movie"></app-item>
     </div>
+
+    <div
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+    ></div>
+
+    <!-- <div *ngIf="!finished">is loading...</div>
+
+    <div class="notification is-warning" *ngIf="finished"></div> -->
   </div>
 </div>
