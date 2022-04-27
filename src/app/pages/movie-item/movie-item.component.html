@@ -1,16 +1,83 @@
-<div class="host">
-  <!-- <div class="container"></div> -->
+<div
+  class="host"
+  [ngStyle]="{
+    'background-image': 'url(' + backdrop_img_high + ')',
+    'background-size': 'auto 100%'
+  }"
+>
+  <div class="container">
+    <div class="info_holder">
+      <div class="video_holder">
+        <div class="video_list">
+          <button
+            class="video_switcher_left"
+            mat-fab
+            (click)="switchVideo('left')"
+          >
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          <button
+            class="video_switcher_right"
+            mat-fab
+            (click)="switchVideo('right')"
+          >
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+          <youtube-player
+            [videoId]="movieVideos[0]?.key"
+            suggestedQuality="highres"
+            [playerVars]="{
+              autoplay: 1,
+              controls: 1,
+              playlist: movieVideos[0]?.key,
+              loop: 1,
+              modestbranding: 1
+            }"
+            [height]="600"
+            [width]="1000"
+          >
+          </youtube-player>
+        </div>
+      </div>
 
-  <youtube-player
-    [videoId]="movieVideos[0].key"
-    suggestedQuality="highres"
-    [playerVars]="{
-      autoplay: 1,
-      controls: 1,
-      playlist: movieVideos[0].key,
-      loop: 1,
-      modestbranding: 1
-    }"
-  >
-  </youtube-player>
+      <div class="movie_detail_holder">
+        <div class="post_img"><img [src]="poster_img_high" alt="" /></div>
+        <div class="detail_list">
+          <p *ngIf="movie.homepage">
+            Home Page:
+            <a mat-raised-button [href]="movie.homepage">
+              {{ movie.homepage }}
+            </a>
+          </p>
+          <p *ngIf="movie.genres.length">
+            Genres:
+            <button mat-raised-button *ngFor="let genre of movie.genres">
+              {{ genre.name }}
+            </button>
+          </p>
+          <p>
+            Title: <span>{{ movie.title }}</span>
+          </p>
+          <p *ngIf="movie.runtime">
+            Time: <span>{{ movie.runtime }} mins</span>
+          </p>
+          <p *ngIf="movie.release_date">
+            Release Date:
+            <span>{{ movie.release_date | date: "dd/MM/yyyy" }}</span>
+          </p>
+          <p>
+            Over View: <span>{{ movie.overview }}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="production_companies">
+        <img
+          class="company_icon"
+          *ngFor="let icon of companies_icons"
+          [src]="icon"
+        />
+      </div>
+    </div>
+  </div>
 </div>

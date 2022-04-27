@@ -5,12 +5,172 @@
   background-color: rgb(0, 0, 0);
 
   .container {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 1) 100%
+    );
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .info_holder {
+      background-color: rgba(0, 0, 0, 0.15);
+      height: 80em;
+      width: 110em;
+      border-radius: 1em;
+      backdrop-filter: blur(10px);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .video_holder {
+        position: relative;
+        margin-top: 2em;
+        height: 620px;
+        width: 1230px;
+        background-color: black;
+        border-radius: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .video_list {
+          height: 100%;
+          position: relative;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: nowrap;
+
+          .video_switcher_left,
+          .video_switcher_right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 50%;
+            font-size: 2em;
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            background-color: #8d143c;
+          }
+          .video_switcher_left {
+            left: 0;
+            transform: translate(-120%, -50%);
+          }
+          .video_switcher_right {
+            right: 0;
+            transform: translate(120%, -50%);
+          }
+          .video_switcher_left:hover,
+          .video_switcher_right:hover {
+            background-color: #bc0643;
+          }
+        }
+      }
+
+      .movie_detail_holder {
+        position: absolute;
+        bottom: 4em;
+
+        height: 400px;
+        width: 100%;
+
+        background-color: rgba(133, 133, 133, 0.15);
+        backdrop-filter: blur(10px);
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .post_img {
+          margin-left: 150px;
+          height: 100%;
+          width: 300px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            height: 95%;
+            width: auto;
+            border-radius: 2px;
+          }
+        }
+
+        .detail_list {
+          height: 100%;
+          width: 910px;
+          background-color: rgba(167, 167, 167, 0.15);
+          backdrop-filter: blur(10px);
+
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+
+          margin: 2em, 0;
+
+          p {
+            padding: 10px 10px;
+            text-align: start;
+            width: 100%;
+            font-size: 1.3em;
+            font-style: italic;
+            color: white;
+          }
+
+          p:nth-child(1) {
+            a {
+              font-style: italic;
+              font-size: 1em;
+              color: white;
+              background-color: rgba(201, 201, 201, 0.15);
+              backdrop-filter: blur(10px);
+            }
+          }
+          p:nth-child(2) {
+            button {
+              font-style: italic;
+              font-size: 1em;
+              margin-right: 10px;
+              text-align: center;
+              color: white;
+
+              background-color: rgba(201, 201, 201, 0.15);
+              backdrop-filter: blur(10px);
+            }
+          }
+        }
+      }
+
+      .production_companies {
+        position: absolute;
+        bottom: -1em;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        background-color: rgba(188, 188, 188, 0.15);
+        backdrop-filter: blur(10px);
+
+        .company_icon {
+          margin: 10px 5px;
+          height: 3em;
+          width: auto;
+        }
+      }
+    }
   }
 }
