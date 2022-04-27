@@ -45,11 +45,28 @@
 
         .video_list {
           height: 100%;
-          position: relative;
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
           flex-wrap: nowrap;
+
+          .no_signal {
+            position: absolute;
+            top: 0;
+
+            img:nth-child(1) {
+              height: 600px;
+              width: 1200px;
+            }
+            img:nth-child(2) {
+              position: absolute;
+              bottom: 2em;
+              right: 2em;
+              height: 30%;
+              width: auto;
+              border-radius: 2px;
+            }
+          }
 
           .video_switcher_left,
           .video_switcher_right {
@@ -95,6 +112,7 @@
         align-items: center;
 
         .post_img {
+          position: relative;
           margin-left: 150px;
           height: 100%;
           width: 300px;
@@ -125,6 +143,8 @@
           p {
             padding: 2px 10px;
             text-align: start;
+            text-shadow: 0 0 2px #eddcfd;
+            letter-spacing: 1px;
             width: 100%;
             font-size: 1.3em;
             font-style: italic;
@@ -136,13 +156,18 @@
               margin-top: 5px;
               display: inline-block;
             }
+            span {
+              line-height: 1.5em;
+            }
+            .detail_font-style {
+              color: #eddcfd;
+            }
           }
 
           p:nth-child(1) {
             a {
               font-style: italic;
               font-size: 1em;
-              color: white;
               background-color: rgba(201, 201, 201, 0.15);
               backdrop-filter: blur(10px);
             }
@@ -153,11 +178,11 @@
               font-size: 1em;
               margin-right: 10px;
               text-align: center;
-              color: white;
-
-              background-color: rgba(201, 201, 201, 0.15);
-              backdrop-filter: blur(10px);
             }
+          }
+          .btn_background_color {
+            background-color: rgba(201, 201, 201, 0.15);
+            backdrop-filter: blur(10px);
           }
         }
       }
