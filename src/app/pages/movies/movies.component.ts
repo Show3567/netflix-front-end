@@ -50,11 +50,11 @@ export class MoviesComponent implements OnInit {
   }
 
   switchToTvList() {
-    this.tmdbService.getDiscoverTV(this.searchTv).subscribe((data) => {
-      this.movies = [...data];
-      this.recommend = [...this.movies.slice(0, 7)];
-      this.recommend[0].id &&
-        this.handleHoverRecommend(this.recommend[0].id + '');
-    });
+    // this.tmdbService.getDiscoverTV(this.searchTv).subscribe((data) => {
+    //   this.movies = [...data];
+    //   this.recommend = [...this.movies.slice(0, 7)];
+    //   this.recommend[0].id &&
+    //     this.handleHoverRecommend(this.recommend[0].id + '');
+    // });
   }
 }

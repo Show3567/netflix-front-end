@@ -123,12 +123,19 @@
           margin: 2em, 0;
 
           p {
-            padding: 10px 10px;
+            padding: 2px 10px;
             text-align: start;
             width: 100%;
             font-size: 1.3em;
             font-style: italic;
             color: white;
+
+            mat-icon {
+              color: #ff0055;
+              margin-right: 5px;
+              margin-top: 5px;
+              display: inline-block;
+            }
           }
 
           p:nth-child(1) {

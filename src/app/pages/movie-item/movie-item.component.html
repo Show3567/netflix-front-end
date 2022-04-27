@@ -44,29 +44,32 @@
         <div class="post_img"><img [src]="poster_img_high" alt="" /></div>
         <div class="detail_list">
           <p *ngIf="movie.homepage">
-            Home Page:
+            Home Page <mat-icon>fingerprint</mat-icon>
             <a mat-raised-button [href]="movie.homepage">
               {{ movie.homepage }}
             </a>
           </p>
           <p *ngIf="movie.genres?.length">
-            Genres:
+            Genres <mat-icon>fingerprint</mat-icon>
             <button mat-raised-button *ngFor="let genre of movie.genres">
               {{ genre.name }}
             </button>
           </p>
           <p>
-            Title: <span>{{ movie.title }}</span>
+            Title <mat-icon>fingerprint</mat-icon>
+            <span>{{ movie.title }}</span>
           </p>
           <p *ngIf="movie.runtime">
-            Time: <span>{{ movie.runtime }} mins</span>
+            Time <mat-icon>fingerprint</mat-icon>
+            <span>{{ movie.runtime }} mins</span>
           </p>
           <p *ngIf="movie.release_date">
-            Release Date:
+            Release Date <mat-icon>fingerprint</mat-icon>
             <span>{{ movie.release_date | date: "dd/MM/yyyy" }}</span>
           </p>
           <p>
-            Over View: <span>{{ movie.overview }}</span>
+            Over View <mat-icon>fingerprint</mat-icon>
+            <span>{{ movie.overview }}</span>
           </p>
         </div>
       </div>
