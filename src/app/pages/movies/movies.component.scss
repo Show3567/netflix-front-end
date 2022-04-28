@@ -89,7 +89,24 @@
     flex-wrap: wrap;
 
     .movie_item {
+      position: relative;
       width: 350px;
+    }
+    .infinite_scroll_mark {
+      position: relative;
+    }
+    .spinner_isLoading {
+      position: fixed;
+      bottom: 0;
+      height: 20px;
+      width: 100%;
+      hr {
+        height: 100%;
+        width: 100%;
+        border: 0;
+        background: linear-gradient(235deg, rgb(43, 255, 0), rgb(0, 255, 191));
+        animation: animate1 5s linear infinite;
+      }
     }
   }
 }

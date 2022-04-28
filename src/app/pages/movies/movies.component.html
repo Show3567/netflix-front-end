@@ -47,14 +47,15 @@
     </div>
 
     <div
+      class="infinite_scroll_mark"
       infiniteScroll
       [infiniteScrollDistance]="1"
-      [infiniteScrollThrottle]="50"
+      [infiniteScrollThrottle]="1000"
       (scrolled)="onScroll()"
     ></div>
 
-    <!-- <div *ngIf="!finished">is loading...</div>
+    <div *ngIf="!finished" class="spinner_isLoading"><hr /></div>
 
-    <div class="notification is-warning" *ngIf="finished"></div> -->
+    <div class="notification is-warning" *ngIf="finished"></div>
   </div>
 </div>

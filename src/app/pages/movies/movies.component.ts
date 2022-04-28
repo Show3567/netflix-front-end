@@ -13,6 +13,7 @@ export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   recommend: any[] = [];
   showRecommendImg: string = '';
+  finished = false;
   currentPage = 1;
   searchMovie: DiscoverMovie = {
     page: 1,
@@ -57,7 +58,7 @@ export class MoviesComponent implements OnInit {
     };
     this.tmdbService.getDiscoverMovie(movieQuery).subscribe((data) => {
       this.movies = [...this.movies, ...data];
-      console.log(this.movies);
+      console.log('trigger onScroll: ', (Math.random() * 100).toFixed(3));
       this.recommend = [...this.movies.slice(0, 7)];
       this.recommend[0].id &&
         this.handleHoverRecommend(this.recommend[0].id + '');
