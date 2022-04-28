@@ -10,7 +10,11 @@
   </div>
   <div class="content">
     <div class="movie_poster">
-      <img [src]="poster_img_high" alt="" />
+      <img [src]="poster_img_high" alt="" *ngIf="hasPoster_img" />
+      <img
+        src="../../../../assets/movie/notfoundimg.jpeg"
+        *ngIf="!hasPoster_img"
+      />
     </div>
     <h3>
       {{ movie.title ? movie.title : (movie.name | overviewControl: 20) }}

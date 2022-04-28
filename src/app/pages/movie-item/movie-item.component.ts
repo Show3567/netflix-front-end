@@ -11,6 +11,9 @@ import { tap, map } from 'rxjs/operators';
 })
 export class MovieItemComponent implements OnInit {
   @ViewChild(YouTubePlayer, { static: true }) youTubePlayer!: YouTubePlayer;
+
+  hasposter_img = true;
+  hasbackdrop_img = true;
   poster_img_high: string = '';
   backdrop_img_high: string = '';
   isMuted: boolean = false;
@@ -37,7 +40,6 @@ export class MovieItemComponent implements OnInit {
           this.tmdbService.getVideo(+id).subscribe((videos: any) => {
             if (videos && videos.results) {
               this.movieVideos = [...videos.results];
-              // console.log(this.movieVideos);
             }
           });
           this.tmdbService.getMovie(+id).subscribe((movie: any) => {
@@ -50,14 +52,20 @@ export class MovieItemComponent implements OnInit {
                   this.tmdbService.getMovieImagePath(company.logo_path, 'w500')
                 );
             });
-            this.backdrop_img_high = this.tmdbService.getMovieImagePath(
-              this.movie.backdrop_path,
-              'original'
-            );
-            this.poster_img_high = this.tmdbService.getMovieImagePath(
-              this.movie.poster_path,
-              'w780'
-            );
+            if (this.movie.backdrop_path) {
+              this.hasbackdrop_img = true;
+              this.backdrop_img_high = this.tmdbService.getMovieImagePath(
+                this.movie.backdrop_path,
+                'original'
+              );
+            } else this.hasbackdrop_img = false;
+            if (this.movie.poster_path) {
+              this.hasposter_img = true;
+              this.poster_img_high = this.tmdbService.getMovieImagePath(
+                this.movie.poster_path,
+                'w780'
+              );
+            } else this.hasposter_img = false;
           });
         })
       )

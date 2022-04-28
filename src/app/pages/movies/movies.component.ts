@@ -13,6 +13,7 @@ export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   recommend: any[] = [];
   showRecommendImg: string = '';
+  noRecommendImg = '../../../assets/video/VGA-no-signal-image.jpeg';
   finished = false;
   currentPage = 1;
   searchMovie: DiscoverMovie = {
@@ -40,7 +41,7 @@ export class MoviesComponent implements OnInit {
     this.showRecommendImg =
       movie && movie.backdrop_path
         ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
-        : '';
+        : this.noRecommendImg;
   }
   switchToMoiveList() {
     this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
@@ -58,10 +59,7 @@ export class MoviesComponent implements OnInit {
     };
     this.tmdbService.getDiscoverMovie(movieQuery).subscribe((data) => {
       this.movies = [...this.movies, ...data];
-      console.log('trigger onScroll: ', (Math.random() * 100).toFixed(3));
-      this.recommend = [...this.movies.slice(0, 7)];
-      this.recommend[0].id &&
-        this.handleHoverRecommend(this.recommend[0].id + '');
+      //   console.log('trigger onScroll: ', (Math.random() * 100).toFixed(3));
     });
   }
 

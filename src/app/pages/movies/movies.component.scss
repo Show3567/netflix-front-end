@@ -96,16 +96,25 @@
       position: relative;
     }
     .spinner_isLoading {
-      position: fixed;
+      position: absolute;
       bottom: 0;
-      height: 20px;
+      height: 30px;
       width: 100%;
       hr {
         height: 100%;
         width: 100%;
         border: 0;
-        background: linear-gradient(235deg, rgb(43, 255, 0), rgb(0, 255, 191));
+        background: linear-gradient(235deg, #e91e63, #5d02ff);
         animation: animate1 5s linear infinite;
+      }
+      @keyframes animate1 {
+        0%,
+        100% {
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          filter: hue-rotate(360deg);
+        }
       }
     }
   }

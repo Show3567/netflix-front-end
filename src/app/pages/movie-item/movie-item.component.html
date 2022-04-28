@@ -24,7 +24,7 @@
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
           <div class="no_signal" *ngIf="!movieVideos[0]">
-            <img [src]="backdrop_img_high" alt="" />
+            <img [src]="backdrop_img_high" alt="" *ngIf="hasbackdrop_img" />
             <img src="../../../assets/video/VGA-no-signal-image.jpeg" alt="" />
           </div>
           <youtube-player
@@ -46,7 +46,13 @@
       </div>
 
       <div class="movie_detail_holder">
-        <div class="post_img"><img [src]="poster_img_high" alt="" /></div>
+        <div class="post_img">
+          <img [src]="poster_img_high" *ngIf="hasposter_img" />
+          <img
+            src="../../../assets/movie/notfoundimg.jpeg"
+            *ngIf="!hasposter_img"
+          />
+        </div>
         <div class="detail_list">
           <p *ngIf="movie.homepage">
             Home Page <mat-icon>fingerprint</mat-icon>
