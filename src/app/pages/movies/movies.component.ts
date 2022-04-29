@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb.service';
@@ -24,7 +25,7 @@ export class MoviesComponent implements OnInit {
     page: 1,
   };
 
-  constructor(private tmdbService: TmdbService) {}
+  constructor(private tmdbService: TmdbService, private _router: Router) {}
 
   ngOnInit(): void {
     this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
@@ -61,6 +62,10 @@ export class MoviesComponent implements OnInit {
       this.movies = [...this.movies, ...data];
       //   console.log('trigger onScroll: ', (Math.random() * 100).toFixed(3));
     });
+  }
+
+  navigateMovie(id: string) {
+    this._router.navigate(['/movies', id]);
   }
 
   switchToTvList() {

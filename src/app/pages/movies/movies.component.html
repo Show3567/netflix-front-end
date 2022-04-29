@@ -13,6 +13,7 @@
         class="recommend_item"
         *ngFor="let item of recommend"
         (mouseover)="handleHoverRecommend(item.id)"
+        (click)="navigateMovie(item.id)"
       >
         {{ (item.title ? item.title : item.name) | overviewControl: 18 }}
       </div>
@@ -54,7 +55,9 @@
       (scrolled)="onScroll()"
     ></div>
 
-    <div *ngIf="!finished" class="spinner_isLoading"><hr /></div>
+    <div *ngIf="!finished" class="spinner_isLoading">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
 
     <div class="notification is-warning" *ngIf="finished"></div>
   </div>

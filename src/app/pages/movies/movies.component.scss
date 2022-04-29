@@ -64,6 +64,7 @@
       align-items: flex-start;
 
       .recommend_item {
+        cursor: default;
         text-align: right;
         background-color: rgba(0, 0, 0, 0);
         height: 14%;
@@ -98,8 +99,15 @@
     .spinner_isLoading {
       position: absolute;
       bottom: 0;
-      height: 30px;
+      height: 150px;
       width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      mat-spinner {
+      }
+
       hr {
         height: 100%;
         width: 100%;
