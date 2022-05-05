@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
       email: this.email?.value,
       password: this.password?.value,
     };
-    this.authService.signIn(credencialSignIn).subscribe();
+    // this.authService.signIn(credencialSignIn).subscribe();
   }
 }
