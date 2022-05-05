@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,24 +19,31 @@ export class LoginComponent implements OnInit {
     'Corporate Information',
   ];
   loginForm!: FormGroup;
-  get username() {
-    return this.loginForm.get('username');
+  get email() {
+    return this.loginForm.get('email');
   }
   get password() {
     return this.loginForm.get('password');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private readonly authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
+    const credencialSignIn = {
+      email: this.email?.value,
+      password: this.password?.value,
+    };
+    this.authService.signIn(credencialSignIn).subscribe();
   }
 }

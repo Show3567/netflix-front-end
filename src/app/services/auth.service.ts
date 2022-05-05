@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppUserAuth, UserRole } from './interfaces/user-auth.interface';
 import { AppUser } from './interfaces/user-login.interface';
 import { tap } from 'rxjs/operators';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -32,14 +33,11 @@ export class AuthService {
     this.resetSecurityObject();
 
     return this.http
-      .post<AppUserAuth>(
-        [this.baseAuth, 'signin'].join('/'),
-        entity,
-        this.httpOptions
-      )
+      .post([this.baseAuth, 'signin'].join('/'), entity, this.httpOptions)
       .pipe(
         tap((response: any) => {
-          console.log(response);
+          const decoded = jwt_decode(response.body.accessToken);
+          console.log(decoded);
         })
       );
   }
