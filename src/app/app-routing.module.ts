@@ -1,14 +1,8 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageFourComponent } from './components/register/page-four/page-four.component';
-import { PageOneComponent } from './components/register/page-one/page-one.component';
-import { PageThreeComponent } from './components/register/page-three/page-three.component';
-import { PageTwoComponent } from './components/register/page-two/page-two.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 import { MoviesComponent } from './pages/movies/movies.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,28 +11,31 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
   },
-  { path: 'movies', component: MoviesComponent },
-  {
-    path: 'movies',
-    children: [
-      { path: '', component: MoviesComponent },
-      { path: ':id', component: MovieItemComponent },
-    ],
-  },
   {
     path: 'register',
-    component: RegisterComponent,
-    children: [
-      { path: 'step1', component: PageOneComponent },
-      { path: 'step2', component: PageTwoComponent },
-      { path: 'step3', component: PageThreeComponent },
-      { path: 'step4', component: PageFourComponent },
-      { path: '', redirectTo: 'step1', pathMatch: 'full' },
-    ],
+    loadChildren: () =>
+      import('./pages/register/register.module').then((m) => m.RegisterModule),
   },
-
+  {
+    path: 'movies',
+    loadChildren: () =>
+      import('./pages/movies/movies.module').then((m) => m.MoviesModule),
+  },
+  {
+    path: 'movies/:id',
+    loadChildren: () =>
+      import('./pages/movie-item/movie-item.module').then(
+        (m) => m.MovieItemModule
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./pages/page-not-found/page-not-found.module').then(
+        (m) => m.PageNotFoundModule
+      ),
+  },
 ];
 
 @NgModule({
