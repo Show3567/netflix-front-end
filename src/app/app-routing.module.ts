@@ -5,7 +5,6 @@ import { PageOneComponent } from './components/register/page-one/page-one.compon
 import { PageThreeComponent } from './components/register/page-three/page-three.component';
 import { PageTwoComponent } from './components/register/page-two/page-two.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
 import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -13,7 +12,11 @@ import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
+  },
   { path: 'movies', component: MoviesComponent },
   {
     path: 'movies',
