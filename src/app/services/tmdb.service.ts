@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { DiscoverMovie } from './interfaces/discoverMovies.interface';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { TMDBAPIKEY } from '../app.module';
 import { DiscoverTv } from './interfaces/discoverTv.interface';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Movie } from './interfaces/movie.interface';
 
 @Injectable({
@@ -28,15 +28,22 @@ export class TmdbService {
   private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
 
+  private movieList: Movie[] = [];
+  private movieList$ = new BehaviorSubject(this.movieList);
+  public movieListObs$ = this.movieList$.asObservable();
+
+  private recommendList: Movie[] = [];
+  private recommendList$ = new BehaviorSubject(this.recommendList);
+  public recommendListObs$ = this.recommendList$.asObservable();
+
   private readonly baseDiscoverMovie: DiscoverMovie = {
     api_key: this.myApiKey,
     page: 1,
     language: 'en-US',
-    // sort_by: 'release_date.desc',
     sort_by: 'popularity.desc',
-    with_watch_monetization_types: 'flatrate',
     include_adult: false,
     include_video: false,
+    with_watch_monetization_types: 'flatrate',
   };
   private readonly baseDiscoverTv: DiscoverTv = {
     api_key: this.myApiKey,
@@ -55,7 +62,15 @@ export class TmdbService {
     Object.entries(discover).forEach(([key, value]) => {
       url += `&${key}=${'' + value}`;
     });
-    return this.http.get(url).pipe(map((movies: any) => movies.results));
+    return this.http.get(url).pipe(
+      tap((data: any) => {
+        this.movieList = [...data.results];
+        this.movieList$.next(this.movieList);
+
+        this.recommendList = [...this.movieList.slice(0, 7)];
+        this.recommendList$.next(this.recommendList);
+      })
+    );
   }
 
   getDiscoverTV(search: DiscoverTv) {

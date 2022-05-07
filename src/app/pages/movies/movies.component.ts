@@ -17,23 +17,27 @@ export class MoviesComponent implements OnInit {
   noRecommendImg = '../../../assets/video/VGA-no-signal-image.jpeg';
   finished = false;
   currentPage = 1;
-  searchMovie: DiscoverMovie = {
+  baseSearchMovie: DiscoverMovie = {
     page: 1,
     year: 2022,
   };
-  searchTv: DiscoverTv = {
+  baseSearchTv: DiscoverTv = {
     page: 1,
   };
 
   constructor(private tmdbService: TmdbService, private _router: Router) {}
 
   ngOnInit(): void {
-    this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
-      this.movies = [...data];
-      this.recommend = [...this.movies.slice(0, 7)];
+    this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
 
-      this.recommend[0].id &&
+    this.tmdbService.movieListObs$.subscribe((movies) => {
+      this.movies = [...movies];
+    });
+    this.tmdbService.recommendListObs$.subscribe((recom) => {
+      this.recommend = [...recom];
+      if (this.recommend.length && this.recommend[0].id) {
         this.handleHoverRecommend(this.recommend[0].id + '');
+      }
     });
   }
 
@@ -44,32 +48,32 @@ export class MoviesComponent implements OnInit {
         ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
         : this.noRecommendImg;
   }
-  switchToMoiveList() {
-    this.tmdbService.getDiscoverMovie(this.searchMovie).subscribe((data) => {
-      this.movies = [...data];
-      this.recommend = [...this.movies.slice(0, 7)];
-      this.recommend[0].id &&
-        this.handleHoverRecommend(this.recommend[0].id + '');
-    });
-  }
 
   onScroll() {
+    console.log('hello');
     const movieQuery = {
-      ...this.searchMovie,
+      ...this.baseSearchMovie,
       page: ++this.currentPage,
     };
-    this.tmdbService.getDiscoverMovie(movieQuery).subscribe((data) => {
-      this.movies = [...this.movies, ...data];
-      //   console.log('trigger onScroll: ', (Math.random() * 100).toFixed(3));
-    });
+    this.tmdbService.getDiscoverMovie(movieQuery).subscribe();
   }
 
   navigateMovie(id: string) {
     this._router.navigate(['/movies', id]);
   }
 
+  switchToMoiveList() {
+    // this.tmdbService
+    //   .getDiscoverMovie(this.baseSearchMovie)
+    //   .subscribe((data) => {
+    //     this.movies = [...data];
+    //     this.recommend = [...this.movies.slice(0, 7)];
+    //     this.recommend[0].id &&
+    //       this.handleHoverRecommend(this.recommend[0].id + '');
+    //   });
+  }
   switchToTvList() {
-    // this.tmdbService.getDiscoverTV(this.searchTv).subscribe((data) => {
+    // this.tmdbService.getDiscoverTV(this.baseSearchTv).subscribe((data) => {
     //   this.movies = [...data];
     //   this.recommend = [...this.movies.slice(0, 7)];
     //   this.recommend[0].id &&
