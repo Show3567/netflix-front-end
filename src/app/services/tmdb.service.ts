@@ -36,6 +36,8 @@ export class TmdbService {
   private recommendList$ = new BehaviorSubject(this.recommendList);
   public recommendListObs$ = this.recommendList$.asObservable();
 
+  private currentPage = 1;
+
   private readonly baseDiscoverMovie: DiscoverMovie = {
     api_key: this.myApiKey,
     page: 1,
@@ -64,7 +66,26 @@ export class TmdbService {
     });
     return this.http.get(url).pipe(
       tap((data: any) => {
-        this.movieList = [...data.results];
+        if (!this.movieList.length) {
+          this.movieList = [...data.results];
+          this.movieList$.next(this.movieList);
+
+          this.recommendList = [...this.movieList.slice(0, 7)];
+          this.recommendList$.next(this.recommendList);
+        }
+      })
+    );
+  }
+  handleScrol() {
+    const discover = { ...this.baseDiscoverMovie, page: ++this.currentPage };
+    let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
+    Object.entries(discover).forEach(([key, value]) => {
+      url += `&${key}=${'' + value}`;
+    });
+
+    return this.http.get(url).pipe(
+      tap((data: any) => {
+        this.movieList = [...this.movieList, ...data.results];
         this.movieList$.next(this.movieList);
 
         this.recommendList = [...this.movieList.slice(0, 7)];

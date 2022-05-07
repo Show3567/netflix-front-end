@@ -50,12 +50,7 @@ export class MoviesComponent implements OnInit {
   }
 
   onScroll() {
-    console.log('hello');
-    const movieQuery = {
-      ...this.baseSearchMovie,
-      page: ++this.currentPage,
-    };
-    this.tmdbService.getDiscoverMovie(movieQuery).subscribe();
+    this.tmdbService.handleScrol().subscribe();
   }
 
   navigateMovie(id: string) {
