@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { PageOneComponent } from 'src/app/components/register/page-one/page-one.component';
-import { PageTwoComponent } from 'src/app/components/register/page-two/page-two.component';
-import { PageThreeComponent } from 'src/app/components/register/page-three/page-three.component';
-import { PageFourComponent } from 'src/app/components/register/page-four/page-four.component';
+import { PageOneComponent } from './components/page-one/page-one.component';
+import { PageTwoComponent } from './components/page-two/page-two.component';
+import { PageThreeComponent } from './components/page-three/page-three.component';
+import { PageFourComponent } from './components/page-four/page-four.component';
 
 const routes: Routes = [
   {
@@ -24,7 +24,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [
+    RegisterComponent,
+    PageOneComponent,
+    PageTwoComponent,
+    PageThreeComponent,
+    PageFourComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
