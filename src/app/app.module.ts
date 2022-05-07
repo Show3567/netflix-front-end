@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ComponentsModule } from './components/components.module';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 
@@ -21,7 +20,6 @@ export const TMDBAPIKEY = new InjectionToken<string>('');
     HttpClientModule,
     CoreModule,
     SharedModule,
-    ComponentsModule,
   ],
   providers: [
     { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },

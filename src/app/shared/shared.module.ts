@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +25,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     YouTubePlayerModule,
     InfiniteScrollModule,

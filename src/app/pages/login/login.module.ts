@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { CoreModule } from '../../core/core.module';
 import { LoginComponent } from './login.component';
 import { SharedModule } from '../../shared/shared.module';
-import { ComponentsModule } from 'src/app/components/components.module';
 
 const routes: Routes = [{ path: '', component: LoginComponent }];
 
@@ -12,7 +12,8 @@ const routes: Routes = [{ path: '', component: LoginComponent }];
   imports: [
     CommonModule,
     SharedModule,
-    ComponentsModule,
+
+    CoreModule,
     RouterModule.forChild(routes),
   ],
 })

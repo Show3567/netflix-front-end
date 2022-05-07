@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register.component';
-import { ComponentsModule } from 'src/app/components/components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModule } from '../../core/core.module';
 import { PageOneComponent } from './components/page-one/page-one.component';
 import { PageTwoComponent } from './components/page-two/page-two.component';
 import { PageThreeComponent } from './components/page-three/page-three.component';
@@ -34,7 +34,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    ComponentsModule,
+    CoreModule,
     RouterModule.forChild(routes),
   ],
 })

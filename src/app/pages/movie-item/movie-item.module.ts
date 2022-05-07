@@ -4,11 +4,12 @@ import { CoreModule } from 'src/app/core/core.module';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieItemComponent } from './movie-item.component';
+import { VideoItemComponent } from './components/video-item/video-item.component';
 
 const routes: Routes = [{ path: '', component: MovieItemComponent }];
 
 @NgModule({
-  declarations: [MovieItemComponent],
+  declarations: [MovieItemComponent, VideoItemComponent],
   imports: [
     CommonModule,
     SharedModule,
