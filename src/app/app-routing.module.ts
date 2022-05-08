@@ -5,7 +5,11 @@ import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
+  },
   {
     path: 'login',
     loadChildren: () =>
