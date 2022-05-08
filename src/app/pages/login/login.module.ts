@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CoreModule } from '../../core/core.module';
 import { LoginComponent } from './login.component';
 import { SharedModule } from '../../shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthWithLocalInterceptor } from 'src/app/interceptors/auth-with-local.interceptor';
 
 const routes: Routes = [{ path: '', component: LoginComponent }];
 
@@ -15,5 +17,6 @@ const routes: Routes = [{ path: '', component: LoginComponent }];
     CoreModule,
     RouterModule.forChild(routes),
   ],
+  providers: [],
 })
 export class LoginModule {}

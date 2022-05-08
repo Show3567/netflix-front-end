@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
 import { AppUserAuth } from '../interfaces/user-auth.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AppUser } from '../interfaces/user-login.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WithLocalstorageService {
+  private jwtHelper = new JwtHelperService();
   private userSubject$!: BehaviorSubject<AppUserAuth>;
   public user$!: Observable<AppUserAuth>;
 
@@ -26,67 +29,55 @@ export class WithLocalstorageService {
     this.user$ = this.userSubject$.asObservable();
   }
 
-  login(username: string, password: string) {
+  login(appUser: AppUser): Observable<{ accessToken: string }> {
     return this.http
-      .post<any>(
-        `${this.authServerPath}/users/authenticate`,
-        { username, password },
-        { withCredentials: true }
+      .post<{ accessToken: string }>(
+        `${this.authServerPath}/auth/signin`,
+        appUser
       )
       .pipe(
-        shareReplay(),
-        map((user) => {
+        tap(({ accessToken }: { accessToken: string }) => {
+          localStorage.setItem('access_token', accessToken);
+          const { id, username, email, role, tmdb_key, exp } =
+            this.jwtHelper.decodeToken(accessToken);
+
+          const user = {
+            ...{ id, username, email, role, tmdb_key },
+            jwtToken: accessToken,
+          };
           this.userSubject$.next(user);
-          this.startRefreshTokenTimer();
-          return user;
+          this.startRefreshTokenTimer(exp);
         })
       );
   }
 
-  logout() {
-    this.http
-      .post<any>(
-        `${this.authServerPath}/users/revoke-token`,
-        {},
-        { withCredentials: true }
-      )
-      .subscribe();
-    this.stopRefreshTokenTimer();
-    this.userSubject$.next({});
-    this.router.navigate(['/login']);
-  }
-
-  refreshToken() {
+  refreshToken(user: AppUserAuth) {
     return this.http
-      .post<any>(
-        `${this.authServerPath}/users/refresh-token`,
-        {},
-        { withCredentials: true }
-      )
-      .pipe(
-        map((user) => {
-          this.userSubject$.next(user);
-          this.startRefreshTokenTimer();
-          return user;
-        })
-      );
+      .post<any>(`${this.authServerPath}/auth/refresh-token`, user)
+      .pipe
+      // map((user) => {
+      //   console.log(user);
+      //   //   this.userSubject$.next(user);
+      //   //   this.startRefreshTokenTimer();
+      //   return user;
+      // })
+      ();
   }
 
+  // helper methods;
   private refreshTokenTimeout: any;
 
-  private startRefreshTokenTimer() {
-    if (this.userValue && this.userValue.jwtToken) {
-      // parse json object from base64 encoded jwt token
-      const jwtToken = JSON.parse(atob(this.userValue.jwtToken.split('.')[1]));
+  private startRefreshTokenTimer(exp: string) {
+    // set a timeout to refresh the token a minute before it expires
+    const expires = new Date(+exp * 1000);
+    const timeout = expires.getTime() - Date.now();
+    const { id, username, email, role, tmdb_key } = this.userValue;
 
-      // set a timeout to refresh the token a minute before it expires
-      const expires = new Date(jwtToken.exp * 1000);
-      const timeout = expires.getTime() - Date.now() - 60 * 1000;
-      this.refreshTokenTimeout = setTimeout(
-        () => this.refreshToken().subscribe(),
-        timeout
-      );
-    }
+    this.refreshTokenTimeout = setTimeout(() => {
+      if (this.userValue.jwtToken) {
+        this.refreshToken({ id, username, email, role, tmdb_key }).subscribe();
+      }
+    }, timeout);
   }
 
   private stopRefreshTokenTimer() {

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,10 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private withLocalstorageService: WithLocalstorageService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,6 +38,9 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
+    this.withLocalstorageService.user$.subscribe((userinfo) =>
+      console.log('userinfo: ', userinfo)
+    );
   }
 
   onSubmit() {
@@ -40,6 +48,18 @@ export class LoginComponent implements OnInit {
       email: this.email?.value,
       password: this.password?.value,
     };
-    // this.authService.signIn(credencialSignIn).subscribe();
+    this.withLocalstorageService.login(credencialSignIn).subscribe(console.log);
+  }
+
+  refreshToken() {
+    const mockuser = {
+      id: '412d5b6b-a1aa-4468-a926-da5e47b501ba',
+      username: 'David Dong',
+      email: 'show3567@gmail.com',
+      role: UserRole['USER'],
+      tmdb_key: 'ac7e1f44cec0dd6e260391374208b0cc',
+    };
+
+    this.withLocalstorageService.refreshToken(mockuser).subscribe(console.log);
   }
 }
