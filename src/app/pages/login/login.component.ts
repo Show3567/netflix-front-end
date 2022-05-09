@@ -50,16 +50,4 @@ export class LoginComponent implements OnInit {
     };
     this.withLocalstorageService.login(credencialSignIn).subscribe(console.log);
   }
-
-  refreshToken() {
-    const mockuser = {
-      id: '412d5b6b-a1aa-4468-a926-da5e47b501ba',
-      username: 'David Dong',
-      email: 'show3567@gmail.com',
-      role: UserRole['USER'],
-      tmdb_key: 'ac7e1f44cec0dd6e260391374208b0cc',
-    };
-
-    this.withLocalstorageService.refreshToken(mockuser).subscribe(console.log);
-  }
 }

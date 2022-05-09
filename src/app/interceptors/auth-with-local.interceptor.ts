@@ -23,7 +23,7 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // add auth header with jwt if user is logged in and request is to the api url
     const user = this.withLocalstorageService.userValue;
-    console.log(user.jwtToken);
+    console.log('use.jwtToken: ', user.jwtToken);
 
     const isLoggedIn = user && user.jwtToken;
     const isApiUrl = request.url.startsWith(

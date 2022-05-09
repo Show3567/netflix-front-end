@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
-import { AppUserAuth } from '../interfaces/user-auth.interface';
+import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppUser } from '../interfaces/user-login.interface';
 
@@ -50,23 +50,34 @@ export class WithLocalstorageService {
         })
       );
   }
-
-  refreshToken(user: AppUserAuth) {
-    return this.http
-      .post<any>(`${this.authServerPath}/auth/refresh-token`, user)
-      .pipe
-      // map((user) => {
-      //   console.log(user);
-      //   //   this.userSubject$.next(user);
-      //   //   this.startRefreshTokenTimer();
-      //   return user;
-      // })
-      ();
+  logout() {
+    localStorage.removeItem('access_token');
+    this.stopRefreshTokenTimer();
+    this.userSubject$.next({});
+    this.router.navigate(['/login']);
   }
 
   // helper methods;
   private refreshTokenTimeout: any;
 
+  private refreshToken(user: AppUserAuth) {
+    return this.http
+      .post<any>(`${this.authServerPath}/auth/refresh-token`, user)
+      .pipe(
+        tap(({ accessToken }: { accessToken: string }) => {
+          localStorage.setItem('access_token', accessToken);
+          const { id, username, email, role, tmdb_key, exp } =
+            this.jwtHelper.decodeToken(accessToken);
+
+          const user = {
+            ...{ id, username, email, role, tmdb_key },
+            jwtToken: accessToken,
+          };
+          this.userSubject$.next(user);
+          this.startRefreshTokenTimer(exp);
+        })
+      );
+  }
   private startRefreshTokenTimer(exp: string) {
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(+exp * 1000);
@@ -79,8 +90,19 @@ export class WithLocalstorageService {
       }
     }, timeout);
   }
-
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
+  }
+  private setUserValueByToken({ accessToken }: { accessToken: string }) {
+    localStorage.setItem('access_token', accessToken);
+    const { id, username, email, role, tmdb_key, exp } =
+      this.jwtHelper.decodeToken(accessToken);
+
+    const user = {
+      ...{ id, username, email, role, tmdb_key },
+      jwtToken: accessToken,
+    };
+    this.userSubject$.next(user);
+    this.startRefreshTokenTimer(exp);
   }
 }
