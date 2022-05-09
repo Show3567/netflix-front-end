@@ -34,13 +34,13 @@ export const USECOOKIE = new InjectionToken<string>('');
     SharedModule,
   ],
   providers: [
-    { provide: AUTHSERVER, useValue: 'http://localhost:4231' },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       multi: true,
       deps: [WithLocalstorageService],
     },
+    { provide: AUTHSERVER, useValue: 'http://localhost:4231' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthWithLocalInterceptor,

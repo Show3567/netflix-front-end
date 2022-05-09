@@ -65,8 +65,12 @@ export class WithLocalstorageService {
   // helper methods;
   private refreshTokenTimeout: any;
 
-  refreshToken() {
-    const { id, username, email, role, tmdb_key } = this.userValue;
+  refreshToken(): Observable<any> {
+    const currentToken = localStorage.getItem('access_token');
+    if (!currentToken) return of('err');
+
+    const { id, username, email, role, tmdb_key } =
+      this.jwtHelper.decodeToken(currentToken);
     const user = { id, username, email, role, tmdb_key };
 
     return this.http

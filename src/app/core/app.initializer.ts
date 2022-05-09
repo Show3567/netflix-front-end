@@ -3,6 +3,7 @@ import { WithLocalstorageService } from '../services/auth/with-localstorage.serv
 export function appInitializer(
   withLocalstorageService: WithLocalstorageService
 ) {
+  console.log('this is initialization');
   return () =>
     new Promise((resolve) => {
       // attempt to refresh token on app start up to auto authenticate
