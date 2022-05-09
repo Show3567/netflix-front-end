@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
 import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppUser } from '../interfaces/user-login.interface';
+import { TmdbService } from '../tmdb.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class WithLocalstorageService {
   constructor(
     private readonly router: Router,
     private readonly http: HttpClient,
+    private readonly tmdbService: TmdbService,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {
     this.userSubject$ = new BehaviorSubject<AppUserAuth>({});
@@ -41,6 +43,8 @@ export class WithLocalstorageService {
           const { id, username, email, role, tmdb_key, exp } =
             this.jwtHelper.decodeToken(accessToken);
 
+          this.tmdbService.setMyApiKey = tmdb_key;
+
           const user = {
             ...{ id, username, email, role, tmdb_key },
             jwtToken: accessToken,
@@ -52,6 +56,7 @@ export class WithLocalstorageService {
   }
   logout() {
     localStorage.removeItem('access_token');
+    this.tmdbService.setMyApiKey = '';
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
     this.router.navigate(['/login']);
@@ -68,6 +73,8 @@ export class WithLocalstorageService {
           localStorage.setItem('access_token', accessToken);
           const { id, username, email, role, tmdb_key, exp } =
             this.jwtHelper.decodeToken(accessToken);
+
+          this.tmdbService.setMyApiKey = tmdb_key;
 
           const user = {
             ...{ id, username, email, role, tmdb_key },

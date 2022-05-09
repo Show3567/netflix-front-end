@@ -1,5 +1,5 @@
 export interface DiscoverMovie {
-  readonly api_key?: string;
+  api_key?: string;
   page?: number;
   language?: string;
   sort_by?: string;

@@ -23,13 +23,13 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // add auth header with jwt if user is logged in and request is to the api url
     const user = this.withLocalstorageService.userValue;
-    console.log('use.jwtToken: ', user.jwtToken);
 
     const isLoggedIn = user && user.jwtToken;
     const isApiUrl = request.url.startsWith(
       `${this.autoServerPath}/auth/refresh-token`
     );
     if (isLoggedIn && isApiUrl) {
+      console.log('use.jwtToken: ', user.jwtToken);
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${user.jwtToken}` },
       });

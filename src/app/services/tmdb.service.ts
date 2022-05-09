@@ -11,17 +11,6 @@ import { Movie } from './interfaces/movie.interface';
   providedIn: 'root',
 })
 export class TmdbService {
-  /**
-   * 1. To get the config data like image base urls
-   * https://api.themoviedb.org/3/configuration?api_key=<APIKEY>
-   *
-   * 2. To fetch a list of movies based on a keyword
-   * https://api.themoviedb.org/3/search/movie?api_key=<APIKEY>&query=<keyword>
-   *
-   * 3. To fetch more details about a movie
-   * https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
-   */
-
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
   private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
   private readonly discoverMoviePath = 'discover/movie?';
@@ -38,8 +27,8 @@ export class TmdbService {
 
   private currentPage = 1;
 
-  private readonly baseDiscoverMovie: DiscoverMovie = {
-    api_key: this.myApiKey,
+  private baseDiscoverMovie: DiscoverMovie = {
+    api_key: '',
     page: 1,
     language: 'en-US',
     sort_by: 'popularity.desc',
@@ -48,14 +37,18 @@ export class TmdbService {
     with_watch_monetization_types: 'flatrate',
   };
   private readonly baseDiscoverTv: DiscoverTv = {
-    api_key: this.myApiKey,
+    api_key: '',
     page: 1,
     language: 'en-US',
   };
 
+  set setMyApiKey(api_key: string) {
+    this.baseDiscoverMovie.api_key = api_key;
+    this.baseDiscoverTv.api_key = api_key;
+  }
+
   constructor(
-    private http: HttpClient,
-    @Inject(TMDBAPIKEY) private readonly myApiKey: string
+    private readonly http: HttpClient // @Inject(TMDBAPIKEY) private readonly myApiKey: string,
   ) {}
 
   getDiscoverMovie(search: DiscoverMovie) {
@@ -108,19 +101,40 @@ export class TmdbService {
   }
 
   getMovie(id: number): Observable<Movie> {
-    const url = `${[this.tmdbBaseUrl, this.moviePath, id].join('/')}?api_key=${
-      this.baseDiscoverMovie.api_key
-    }`;
-    return this.http.get<Movie>(url);
+    if (this.baseDiscoverMovie.api_key) {
+      const url = `${[this.tmdbBaseUrl, this.moviePath, id].join(
+        '/'
+      )}?api_key=${this.baseDiscoverMovie.api_key}`;
+      return this.http.get<Movie>(url);
+    } else {
+      // expected err;
+      return this.http.get<Movie>('');
+    }
   }
 
   getVideo(id: number) {
-    const url = [
-      this.tmdbBaseUrl,
-      this.moviePath,
-      id,
-      `videos?api_key=${this.baseDiscoverMovie.api_key}`,
-    ].join('/');
-    return this.http.get(url);
+    if (this.baseDiscoverMovie.api_key) {
+      const url = [
+        this.tmdbBaseUrl,
+        this.moviePath,
+        id,
+        `videos?api_key=${this.baseDiscoverMovie.api_key}`,
+      ].join('/');
+      return this.http.get(url);
+    } else {
+      // expected err;
+      return this.http.get('');
+    }
   }
 }
+
+/**
+ * 1. To get the config data like image base urls
+ * https://api.themoviedb.org/3/configuration?api_key=<APIKEY>
+ *
+ * 2. To fetch a list of movies based on a keyword
+ * https://api.themoviedb.org/3/search/movie?api_key=<APIKEY>&query=<keyword>
+ *
+ * 3. To fetch more details about a movie
+ * https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
+ */

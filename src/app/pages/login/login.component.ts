@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       email: this.email?.value,
       password: this.password?.value,
     };
+    console.log(credencialSignIn);
     this.withLocalstorageService.login(credencialSignIn).subscribe(console.log);
   }
 }
