@@ -1,4 +1,4 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { APP_INITIALIZER, InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   HttpClient,
@@ -16,11 +16,12 @@ import { WithCookieService } from './services/auth/with-cookie.service';
 import { WithLocalstorageService } from './services/auth/with-localstorage.service';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { TmdbService } from './services/tmdb.service';
+import { AuthService } from './services/auth/auth.service';
+import { appInitializer } from './core/app.initializer';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const USECOOKIE = new InjectionToken<string>('');
-export const AuthService = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,29 +34,35 @@ export const AuthService = new InjectionToken<string>('');
     SharedModule,
   ],
   providers: [
-    { provide: USECOOKIE, useValue: false },
-    {
-      provide: AuthService,
-      useFactory: (
-        usecookie: boolean,
-        router: Router,
-        http: HttpClient,
-        tmdbservice: TmdbService,
-        authpath: string
-      ) => {
-        return usecookie
-          ? new WithCookieService(router, http, authpath)
-          : new WithLocalstorageService(router, http, tmdbservice, authpath);
-      },
-      deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
-    },
-    { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
     { provide: AUTHSERVER, useValue: 'http://localhost:4231' },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [WithLocalstorageService],
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthWithLocalInterceptor,
       multi: true,
     },
+    // { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
+    // { provide: USECOOKIE, useValue: false },
+    // {
+    //   provide: AuthService,
+    //   useFactory: (
+    //     usecookie: boolean,
+    //     router: Router,
+    //     http: HttpClient,
+    //     tmdbservice: TmdbService,
+    //     authpath: string
+    //   ) => {
+    //     return usecookie
+    //       ? new WithCookieService(router, http, authpath)
+    //       : new WithLocalstorageService(router, http, tmdbservice, authpath);
+    //   },
+    //   deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
+    // },
   ],
   bootstrap: [AppComponent],
 })

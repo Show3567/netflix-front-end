@@ -65,7 +65,10 @@ export class WithLocalstorageService {
   // helper methods;
   private refreshTokenTimeout: any;
 
-  private refreshToken(user: AppUserAuth) {
+  refreshToken() {
+    const { id, username, email, role, tmdb_key } = this.userValue;
+    const user = { id, username, email, role, tmdb_key };
+
     return this.http
       .post<any>(`${this.authServerPath}/auth/refresh-token`, user)
       .pipe(
@@ -89,11 +92,10 @@ export class WithLocalstorageService {
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(+exp * 1000);
     const timeout = expires.getTime() - Date.now();
-    const { id, username, email, role, tmdb_key } = this.userValue;
 
     this.refreshTokenTimeout = setTimeout(() => {
       if (this.userValue.jwtToken) {
-        this.refreshToken({ id, username, email, role, tmdb_key }).subscribe();
+        this.refreshToken().subscribe();
       }
     }, timeout);
   }
