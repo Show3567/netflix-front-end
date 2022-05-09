@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-page-four',
@@ -25,11 +27,20 @@ export class PageFourComponent implements OnInit {
   };
   selecedColumn = 2;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private withLocalstorageService: WithLocalstorageService
+  ) {}
 
   ngOnInit(): void {}
 
   selectPlan(num: number) {
     this.selecedColumn = num;
+  }
+
+  handleNavigate() {
+    !this.withLocalstorageService.userValue.jwtToken
+      ? this.router.navigate(['/login'])
+      : this.router.navigate(['/movies']);
   }
 }

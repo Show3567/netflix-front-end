@@ -67,7 +67,10 @@ export class WithLocalstorageService {
 
   refreshToken(): Observable<any> {
     const currentToken = localStorage.getItem('access_token');
-    if (!currentToken) return of('err');
+    if (!currentToken) {
+      this.router.navigate(['/login']);
+      return of('err');
+    }
 
     const { id, username, email, role, tmdb_key } =
       this.jwtHelper.decodeToken(currentToken);
