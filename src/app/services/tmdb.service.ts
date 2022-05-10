@@ -47,10 +47,12 @@ export class TmdbService {
     this.baseDiscoverTv.api_key = api_key;
   }
 
+  // ~~~~~~~ lifecycle ~~~~~~~
   constructor(
     private readonly http: HttpClient // @Inject(TMDBAPIKEY) private readonly myApiKey: string,
   ) {}
 
+  // ~~~~~~~ methods ~~~~~~~
   getDiscoverMovie(search: DiscoverMovie) {
     const discover = { ...this.baseDiscoverMovie, ...search };
     let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
