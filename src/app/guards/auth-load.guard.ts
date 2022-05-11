@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router, UrlSegment } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+} from '@angular/router';
 import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
 
 @Injectable({
@@ -19,5 +26,9 @@ export class AuthLoadGuard implements CanLoad {
       this.router.navigate(['/login']);
       return false;
     }
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return true;
   }
 }
