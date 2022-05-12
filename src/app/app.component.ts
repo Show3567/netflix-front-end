@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WithLocalstorageService } from './services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(private withLocalstorageService: WithLocalstorageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(
+      'hello, this is userValue: ',
+      this.withLocalstorageService.userValue
+    );
+  }
 }

@@ -51,6 +51,8 @@ export class WithLocalstorageService {
           };
           this.userSubject$.next(user);
           this.startRefreshTokenTimer(exp);
+
+          this.router.navigate(['/movies']);
         })
       );
   }
