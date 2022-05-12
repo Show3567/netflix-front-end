@@ -2,15 +2,20 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  CanLoad,
+  Route,
   Router,
   RouterStateSnapshot,
+  UrlSegment,
+  UrlTree,
 } from '@angular/router';
+import { Observable } from 'rxjs';
 import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private router: Router,
     private withLocalstorageService: WithLocalstorageService
@@ -26,6 +31,15 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login'], {
         queryParams: { returnUrl: state.url },
       });
+      return false;
+    }
+  }
+  canLoad(route: Route, segments: UrlSegment[]) {
+    const authToken = this.withLocalstorageService.userValue.jwtToken;
+    if (authToken) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
       return false;
     }
   }
