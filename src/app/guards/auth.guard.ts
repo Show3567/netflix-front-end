@@ -35,12 +35,14 @@ export class AuthGuard implements CanActivate, CanLoad {
     }
   }
   canLoad(route: Route, segments: UrlSegment[]) {
-    const path = segments.reduce((path, segment) => {
-      return `${path}/${segment.path}`;
-    }, '');
+    const path = segments.reduce(
+      (path, segment) => `${path}/${segment.path}`,
+      ''
+    );
+    console.log(path);
+
     const authToken = this.withLocalstorageService.userValue.jwtToken;
     if (authToken) {
-      console.log('hello');
       return true;
     } else {
       this.router.navigate(['/login']);

@@ -88,8 +88,6 @@ export class WithLocalstorageService {
 
           this.tmdbService.setMyApiKey = tmdb_key;
 
-          console.log('show something here!');
-
           const user = {
             ...{ id, username, email, role, tmdb_key },
             jwtToken: accessToken,

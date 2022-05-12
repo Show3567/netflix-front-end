@@ -29,7 +29,6 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
       `${this.autoServerPath}/auth/refresh-token`
     );
     if (isLoggedIn && isApiUrl) {
-      console.log('use.jwtToken: ', user.jwtToken);
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${user.jwtToken}` },
       });

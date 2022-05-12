@@ -10,9 +10,9 @@ export class AppComponent implements OnInit {
   constructor(private withLocalstorageService: WithLocalstorageService) {}
 
   ngOnInit(): void {
-    console.log(
-      'hello, this is userValue: ',
-      this.withLocalstorageService.userValue
-    );
+    // console.log(
+    //   'hello, this is userValue: ',
+    //   this.withLocalstorageService.userValue
+    // );
   }
 }

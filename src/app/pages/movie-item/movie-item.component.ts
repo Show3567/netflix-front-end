@@ -44,7 +44,7 @@ export class MovieItemComponent implements OnInit {
           });
           this.tmdbService.getMovie(+id).subscribe((movie: any) => {
             this.movie = { ...movie };
-            console.log(this.movie);
+            // console.log(this.movie);
 
             this.movie.production_companies.forEach((company: any) => {
               company.logo_path !== null &&
@@ -90,6 +90,6 @@ export class MovieItemComponent implements OnInit {
       const videoOut = this.movieVideos.pop();
       this.movieVideos.unshift(videoOut);
     }
-    console.log(this.movieVideos[0]);
+    // console.log(this.movieVideos[0]);
   }
 }
