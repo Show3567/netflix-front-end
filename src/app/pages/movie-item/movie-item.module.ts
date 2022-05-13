@@ -8,7 +8,11 @@ import { VideoItemComponent } from './components/video-item/video-item.component
 import { MovieItemGuard } from '../../guards/movie-item.guard';
 
 const routes: Routes = [
-  { path: '', component: MovieItemComponent, canActivate: [MovieItemGuard] },
+  {
+    path: '',
+    component: MovieItemComponent,
+    canActivate: [MovieItemGuard],
+  },
 ];
 
 @NgModule({
