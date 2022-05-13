@@ -49,6 +49,7 @@ export class WithLocalstorageService {
             ...{ id, username, email, role, tmdb_key },
             jwtToken: accessToken,
           };
+
           this.userSubject$.next(user);
           this.startRefreshTokenTimer(exp);
 

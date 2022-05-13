@@ -5,8 +5,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MoviesComponent } from './movies.component';
 import { CoreModule } from '../../core/core.module';
 import { ItemComponent } from './components/item/item.component';
+import { MoviesGuard } from '../../guards/movies.guard';
 
-const routes: Routes = [{ path: '', component: MoviesComponent }];
+const routes: Routes = [
+  { path: '', component: MoviesComponent, canActivate: [MoviesGuard] },
+];
 
 @NgModule({
   declarations: [MoviesComponent, ItemComponent],

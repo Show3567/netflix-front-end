@@ -5,8 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieItemComponent } from './movie-item.component';
 import { VideoItemComponent } from './components/video-item/video-item.component';
+import { MovieItemGuard } from '../../guards/movie-item.guard';
 
-const routes: Routes = [{ path: '', component: MovieItemComponent }];
+const routes: Routes = [
+  { path: '', component: MovieItemComponent, canActivate: [MovieItemGuard] },
+];
 
 @NgModule({
   declarations: [MovieItemComponent, VideoItemComponent],
