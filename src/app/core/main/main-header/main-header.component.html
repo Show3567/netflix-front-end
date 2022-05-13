@@ -5,8 +5,18 @@
       src="../assets/home/netflix_icon.png"
       [routerLink]="['/home']"
     />
-    <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
-      Sign In
-    </button>
+
+    <div *ngIf="!isLogin" class="login_container">
+      <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
+        Sign In
+      </button>
+    </div>
+
+    <div *ngIf="isLogin" class="logout_container">
+      <span> {{ username }} </span>
+      <button mat-raised-button class="signOut_btn" (click)="signOut()">
+        Sign Out
+      </button>
+    </div>
   </div>
 </header>

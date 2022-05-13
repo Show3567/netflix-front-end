@@ -17,18 +17,33 @@
     justify-content: space-between;
     align-items: center;
 
+    .login_container,
+    .logout_container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      color: white;
+    }
+    .logout_container {
+      span {
+        font-size: 1.5rem;
+        margin-right: 1.3rem;
+      }
+    }
+
     .netflix_icon {
       height: 60%;
     }
-    .signIn_btn {
+    .signIn_btn,
+    .signOut_btn {
+      height: 45%;
+      width: 6rem;
       border: none;
       background-color: #e50914;
       color: white;
       font-weight: 400;
       font-size: 1rem;
       border-radius: 3px;
-      height: 45%;
-      width: 80px;
     }
   }
 }

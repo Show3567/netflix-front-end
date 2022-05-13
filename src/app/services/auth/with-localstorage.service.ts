@@ -62,7 +62,7 @@ export class WithLocalstorageService {
     this.tmdbService.setMyApiKey = '';
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   // helper methods;
