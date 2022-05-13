@@ -16,32 +16,22 @@ import { UserRole } from '../services/interfaces/user-auth.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
     private withLocalstorageService: WithLocalstorageService
   ) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const authToken = this.withLocalstorageService.userValue.jwtToken;
-    if (authToken) {
-      // logged in so return true
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const { jwtToken, role } = this.withLocalstorageService.userValue;
+    const claimType: string = next.data.claimType;
+
+    if (jwtToken && role && claimType.includes(role)) {
       return true;
     } else {
-      // not logged in so redirect to login page with the return url
-      this.router.navigate(['/login'], {
+      this.router.navigate(['login'], {
         queryParams: { returnUrl: state.url },
       });
-      return false;
-    }
-  }
-  canLoad(route: Route, segments: UrlSegment[]) {
-    const pathList = segments.map((segment) => segment.path);
-    const { jwtToken } = this.withLocalstorageService.userValue;
-    if (jwtToken) {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
       return false;
     }
   }

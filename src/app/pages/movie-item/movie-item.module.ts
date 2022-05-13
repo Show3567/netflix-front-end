@@ -6,12 +6,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieItemComponent } from './movie-item.component';
 import { VideoItemComponent } from './components/video-item/video-item.component';
 import { MovieItemGuard } from '../../guards/movie-item.guard';
+import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 const routes: Routes = [
   {
     path: '',
     component: MovieItemComponent,
     canActivate: [MovieItemGuard],
+    data: { claimType: [UserRole.ADMIN, UserRole.SUPERUSER] },
   },
 ];
 

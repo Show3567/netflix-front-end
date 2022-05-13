@@ -6,12 +6,14 @@ import { MoviesComponent } from './movies.component';
 import { CoreModule } from '../../core/core.module';
 import { ItemComponent } from './components/item/item.component';
 import { MoviesGuard } from '../../guards/movies.guard';
+import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 const routes: Routes = [
   {
     path: '',
     component: MoviesComponent,
     canActivate: [MoviesGuard],
+    data: { claimType: [UserRole.ADMIN, UserRole.SUPERUSER, UserRole.USER] },
   },
 ];
 
