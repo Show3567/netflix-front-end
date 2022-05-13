@@ -11,6 +11,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
+import { UserRole } from '../services/interfaces/user-auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -35,14 +36,9 @@ export class AuthGuard implements CanActivate, CanLoad {
     }
   }
   canLoad(route: Route, segments: UrlSegment[]) {
-    const path = segments.reduce(
-      (path, segment) => `${path}/${segment.path}`,
-      ''
-    );
-    console.log(path);
-
-    const authToken = this.withLocalstorageService.userValue.jwtToken;
-    if (authToken) {
+    const pathList = segments.map((segment) => segment.path);
+    const { jwtToken } = this.withLocalstorageService.userValue;
+    if (jwtToken) {
       return true;
     } else {
       this.router.navigate(['/login']);
