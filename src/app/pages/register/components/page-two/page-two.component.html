@@ -16,7 +16,12 @@
         <input matInput formControlName="password" required />
         <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
-      <button mat-raised-button [routerLink]="['/register/step2ii']">
+      <button
+        mat-raised-button
+        [routerLink]="['/register/step3']"
+        [disabled]="!form.valid"
+        [ngClass]="{ inValidForm: !form.valid }"
+      >
         Next
       </button>
     </form>
