@@ -21,11 +21,7 @@ export class LoginGuard implements CanActivate {
   canActivate(
     activatedRouteSnapshot: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+  ) {
     const { jwtToken } = this.authService.userValue;
     if (!jwtToken) {
       return true;

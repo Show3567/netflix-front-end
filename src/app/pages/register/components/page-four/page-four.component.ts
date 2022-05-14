@@ -44,8 +44,16 @@ export class PageFourComponent implements OnInit {
     // !this.withLocalstorageService.userValue.jwtToken
     //   ? this.router.navigate(['/login'])
     //   : this.router.navigate(['/movies']);
-    this.registerService
-      .sighup({ role: UserRole[this.selecedColumn] })
-      .subscribe();
+    const { jwtToken } = this.registerService.userValue;
+
+    if (jwtToken) {
+      this.registerService.upgradePermission({
+        role: UserRole[this.selecedColumn],
+      });
+    } else {
+      this.registerService
+        .sighup({ role: UserRole[this.selecedColumn] })
+        .subscribe();
+    }
   }
 }

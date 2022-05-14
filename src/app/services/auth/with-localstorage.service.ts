@@ -123,6 +123,11 @@ export class WithLocalstorageService {
       );
   }
 
+  /* upgrade Uer Permission */
+  upgradePermission(userRole: { role: UserRole }) {
+    console.log('upgrad permission to: ', userRole.role);
+  }
+
   // helper methods;
   refreshToken(): Observable<any> {
     const currentToken = localStorage.getItem('access_token');
