@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
-import { AppUserAuth } from '../interfaces/user-auth.interface';
+import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppUser } from '../interfaces/user-login.interface';
 import { TmdbService } from '../tmdb.service';
+import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,13 @@ export class WithLocalstorageService {
   private userSubject$!: BehaviorSubject<AppUserAuth>;
   public user$!: Observable<AppUserAuth>;
 
+  private appUserRegister = new AppUserRegister();
+
   public get userValue(): AppUserAuth {
     return this.userSubject$.value;
+  }
+  public get appNewUser(): AppUserRegister {
+    return this.appUserRegister;
   }
 
   constructor(
@@ -31,6 +37,7 @@ export class WithLocalstorageService {
     this.user$ = this.userSubject$.asObservable();
   }
 
+  /* SignIn */
   login(appUser: AppUser): Observable<{ accessToken: string }> {
     return this.http
       .post<{ accessToken: string }>(
@@ -57,12 +64,34 @@ export class WithLocalstorageService {
         })
       );
   }
+  /* SignOut */
   logout() {
     localStorage.removeItem('access_token');
     this.tmdbService.setMyApiKey = '';
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
     this.router.navigate(['/home']);
+  }
+  /* SignUp */
+  addUserInfo(userInfo: UserInfo) {
+    this.appUserRegister = {
+      ...this.appUserRegister,
+      ...userInfo,
+    };
+  }
+
+  addRole(userRole: { role: UserRole }) {
+    this.appUserRegister = {
+      ...this.appUserRegister,
+      ...userRole,
+    };
+    const { username, password, email, role, tmdb_key } = this.appUserRegister;
+    if (username && password && email && role && tmdb_key) {
+      this.http.post(
+        [this.authServerPath, 'auth', 'signup'].join('/'),
+        this.appUserRegister
+      );
+    }
   }
 
   // helper methods;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService } from 'src/app/services/auth/register.service';
+import { WithLocalstorageService } from '../../../services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-main-row-one',
@@ -17,7 +17,7 @@ export class MainRowOneComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
-    private readonly registerService: RegisterService
+    private readonly registerService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {

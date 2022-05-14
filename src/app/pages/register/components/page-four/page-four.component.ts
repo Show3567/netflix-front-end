@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
-import { RegisterService } from '../../../../services/auth/register.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Component({
@@ -32,7 +31,7 @@ export class PageFourComponent implements OnInit {
   constructor(
     private router: Router,
     private withLocalstorageService: WithLocalstorageService,
-    private readonly registerService: RegisterService
+    private readonly registerService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {}

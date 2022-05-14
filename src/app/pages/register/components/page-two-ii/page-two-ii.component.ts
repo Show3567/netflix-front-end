@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService } from '../../../../services/auth/register.service';
+import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-page-two-ii',
@@ -23,7 +23,7 @@ export class PageTwoIiComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
-    private readonly registerService: RegisterService
+    private readonly registerService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {
