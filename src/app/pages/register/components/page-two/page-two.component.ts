@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/auth/register.service';
 
 @Component({
@@ -16,12 +17,17 @@ export class PageTwoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private readonly router: Router,
     private readonly registerService: RegisterService
   ) {}
 
   ngOnInit(): void {
+    const initemailVal = this.registerService.appUserRegister.email
+      ? this.registerService.appUserRegister.email
+      : '';
+
     this.form = this.fb.group({
-      email: [''],
+      email: [initemailVal, Validators.email],
       password: [''],
     });
   }
@@ -36,5 +42,6 @@ export class PageTwoComponent implements OnInit {
 
   onSubmit() {
     this.registerService.addUserInfo(this.form.value);
+    this.router.navigate(['/register/step2ii']);
   }
 }

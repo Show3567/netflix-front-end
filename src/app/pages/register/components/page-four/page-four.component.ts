@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { RegisterService } from '../../../../services/auth/register.service';
+import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Component({
   selector: 'app-page-four',
@@ -25,22 +27,24 @@ export class PageFourComponent implements OnInit {
       Resolution: '4K + HDR',
     },
   };
-  selecedColumn = 2;
+  selecedColumn: 'USER' | 'SUPERUSER' | 'ADMIN' = 'ADMIN';
 
   constructor(
     private router: Router,
-    private withLocalstorageService: WithLocalstorageService
+    private withLocalstorageService: WithLocalstorageService,
+    private readonly registerService: RegisterService
   ) {}
 
   ngOnInit(): void {}
 
-  selectPlan(num: number) {
-    this.selecedColumn = num;
+  selectPlan(user: 'USER' | 'SUPERUSER' | 'ADMIN') {
+    this.selecedColumn = user;
   }
 
   handleNavigate() {
-    !this.withLocalstorageService.userValue.jwtToken
-      ? this.router.navigate(['/login'])
-      : this.router.navigate(['/movies']);
+    // !this.withLocalstorageService.userValue.jwtToken
+    //   ? this.router.navigate(['/login'])
+    //   : this.router.navigate(['/movies']);
+    this.registerService.addRole({ role: UserRole[this.selecedColumn] });
   }
 }

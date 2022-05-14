@@ -17,58 +17,100 @@
     <div class="plan_table">
       <div class="plan_icon">
         <div class="description"></div>
-        <div [ngClass]="{ val_container: true }" (click)="selectPlan(0)">
-          <div [ngClass]="{ plan: true, plan_selected: selecedColumn === 0 }">
-            <div [ngClass]="{ arrow: true }" *ngIf="selecedColumn === 0"></div>
+        <div [ngClass]="{ val_container: true }" (click)="selectPlan('USER')">
+          <div
+            [ngClass]="{ plan: true, plan_selected: selecedColumn === 'USER' }"
+          >
+            <div
+              [ngClass]="{ arrow: true }"
+              *ngIf="selecedColumn === 'USER'"
+            ></div>
             Basic
           </div>
         </div>
-        <div [ngClass]="{ val_container: true }" (click)="selectPlan(1)">
-          <div [ngClass]="{ plan: true, plan_selected: selecedColumn === 1 }">
-            <div [ngClass]="{ arrow: true }" *ngIf="selecedColumn === 1"></div>
+        <div
+          [ngClass]="{ val_container: true }"
+          (click)="selectPlan('SUPERUSER')"
+        >
+          <div
+            [ngClass]="{
+              plan: true,
+              plan_selected: selecedColumn === 'SUPERUSER'
+            }"
+          >
+            <div
+              [ngClass]="{ arrow: true }"
+              *ngIf="selecedColumn === 'SUPERUSER'"
+            ></div>
             Standard
           </div>
         </div>
-        <div [ngClass]="{ val_container: true }" (click)="selectPlan(2)">
-          <div [ngClass]="{ plan: true, plan_selected: selecedColumn === 2 }">
-            <div [ngClass]="{ arrow: true }" *ngIf="selecedColumn === 2"></div>
+        <div [ngClass]="{ val_container: true }" (click)="selectPlan('ADMIN')">
+          <div
+            [ngClass]="{ plan: true, plan_selected: selecedColumn === 'ADMIN' }"
+          >
+            <div
+              [ngClass]="{ arrow: true }"
+              *ngIf="selecedColumn === 'ADMIN'"
+            ></div>
             Premium
           </div>
         </div>
       </div>
       <div class="m_price border_bt row">
         <div class="description">Monthly price</div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 'USER' }">
           {{ plans.Basic.MonthlyPrice | currency }}
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+        <div
+          [ngClass]="{
+            val_container: true,
+            red: selecedColumn === 'SUPERUSER'
+          }"
+        >
           {{ plans.Standard.MonthlyPrice | currency }}
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+        <div
+          [ngClass]="{ val_container: true, red: selecedColumn === 'ADMIN' }"
+        >
           {{ plans.Premium.MonthlyPrice | currency }}
         </div>
       </div>
       <div class="v_quality border_bt row">
         <div class="description">Video quality</div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 'USER' }">
           {{ plans.Basic.VideoQuality }}
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+        <div
+          [ngClass]="{
+            val_container: true,
+            red: selecedColumn === 'SUPERUSER'
+          }"
+        >
           {{ plans.Standard.VideoQuality }}
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+        <div
+          [ngClass]="{ val_container: true, red: selecedColumn === 'ADMIN' }"
+        >
           {{ plans.Premium.VideoQuality }}
         </div>
       </div>
       <div class="resolution border_bt row">
         <div class="description">Resolution</div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 'USER' }">
           {{ plans.Basic.Resolution }}
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+        <div
+          [ngClass]="{
+            val_container: true,
+            red: selecedColumn === 'SUPERUSER'
+          }"
+        >
           {{ plans.Standard.Resolution }}
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+        <div
+          [ngClass]="{ val_container: true, red: selecedColumn === 'ADMIN' }"
+        >
           {{ plans.Premium.Resolution }}
         </div>
       </div>
@@ -76,13 +118,20 @@
         <div class="description">
           Watch on your TV, computer, mobile phone and tablet
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 0 }">
+        <div [ngClass]="{ val_container: true, red: selecedColumn === 'USER' }">
           <mat-icon>done</mat-icon>
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 1 }">
+        <div
+          [ngClass]="{
+            val_container: true,
+            red: selecedColumn === 'SUPERUSER'
+          }"
+        >
           <mat-icon>done</mat-icon>
         </div>
-        <div [ngClass]="{ val_container: true, red: selecedColumn === 2 }">
+        <div
+          [ngClass]="{ val_container: true, red: selecedColumn === 'ADMIN' }"
+        >
           <mat-icon>done</mat-icon>
         </div>
       </div>

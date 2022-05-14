@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterService } from '../../../../services/auth/register.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class PageTwoIiComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private readonly router: Router,
     private readonly registerService: RegisterService
   ) {}
 
@@ -46,5 +48,6 @@ export class PageTwoIiComponent implements OnInit {
 
   onSubmit() {
     this.registerService.addUserInfo(this.form.value);
+    this.router.navigate(['/register/step3']);
   }
 }

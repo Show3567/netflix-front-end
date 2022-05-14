@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegisterService } from 'src/app/services/auth/register.service';
 
 @Component({
   selector: 'app-main-row-one',
@@ -12,7 +14,11 @@ export class MainRowOneComponent implements OnInit {
     return this.form.get('email');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private readonly router: Router,
+    private readonly registerService: RegisterService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -26,6 +32,7 @@ export class MainRowOneComponent implements OnInit {
   ngOnDestroy(): void {}
 
   onSubmit() {
-    console.log(this.form.value);
+    this.router.navigate(['/register/step1']);
+    this.registerService.addUserInfo(this.form.value);
   }
 }
