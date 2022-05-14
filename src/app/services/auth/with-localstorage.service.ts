@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
-import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
+import { AppUserAuth } from '../interfaces/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppUser } from '../interfaces/user-login.interface';
 import { TmdbService } from '../tmdb.service';
@@ -112,16 +112,16 @@ export class WithLocalstorageService {
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
   }
-  private setUserValueByToken({ accessToken }: { accessToken: string }) {
-    localStorage.setItem('access_token', accessToken);
-    const { id, username, email, role, tmdb_key, exp } =
-      this.jwtHelper.decodeToken(accessToken);
+  //   private setUserValueByToken({ accessToken }: { accessToken: string }) {
+  //     localStorage.setItem('access_token', accessToken);
+  //     const { id, username, email, role, tmdb_key, exp } =
+  //       this.jwtHelper.decodeToken(accessToken);
 
-    const user = {
-      ...{ id, username, email, role, tmdb_key },
-      jwtToken: accessToken,
-    };
-    this.userSubject$.next(user);
-    this.startRefreshTokenTimer(exp);
-  }
+  //     const user = {
+  //       ...{ id, username, email, role, tmdb_key },
+  //       jwtToken: accessToken,
+  //     };
+  //     this.userSubject$.next(user);
+  //     this.startRefreshTokenTimer(exp);
+  //   }
 }

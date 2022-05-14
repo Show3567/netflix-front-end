@@ -8,6 +8,8 @@ import { RegisterService } from '../../../../services/auth/register.service';
   styleUrls: ['./page-two-ii.component.scss'],
 })
 export class PageTwoIiComponent implements OnInit {
+  applyTmdbApiKey =
+    'https://developers.themoviedb.org/3/getting-started/authentication';
   form!: FormGroup;
 
   get username() {
@@ -36,6 +38,10 @@ export class PageTwoIiComponent implements OnInit {
     return this.tmdb_key?.hasError('required')
       ? 'We need your tmdb api_key'
       : '';
+  }
+
+  gotoApplyApiKey() {
+    window.location.href = this.applyTmdbApiKey;
   }
 
   onSubmit() {
