@@ -28,11 +28,27 @@
       span {
         font-size: 1.5rem;
         margin-right: 1.3rem;
+        height: 3rem;
+        line-height: 3rem;
+
+        background: linear-gradient(235deg, rgb(43, 255, 0), rgb(0, 255, 191));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: animate1 5s linear infinite;
+      }
+      @keyframes animate1 {
+        0%,
+        100% {
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          filter: hue-rotate(360deg);
+        }
       }
     }
 
     .netflix_icon {
-      height: 60%;
+      height: 80%;
     }
     .signIn_btn,
     .signOut_btn {
