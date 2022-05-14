@@ -1,9 +1,27 @@
 import { Injectable } from '@angular/core';
+import { UserRole } from '../interfaces/user-auth.interface';
+import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RigisterService {
+  appUserRegister = new AppUserRegister();
 
-  constructor() { }
+  constructor() {}
+
+  addUserInfo(userInfo: UserInfo) {
+    this.appUserRegister = {
+      ...this.appUserRegister,
+      ...userInfo,
+    };
+  }
+
+  addRole(userRole: { role: UserRole }) {
+    this.appUserRegister = {
+      ...this.appUserRegister,
+      ...userRole,
+    };
+    console.log(this.appUserRegister);
+  }
 }
