@@ -5,7 +5,7 @@ import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class RigisterService {
+export class RegisterService {
   appUserRegister = new AppUserRegister();
 
   constructor() {}

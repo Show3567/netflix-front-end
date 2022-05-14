@@ -18,8 +18,8 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Add your Tmdb Api_Key</mat-label>
-        <input matInput formControlName="apiKey" required />
-        <mat-error *ngIf="apiKey?.invalid">{{
+        <input matInput formControlName="tmdb_key" required />
+        <mat-error *ngIf="tmdb_key?.invalid">{{
           errorMessageApiKey()
         }}</mat-error>
       </mat-form-field>

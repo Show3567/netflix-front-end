@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegisterService } from 'src/app/services/auth/register.service';
 
 @Component({
   selector: 'app-page-two',
@@ -13,7 +14,10 @@ export class PageTwoComponent implements OnInit {
     return this.form.get('email');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private readonly registerService: RegisterService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -30,5 +34,7 @@ export class PageTwoComponent implements OnInit {
     return this.email?.hasError('email') ? 'Not a valid email' : '';
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.registerService.addUserInfo(this.form.value);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegisterService } from '../../../../services/auth/register.service';
 
 @Component({
   selector: 'app-page-two-ii',
@@ -12,16 +13,19 @@ export class PageTwoIiComponent implements OnInit {
   get username() {
     return this.form.get('username');
   }
-  get apiKey() {
-    return this.form.get('apiKey');
+  get tmdb_key() {
+    return this.form.get('tmdb_key');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private readonly registerService: RegisterService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       username: [''],
-      apiKey: [''],
+      tmdb_key: [''],
     });
   }
 
@@ -29,8 +33,12 @@ export class PageTwoIiComponent implements OnInit {
     return this.username?.hasError('required') ? 'You need a username' : '';
   }
   errorMessageApiKey() {
-    return this.apiKey?.hasError('required') ? 'We need your tmdb api_key' : '';
+    return this.tmdb_key?.hasError('required')
+      ? 'We need your tmdb api_key'
+      : '';
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.registerService.addUserInfo(this.form.value);
+  }
 }
