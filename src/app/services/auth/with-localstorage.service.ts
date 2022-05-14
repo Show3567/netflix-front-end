@@ -19,6 +19,7 @@ export class WithLocalstorageService {
   public user$!: Observable<AppUserAuth>;
 
   private appUserRegister = new AppUserRegister();
+  private refreshTokenTimeout: any;
 
   public get userValue(): AppUserAuth {
     return this.userSubject$.value;
@@ -123,8 +124,6 @@ export class WithLocalstorageService {
   }
 
   // helper methods;
-  private refreshTokenTimeout: any;
-
   refreshToken(): Observable<any> {
     const currentToken = localStorage.getItem('access_token');
     if (!currentToken) {
