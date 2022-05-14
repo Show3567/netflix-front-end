@@ -1,20 +1,27 @@
 <main class="main_container">
   <div class="container">
     <div class="step">STEP 1 OF 3</div>
-    <div class="p_1">Create a password to start your membership</div>
+    <div class="p_1">
+      Create a Username && Add your Tmdb Api_Key
+      <img src="../../../../assets/register/tmdb_icon.jpeg" alt="" />
+    </div>
     <div class="p_2">Just a few more steps and you're done!</div>
     <div class="p_3">We hate paperwork, too.</div>
 
     <form class="register_form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput formControlName="email" required />
-        <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>
+        <mat-label>Enter your username</mat-label>
+        <input matInput formControlName="username" required />
+        <mat-error *ngIf="username?.invalid">{{
+          errorMessageUsername()
+        }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Add a password</mat-label>
-        <input matInput formControlName="password" required />
-        <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>
+        <mat-label>Add your Tmdb Api_Key</mat-label>
+        <input matInput formControlName="apiKey" required />
+        <mat-error *ngIf="apiKey?.invalid">{{
+          errorMessageApiKey()
+        }}</mat-error>
       </mat-form-field>
       <button mat-raised-button [routerLink]="['/register/step3']">Next</button>
     </form>

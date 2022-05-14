@@ -23,7 +23,13 @@
     }
     .p_1 {
       font-size: 2rem;
-      line-height: 2.5rem;
+      line-height: 2rem;
+      img {
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        height: 2.5rem;
+        width: auto;
+      }
     }
     .p_2,
     .p_3 {

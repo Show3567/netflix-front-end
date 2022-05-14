@@ -9,25 +9,27 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class PageTwoIiComponent implements OnInit {
   form!: FormGroup;
 
-  get email() {
-    return this.form.get('email');
+  get username() {
+    return this.form.get('username');
+  }
+  get apiKey() {
+    return this.form.get('apiKey');
   }
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: [''],
-      password: [''],
+      username: [''],
+      apiKey: [''],
     });
   }
 
-  getErrorMessage() {
-    if (this.email?.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email?.hasError('email') ? 'Not a valid email' : '';
+  errorMessageUsername() {
+    return this.username?.hasError('required') ? 'You need a username' : '';
+  }
+  errorMessageApiKey() {
+    return this.apiKey?.hasError('required') ? 'We need your tmdb api_key' : '';
   }
 
   onSubmit() {}
