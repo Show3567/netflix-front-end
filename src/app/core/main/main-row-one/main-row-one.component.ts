@@ -17,7 +17,7 @@ export class MainRowOneComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
-    private readonly registerService: WithLocalstorageService
+    private readonly authService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +32,13 @@ export class MainRowOneComponent implements OnInit {
   ngOnDestroy(): void {}
 
   onSubmit() {
-    this.router.navigate(['/register/step1']);
-    this.registerService.addUserInfo(this.form.value);
+    const { jwtToken, tmdb_key } = this.authService.userValue;
+    if (jwtToken) {
+      console.log(tmdb_key?.length);
+      this.router.navigate(['/movies']);
+    } else {
+      this.router.navigate(['/register/step1']);
+      this.authService.addUserInfo(this.form.value);
+    }
   }
 }

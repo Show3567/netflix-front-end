@@ -1,22 +1,14 @@
 import { APP_INITIALIZER, InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  HttpClient,
-  HttpClientModule,
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
 
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { WithCookieService } from './services/auth/with-cookie.service';
 import { WithLocalstorageService } from './services/auth/with-localstorage.service';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
-import { TmdbService } from './services/tmdb.service';
-import { AuthService } from './services/auth/auth.service';
 import { appInitializer } from './core/app.initializer';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 

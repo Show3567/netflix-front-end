@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
 import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -61,6 +61,9 @@ export class WithLocalstorageService {
           this.startRefreshTokenTimer(exp);
 
           this.router.navigate(['/movies']);
+        }),
+        catchError((error) => {
+          return throwError('SomeThing Wrong during sign in!', error);
         })
       );
   }
@@ -80,18 +83,43 @@ export class WithLocalstorageService {
     };
   }
 
-  addRole(userRole: { role: UserRole }) {
+  sighup(userRole: { role: UserRole }): Observable<any> {
     this.appUserRegister = {
       ...this.appUserRegister,
       ...userRole,
     };
     const { username, password, email, role, tmdb_key } = this.appUserRegister;
-    if (username && password && email && role && tmdb_key) {
-      this.http.post(
+
+    if (!username || !password || !email || !role || !tmdb_key)
+      return of('Register failed');
+
+    return this.http
+      .post<{ accessToken: string }>(
         [this.authServerPath, 'auth', 'signup'].join('/'),
         this.appUserRegister
+      )
+      .pipe(
+        tap(({ accessToken }: { accessToken: string }) => {
+          localStorage.setItem('access_token', accessToken);
+          const { id, username, email, role, tmdb_key, exp } =
+            this.jwtHelper.decodeToken(accessToken);
+
+          this.tmdbService.setMyApiKey = tmdb_key;
+
+          const user = {
+            ...{ id, username, email, role, tmdb_key },
+            jwtToken: accessToken,
+          };
+
+          this.userSubject$.next(user);
+          this.startRefreshTokenTimer(exp);
+
+          this.router.navigate(['/movies']);
+        }),
+        catchError((error) => {
+          return throwError('SomeThing Wrong during sign up!', error);
+        })
       );
-    }
   }
 
   // helper methods;

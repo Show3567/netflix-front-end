@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
 
@@ -29,7 +29,7 @@ export class PageTwoIiComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       username: [''],
-      tmdb_key: [''],
+      tmdb_key: ['', Validators.minLength(30), Validators.maxLength(34)],
     });
   }
 
