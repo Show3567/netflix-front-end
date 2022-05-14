@@ -22,6 +22,8 @@ export class RegisterService {
       ...this.appUserRegister,
       ...userRole,
     };
-    console.log(this.appUserRegister);
+    const { username, password, email, role, tmdb_key } = this.appUserRegister;
+    if (username && password && email && role && tmdb_key) {
+    }
   }
 }

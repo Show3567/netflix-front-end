@@ -9,12 +9,15 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input matInput formControlName="email" required />
-        <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>
+        <mat-error *ngIf="email?.errors?.required">
+          Email is required!
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.email">Email not Valided!</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Add a password</mat-label>
         <input matInput formControlName="password" required />
-        <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>
+        <mat-error *ngIf="password?.invalid">Password is required!</mat-error>
       </mat-form-field>
       <button
         mat-raised-button
