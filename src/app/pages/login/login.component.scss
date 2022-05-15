@@ -8,6 +8,10 @@
   width: 100vw;
   position: fixed;
   top: 0;
+  img {
+    height: 70%;
+    width: auto;
+  }
 }
 
 .container {
@@ -30,8 +34,7 @@
       rgba(0, 0, 0, 0.9)
     );
     .login_container {
-      margin-top: 70px;
-      margin-bottom: 70px;
+      margin: 7rem 0;
       width: 400px;
       display: flex;
       flex-direction: column;
