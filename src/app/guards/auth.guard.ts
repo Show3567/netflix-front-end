@@ -27,7 +27,6 @@ export class AuthGuard implements CanActivate {
     const claimType: string = next.data.claimType;
 
     if (jwtToken && role && claimType.includes(role)) {
-      this.router.navigate(['/register/step4']);
       return true;
     } else {
       this.router.navigate(['/register/step4']);

@@ -47,19 +47,7 @@ export class WithLocalstorageService {
       )
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
-          localStorage.setItem('access_token', accessToken);
-          const { id, username, email, role, tmdb_key, exp } =
-            this.jwtHelper.decodeToken(accessToken);
-
-          this.tmdbService.setMyApiKey = tmdb_key;
-
-          const user = {
-            ...{ id, username, email, role, tmdb_key },
-            jwtToken: accessToken,
-          };
-
-          this.userSubject$.next(user);
-          this.startRefreshTokenTimer(exp);
+          this.setUserValueByToken({ accessToken });
 
           this.router.navigate(['/movies']);
         }),
@@ -101,20 +89,7 @@ export class WithLocalstorageService {
       )
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
-          localStorage.setItem('access_token', accessToken);
-          const { id, username, email, role, tmdb_key, exp } =
-            this.jwtHelper.decodeToken(accessToken);
-
-          this.tmdbService.setMyApiKey = tmdb_key;
-
-          const user = {
-            ...{ id, username, email, role, tmdb_key },
-            jwtToken: accessToken,
-          };
-
-          this.userSubject$.next(user);
-          this.startRefreshTokenTimer(exp);
-
+          this.setUserValueByToken({ accessToken });
           this.router.navigate(['/movies']);
         }),
         catchError((error) => {
@@ -125,7 +100,23 @@ export class WithLocalstorageService {
 
   /* upgrade Uer Permission */
   upgradePermission(userRole: { role: UserRole }) {
-    console.log('upgrad permission to: ', userRole.role);
+    console.log('Change permission class to: ', userRole.role);
+    this.stopRefreshTokenTimer();
+
+    return this.http
+      .patch<{ accessToken: string }>(
+        [this.authServerPath, 'auth', 'userupdate'].join('/'),
+        userRole
+      )
+      .pipe(
+        tap(({ accessToken }: { accessToken: string }) => {
+          this.setUserValueByToken({ accessToken });
+          this.router.navigate(['/movies']);
+        }),
+        catchError((error) => {
+          return throwError('SomeThing Wrong during sign up!', error);
+        })
+      );
   }
 
   // helper methods;
@@ -144,18 +135,7 @@ export class WithLocalstorageService {
       .post<any>(`${this.authServerPath}/auth/refresh-token`, user)
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
-          localStorage.setItem('access_token', accessToken);
-          const { id, username, email, role, tmdb_key, exp } =
-            this.jwtHelper.decodeToken(accessToken);
-
-          this.tmdbService.setMyApiKey = tmdb_key;
-
-          const user = {
-            ...{ id, username, email, role, tmdb_key },
-            jwtToken: accessToken,
-          };
-          this.userSubject$.next(user);
-          this.startRefreshTokenTimer(exp);
+          this.setUserValueByToken({ accessToken });
         })
       );
   }
@@ -173,16 +153,20 @@ export class WithLocalstorageService {
   private stopRefreshTokenTimer() {
     clearTimeout(this.refreshTokenTimeout);
   }
-  //   private setUserValueByToken({ accessToken }: { accessToken: string }) {
-  //     localStorage.setItem('access_token', accessToken);
-  //     const { id, username, email, role, tmdb_key, exp } =
-  //       this.jwtHelper.decodeToken(accessToken);
 
-  //     const user = {
-  //       ...{ id, username, email, role, tmdb_key },
-  //       jwtToken: accessToken,
-  //     };
-  //     this.userSubject$.next(user);
-  //     this.startRefreshTokenTimer(exp);
-  //   }
+  /* reuseable code in for signin, signup, refresh, update */
+  private setUserValueByToken = ({ accessToken }: { accessToken: string }) => {
+    localStorage.setItem('access_token', accessToken);
+    const { id, username, email, role, tmdb_key, exp } =
+      this.jwtHelper.decodeToken(accessToken);
+
+    this.tmdbService.setMyApiKey = tmdb_key;
+
+    const user = {
+      ...{ id, username, email, role, tmdb_key },
+      jwtToken: accessToken,
+    };
+    this.userSubject$.next(user);
+    this.startRefreshTokenTimer(exp);
+  };
 }

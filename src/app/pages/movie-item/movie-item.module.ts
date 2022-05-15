@@ -13,7 +13,9 @@ const routes: Routes = [
     path: '',
     component: MovieItemComponent,
     canActivate: [MovieItemGuard],
-    data: { claimType: [UserRole.ADMIN, UserRole.SUPERUSER] },
+    data: {
+      claimType: [UserRole.ADMIN, UserRole.SUPERUSER],
+    },
   },
 ];
 

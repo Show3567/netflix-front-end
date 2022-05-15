@@ -47,7 +47,7 @@ export class MovieItemGuard implements CanLoad, CanActivate {
     ) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/register/step4']);
       return false;
     }
   }

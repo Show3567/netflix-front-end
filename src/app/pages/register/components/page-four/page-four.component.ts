@@ -47,9 +47,11 @@ export class PageFourComponent implements OnInit {
     const { jwtToken } = this.registerService.userValue;
 
     if (jwtToken) {
-      this.registerService.upgradePermission({
-        role: UserRole[this.selecedColumn],
-      });
+      this.registerService
+        .upgradePermission({
+          role: UserRole[this.selecedColumn],
+        })
+        .subscribe(console.log);
     } else {
       this.registerService
         .sighup({ role: UserRole[this.selecedColumn] })
