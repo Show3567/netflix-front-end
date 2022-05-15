@@ -29,7 +29,7 @@ export class PageTwoIiComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       username: [''],
-      tmdb_key: ['', Validators.minLength(30), Validators.maxLength(34)],
+      tmdb_key: ['', Validators.minLength(30)],
     });
   }
 
