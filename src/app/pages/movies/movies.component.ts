@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
-import { TmdbService } from 'src/app/services/tmdb.service';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from '../../services/interfaces/movie.interface';
 
 @Component({

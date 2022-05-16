@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TmdbService } from 'src/app/services/tmdb.service';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Component({
   selector: 'app-item',

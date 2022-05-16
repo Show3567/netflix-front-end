@@ -7,7 +7,7 @@ import { AUTHSERVER } from 'src/app/app.module';
 import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppUser } from '../interfaces/user-login.interface';
-import { TmdbService } from '../tmdb.service';
+import { TmdbService } from '../tmdb/tmdb.service';
 import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TmdbService } from 'src/app/services/tmdb.service';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ActivatedRoute } from '@angular/router';
 import { tap, map } from 'rxjs/operators';
