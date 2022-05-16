@@ -32,6 +32,10 @@ export class PageTwoIiComponent implements OnInit {
     });
   }
 
+  errorMessageUsername() {
+    return this.username?.hasError('required') ? 'You need a username' : '';
+  }
+
   gotoApplyApiKey() {
     window.location.href = this.applyTmdbApiKey;
   }
