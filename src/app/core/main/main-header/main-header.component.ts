@@ -12,12 +12,12 @@ export class MainHeaderComponent implements OnInit {
   username = '';
 
   constructor(
-    private readonly withLocalstorageService: WithLocalstorageService,
+    private readonly authService: WithLocalstorageService,
     private readonly router: Router
   ) {}
 
   ngOnInit(): void {
-    const { jwtToken, username } = this.withLocalstorageService.userValue;
+    const { jwtToken, username } = this.authService.userValue;
     if (jwtToken && username) {
       this.isLogin = true;
       this.username = username;
@@ -27,7 +27,7 @@ export class MainHeaderComponent implements OnInit {
   }
 
   signOut() {
-    this.withLocalstorageService.logout();
+    this.authService.logout();
     this.isLogin = false;
     this.username = '';
   }

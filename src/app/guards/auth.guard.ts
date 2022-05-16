@@ -19,11 +19,11 @@ import { UserRole } from '../services/interfaces/user-auth.interface';
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private withLocalstorageService: WithLocalstorageService
+    private authService: WithLocalstorageService
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const { jwtToken, role } = this.withLocalstorageService.userValue;
+    const { jwtToken, role } = this.authService.userValue;
     const claimType: string = next.data.claimType;
 
     if (jwtToken && role && claimType.includes(role)) {

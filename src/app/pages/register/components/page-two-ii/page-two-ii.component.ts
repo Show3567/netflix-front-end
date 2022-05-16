@@ -23,7 +23,7 @@ export class PageTwoIiComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
-    private readonly registerService: WithLocalstorageService
+    private readonly authService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class PageTwoIiComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registerService.addUserInfo(this.form.value);
+    this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step3']);
   }
 }

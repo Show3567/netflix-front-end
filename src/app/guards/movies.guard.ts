@@ -18,11 +18,11 @@ import { WithLocalstorageService } from '../services/auth/with-localstorage.serv
 export class MoviesGuard implements CanLoad, CanActivate {
   constructor(
     private router: Router,
-    private withLocalstorageService: WithLocalstorageService
+    private authService: WithLocalstorageService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const { jwtToken } = this.withLocalstorageService.userValue;
+    const { jwtToken } = this.authService.userValue;
 
     if (jwtToken) {
       return true;
@@ -35,7 +35,7 @@ export class MoviesGuard implements CanLoad, CanActivate {
   }
 
   canLoad(route: Route, segments: UrlSegment[]) {
-    const { jwtToken } = this.withLocalstorageService.userValue;
+    const { jwtToken } = this.authService.userValue;
     if (jwtToken) {
       return true;
     } else {

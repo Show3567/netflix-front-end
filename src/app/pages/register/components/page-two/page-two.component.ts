@@ -21,12 +21,12 @@ export class PageTwoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
-    private readonly registerService: WithLocalstorageService
+    private readonly authService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {
-    const initemailVal = this.registerService.appNewUser.email
-      ? this.registerService.appNewUser.email
+    const initemailVal = this.authService.appNewUser.email
+      ? this.authService.appNewUser.email
       : '';
 
     this.form = this.fb.group({
@@ -44,7 +44,7 @@ export class PageTwoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registerService.addUserInfo(this.form.value);
+    this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step2ii']);
   }
 }

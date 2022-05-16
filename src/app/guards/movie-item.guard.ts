@@ -19,11 +19,11 @@ import { UserRole } from '../services/interfaces/user-auth.interface';
 export class MovieItemGuard implements CanLoad, CanActivate {
   constructor(
     private router: Router,
-    private withLocalstorageService: WithLocalstorageService
+    private authService: WithLocalstorageService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const { jwtToken, role } = this.withLocalstorageService.userValue;
+    const { jwtToken, role } = this.authService.userValue;
     if (
       jwtToken &&
       role &&
@@ -39,7 +39,7 @@ export class MovieItemGuard implements CanLoad, CanActivate {
   }
 
   canLoad(route: Route, segments: UrlSegment[]) {
-    const { jwtToken, role } = this.withLocalstorageService.userValue;
+    const { jwtToken, role } = this.authService.userValue;
     if (
       jwtToken &&
       role &&

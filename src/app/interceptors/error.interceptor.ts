@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private withLocalstorageService: WithLocalstorageService) {}
+  constructor(private authService: WithLocalstorageService) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -19,10 +19,10 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((err) => {
-        const authToken = this.withLocalstorageService.userValue.jwtToken;
+        const authToken = this.authService.userValue.jwtToken;
         if ([401, 403].includes(err.status) && authToken) {
           // auto logout if 401 or 403 response returned from api
-          this.withLocalstorageService.logout();
+          this.authService.logout();
         }
 
         const error = (err && err.error && err.error.message) || err.statusText;

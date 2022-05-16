@@ -13,7 +13,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class AuthWithLocalInterceptor implements HttpInterceptor {
   constructor(
-    private withLocalstorageService: WithLocalstorageService,
+    private authService: WithLocalstorageService,
     @Inject(AUTHSERVER) private autoServerPath: string
   ) {}
 
@@ -22,7 +22,7 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // add auth header with jwt if user is logged in and request is to the api url
-    const user = this.withLocalstorageService.userValue;
+    const user = this.authService.userValue;
 
     const isLoggedIn = user && user.jwtToken;
     const isApiUrl = request.url.startsWith(

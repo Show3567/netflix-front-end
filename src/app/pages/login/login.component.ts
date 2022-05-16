@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     // private authService: AuthService,
-    private withLocalstorageService: WithLocalstorageService
+    private authService: WithLocalstorageService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
-    this.withLocalstorageService.user$.subscribe((userinfo) =>
+    this.authService.user$.subscribe((userinfo) =>
       console.log('userinfo: ', userinfo)
     );
   }
@@ -50,6 +50,6 @@ export class LoginComponent implements OnInit {
       email: this.email?.value,
       password: this.password?.value,
     };
-    this.withLocalstorageService.login(credencialSignIn).subscribe(console.log);
+    this.authService.login(credencialSignIn).subscribe(console.log);
   }
 }

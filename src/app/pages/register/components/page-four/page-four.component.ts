@@ -30,7 +30,7 @@ export class PageFourComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private withLocalstorageService: WithLocalstorageService,
+    private authService: WithLocalstorageService,
     private readonly registerService: WithLocalstorageService
   ) {}
 
@@ -41,7 +41,7 @@ export class PageFourComponent implements OnInit {
   }
 
   handleNavigate() {
-    // !this.withLocalstorageService.userValue.jwtToken
+    // !this.authService.userValue.jwtToken
     //   ? this.router.navigate(['/login'])
     //   : this.router.navigate(['/movies']);
     const { jwtToken } = this.registerService.userValue;
