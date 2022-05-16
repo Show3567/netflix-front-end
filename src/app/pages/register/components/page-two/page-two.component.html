@@ -9,13 +9,28 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input matInput formControlName="email" required />
+        <mat-spinner matSuffix *ngIf="isLoading" [diameter]="25"></mat-spinner>
+        <mat-icon
+          class="check_email_ok"
+          *ngIf="!email?.errors?.hasemail && !isLoading"
+          matSuffix
+        >
+          check_circle_outline
+        </mat-icon>
+        <mat-icon
+          class="check_email_not"
+          *ngIf="email?.errors?.hasemail && !isLoading"
+          matSuffix
+        >
+          not_interested
+        </mat-icon>
         <mat-error *ngIf="email?.errors?.required">
           Email is required!
         </mat-error>
         <mat-error *ngIf="email?.errors?.email">Email not Valided!</mat-error>
-        <mat-error *ngIf="email?.errors?.hasemail"
-          >This email already exist...</mat-error
-        >
+        <mat-error *ngIf="email?.errors?.hasemail">
+          This email already exist...
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Add a password</mat-label>
