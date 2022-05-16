@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
+import { CustomValidator } from '../../../../services/validators/custom.validator';
 
 @Component({
   selector: 'app-page-two',
@@ -21,6 +22,7 @@ export class PageTwoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
+    private readonly customValidator: CustomValidator,
     private readonly authService: WithLocalstorageService
   ) {}
   ngOnInit(): void {
@@ -29,7 +31,11 @@ export class PageTwoComponent implements OnInit {
       : '';
 
     this.form = this.fb.group({
-      email: [initemailVal, Validators.email],
+      email: [
+        initemailVal,
+        [Validators.email],
+        [this.customValidator.hasEmail()],
+      ],
       password: [''],
     });
   }

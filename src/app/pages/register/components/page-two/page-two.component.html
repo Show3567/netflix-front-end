@@ -13,6 +13,9 @@
           Email is required!
         </mat-error>
         <mat-error *ngIf="email?.errors?.email">Email not Valided!</mat-error>
+        <mat-error *ngIf="email?.errors?.hasemail"
+          >This email already exist...</mat-error
+        >
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Add a password</mat-label>
