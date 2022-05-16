@@ -25,7 +25,6 @@ export class PageTwoIiComponent implements OnInit {
     private readonly router: Router,
     private readonly authService: WithLocalstorageService
   ) {}
-
   ngOnInit(): void {
     this.form = this.fb.group({
       username: [''],
@@ -33,19 +32,9 @@ export class PageTwoIiComponent implements OnInit {
     });
   }
 
-  errorMessageUsername() {
-    return this.username?.hasError('required') ? 'You need a username' : '';
-  }
-  errorMessageApiKey() {
-    return this.tmdb_key?.hasError('required')
-      ? 'We need your tmdb api_key'
-      : '';
-  }
-
   gotoApplyApiKey() {
     window.location.href = this.applyTmdbApiKey;
   }
-
   onSubmit() {
     this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step3']);

@@ -15,7 +15,6 @@ export class MainHeaderComponent implements OnInit {
     private readonly authService: WithLocalstorageService,
     private readonly router: Router
   ) {}
-
   ngOnInit(): void {
     const { jwtToken, username } = this.authService.userValue;
     if (jwtToken && username) {

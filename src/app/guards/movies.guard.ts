@@ -33,7 +33,6 @@ export class MoviesGuard implements CanLoad, CanActivate {
       return false;
     }
   }
-
   canLoad(route: Route, segments: UrlSegment[]) {
     const { jwtToken } = this.authService.userValue;
     if (jwtToken) {

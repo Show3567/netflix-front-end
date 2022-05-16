@@ -19,7 +19,6 @@ export class MainRowOneComponent implements OnInit {
     private readonly router: Router,
     private readonly authService: WithLocalstorageService
   ) {}
-
   ngOnInit(): void {
     this.form = this.fb.group({
       email: [
@@ -28,7 +27,6 @@ export class MainRowOneComponent implements OnInit {
       ],
     });
   }
-
   ngOnDestroy(): void {}
 
   onSubmit() {

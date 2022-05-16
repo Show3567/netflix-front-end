@@ -23,7 +23,6 @@ export class PageTwoComponent implements OnInit {
     private readonly router: Router,
     private readonly authService: WithLocalstorageService
   ) {}
-
   ngOnInit(): void {
     const initemailVal = this.authService.appNewUser.email
       ? this.authService.appNewUser.email
@@ -42,7 +41,6 @@ export class PageTwoComponent implements OnInit {
 
     return this.email?.hasError('email') ? 'Not a valid email' : '';
   }
-
   onSubmit() {
     this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step2ii']);

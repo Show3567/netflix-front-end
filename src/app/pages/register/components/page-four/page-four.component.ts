@@ -33,13 +33,11 @@ export class PageFourComponent implements OnInit {
     private authService: WithLocalstorageService,
     private readonly registerService: WithLocalstorageService
   ) {}
-
   ngOnInit(): void {}
 
   selectPlan(user: 'USER' | 'SUPERUSER' | 'ADMIN') {
     this.selecedColumn = user;
   }
-
   handleNavigate() {
     // !this.authService.userValue.jwtToken
     //   ? this.router.navigate(['/login'])

@@ -56,6 +56,7 @@ export class WithLocalstorageService {
         })
       );
   }
+
   /* SignOut */
   logout() {
     localStorage.removeItem('access_token');
@@ -64,6 +65,7 @@ export class WithLocalstorageService {
     this.userSubject$.next({});
     this.router.navigate(['/home']);
   }
+
   /* SignUp */
   addUserInfo(userInfo: UserInfo) {
     this.appUserRegister = {
@@ -71,7 +73,6 @@ export class WithLocalstorageService {
       ...userInfo,
     };
   }
-
   sighup(userRole: { role: UserRole }): Observable<any> {
     this.appUserRegister = {
       ...this.appUserRegister,

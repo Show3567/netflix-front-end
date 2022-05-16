@@ -37,7 +37,6 @@ export class MovieItemGuard implements CanLoad, CanActivate {
       return false;
     }
   }
-
   canLoad(route: Route, segments: UrlSegment[]) {
     const { jwtToken, role } = this.authService.userValue;
     if (

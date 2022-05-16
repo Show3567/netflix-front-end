@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     // private authService: AuthService,
     private authService: WithLocalstorageService
   ) {}
-
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
