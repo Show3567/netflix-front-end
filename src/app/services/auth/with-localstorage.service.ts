@@ -124,7 +124,7 @@ export class WithLocalstorageService {
   refreshToken(): Observable<any> {
     const currentToken = localStorage.getItem('access_token');
     if (!currentToken) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
       return of('err');
     }
 
