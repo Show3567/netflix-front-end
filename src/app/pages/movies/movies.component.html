@@ -11,11 +11,12 @@
     <div class="recommend_list">
       <div
         class="recommend_item"
-        *ngFor="let item of recommend"
+        *ngFor="let item of recommend; let i = index; trackBy: trackByFn"
         (mouseover)="handleHoverRecommend(item.id)"
         (click)="navigateMovie(item.id)"
       >
-        {{ (item.title ? item.title : item.name) | overviewControl: 18 }}
+        {{ item.title | overviewControl: 18 }}
+        <!-- {{ (item.title ? item.title : item.name) | overviewControl: 18 }} -->
       </div>
     </div>
     <div class="cover_img_bottom">

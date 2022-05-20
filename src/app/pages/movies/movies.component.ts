@@ -12,7 +12,7 @@ import { Movie } from '../../services/interfaces/movie.interface';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
-  recommend: any[] = [];
+  recommend: Movie[] = [];
   showRecommendImg: string = '';
   noRecommendImg = '../../../assets/video/VGA-no-signal-image.jpeg';
   finished = false;
@@ -36,12 +36,12 @@ export class MoviesComponent implements OnInit {
     this.tmdbService.recommendListObs$.subscribe((recom) => {
       this.recommend = [...recom];
       if (this.recommend.length && this.recommend[0].id) {
-        this.handleHoverRecommend(this.recommend[0].id + '');
+        this.handleHoverRecommend(this.recommend[0].id);
       }
     });
   }
 
-  handleHoverRecommend(id: string) {
+  handleHoverRecommend(id: number) {
     const movie = this.recommend.find((item: Movie | any) => +item.id === +id);
     this.showRecommendImg =
       movie && movie.backdrop_path
@@ -53,9 +53,11 @@ export class MoviesComponent implements OnInit {
     this.tmdbService.handleScrol().subscribe();
   }
 
-  navigateMovie(id: string) {
+  navigateMovie(id: number) {
     this._router.navigate(['/movies', id]);
   }
+
+  trackByFn(i: number, item: Movie) {}
 
   switchToMoiveList() {
     // this.tmdbService

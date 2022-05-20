@@ -7,7 +7,7 @@ export interface Movie {
   id: number;
   original_title?: string;
   original_language?: string;
-  title?: string;
+  title: string;
   backdrop_path?: string | null;
   popularity?: number;
   vote_count?: number;
