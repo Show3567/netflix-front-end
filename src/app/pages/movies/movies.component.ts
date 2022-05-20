@@ -57,7 +57,9 @@ export class MoviesComponent implements OnInit {
     this._router.navigate(['/movies', id]);
   }
 
-  trackByFn(i: number, item: Movie) {}
+  trackByFn(i: number, item: Movie) {
+    return item.id;
+  }
 
   switchToMoiveList() {
     // this.tmdbService

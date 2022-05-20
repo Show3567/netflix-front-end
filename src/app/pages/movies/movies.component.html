@@ -44,7 +44,10 @@
   </div>
 
   <div class="movie_list">
-    <div class="movie_item" *ngFor="let movie of movies">
+    <div
+      class="movie_item"
+      *ngFor="let movie of movies; let i = index; trackBy: trackByFn"
+    >
       <app-item [movie]="movie"></app-item>
     </div>
 
