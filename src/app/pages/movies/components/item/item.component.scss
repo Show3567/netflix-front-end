@@ -5,6 +5,14 @@
   width: 90%;
   background: linear-gradient(270deg, #e91e63, #5d02ff);
 
+  .spinner_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
+
   .bk-image {
     position: absolute;
     top: 0;

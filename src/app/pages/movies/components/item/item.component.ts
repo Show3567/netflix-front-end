@@ -12,6 +12,8 @@ export class ItemComponent implements OnInit {
   poster_img_high = '';
   year!: number;
 
+  isLoading = false;
+
   constructor(private tmdbService: TmdbService) {}
 
   ngOnInit(): void {

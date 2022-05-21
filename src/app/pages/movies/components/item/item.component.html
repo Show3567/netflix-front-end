@@ -1,4 +1,8 @@
 <div class="newbox">
+  <div class="spinner_container" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
   <div
     class="bk-image"
     [ngStyle]="{
@@ -30,6 +34,8 @@
       </p>
     </div>
 
-    <a [routerLink]="['/movies', movie.id]">Read More</a>
+    <a [routerLink]="['/movies', movie.id]" (click)="isLoading = true">
+      Read More
+    </a>
   </div>
 </div>
