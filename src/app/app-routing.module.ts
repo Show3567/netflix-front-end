@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NoPreloading, RouterModule, Routes } from '@angular/router';
 import { MovieItemGuard } from './guards/movie-item.guard';
 import { MoviesGuard } from './guards/movies.guard';
 import { MovieItemVideosResolver } from './resolvers/movie-item-videos.resolver';
@@ -26,6 +27,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/movies/movies.module').then((m) => m.MoviesModule),
     canLoad: [MoviesGuard],
+    data: { preload: true, delay: 5000 },
   },
   {
     path: 'movies/:id',
@@ -47,7 +49,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+/** preloading strategy
+ * abstract preload(route: Route, fn: () => Observable<any>): Observable<any>
+ * @param { Route } route
+ * @param { () => Observable<any> } fn
+ * @return { Observable<any> }
+ */
