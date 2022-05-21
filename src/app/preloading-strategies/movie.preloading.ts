@@ -26,3 +26,4 @@ export class MoviePreloadingStrategy implements PreloadingStrategy {
     }
   }
 }
+/* we cannot use route guard and preloading in the same time! */
