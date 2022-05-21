@@ -37,42 +37,10 @@ export class MovieItemComponent implements OnInit {
     if (videos && videos.results) {
       this.movieVideos = [...videos.results];
     }
+    const movie = this.activatedRoute.snapshot.data['movie'];
+    this.movie = { ...movie };
 
-    this.activatedRoute.paramMap
-      .pipe(
-        map((data: any) => data.params.id),
-        tap((id: any) => {
-          //   this.tmdbService.getVideo(+id).subscribe((videos: any) => {
-          //     if (videos && videos.results) {
-          //       this.movieVideos = [...videos.results];
-          //     }
-          //   });
-          this.tmdbService.getMovie(+id).subscribe((movie: any) => {
-            this.movie = { ...movie };
-            this.movie.production_companies.forEach((company: any) => {
-              company.logo_path !== null &&
-                this.companies_icons.push(
-                  this.tmdbService.getMovieImagePath(company.logo_path, 'w500')
-                );
-            });
-            if (this.movie.backdrop_path) {
-              this.hasbackdrop_img = true;
-              this.backdrop_img_high = this.tmdbService.getMovieImagePath(
-                this.movie.backdrop_path,
-                'original'
-              );
-            } else this.hasbackdrop_img = false;
-            if (this.movie.poster_path) {
-              this.hasposter_img = true;
-              this.poster_img_high = this.tmdbService.getMovieImagePath(
-                this.movie.poster_path,
-                'w780'
-              );
-            } else this.hasposter_img = false;
-          });
-        })
-      )
-      .subscribe();
+    this.setSources();
   }
 
   handleMute() {
@@ -93,6 +61,31 @@ export class MovieItemComponent implements OnInit {
       const videoOut = this.movieVideos.pop();
       this.movieVideos.unshift(videoOut);
     }
-    // console.log(this.movieVideos[0]);
+  }
+
+  /* helper */
+  private setSources() {
+    if (this.movie.production_companies) {
+      this.movie.production_companies.forEach((company: any) => {
+        company.logo_path !== null &&
+          this.companies_icons.push(
+            this.tmdbService.getMovieImagePath(company.logo_path, 'w500')
+          );
+      });
+    }
+    if (this.movie.backdrop_path) {
+      this.hasbackdrop_img = true;
+      this.backdrop_img_high = this.tmdbService.getMovieImagePath(
+        this.movie.backdrop_path,
+        'original'
+      );
+    } else this.hasbackdrop_img = false;
+    if (this.movie.poster_path) {
+      this.hasposter_img = true;
+      this.poster_img_high = this.tmdbService.getMovieImagePath(
+        this.movie.poster_path,
+        'w780'
+      );
+    } else this.hasposter_img = false;
   }
 }
