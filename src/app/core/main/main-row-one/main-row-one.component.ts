@@ -32,7 +32,6 @@ export class MainRowOneComponent implements OnInit {
   onSubmit() {
     const { jwtToken, tmdb_key } = this.authService.userValue;
     if (jwtToken) {
-      console.log(tmdb_key?.length);
       this.router.navigate(['/movies']);
     } else {
       this.router.navigate(['/register/step1']);

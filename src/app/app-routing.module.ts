@@ -5,6 +5,7 @@ import { MovieItemGuard } from './guards/movie-item.guard';
 import { MoviesGuard } from './guards/movies.guard';
 import { MovieItemVideosResolver } from './resolvers/movie-item-videos.resolver';
 import { MovieItemResolver } from './resolvers/movie-item.resolver';
+import { MoviePreloadingStrategy } from './preloading-strategies/movie.preloading';
 
 const routes: Routes = [
   {
@@ -26,8 +27,10 @@ const routes: Routes = [
     path: 'movies',
     loadChildren: () =>
       import('./pages/movies/movies.module').then((m) => m.MoviesModule),
-    canLoad: [MoviesGuard],
-    data: { preload: true, delay: 5000 },
+    // canLoad: [MoviesGuard],
+
+    /* we cannot use route guard and preloading in the same time! */
+    data: { preload: true, delay: 1000 },
   },
   {
     path: 'movies/:id',
@@ -49,7 +52,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: MoviePreloadingStrategy,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

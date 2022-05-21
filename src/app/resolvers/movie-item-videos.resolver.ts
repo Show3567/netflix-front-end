@@ -17,7 +17,6 @@ export class MovieItemVideosResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    console.log('hello');
     return this.tmdbService.getVideo(+route.params.id);
   }
 }
