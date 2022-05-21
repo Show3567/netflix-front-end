@@ -5,7 +5,7 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { TmdbService } from '../services/tmdb/tmdb.service';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Injectable({
   providedIn: 'root',

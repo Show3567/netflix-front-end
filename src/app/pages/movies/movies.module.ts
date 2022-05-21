@@ -5,7 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MoviesComponent } from './movies.component';
 import { CoreModule } from '../../core/core.module';
 import { ItemComponent } from './components/item/item.component';
-import { MoviesGuard } from '../../guards/movies.guard';
+import { MoviesGuard } from '../../core/guards/movies.guard';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 const routes: Routes = [

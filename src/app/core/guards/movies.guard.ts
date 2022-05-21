@@ -10,25 +10,21 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
-import { UserRole } from '../services/interfaces/user-auth.interface';
+import { WithLocalstorageService } from '../../services/auth/with-localstorage.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MovieItemGuard implements CanLoad, CanActivate {
+export class MoviesGuard implements CanLoad, CanActivate {
   constructor(
     private router: Router,
     private authService: WithLocalstorageService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const { jwtToken, role } = this.authService.userValue;
-    if (
-      jwtToken &&
-      role &&
-      (role === UserRole.ADMIN || role === UserRole.SUPERUSER)
-    ) {
+    const { jwtToken } = this.authService.userValue;
+
+    if (jwtToken) {
       return true;
     } else {
       this.router.navigate(['login'], {
@@ -38,15 +34,11 @@ export class MovieItemGuard implements CanLoad, CanActivate {
     }
   }
   canLoad(route: Route, segments: UrlSegment[]) {
-    const { jwtToken, role } = this.authService.userValue;
-    if (
-      jwtToken &&
-      role &&
-      (role === UserRole.ADMIN || role === UserRole.SUPERUSER)
-    ) {
+    const { jwtToken } = this.authService.userValue;
+    if (jwtToken) {
       return true;
     } else {
-      this.router.navigate(['/register/step4']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

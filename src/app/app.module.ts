@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { WithLocalstorageService } from './services/auth/with-localstorage.service';
-import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
+
 import { appInitializer } from './core/app.initializer';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { AuthWithLocalInterceptor } from './core/interceptors/auth-with-local.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');

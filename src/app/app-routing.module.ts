@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs';
 import { NgModule } from '@angular/core';
 import { NoPreloading, RouterModule, Routes } from '@angular/router';
-import { MovieItemGuard } from './guards/movie-item.guard';
-import { MoviesGuard } from './guards/movies.guard';
-import { MovieItemVideosResolver } from './resolvers/movie-item-videos.resolver';
-import { MovieItemResolver } from './resolvers/movie-item.resolver';
-import { MoviePreloadingStrategy } from './preloading-strategies/movie.preloading';
+import { MovieItemGuard } from './core/guards/movie-item.guard';
+import { MoviesGuard } from './core/guards/movies.guard';
+import { MovieItemResolver } from './core/resolvers/movie-item.resolver';
+import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.resolver';
+import { MoviePreloadingStrategy } from './core/preloading-strategies/movie.preloading';
 
 const routes: Routes = [
   {

@@ -6,8 +6,8 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
 import { catchError } from 'rxjs/operators';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

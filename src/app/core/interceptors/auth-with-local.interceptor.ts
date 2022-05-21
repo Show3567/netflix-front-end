@@ -6,9 +6,10 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { AUTHSERVER } from '../app.module';
-import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
+
 import { catchError } from 'rxjs/operators';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AUTHSERVER } from 'src/app/app.module';
 
 @Injectable()
 export class AuthWithLocalInterceptor implements HttpInterceptor {

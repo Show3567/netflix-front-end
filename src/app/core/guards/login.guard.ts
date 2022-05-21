@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
+import { WithLocalstorageService } from '../../services/auth/with-localstorage.service';
 
 @Injectable({
   providedIn: 'root',
