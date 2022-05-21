@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ProdTitle } from 'src/app/app.module';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
@@ -25,9 +27,16 @@ export class MoviesComponent implements OnInit {
     page: 1,
   };
 
-  constructor(private tmdbService: TmdbService, private _router: Router) {}
+  constructor(
+    private readonly tmdbService: TmdbService,
+    private readonly _router: Router,
+    private readonly titleService: Title,
+    @Inject(ProdTitle) private readonly prodTitle: string
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle(`${this.prodTitle}-Movies`);
+
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
 
     this.tmdbService.movieListObs$.subscribe((movies) => {

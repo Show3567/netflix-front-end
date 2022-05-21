@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ProdTitle } from 'src/app/app.module';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +28,12 @@ export class HomeComponent implements OnInit {
     'Only on Netflix',
   ];
 
-  constructor() {}
+  constructor(
+    private readonly titleService: Title,
+    @Inject(ProdTitle) private readonly prodTitle: string
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.titleService.setTitle(`${this.prodTitle}-Home`);
+  }
 }

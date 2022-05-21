@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, InjectionToken, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -15,7 +15,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
-export const USECOOKIE = new InjectionToken<string>('');
+export const ProdTitle = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,6 +50,9 @@ export const USECOOKIE = new InjectionToken<string>('');
       useClass: ErrorInterceptor,
       multi: true,
     },
+    // Title
+    Title,
+    { provide: ProdTitle, useValue: 'Notflix' },
     // { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
     // { provide: USECOOKIE, useValue: false },
     // {

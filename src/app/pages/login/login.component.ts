@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { ProdTitle } from 'src/app/app.module';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 import { AuthService } from '../../services/auth/auth.service';
@@ -30,10 +32,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthService,
-    private authService: WithLocalstorageService
-  ) {}
+    private authService: WithLocalstorageService,
+    private readonly titleService: Title,
+    @Inject(ProdTitle) private readonly prodTitle: string
+  ) // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
+  {}
   ngOnInit(): void {
+    this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
