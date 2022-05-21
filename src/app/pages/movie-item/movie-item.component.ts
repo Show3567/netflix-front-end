@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ActivatedRoute } from '@angular/router';
-import { tap, map } from 'rxjs/operators';
+import { Video } from '../../services/interfaces/video.interface';
+import { MovieDetail } from '../../services/interfaces/movie-detail.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -14,12 +15,12 @@ export class MovieItemComponent implements OnInit {
 
   hasposter_img = true;
   hasbackdrop_img = true;
-  poster_img_high: string = '';
-  backdrop_img_high: string = '';
-  isMuted: boolean = false;
+  poster_img_high = '';
+  backdrop_img_high = '';
+  isMuted = false;
 
-  movie: any = {};
-  movieVideos: any = [];
+  movie: MovieDetail = {};
+  movieVideos: Video[] = [];
   companies_icons: string[] = [];
 
   size = {
@@ -55,15 +56,15 @@ export class MovieItemComponent implements OnInit {
 
   switchVideo(direction: string) {
     if (direction === 'left' && this.movieVideos.length) {
-      const videoOut = this.movieVideos.shift();
+      const videoOut: any = this.movieVideos.shift();
       this.movieVideos.push(videoOut);
     } else if (direction === 'right' && this.movieVideos.length) {
-      const videoOut = this.movieVideos.pop();
+      const videoOut: any = this.movieVideos.pop();
       this.movieVideos.unshift(videoOut);
     }
   }
 
-  /* helper */
+  /* ~~~~~~~~~~~~ helper ~~~~~~~~~~~~ */
   private setSources() {
     if (this.movie.production_companies) {
       this.movie.production_companies.forEach((company: any) => {
