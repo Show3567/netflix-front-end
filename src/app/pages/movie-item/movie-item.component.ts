@@ -33,19 +33,22 @@ export class MovieItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const videos = this.activatedRoute.snapshot.data['videos'];
+    if (videos && videos.results) {
+      this.movieVideos = [...videos.results];
+    }
+
     this.activatedRoute.paramMap
       .pipe(
         map((data: any) => data.params.id),
         tap((id: any) => {
-          this.tmdbService.getVideo(+id).subscribe((videos: any) => {
-            if (videos && videos.results) {
-              this.movieVideos = [...videos.results];
-            }
-          });
+          //   this.tmdbService.getVideo(+id).subscribe((videos: any) => {
+          //     if (videos && videos.results) {
+          //       this.movieVideos = [...videos.results];
+          //     }
+          //   });
           this.tmdbService.getMovie(+id).subscribe((movie: any) => {
             this.movie = { ...movie };
-            // console.log(this.movie);
-
             this.movie.production_companies.forEach((company: any) => {
               company.logo_path !== null &&
                 this.companies_icons.push(

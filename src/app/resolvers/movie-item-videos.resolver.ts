@@ -10,7 +10,7 @@ import { TmdbService } from '../services/tmdb/tmdb.service';
 @Injectable({
   providedIn: 'root',
 })
-export class MovieItemResolver implements Resolve<any> {
+export class MovieItemVideosResolver implements Resolve<any> {
   constructor(private readonly tmdbService: TmdbService) {}
 
   resolve(

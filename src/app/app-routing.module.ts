@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieItemGuard } from './guards/movie-item.guard';
 import { MoviesGuard } from './guards/movies.guard';
+import { MovieItemVideosResolver } from './resolvers/movie-item-videos.resolver';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
         (m) => m.MovieItemModule
       ),
     canLoad: [MovieItemGuard],
+    resolve: { videos: MovieItemVideosResolver },
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
