@@ -61,7 +61,9 @@ export class WithLocalstorageService {
   logout() {
     localStorage.removeItem('access_token');
     this.tmdbService.setMyApiKey = '';
+
     this.stopRefreshTokenTimer();
+
     this.userSubject$.next({});
     this.router.navigate(['/home']);
   }
@@ -158,6 +160,7 @@ export class WithLocalstorageService {
   /* reuseable code in for signin, signup, refresh, update */
   private setUserValueByToken = ({ accessToken }: { accessToken: string }) => {
     localStorage.setItem('access_token', accessToken);
+
     const { id, username, email, role, tmdb_key, exp } =
       this.jwtHelper.decodeToken(accessToken);
 
