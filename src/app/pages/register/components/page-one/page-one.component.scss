@@ -1,6 +1,6 @@
 .main_container {
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--reuse_80));
   //   background-color: aqua;
   display: flex;
   justify-content: center;
@@ -11,8 +11,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: 200px;
-    width: 350px;
+    padding-bottom: var(--reuse_200);
+    width: 21.875rem;
     img {
       width: 80%;
       height: auto;

@@ -1,6 +1,6 @@
 .main_container {
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--reuse_80));
   display: flex;
   justify-content: center;
   margin-top: 120px;
@@ -11,8 +11,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: 80px;
-    width: 1100px;
+    padding-bottom: var(--reuse_60);
+    width: 68.75rem;
     // background-color: aqua;
     .icon_check_circle {
       mat-icon {
@@ -51,7 +51,7 @@
       flex-direction: column;
       .plan_icon {
         // background-color: antiquewhite;
-        height: 150px;
+        height: 9.4rem;
         width: 100%;
         display: flex;
         .plan {
@@ -81,20 +81,20 @@
         }
       }
       .row {
-        height: 60px;
-        line-height: 30px;
+        height: var(--reuse_60);
+        line-height: 1.875rem;
         display: flex;
         width: 100%;
       }
       .description {
         height: 100%;
         padding: 15px;
-        width: 500px;
+        width: var(--reuse_500);
       }
       .val_container {
         height: 100%;
-        padding: 15px 30px;
-        width: 200px;
+        padding: 15px 1.875rem;
+        width: var(--reuse_200);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -108,12 +108,12 @@
       }
     }
     button {
-      margin-top: 30px;
+      margin-top: 1.875rem;
       background-color: red;
       color: white;
       font-size: 1.5rem;
-      width: 300px;
-      height: 60px;
+      width: var(--reuse_300);
+      height: var(--reuse_60);
     }
   }
 }
