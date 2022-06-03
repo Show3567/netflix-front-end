@@ -2,8 +2,8 @@
   position: absolute;
   z-index: 10;
   top: 0;
-  background-color: rgba(0, 0, 0, 0);
-  height: 80px;
+  background-color: var(--transparent_color);
+  height: var(--header_height);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@
   .header_content {
     height: 100%;
     width: 100%;
-    padding: 0 40px;
+    padding: 0 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

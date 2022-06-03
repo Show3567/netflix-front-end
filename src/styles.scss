@@ -2,10 +2,15 @@
 
 /* footer */
 :root {
+  /* size */
   --footer_height: 25rem;
-  --footer_font_color: rgb(153, 153, 153);
+  --header_height: 5rem;
 
+  /* color */
+  --footer_font_color: rgb(153, 153, 153);
   --footer_content_width: 62rem;
+
+  --transparent_color: rgba(0, 0, 0, 0);
 }
 
 * {
