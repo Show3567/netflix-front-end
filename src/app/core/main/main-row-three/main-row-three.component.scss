@@ -1,5 +1,5 @@
 .container {
-  height: 500px;
+  height: 31.25rem;
   background-color: black;
   color: white;
   display: flex;
@@ -10,21 +10,21 @@
 .content {
   position: relative;
   display: flex;
-  width: 1000px;
+  width: var(--footer_content_width);
   height: 80%;
   background-color: black;
 
   .content_text,
   .content_kid {
     position: absolute;
-    width: 500px;
+    width: 31.25rem;
     height: 100%;
   }
 
   .content_kid {
-    top: -50px;
+    top: -3.125rem;
     img {
-      height: 500px;
+      height: 31.25rem;
       width: auto;
       background-size: cover;
     }
@@ -40,32 +40,32 @@
       line-height: 3.5rem;
     }
     .content_text_content {
-      margin-top: 15px;
+      margin-top: 1rem;
       font-size: 1.625rem;
-      line-height: 35px;
+      line-height: 2.2rem;
     }
   }
   .content_download {
     position: relative;
     left: 0;
-    top: -50px;
+    top: -3.125rem;
 
-    width: 500px;
+    width: 31.25rem;
     height: 100%;
     img {
       width: 100%;
-      height: 400px;
+      height: 25rem;
       background-size: cover;
     }
     .download_box {
-      height: 100px;
-      width: 330px;
+      height: 6.25rem;
+      width: 20.6rem;
       background-color: black;
       border: 2px solid rgb(64, 64, 64);
       border-radius: 10px;
       position: absolute;
-      left: 85px;
-      bottom: 25px;
+      left: 5.31rem;
+      bottom: 1.6rem;
 
       display: flex;
       justify-content: space-around;

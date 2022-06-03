@@ -1,5 +1,5 @@
 .container {
-  height: 750px;
+  height: 47rem;
   width: 100%;
   background-image: url("../../../../assets/home/netflix_main.jpeg");
   background-size: cover;
@@ -22,12 +22,12 @@
       flex-direction: column;
       justify-content: center;
       align-content: center;
-      width: 700px;
+      width: 44rem;
 
       .row_text {
         text-align: center;
         width: 100%;
-        margin-top: 30px;
+        margin-top: 2rem;
       }
       .content_h1 {
         line-height: 4rem;
@@ -41,9 +41,9 @@
       }
       .start_form {
         position: relative;
-        margin-top: 20px;
+        margin-top: 1.25rem;
         width: 100%;
-        height: 50px;
+        height: 3.125rem;
 
         .input_container {
           position: relative;
@@ -54,7 +54,7 @@
             outline: none;
             width: 100%;
             height: 100%;
-            padding-left: 15px;
+            padding-left: 1rem;
             font-size: 1rem;
             border-radius: 5px;
           }
@@ -62,7 +62,7 @@
             position: absolute;
             right: 0;
             border: none;
-            width: 200px;
+            width: 12.5rem;
             height: 100%;
             outline: none;
 
