@@ -1,5 +1,5 @@
 .container {
-  height: 31.25rem;
+  height: var(--reuse_500);
   background-color: black;
   color: white;
   display: flex;
@@ -17,14 +17,14 @@
   .content_text,
   .content_kid {
     position: absolute;
-    width: 31.25rem;
+    width: var(--reuse_500);
     height: 100%;
   }
 
   .content_kid {
     top: -3.125rem;
     img {
-      height: 31.25rem;
+      height: var(--reuse_500);
       width: auto;
       background-size: cover;
     }
@@ -48,9 +48,9 @@
   .content_download {
     position: relative;
     left: 0;
-    top: -3.125rem;
+    top: var(--reuse_50);
 
-    width: 31.25rem;
+    width: var(--reuse_500);
     height: 100%;
     img {
       width: 100%;

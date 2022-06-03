@@ -1,5 +1,5 @@
 .container {
-  height: 500px;
+  height: var(--reuse_500);
   background-color: black;
   color: white;
   display: flex;
@@ -8,22 +8,22 @@
   .content {
     position: relative;
     display: flex;
-    width: 1000px;
+    width: var(--reuse_1000);
     height: 80%;
     .content_1 {
       height: 100%;
-      width: 500px;
+      width: var(--reuse_500);
       display: flex;
       flex-direction: column;
       justify-content: center;
       .content_1_header {
-        font-size: 3.125rem;
+        font-size: var(--reuse_50);
         line-height: 3.7rem;
       }
       .content_1_content {
-        margin-top: 15px;
+        margin-top: 1rem;
         font-size: 1.625rem;
-        line-height: 35px;
+        line-height: 2.2rem;
       }
     }
     .content_2,
@@ -33,7 +33,7 @@
       z-index: 2;
       top: -20px;
       right: 0;
-      width: 500px;
+      width: var(--reuse_500);
       height: 100%;
       img {
         width: 100%;
