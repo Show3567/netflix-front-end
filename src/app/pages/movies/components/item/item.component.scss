@@ -1,7 +1,7 @@
 .newbox {
   position: relative;
   margin: 20px 20px;
-  height: 460px;
+  height: 28.75rem;
   width: 90%;
   background: linear-gradient(270deg, #e91e63, #5d02ff);
 
@@ -34,7 +34,7 @@
 
   .content {
     position: absolute;
-    bottom: 100px;
+    bottom: var(--reuse_100);
     padding: 20px;
     transform: translateY(100px);
     text-align: start;

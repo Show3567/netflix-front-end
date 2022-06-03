@@ -34,8 +34,8 @@
       .video_holder {
         position: relative;
         margin-top: 2em;
-        height: 620px;
-        width: 1230px;
+        height: 38.75rem;
+        width: 76.9rem;
         background-color: black;
         border-radius: 20px;
 
@@ -55,8 +55,8 @@
             top: 0;
 
             img:nth-child(1) {
-              height: 600px;
-              width: 1200px;
+              height: var(--reuse_600);
+              width: var(--reuse_1200);
             }
             img:nth-child(2) {
               position: absolute;
@@ -77,8 +77,8 @@
             position: absolute;
             top: 50%;
             font-size: 2em;
-            height: 80px;
-            width: 80px;
+            height: var(--reuse_80);
+            width: var(--reuse_80);
             border-radius: 50%;
             background-color: #8d143c;
           }
@@ -101,7 +101,7 @@
         position: absolute;
         bottom: 4em;
 
-        height: 400px;
+        height: var(--reuse_400);
         width: 100%;
 
         background-color: rgba(133, 133, 133, 0.15);
@@ -113,9 +113,9 @@
 
         .post_img {
           position: relative;
-          margin-left: 150px;
+          margin-left: 9.375rem;
           height: 100%;
-          width: 300px;
+          width: var(--reuse_300);
 
           display: flex;
           justify-content: center;
@@ -129,7 +129,7 @@
 
         .detail_list {
           height: 100%;
-          width: 910px;
+          width: 56.875rem;
           background-color: rgba(167, 167, 167, 0.15);
           backdrop-filter: blur(10px);
 

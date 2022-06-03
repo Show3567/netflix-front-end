@@ -58,7 +58,7 @@
       background-size: cover;
     }
     .download_box {
-      height: 6.25rem;
+      height: var(--reuse_100);
       width: 20.6rem;
       background-color: black;
       border: 2px solid rgb(64, 64, 64);
