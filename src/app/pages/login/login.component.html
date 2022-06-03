@@ -49,6 +49,7 @@
         <button class="submit_btn" mat-raised-button type="submit">
           Sign In
         </button>
+        <div class="login_error" *ngIf="login_msg.msg">{{ login_msg.msg }}</div>
         <div class="rem_holder">
           <div class="rem_me">
             <mat-checkbox

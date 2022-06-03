@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
     'Corporate Information',
   ];
   loginForm!: FormGroup;
+  login_msg = { msg: '' };
+
   get email() {
     return this.loginForm.get('email');
   }
@@ -54,8 +56,12 @@ export class LoginComponent implements OnInit {
       password: this.password?.value,
     };
     this.authService.login(credencialSignIn).subscribe(
-      () => {},
-      (err) => console.log(err)
+      (_) => {
+        this.login_msg.msg = '';
+      },
+      (err) => {
+        this.login_msg.msg = 'Please check your login credentials';
+      }
     );
   }
 }
