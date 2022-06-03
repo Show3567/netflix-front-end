@@ -1,10 +1,10 @@
 .header {
-  background-color: rgba(0, 0, 0, 0);
-  padding: 0 40px;
+  background-color: var(--transparent_color);
+  padding: 0 2.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 100px;
+  height: 6.25rem;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -35,7 +35,7 @@
     );
     .login_container {
       margin: 7rem 0;
-      width: 400px;
+      width: var(--reuse_400);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -43,9 +43,9 @@
 
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 4px;
-      height: 600px;
+      height: var(--reuse_600);
 
-      padding: 40px;
+      padding: 2.5rem;
 
       .title {
         color: white;
@@ -55,15 +55,15 @@
       .login_form {
         display: flex;
         flex-direction: column;
-        margin-top: 15px;
+        margin-top: 1rem;
 
         mat-label {
           color: rgba(255, 255, 255, 0.664);
         }
         ::ng-deep .mat-form-field-flex {
-          margin-top: 18px;
+          margin-top: 1.1rem;
           color: white;
-          height: 55px;
+          height: 3.45rem;
           font-size: 1rem;
           background-color: rgb(51, 51, 51);
         }
@@ -85,8 +85,8 @@
         }
 
         .rem_holder {
-          height: 24px;
-          line-height: 24px;
+          height: 1.5rem;
+          line-height: 1.5rem;
           width: 100%;
           display: flex;
           justify-content: space-between;
@@ -96,9 +96,9 @@
             height: 100%;
             margin-right: 10px;
             ::ng-deep .mat-checkbox-inner-container {
-              height: 24px;
-              width: 24px;
-              line-height: 24px;
+              height: 1.5rem;
+              width: 1.5rem;
+              line-height: 1.5rem;
               background-color: rgb(115, 115, 115);
             }
           }
@@ -109,8 +109,8 @@
         }
       }
       .login_fb {
-        height: 24px;
-        line-height: 24px;
+        height: 1.5rem;
+        line-height: 1.5rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -123,7 +123,7 @@
         }
       }
       .sign_up_nav {
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
         color: rgb(115, 115, 115);
         a {
           text-decoration: none;
@@ -131,25 +131,26 @@
         }
       }
       .right_description {
+        font-size: 0.8rem;
         color: rgb(115, 115, 115);
         a {
           text-decoration: none;
           color: rgb(1, 113, 235);
         }
-        margin-bottom: 30px;
+        margin-bottom: 1.9rem;
       }
     }
   }
 }
 app-main-footer {
   width: 100vw;
-  height: 200px;
+  height: var(--reuse_200);
   position: fixed;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0);
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 42.5rem) {
   app-main-footer {
     position: relative;
   }

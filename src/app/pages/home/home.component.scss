@@ -5,5 +5,5 @@ main {
 hr {
   border: none;
   height: 7px;
-  background-color: rgb(34, 34, 34);
+  background-color: var(--home_hr_color);
 }
