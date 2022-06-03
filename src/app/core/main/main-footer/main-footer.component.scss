@@ -1,21 +1,21 @@
 .container {
-  height: 400px;
+  height: var(--footer_height);
   width: 100%;
   background-color: black;
-  color: rgb(153, 153, 153);
+  color: var(--footer_font_color);
   font-size: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .content {
-    margin-top: 30px;
+    margin-top: 2rem;
     height: 80%;
-    width: 1000px;
+    width: var(--footer_content_width);
     display: flex;
     flex-direction: column;
     .call_me {
-      margin-bottom: 40px;
+      margin-bottom: 2.5rem;
     }
     .link_list {
       display: flex;
@@ -23,7 +23,7 @@
       flex-wrap: wrap;
       .link_item {
         width: 25%;
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
       }
       .link_item:hover {
         text-decoration: underline;
