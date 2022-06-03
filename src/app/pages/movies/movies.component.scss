@@ -27,7 +27,7 @@
         position: absolute;
         bottom: 0px;
         width: 90vw;
-        padding: 30px;
+        padding: 1.875rem;
 
         button {
           margin-right: 10px;
@@ -82,7 +82,7 @@
   .movie_list {
     position: relative;
     width: 90vw;
-    padding: 30px;
+    padding: 1.875rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -91,7 +91,7 @@
 
     .movie_item {
       position: relative;
-      width: 350px;
+      width: 21.875rem;
     }
     .infinite_scroll_mark {
       position: relative;
@@ -99,14 +99,11 @@
     .spinner_isLoading {
       position: absolute;
       bottom: 0;
-      height: 150px;
+      height: 9.4rem;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      mat-spinner {
-      }
 
       hr {
         height: 100%;

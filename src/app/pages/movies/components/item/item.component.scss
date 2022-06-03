@@ -36,13 +36,13 @@
     position: absolute;
     bottom: var(--reuse_100);
     padding: 20px;
-    transform: translateY(100px);
+    transform: translateY(var(--reuse_100));
     text-align: start;
     width: 100%;
 
     .movie_poster {
       position: absolute;
-      top: -220px;
+      top: -13.75rem;
       height: 16em;
       width: 12em;
       right: 20px;
@@ -118,7 +118,7 @@
 .newbox:hover {
   .content {
     .movie_poster {
-      top: -240px;
+      top: -15rem;
       box-shadow: 0 0 10px #6c0d2d;
     }
     a {
