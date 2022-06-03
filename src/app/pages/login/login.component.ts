@@ -34,9 +34,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: WithLocalstorageService,
     private readonly titleService: Title,
-    @Inject(ProdTitle) private readonly prodTitle: string
-  ) // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
-  {}
+    @Inject(ProdTitle) private readonly prodTitle: string // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
+  ) {}
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     this.loginForm = this.fb.group({
@@ -54,6 +53,9 @@ export class LoginComponent implements OnInit {
       email: this.email?.value,
       password: this.password?.value,
     };
-    this.authService.login(credencialSignIn).subscribe(console.log);
+    this.authService.login(credencialSignIn).subscribe(
+      () => {},
+      (err) => console.log(err)
+    );
   }
 }
