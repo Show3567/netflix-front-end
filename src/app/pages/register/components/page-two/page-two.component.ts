@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
@@ -21,7 +21,7 @@ import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
   styleUrls: ['./page-two.component.scss'],
 })
 export class PageTwoComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   isLoading = false;
 
   get email() {
@@ -32,7 +32,7 @@ export class PageTwoComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly authService: WithLocalstorageService,

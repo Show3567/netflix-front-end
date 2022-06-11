@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
 
@@ -11,7 +11,7 @@ import { WithLocalstorageService } from '../../../../services/auth/with-localsto
 export class PageTwoIiComponent implements OnInit {
   applyTmdbApiKey =
     'https://developers.themoviedb.org/3/getting-started/authentication';
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   get username() {
     return this.form.get('username');
@@ -21,7 +21,7 @@ export class PageTwoIiComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly authService: WithLocalstorageService
   ) {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WithLocalstorageService } from '../../../services/auth/with-localstorage.service';
 
@@ -9,13 +9,13 @@ import { WithLocalstorageService } from '../../../services/auth/with-localstorag
   styleUrls: ['./main-row-one.component.scss'],
 })
 export class MainRowOneComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   get email() {
     return this.form.get('email');
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly authService: WithLocalstorageService
   ) {}

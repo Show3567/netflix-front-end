@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ProdTitle } from 'src/app/app.module';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     'Cookie Preferences',
     'Corporate Information',
   ];
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   login_msg = { msg: '' };
 
   get email() {
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authService: WithLocalstorageService,
     private readonly titleService: Title,
     @Inject(ProdTitle) private readonly prodTitle: string // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
