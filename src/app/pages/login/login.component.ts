@@ -1,10 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ProdTitle } from 'src/app/app.module';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
-import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
-import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
