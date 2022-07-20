@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthWithLocalInterceptor } from './auth-with-local.interceptor';
 
 describe('AuthWithLocalInterceptor', () => {
