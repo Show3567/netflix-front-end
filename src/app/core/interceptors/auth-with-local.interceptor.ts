@@ -5,9 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 import { AUTHSERVER } from 'src/app/app.module';
 
