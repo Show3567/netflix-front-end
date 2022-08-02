@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
 
 @Component({

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { DiscoverMovie } from '../interfaces/discoverMovies.interface';
-import { map, tap } from 'rxjs/operators';
-import { TMDBAPIKEY } from '../../app.module';
-import { DiscoverTv } from '../interfaces/discoverTv.interface';
+import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+import { DiscoverMovie } from '../interfaces/discoverMovies.interface';
+import { DiscoverTv } from '../interfaces/discoverTv.interface';
 import { Movie } from '../interfaces/movie.interface';
 
 @Injectable({
