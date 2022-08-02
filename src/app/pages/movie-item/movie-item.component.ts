@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
+import { Title } from '@angular/platform-browser';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ActivatedRoute } from '@angular/router';
+
+import { ProdTitle } from 'src/app/app.module';
+import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Video } from '../../services/interfaces/video.interface';
 import { MovieDetail } from '../../services/interfaces/movie-detail.interface';
-import { Title } from '@angular/platform-browser';
-import { ProdTitle } from 'src/app/app.module';
 
 @Component({
   selector: 'app-movie-item',
