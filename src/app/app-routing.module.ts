@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { MovieItemGuard } from './core/guards/movie-item.guard';
 import { MovieItemResolver } from './core/resolvers/movie-item.resolver';
 import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.resolver';

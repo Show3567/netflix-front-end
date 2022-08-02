@@ -4,10 +4,11 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AUTHSERVER } from 'src/app/app.module';
+import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
+
+import { AUTHSERVER } from 'src/app/app.module';
 
 @Injectable({
   providedIn: 'root',
