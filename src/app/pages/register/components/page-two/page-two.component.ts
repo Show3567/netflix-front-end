@@ -8,12 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
-import { CustomValidator } from '../../../../services/validators/custom.validator';
 import { HttpClient } from '@angular/common/http';
-import { AUTHSERVER } from 'src/app/app.module';
+import { Observable } from 'rxjs';
+
 import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
+import { AUTHSERVER } from 'src/app/app.module';
+import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-page-two',
