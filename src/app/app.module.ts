@@ -12,13 +12,14 @@ import { WithLocalstorageService } from './services/auth/with-localstorage.servi
 import { appInitializer } from './core/app.initializer';
 import { AuthWithLocalInterceptor } from './core/interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { MovieComponent } from './pages/movie/movie.component';
 
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const ProdTitle = new InjectionToken<string>('');
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MovieComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
