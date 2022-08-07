@@ -1,4 +1,14 @@
-<div
+<main
+  class="host"
+  [ngStyle]="{
+    'background-image': ['url(', backdrop_img_high, ')'].join(''),
+    'background-size': '100vw 100vh'
+  }"
+>
+  <div class="container"></div>
+</main>
+
+<!-- <main
   class="host"
   [ngStyle]="{
     'background-image': 'url(' + backdrop_img_high + ')',
@@ -7,7 +17,7 @@
 >
   <div class="container">
     <div class="info_holder">
-      <div class="video_holder">
+      <section class="video_holder">
         <div class="video_list">
           <button
             class="video_switcher_left"
@@ -43,8 +53,8 @@
           >
           </youtube-player>
         </div>
-      </div>
-      <div class="movie_detail_holder">
+      </section>
+      <section class="movie_detail_holder">
         <div class="post_img">
           <img [src]="poster_img_high" *ngIf="hasposter_img" />
           <img
@@ -89,7 +99,7 @@
           <p *ngIf="movie.release_date">
             Release Date <mat-icon>fingerprint</mat-icon>
             <span class="detail_font-style">{{
-              movie.release_date | date: "dd/MM/yyyy"
+              movie.release_date | date: "MM/dd/yyyy"
             }}</span>
           </p>
           <p>
@@ -97,7 +107,7 @@
             <span class="detail_font-style">{{ movie.overview }}</span>
           </p>
         </div>
-      </div>
+      </section>
 
       <div class="production_companies">
         <img
@@ -108,4 +118,4 @@
       </div>
     </div>
   </div>
-</div>
+</main> -->

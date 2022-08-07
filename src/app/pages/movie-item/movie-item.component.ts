@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ProdTitle } from 'src/app/app.module';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { Video } from '../../services/interfaces/video.interface';
-import { MovieDetail } from '../../services/interfaces/movie-detail.interface';
+import { Video } from 'src/app/services/interfaces/video.interface';
+import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -47,6 +47,9 @@ export class MovieItemComponent implements OnInit {
     }
     const movie = this.activatedRoute.snapshot.data['movie'];
     this.movie = { ...movie };
+
+    console.log('videos: ', this.movieVideos);
+    console.log('movie: ', this.movie);
 
     this.setSources();
   }
