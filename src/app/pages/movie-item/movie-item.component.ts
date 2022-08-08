@@ -21,6 +21,8 @@ export class MovieItemComponent implements OnInit {
   poster_img_high = '';
   backdrop_img_high = '';
   isMuted = false;
+  type: any = '';
+  date: any = '';
 
   movie: MovieDetail = {};
   movieVideos: Video[] = [];
@@ -52,6 +54,9 @@ export class MovieItemComponent implements OnInit {
     console.log('movie: ', this.movie);
 
     this.setSources();
+
+    this.type = this.movie.genres?.map(({ name }) => name).join(',');
+    this.date = this.movie.release_date?.split('-')[0];
   }
 
   handleMute() {

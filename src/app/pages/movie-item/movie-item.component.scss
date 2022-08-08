@@ -17,16 +17,66 @@
     justify-content: center;
     align-items: flex-end;
 
+    .fc {
+      color: rgb(175, 178, 188);
+    }
+
     .movie_info {
-      border: 1px solid red;
+      border: 0.4px solid red;
 
-      height: 45%;
+      height: 50%;
+      width: 44%;
+      margin: 3%;
+      padding: 3%;
+      color: white;
 
-      mat-icon {
-        color: yellow;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      section {
+        margin-bottom: 2rem;
       }
+
       .movie_name {
         color: white;
+        font-size: 4rem;
+        font-family: "Roboto Condensed", sans-serif;
+      }
+      .movie_info_list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 0.7rem;
+
+        mat-icon {
+          color: yellow;
+          font-size: 0.7rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      .btn_list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .btn {
+          background-color: rgb(31, 88, 255);
+          border: none;
+          height: 2rem;
+          width: 7rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          margin-right: 1rem;
+          padding-top: 0.1rem;
+        }
+        .btn:nth-child(1) {
+          padding-right: 0.5rem;
+        }
       }
     }
   }

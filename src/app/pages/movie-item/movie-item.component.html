@@ -7,9 +7,24 @@
 >
   <div class="container">
     <div class="movie_info">
-      <div class="movie_name">Demo</div>
-      <div class="movie_info_list"><mat-icon>star</mat-icon><span></span></div>
-      <div class="description"></div>
+      <section class="movie_name">{{ movie.title }}</section>
+      <section class="movie_info_list">
+        <mat-icon>star</mat-icon>
+        <span style="font-size: 1rem" class="fc">
+          {{ movie.vote_average?.toFixed(1) }}&nbsp;
+        </span>
+        <span class="fc">| {{ movie.popularity?.toFixed(0) }}</span>
+        <span style="margin-left: 2rem" class="fc">
+          {{ movie.runtime }} mins · {{ type }} · {{ date }}
+        </span>
+      </section>
+      <section class="description fc">{{ movie.overview }}</section>
+      <section class="btn_list">
+        <button class="btn">
+          <mat-icon>play_arrow</mat-icon> <span>PLAY NOW</span>
+        </button>
+        <button class="btn">TRAILER</button>
+      </section>
     </div>
     <div class="movie_info">
       <div class="posters_list"></div>
