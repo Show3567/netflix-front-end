@@ -7,10 +7,10 @@
 >
   <div class="container">
     <div class="movie_info">
-      <section class="movie_name">{{ movie.title }}</section>
+      <section class="movie_name">{{ movie.title | title }}</section>
       <section class="movie_info_list">
         <mat-icon>star</mat-icon>
-        <span style="font-size: 1rem" class="fc">
+        <span style="font-size: 1.6rem" class="fc">
           {{ movie.vote_average?.toFixed(1) }}&nbsp;
         </span>
         <span class="fc">| {{ movie.popularity?.toFixed(0) }}</span>
@@ -19,6 +19,7 @@
         </span>
       </section>
       <section class="description fc">{{ movie.overview }}</section>
+      <div class="takeplace"></div>
       <section class="btn_list">
         <button class="btn">
           <mat-icon>play_arrow</mat-icon> <span>PLAY NOW</span>

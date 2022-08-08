@@ -4,8 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'title',
 })
 export class TitlePipe implements PipeTransform {
-  transform(value: string) {
-    const title_arr = value.split(' ');
-    return title_arr.length > 2 ? title_arr.splice(0, 2).join(' ') : value;
+  transform(value: string | undefined) {
+    if (value) {
+      const title_arr = value.split(' ');
+      return title_arr.length > 2 ? title_arr.splice(0, 2).join(' ') : value;
+    }
+    return null;
   }
 }
