@@ -7,6 +7,7 @@ import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.reso
 import { MoviePreloadingStrategy } from './core/preloading-strategies/movie.preloading';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
+import { MoviePosterResolver } from './core/resolvers/movie-poster.resolver';
 
 const routes: Routes = [
   { path: 'movie', component: MovieComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
       videos: MovieItemVideosResolver,
       movie: MovieItemResolver,
       credits: MovieCreditResolver,
+      posters: MoviePosterResolver,
     },
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

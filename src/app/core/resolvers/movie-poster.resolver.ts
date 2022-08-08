@@ -18,9 +18,9 @@ export class MoviePosterResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    return this.tmdbService.getCredits(+route.params.id).pipe(
-      map((credit) => {
-        return credit.cast?.splice(0, 10);
+    return this.tmdbService.getPosters(+route.params.id).pipe(
+      map((movieimage) => {
+        return movieimage.posters?.splice(0, 10);
       })
     );
   }

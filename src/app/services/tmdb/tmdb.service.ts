@@ -7,6 +7,7 @@ import { DiscoverMovie } from '../interfaces/discoverMovies.interface';
 import { DiscoverTv } from '../interfaces/discoverTv.interface';
 import { Movie } from '../interfaces/movie.interface';
 import { Credit } from '../interfaces/credit.interface';
+import { MovieImage } from '../interfaces/poster.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -129,16 +130,16 @@ export class TmdbService {
     }
   }
 
-  getPosters(id: number): Observable<Credit> {
+  getPosters(id: number): Observable<MovieImage> {
     if ((this.baseDiscoverMovie.api_key, id)) {
       const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'images'].join(
         '/'
       )}?api_key=${this.baseDiscoverMovie.api_key}`;
 
-      return this.http.get<Credit>(url);
+      return this.http.get<MovieImage>(url);
     } else {
       // expected err;
-      return this.http.get<Credit>('');
+      return this.http.get<MovieImage>('');
     }
   }
 
