@@ -8,6 +8,7 @@ import { MainRowOneComponent } from './main/main-row-one/main-row-one.component'
 import { MainRowTwoComponent } from './main/main-row-two/main-row-two.component';
 import { MainQuestionsComponent } from './main/main-questions/main-questions.component';
 import { MainRowThreeComponent } from './main/main-row-three/main-row-three.component';
+import { TitlePipe } from './pipes/title.pipe';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,8 @@ import { MainRowThreeComponent } from './main/main-row-three/main-row-three.comp
     MainQuestionsComponent,
     MainRowOneComponent,
     MainRowThreeComponent,
-
     MainRowTwoComponent,
+    TitlePipe,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -29,6 +30,7 @@ import { MainRowThreeComponent } from './main/main-row-three/main-row-three.comp
     MainRowOneComponent,
     MainRowThreeComponent,
     MainRowTwoComponent,
+    TitlePipe,
   ],
 })
 export class CoreModule {}
