@@ -129,6 +129,19 @@ export class TmdbService {
     }
   }
 
+  getPosters(id: number): Observable<Credit> {
+    if ((this.baseDiscoverMovie.api_key, id)) {
+      const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'images'].join(
+        '/'
+      )}?api_key=${this.baseDiscoverMovie.api_key}`;
+
+      return this.http.get<Credit>(url);
+    } else {
+      // expected err;
+      return this.http.get<Credit>('');
+    }
+  }
+
   getVideo(id: number) {
     if (this.baseDiscoverMovie.api_key) {
       const url = [
