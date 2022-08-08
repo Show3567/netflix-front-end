@@ -72,17 +72,18 @@
         .btn {
           background-color: rgb(31, 88, 255);
           border: none;
-          height: 2rem;
-          width: 7rem;
+          height: 4rem;
+          width: 10rem;
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 5px;
-          margin-right: 1rem;
+          border-radius: 10px;
+          margin-right: 2.5rem;
           padding-top: 0.1rem;
         }
         .btn:nth-child(1) {
           padding-right: 0.5rem;
+          background-color: rgba(55, 62, 73, 0.5);
         }
         .btn:nth-child(2) {
           color: white;
