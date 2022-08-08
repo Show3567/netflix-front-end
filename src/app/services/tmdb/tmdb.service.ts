@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { DiscoverMovie } from '../interfaces/discoverMovies.interface';
 import { DiscoverTv } from '../interfaces/discoverTv.interface';
 import { Movie } from '../interfaces/movie.interface';
+import { Credit } from '../interfaces/credit.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +20,11 @@ export class TmdbService {
 
   private movieList: Movie[] = [];
   private movieList$ = new BehaviorSubject(this.movieList);
-  public movieListObs$ = this.movieList$.asObservable();
+  movieListObs$ = this.movieList$.asObservable();
 
   private recommendList: Movie[] = [];
   private recommendList$ = new BehaviorSubject(this.recommendList);
-  public recommendListObs$ = this.recommendList$.asObservable();
+  recommendListObs$ = this.recommendList$.asObservable();
 
   private currentPage = 1;
 
@@ -71,6 +72,7 @@ export class TmdbService {
       })
     );
   }
+
   handleScrol() {
     const discover = { ...this.baseDiscoverMovie, page: ++this.currentPage };
     let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
@@ -111,6 +113,19 @@ export class TmdbService {
     } else {
       // expected err;
       return this.http.get<Movie>('');
+    }
+  }
+
+  getCredits(id: number): Observable<Credit> {
+    if ((this.baseDiscoverMovie.api_key, id)) {
+      const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'credits'].join(
+        '/'
+      )}?api_key=${this.baseDiscoverMovie.api_key}`;
+
+      return this.http.get<Credit>(url);
+    } else {
+      // expected err;
+      return this.http.get<Credit>('');
     }
   }
 

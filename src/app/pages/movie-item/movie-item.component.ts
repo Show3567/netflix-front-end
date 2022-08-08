@@ -7,6 +7,7 @@ import { ProdTitle } from 'src/app/app.module';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Video } from 'src/app/services/interfaces/video.interface';
 import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
+import { Cast } from 'src/app/services/interfaces/credit.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -24,9 +25,10 @@ export class MovieItemComponent implements OnInit {
   type: any = '';
   date: any = '';
 
-  movie: MovieDetail = {};
+  movie!: MovieDetail;
   movieVideos: Video[] = [];
   companies_icons: string[] = [];
+  credits: Cast[] = [];
 
   size = {
     height: visualViewport.height,
@@ -50,8 +52,10 @@ export class MovieItemComponent implements OnInit {
     const movie = this.activatedRoute.snapshot.data['movie'];
     this.movie = { ...movie };
 
-    console.log('videos: ', this.movieVideos);
-    console.log('movie: ', this.movie);
+    const credits = this.activatedRoute.snapshot.data['credits'];
+    this.credits = credits;
+
+    console.log(this.movie, this.credits);
 
     this.setSources();
 
