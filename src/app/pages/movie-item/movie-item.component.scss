@@ -41,13 +41,15 @@
 
       .description {
         font-size: 1.2rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.1rem;
       }
 
       .movie_name {
         color: white;
-        font-size: 6rem;
+        font-size: 8rem;
         font-family: "Roboto Condensed", sans-serif;
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
       }
       .movie_info_list {
         display: flex;
@@ -81,6 +83,9 @@
         }
         .btn:nth-child(1) {
           padding-right: 0.5rem;
+        }
+        .btn:nth-child(2) {
+          color: white;
         }
       }
     }
