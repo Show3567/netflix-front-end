@@ -8,6 +8,7 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Video } from 'src/app/services/interfaces/video.interface';
 import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
 import { Cast } from 'src/app/services/interfaces/credit.interface';
+import { Poster } from 'src/app/services/interfaces/poster.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -29,6 +30,7 @@ export class MovieItemComponent implements OnInit {
   movieVideos: Video[] = [];
   companies_icons: string[] = [];
   credits: Cast[] = [];
+  posters: Poster[] = [];
 
   size = {
     height: visualViewport.height,
@@ -49,13 +51,11 @@ export class MovieItemComponent implements OnInit {
     if (videos && videos.results) {
       this.movieVideos = [...videos.results];
     }
-    const movie = this.activatedRoute.snapshot.data['movie'];
-    this.movie = { ...movie };
+    this.movie = this.activatedRoute.snapshot.data['movie'];
+    this.credits = this.activatedRoute.snapshot.data['credits'];
+    this.posters = this.activatedRoute.snapshot.data['posters'];
 
-    const credits = this.activatedRoute.snapshot.data['credits'];
-    this.credits = credits;
-
-    console.log(this.movie, this.credits);
+    console.log(this.movie, this.credits, this.posters);
 
     this.setSources();
 
