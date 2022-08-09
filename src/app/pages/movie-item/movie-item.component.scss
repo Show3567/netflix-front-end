@@ -23,9 +23,9 @@
 
     .movie_info {
       height: 50%;
-      width: 44%;
-      margin: 3%;
-      padding: 3%;
+      width: 50%;
+      margin: 3% 0 3% 3%;
+      padding: 3% 0 3% 3%;
       color: white;
 
       display: flex;
@@ -34,6 +34,7 @@
       align-items: flex-start;
 
       section {
+        width: 100%;
         margin-bottom: 2rem;
       }
 
@@ -42,16 +43,18 @@
         line-height: 1.8rem;
         letter-spacing: 0.1rem;
       }
-      div.list {
+      .list {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        width: 100%;
         overflow: auto;
 
         .poster_item {
           height: 10rem;
           width: 15rem;
           padding: 0.5rem;
+          flex-shrink: 0;
           img {
             height: 100%;
             width: 100%;
@@ -59,17 +62,19 @@
           }
         }
         .actor_item {
-          height: 5rem;
+          height: 9.5rem;
           width: 5rem;
           padding: 0.5rem;
+          margin-right: 1rem;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
           align-items: center;
+          flex-shrink: 0;
           img {
             height: 100%;
-            width: auto;
-            border-radius: 50%;
+            width: 100%;
+            border-radius: 10%;
           }
         }
       }
@@ -100,8 +105,9 @@
       }
       .btn_list {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
+
         .btn {
           background-color: rgb(31, 88, 255);
           border: none;

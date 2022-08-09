@@ -36,12 +36,22 @@
           </div>
         </div>
       </section>
+      <div class="takeplace"></div>
       <section class="actors_list">
         <h1>Actors</h1>
         <div class="list">
           <div class="actor_item" *ngFor="let actor of actors">
-            <img [src]="actor.profile_path" />
-            <div style="text-align: center">{{ actor.name }}</div>
+            <ng-container *ngIf="actor.profile_path; else notfound">
+              <img [src]="actor.profile_path" />
+              <div style="text-align: center">{{ actor.name }}</div>
+            </ng-container>
+            <ng-template #notfound>
+              <img
+                src="../../../assets/video/VGA-no-signal-image.jpeg"
+                style="height: 100%"
+              />
+              <div style="text-align: center">{{ actor.name }}</div>
+            </ng-template>
           </div>
         </div>
       </section>

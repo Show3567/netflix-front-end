@@ -20,7 +20,7 @@ export class MovieCreditResolver implements Resolve<any> {
   ): Observable<any> {
     return this.tmdbService.getCredits(+route.params.id).pipe(
       map((credit) => {
-        return credit.cast?.splice(0, 5);
+        return credit.cast?.splice(0, 10);
       })
     );
   }
