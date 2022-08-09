@@ -52,16 +52,23 @@ export class MovieItemComponent implements OnInit {
       this.movieVideos = [...videos.results];
     }
     this.movie = this.activatedRoute.snapshot.data['movie'];
-    this.credits = this.activatedRoute.snapshot.data['credits'];
-    this.posters = this.activatedRoute.snapshot.data['posters'].map(
-      (backdrop: Backdrop): Backdrop => {
+    this.credits = this.activatedRoute.snapshot.data['credits']
+      .map((actor: Cast): Cast => {
+        const profile_path = actor.profile_path
+          ? this.tmdbService.getMovieImagePath(actor.profile_path, 'w500')
+          : '';
+        return { ...actor, profile_path };
+      })
+      .reverse();
+    this.posters = this.activatedRoute.snapshot.data['posters']
+      .map((backdrop: Backdrop): Backdrop => {
         const file_path = this.tmdbService.getMovieImagePath(
           backdrop.file_path,
           'w500'
         );
         return { ...backdrop, file_path };
-      }
-    );
+      })
+      .reverse();
 
     console.log(this.movie, this.credits, this.posters);
 

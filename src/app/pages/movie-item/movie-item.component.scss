@@ -52,11 +52,16 @@
         .poster_item {
           height: 10rem;
           width: 15rem;
-          border: 1px solid red;
-          padding: 1rem;
+          padding: 0.3rem;
           img {
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
           }
         }
+      }
+      h1 {
+        padding: 0.3rem;
       }
 
       .movie_name {

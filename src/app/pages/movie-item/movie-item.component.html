@@ -32,7 +32,7 @@
         <h1>Poster</h1>
         <div class="list">
           <div class="poster_item" *ngFor="let poster of posters">
-            <img [src]="" alt="" />
+            <img [src]="poster.file_path" />
           </div>
         </div>
       </section>
