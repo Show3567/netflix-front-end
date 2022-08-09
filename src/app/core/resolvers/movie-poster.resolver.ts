@@ -20,7 +20,7 @@ export class MoviePosterResolver implements Resolve<any> {
   ): Observable<any> {
     return this.tmdbService.getPosters(+route.params.id).pipe(
       map((movieimage) => {
-        return movieimage.posters?.splice(0, 10);
+        return movieimage.backdrops?.splice(0, 10);
       })
     );
   }

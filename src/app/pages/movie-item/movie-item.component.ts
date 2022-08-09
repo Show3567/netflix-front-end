@@ -8,7 +8,7 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Video } from 'src/app/services/interfaces/video.interface';
 import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
 import { Cast } from 'src/app/services/interfaces/credit.interface';
-import { Poster } from 'src/app/services/interfaces/poster.interface';
+import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -54,12 +54,12 @@ export class MovieItemComponent implements OnInit {
     this.movie = this.activatedRoute.snapshot.data['movie'];
     this.credits = this.activatedRoute.snapshot.data['credits'];
     this.posters = this.activatedRoute.snapshot.data['posters'].map(
-      (poster: Poster): Poster => {
+      (backdrop: Backdrop): Backdrop => {
         const file_path = this.tmdbService.getMovieImagePath(
-          poster.file_path,
+          backdrop.file_path,
           'w500'
         );
-        return { ...poster, file_path };
+        return { ...backdrop, file_path };
       }
     );
 
