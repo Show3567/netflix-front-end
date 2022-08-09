@@ -24,7 +24,7 @@
         <button class="btn fc" disabled>
           <mat-icon>play_arrow</mat-icon> <span>PLAY NOW</span>
         </button>
-        <button class="btn">TRAILER</button>
+        <button class="btn"><strong>TRAILER</strong></button>
       </section>
     </div>
     <div class="movie_info">
@@ -39,7 +39,10 @@
       <section class="actors_list">
         <h1>Actors</h1>
         <div class="list">
-          <div class="actor_item"></div>
+          <div class="actor_item" *ngFor="let actor of actors">
+            <img [src]="actor.profile_path" />
+            <div style="text-align: center">{{ actor.name }}</div>
+          </div>
         </div>
       </section>
     </div>

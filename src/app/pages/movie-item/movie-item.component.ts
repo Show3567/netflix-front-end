@@ -29,7 +29,7 @@ export class MovieItemComponent implements OnInit {
   movie!: MovieDetail;
   movieVideos: Video[] = [];
   companies_icons: string[] = [];
-  credits: Cast[] = [];
+  actors: Cast[] = [];
   posters: Poster[] = [];
 
   size = {
@@ -52,14 +52,14 @@ export class MovieItemComponent implements OnInit {
       this.movieVideos = [...videos.results];
     }
     this.movie = this.activatedRoute.snapshot.data['movie'];
-    this.credits = this.activatedRoute.snapshot.data['credits']
-      .map((actor: Cast): Cast => {
+    this.actors = this.activatedRoute.snapshot.data['credits'].map(
+      (actor: Cast): Cast => {
         const profile_path = actor.profile_path
           ? this.tmdbService.getMovieImagePath(actor.profile_path, 'w500')
           : '';
         return { ...actor, profile_path };
-      })
-      .reverse();
+      }
+    );
     this.posters = this.activatedRoute.snapshot.data['posters']
       .map((backdrop: Backdrop): Backdrop => {
         const file_path = this.tmdbService.getMovieImagePath(
@@ -70,7 +70,7 @@ export class MovieItemComponent implements OnInit {
       })
       .reverse();
 
-    console.log(this.movie, this.credits, this.posters);
+    console.log(this.movie, this.actors, this.posters);
 
     this.setSources();
 
