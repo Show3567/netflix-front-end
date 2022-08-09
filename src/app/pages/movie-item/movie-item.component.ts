@@ -53,7 +53,15 @@ export class MovieItemComponent implements OnInit {
     }
     this.movie = this.activatedRoute.snapshot.data['movie'];
     this.credits = this.activatedRoute.snapshot.data['credits'];
-    this.posters = this.activatedRoute.snapshot.data['posters'];
+    this.posters = this.activatedRoute.snapshot.data['posters'].map(
+      (poster: Poster): Poster => {
+        const file_path = this.tmdbService.getMovieImagePath(
+          poster.file_path,
+          'w500'
+        );
+        return { ...poster, file_path };
+      }
+    );
 
     console.log(this.movie, this.credits, this.posters);
 

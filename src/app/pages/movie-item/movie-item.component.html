@@ -28,8 +28,20 @@
       </section>
     </div>
     <div class="movie_info">
-      <div class="posters_list"></div>
-      <div class="actors_list"></div>
+      <section class="posters_list">
+        <h1>Poster</h1>
+        <div class="list">
+          <div class="poster_item" *ngFor="let poster of posters">
+            <img [src]="" alt="" />
+          </div>
+        </div>
+      </section>
+      <section class="actors_list">
+        <h1>Actors</h1>
+        <div class="list">
+          <div class="actor_item"></div>
+        </div>
+      </section>
     </div>
   </div>
 </main>

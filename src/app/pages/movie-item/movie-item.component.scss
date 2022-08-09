@@ -44,10 +44,24 @@
         line-height: 1.8rem;
         letter-spacing: 0.1rem;
       }
+      .list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .poster_item {
+          height: 10rem;
+          width: 15rem;
+          border: 1px solid red;
+          padding: 1rem;
+          img {
+          }
+        }
+      }
 
       .movie_name {
         color: white;
-        font-size: 8rem;
+        font-size: 7rem;
         font-weight: 900;
         font-family: "Roboto Condensed", sans-serif;
         margin-bottom: 6rem;
