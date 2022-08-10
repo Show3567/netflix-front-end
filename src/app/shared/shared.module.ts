@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -23,10 +24,12 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     MatCheckboxModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule,
+
     YouTubePlayerModule,
     InfiniteScrollModule,
   ],
