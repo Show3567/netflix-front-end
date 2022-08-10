@@ -6,7 +6,7 @@
   }"
 >
   <div class="container">
-    <div class="movie_info">
+    <article class="movie_info">
       <section class="movie_name">{{ movie.title | title }}</section>
       <section class="movie_info_list">
         <mat-icon>star</mat-icon>
@@ -20,14 +20,18 @@
       </section>
       <section class="description fc">{{ movie.overview }}</section>
       <div class="takeplace"></div>
+
       <section class="btn_list">
         <button class="btn fc" disabled>
           <mat-icon>play_arrow</mat-icon> <span>PLAY NOW</span>
         </button>
-        <button class="btn"><strong>TRAILER</strong></button>
+        <button class="btn">
+          <strong>TRAILER</strong>
+        </button>
       </section>
-    </div>
-    <div class="movie_info">
+    </article>
+
+    <article class="movie_info">
       <section class="posters_list">
         <h1>Poster</h1>
         <div class="list">
@@ -37,6 +41,7 @@
         </div>
       </section>
       <div class="takeplace"></div>
+
       <section class="actors_list">
         <h1>Actors</h1>
         <div class="list">
@@ -55,7 +60,7 @@
           </div>
         </div>
       </section>
-    </div>
+    </article>
   </div>
 </main>
 
