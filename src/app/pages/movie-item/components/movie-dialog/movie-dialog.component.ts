@@ -7,10 +7,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./movie-dialog.component.scss'],
 })
 export class MovieDialogComponent implements OnInit {
+  obj = {
+    name: 'TT',
+    age: 34,
+  };
+
   constructor(
-    public dialogRef: MatDialogRef<MovieDialogComponent>,
+    private readonly dialogRef: MatDialogRef<MovieDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {}
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
 }
