@@ -9,6 +9,7 @@ import { Video } from 'src/app/services/interfaces/video.interface';
 import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
 import { Cast } from 'src/app/services/interfaces/credit.interface';
 import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-item',
@@ -38,9 +39,10 @@ export class MovieItemComponent implements OnInit {
   };
 
   constructor(
-    private tmdbService: TmdbService,
-    private activatedRoute: ActivatedRoute,
+    private readonly tmdbService: TmdbService,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly titleService: Title,
+    public dialog: MatDialog,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
 
@@ -97,6 +99,8 @@ export class MovieItemComponent implements OnInit {
       this.movieVideos.unshift(videoOut);
     }
   }
+
+  openDialog() {}
 
   /* ~~~~~~~~~~~~ helper ~~~~~~~~~~~~ */
   private setSources() {
