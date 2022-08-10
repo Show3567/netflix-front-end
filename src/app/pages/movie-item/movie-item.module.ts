@@ -7,7 +7,7 @@ import { MovieItemComponent } from './movie-item.component';
 import { VideoItemComponent } from './components/video-item/video-item.component';
 import { MovieItemGuard } from '../../core/guards/movie-item.guard';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MovieItemComponent, VideoItemComponent, DialogComponent],
+  declarations: [MovieItemComponent, VideoItemComponent, MovieDialogComponent],
   imports: [
     CommonModule,
     SharedModule,
