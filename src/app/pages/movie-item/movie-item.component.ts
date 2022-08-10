@@ -10,6 +10,7 @@ import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface'
 import { Cast } from 'src/app/services/interfaces/credit.interface';
 import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 import { MatDialog } from '@angular/material/dialog';
+import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 
 @Component({
   selector: 'app-movie-item',
@@ -100,7 +101,16 @@ export class MovieItemComponent implements OnInit {
     }
   }
 
-  openDialog() {}
+  openDialog(): void {
+    const dialogRef = this.dialog.open(MovieDialogComponent, {
+      width: '250px',
+      data: { name: 'hello' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+    });
+  }
 
   /* ~~~~~~~~~~~~ helper ~~~~~~~~~~~~ */
   private setSources() {
