@@ -81,16 +81,6 @@ export class MovieItemComponent implements OnInit {
     this.date = this.movie.release_date?.split('-')[0];
   }
 
-  handleMute() {
-    if (this.isMuted) {
-      this.isMuted = false;
-      this.youTubePlayer.unMute();
-    } else {
-      this.isMuted = true;
-      this.youTubePlayer.mute();
-    }
-  }
-
   switchVideo(direction: string) {
     if (direction === 'left' && this.movieVideos.length) {
       const videoOut: any = this.movieVideos.shift();
@@ -136,5 +126,14 @@ export class MovieItemComponent implements OnInit {
         'w780'
       );
     } else this.hasposter_img = false;
+  }
+  handleMute() {
+    if (this.isMuted) {
+      this.isMuted = false;
+      this.youTubePlayer.unMute();
+    } else {
+      this.isMuted = true;
+      this.youTubePlayer.mute();
+    }
   }
 }

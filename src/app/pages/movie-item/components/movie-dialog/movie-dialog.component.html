@@ -1,5 +1,33 @@
-<h1 mat-dialog-title>Hi {{ data.name }}</h1>
+<section class="video_holder">
+  <div class="video_list">
+    <button class="video_switcher_left" mat-fab (click)="switchVideo('left')">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button class="video_switcher_right" mat-fab (click)="switchVideo('right')">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <div class="no_signal" *ngIf="!movieVideos[0]">
+      <img [src]="backdrop_img_high" alt="" *ngIf="hasbackdrop_img" />
+      <img src="../../../../../assets/video/VGA-no-signal-image.jpeg" alt="" />
+    </div>
+    <youtube-player
+      *ngIf="movieVideos[0]"
+      [videoId]="movieVideos[0]?.key"
+      suggestedQuality="highres"
+      [playerVars]="{
+        autoplay: 1,
+        controls: 1,
+        playlist: movieVideos[0]?.key,
+        loop: 1,
+        modestbranding: 1
+      }"
+      [height]="600"
+      [width]="1001"
+    >
+    </youtube-player>
+  </div>
+</section>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="obj" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
 </div>
