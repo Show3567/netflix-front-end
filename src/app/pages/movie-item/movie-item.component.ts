@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { YouTubePlayer } from '@angular/youtube-player';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProdTitle } from 'src/app/app.module';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
@@ -43,6 +43,7 @@ export class MovieItemComponent implements OnInit {
     private readonly tmdbService: TmdbService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly titleService: Title,
+    private readonly router: Router,
     public dialog: MatDialog,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
@@ -50,6 +51,37 @@ export class MovieItemComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-MovieItem`);
 
+    this.setSources();
+    this.type = this.movie.genres?.map(({ name }) => name).join(',');
+    this.date = this.movie.release_date?.split('-')[0];
+  }
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Open a new Tag in browser
+  openNewTab() {
+    // if (this.movie.homepage) {
+    //   window.open(this.movie.homepage, '_blank');
+    // }
+  }
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Transfer data into dialog
+  openDialog(): void {
+    const dialogRef = this.dialog.open(MovieDialogComponent, {
+      data: {
+        movieVideos: this.movieVideos,
+        hasposter_img: this.hasposter_img,
+        hasbackdrop_img: this.hasbackdrop_img,
+        poster_img_high: this.poster_img_high,
+        backdrop_img_high: this.backdrop_img_high,
+      },
+      backdropClass: 'backdropBackground',
+      panelClass: 'my-panel',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+    });
+  }
+
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Reset the source for view
+  private setSources() {
     const videos = this.activatedRoute.snapshot.data['videos'];
     if (videos && videos.results) {
       this.movieVideos = [...videos.results];
@@ -73,44 +105,6 @@ export class MovieItemComponent implements OnInit {
       })
       .reverse();
 
-    console.log(this.movie, this.actors, this.posters);
-
-    this.setSources();
-
-    this.type = this.movie.genres?.map(({ name }) => name).join(',');
-    this.date = this.movie.release_date?.split('-')[0];
-  }
-
-  switchVideo(direction: string) {
-    if (direction === 'left' && this.movieVideos.length) {
-      const videoOut: any = this.movieVideos.shift();
-      this.movieVideos.push(videoOut);
-    } else if (direction === 'right' && this.movieVideos.length) {
-      const videoOut: any = this.movieVideos.pop();
-      this.movieVideos.unshift(videoOut);
-    }
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(MovieDialogComponent, {
-      data: {
-        movieVideos: this.movieVideos,
-        hasposter_img: this.hasposter_img,
-        hasbackdrop_img: this.hasbackdrop_img,
-        poster_img_high: this.poster_img_high,
-        backdrop_img_high: this.backdrop_img_high,
-      },
-      backdropClass: 'backdropBackground',
-      panelClass: 'my-panel',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-    });
-  }
-
-  /* ~~~~~~~~~~~~ helper ~~~~~~~~~~~~ */
-  private setSources() {
     if (this.movie.production_companies) {
       this.movie.production_companies.forEach((company: any) => {
         company.logo_path !== null &&
@@ -134,6 +128,7 @@ export class MovieItemComponent implements OnInit {
       );
     } else this.hasposter_img = false;
   }
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Youtube player can be controled by ViewChild
   handleMute() {
     if (this.isMuted) {
       this.isMuted = false;

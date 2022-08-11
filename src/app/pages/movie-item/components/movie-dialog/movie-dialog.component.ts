@@ -31,6 +31,7 @@ export class MovieDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ switch trailers
   switchVideo(direction: string) {
     if (direction === 'left' && this.movieVideos.length) {
       const videoOut: any = this.movieVideos.shift();

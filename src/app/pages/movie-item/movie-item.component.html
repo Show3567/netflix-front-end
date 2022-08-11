@@ -26,6 +26,7 @@
           <a
             mat-raised-button
             [href]="movie.homepage"
+            (click)="openNewTab()"
             class="detail_font-style btn_background_color"
           >
             {{ movie.homepage }}
