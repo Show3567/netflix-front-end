@@ -93,8 +93,13 @@ export class MovieItemComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(MovieDialogComponent, {
-      width: '250px',
-      data: { name: 'hello' },
+      data: {
+        movieVideos: this.movieVideos,
+        hasposter_img: this.hasposter_img,
+        hasbackdrop_img: this.hasbackdrop_img,
+        poster_img_high: this.poster_img_high,
+        backdrop_img_high: this.backdrop_img_high,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

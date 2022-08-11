@@ -19,7 +19,13 @@ export class MovieDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.movieVideos = this.data.movieVideos;
+    this.hasbackdrop_img = this.data.hasbackdrop_img;
+    this.hasposter_img = this.data.hasposter_img;
+    this.poster_img_high = this.data.poster_img_high;
+    this.backdrop_img_high = this.data.backdrop_img_high;
+  }
 
   onNoClick() {
     this.dialogRef.close();
