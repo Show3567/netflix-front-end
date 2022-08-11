@@ -17,6 +17,7 @@ import { MovieComponent } from './pages/movie/movie.component';
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const ProdTitle = new InjectionToken<string>('');
+export const CD = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [AppComponent, MovieComponent],
@@ -71,6 +72,8 @@ export const ProdTitle = new InjectionToken<string>('');
     //   },
     //   deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
     // },
+
+    { provide: CD, useValue: 'pwd=sdf&username=fdgd/sdfsdjlr45hsdjflk' },
   ],
   bootstrap: [AppComponent],
 })

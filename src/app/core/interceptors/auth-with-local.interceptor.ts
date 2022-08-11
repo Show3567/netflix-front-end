@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 import { AUTHSERVER } from 'src/app/app.module';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthWithLocalInterceptor implements HttpInterceptor {
@@ -33,6 +34,6 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(tap(console.log));
   }
 }
