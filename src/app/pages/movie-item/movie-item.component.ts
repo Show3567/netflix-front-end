@@ -100,6 +100,7 @@ export class MovieItemComponent implements OnInit {
         poster_img_high: this.poster_img_high,
         backdrop_img_high: this.backdrop_img_high,
       },
+      backdropClass: 'dialog-bg-trans',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
