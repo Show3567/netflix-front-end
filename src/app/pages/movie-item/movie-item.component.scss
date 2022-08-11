@@ -38,6 +38,14 @@
         margin-bottom: 2rem;
       }
 
+      .homepage {
+        font-size: 1.2rem;
+        .btn_background_color {
+          color: white;
+          background-color: transparent;
+          font-size: 1.2rem;
+        }
+      }
       .description {
         font-size: 1.2rem;
         line-height: 1.8rem;
@@ -130,9 +138,6 @@
       }
     }
   }
-}
-.dialog-bg-trans {
-  background-color: transparent;
 }
 // .host {
 //   position: relative;

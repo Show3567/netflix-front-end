@@ -51,18 +51,15 @@
     }
     .video_switcher_left {
       left: 0;
-      transform: translate(-25%, -50%);
+      transform: translate(-120%, -50%);
     }
     .video_switcher_right {
       right: 0;
-      transform: translate(25%, -50%);
+      transform: translate(120%, -50%);
     }
     .video_switcher_left:hover,
     .video_switcher_right:hover {
       background-color: #bc0643;
     }
   }
-}
-.dialog-bg-trans {
-  background-color: transparent;
 }

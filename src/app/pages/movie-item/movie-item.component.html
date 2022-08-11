@@ -19,6 +19,18 @@
         </span>
       </section>
       <section class="description fc">{{ movie.overview }}</section>
+      <section class="homepage">
+        <p *ngIf="movie.homepage">
+          Home Page <mat-icon>fingerprint</mat-icon>
+          <a
+            mat-raised-button
+            [href]="movie.homepage"
+            class="detail_font-style btn_background_color"
+          >
+            {{ movie.homepage }}
+          </a>
+        </p>
+      </section>
       <div class="takeplace"></div>
 
       <section class="btn_list">

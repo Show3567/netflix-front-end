@@ -48,3 +48,10 @@ body {
 .takeplace {
   flex-grow: 1;
 }
+
+.my-panel .mat-dialog-container {
+  overflow: hidden;
+  border-radius: 5px;
+  padding: 3rem 7rem;
+  background-color: rgba(53, 52, 52, 0.4);
+}

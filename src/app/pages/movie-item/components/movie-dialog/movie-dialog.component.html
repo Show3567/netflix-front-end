@@ -12,12 +12,12 @@
     </div>
     <youtube-player
       *ngIf="movieVideos[0]"
-      [videoId]="movieVideos[0]?.key"
+      [videoId]="movieVideos[0].key"
       suggestedQuality="highres"
       [playerVars]="{
         autoplay: 1,
         controls: 1,
-        playlist: movieVideos[0]?.key,
+        playlist: movieVideos[0].key,
         loop: 1,
         modestbranding: 1
       }"
