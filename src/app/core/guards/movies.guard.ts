@@ -8,7 +8,7 @@ import {
   RouterStateSnapshot,
   UrlSegment,
 } from '@angular/router';
-import { WithLocalstorageService } from '../../services/auth/with-localstorage.service';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 
 @Injectable({
   providedIn: 'root',
