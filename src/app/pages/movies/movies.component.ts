@@ -5,7 +5,7 @@ import { ProdTitle } from 'src/app/app.module';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { Movie } from '../../services/interfaces/movie.interface';
+import { Movie } from 'src/app/services/interfaces/movie.interface';
 
 @Component({
   selector: 'app-movies',
