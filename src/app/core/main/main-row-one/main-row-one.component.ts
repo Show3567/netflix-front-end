@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { WithLocalstorageService } from '../../../services/auth/with-localstorage.service';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-main-row-one',

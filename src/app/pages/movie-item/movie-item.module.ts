@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieItemComponent } from './movie-item.component';
 import { VideoItemComponent } from './components/video-item/video-item.component';
-import { MovieItemGuard } from '../../core/guards/movie-item.guard';
+import { MovieItemGuard } from 'src/app/core/guards/movie-item.guard';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 
