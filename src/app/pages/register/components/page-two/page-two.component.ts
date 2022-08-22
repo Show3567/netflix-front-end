@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 
 import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
-import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-page-two',

@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { WithLocalstorageService } from '../../../../services/auth/with-localstorage.service';
+import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 
 @Component({
   selector: 'app-page-two-ii',
