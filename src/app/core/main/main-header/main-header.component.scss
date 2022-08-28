@@ -1,7 +1,7 @@
-@mixin flex {
+@mixin flex($justify: center, $items: center) {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: $justify;
+  align-items: $items;
 }
 
 .home_header {
@@ -17,13 +17,11 @@
     height: 100%;
     width: 100%;
     padding: 0 2.5rem;
-    @include flex;
-    justify-content: space-between;
+    @include flex(space-between);
 
     .login_container,
     .logout_container {
-      @include flex;
-      justify-content: space-around;
+      @include flex(space-around);
       color: white;
     }
     .logout_container {
