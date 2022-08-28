@@ -1,12 +1,16 @@
+@mixin flex($justify: center, $items: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $items;
+}
+
 .container {
   height: var(--footer_height);
   width: 100%;
   background-color: black;
   color: var(--footer_font_color);
   font-size: 0.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
 
   .content {
     margin-top: 2rem;
