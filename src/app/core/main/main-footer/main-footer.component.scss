@@ -16,14 +16,13 @@
     margin-top: 2rem;
     height: 80%;
     width: var(--footer_content_width);
-    display: flex;
+    @include flex();
     flex-direction: column;
     .call_me {
       margin-bottom: 2.5rem;
     }
     .link_list {
-      display: flex;
-      justify-content: flex-start;
+      @include flex(flex-start);
       flex-wrap: wrap;
       .link_item {
         width: 25%;
