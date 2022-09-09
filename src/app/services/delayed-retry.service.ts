@@ -18,7 +18,7 @@ export class DelayedRetryService {
           return error.pipe(
             delay(delayMs),
             mergeMap((error) => {
-              return retries-- > 0
+              return 0 < retries--
                 ? of(error)
                 : throwError(this.getErrorMessage(maxRetry));
             })
