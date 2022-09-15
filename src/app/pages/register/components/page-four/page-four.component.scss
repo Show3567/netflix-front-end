@@ -2,18 +2,16 @@
 
 .main_container {
   width: 100vw;
-  height: calc(100vh - reuse_80);
-  display: flex;
-  justify-content: center;
+  height: calc(100vh - $reuse_80);
+  @include flex(center, stretch);
+
   margin-top: 120px;
-  //   align-items: center;
 
   .container {
-    display: flex;
+    @include flex(flex-start);
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-bottom: reuse_60;
+
+    padding-bottom: $reuse_60;
     width: 68.75rem;
     // background-color: aqua;
     .icon_check_circle {
@@ -61,9 +59,7 @@
           height: 90%;
           width: 100%;
           padding: 25px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include flex();
           font-size: 1.2rem;
           color: white;
           position: relative;
@@ -83,7 +79,7 @@
         }
       }
       .row {
-        height: reuse_60;
+        height: $reuse_60;
         line-height: 1.875rem;
         display: flex;
         width: 100%;
@@ -91,15 +87,13 @@
       .description {
         height: 100%;
         padding: 15px;
-        width: reuse_500;
+        width: $reuse_500;
       }
       .val_container {
         height: 100%;
         padding: 15px 1.875rem;
-        width: reuse_200;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: $reuse_200;
+        @include flex();
         color: black;
       }
       .red {
@@ -114,8 +108,8 @@
       background-color: red;
       color: white;
       font-size: 1.5rem;
-      width: reuse_300;
-      height: reuse_60;
+      width: $reuse_300;
+      height: $reuse_60;
     }
   }
 }

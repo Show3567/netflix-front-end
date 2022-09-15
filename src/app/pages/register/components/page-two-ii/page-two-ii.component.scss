@@ -3,14 +3,11 @@
 .main_container {
   width: 100vw;
   height: calc(100vh - $reuse_80);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
   .container {
-    display: flex;
+    @include flex(flex-start);
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+
     padding-bottom: $reuse_200;
     width: $reuse_400;
     margin-bottom: $reuse_100;

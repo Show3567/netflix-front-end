@@ -3,16 +3,14 @@
 .main_container {
   width: 100vw;
   height: calc(100vh - $reuse_80);
-  //   background-color: aqua;
+
   display: flex;
   justify-content: center;
   align-items: center;
   .container {
-    // background-color: beige;
-    display: flex;
+    @include flex(flex-start);
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+
     padding-bottom: $reuse_200;
     width: 21.875rem;
     img {
