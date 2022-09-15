@@ -1,5 +1,7 @@
+@import "../../../../styles.variables.scss";
+
 .container {
-  height: var(--reuse_500);
+  height: $reuse_500;
   background-color: black;
   color: white;
   display: flex;
@@ -8,16 +10,16 @@
   .content {
     position: relative;
     display: flex;
-    width: var(--reuse_1000);
+    width: $reuse_1000;
     height: 80%;
     .content_1 {
       height: 100%;
-      width: var(--reuse_500);
+      width: $reuse_500;
       display: flex;
       flex-direction: column;
       justify-content: center;
       .content_1_header {
-        font-size: var(--reuse_50);
+        font-size: $reuse_50;
         line-height: 3.7rem;
       }
       .content_1_content {
@@ -33,7 +35,7 @@
       z-index: 2;
       top: -20px;
       right: 0;
-      width: var(--reuse_500);
+      width: $reuse_500;
       height: 100%;
       img {
         width: 100%;

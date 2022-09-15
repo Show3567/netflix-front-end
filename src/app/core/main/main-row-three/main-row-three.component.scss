@@ -1,5 +1,7 @@
+@import "../../../../styles.variables.scss";
+
 .container {
-  height: var(--reuse_500);
+  height: $reuse_500;
   background-color: black;
   color: white;
   display: flex;
@@ -10,21 +12,21 @@
 .content {
   position: relative;
   display: flex;
-  width: var(--footer_content_width);
+  width: $footer_content_width;
   height: 80%;
   background-color: black;
 
   .content_text,
   .content_kid {
     position: absolute;
-    width: var(--reuse_500);
+    width: $reuse_500;
     height: 100%;
   }
 
   .content_kid {
     top: -3.125rem;
     img {
-      height: var(--reuse_500);
+      height: $reuse_500;
       width: auto;
       background-size: cover;
     }
@@ -48,9 +50,9 @@
   .content_download {
     position: relative;
     left: 0;
-    top: var(--reuse_50);
+    top: $reuse_50;
 
-    width: var(--reuse_500);
+    width: $reuse_500;
     height: 100%;
     img {
       width: 100%;
@@ -58,7 +60,7 @@
       background-size: cover;
     }
     .download_box {
-      height: var(--reuse_100);
+      height: $reuse_100;
       width: 20.6rem;
       background-color: black;
       border: 2px solid rgb(64, 64, 64);
