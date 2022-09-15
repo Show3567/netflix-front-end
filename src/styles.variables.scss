@@ -21,3 +21,9 @@ $footer_content_width: 62rem;
 
 $questionlist_background: rgb(48, 48, 48);
 $transparent_color: rgba(0, 0, 0, 0);
+
+@mixin flex($justify: center, $items: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $items;
+}

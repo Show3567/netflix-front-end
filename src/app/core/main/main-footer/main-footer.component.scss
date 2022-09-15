@@ -1,21 +1,17 @@
-@mixin flex($justify: center, $items: center) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $items;
-}
+@import "../../../../styles.variables.scss";
 
 .container {
-  height: var(--footer_height);
+  height: $footer_height;
   width: 100%;
   background-color: black;
-  color: var(--footer_font_color);
+  color: $footer_font_color;
   font-size: 0.8rem;
   @include flex();
 
   .content {
     margin-top: 2rem;
     height: 80%;
-    width: var(--footer_content_width);
+    width: $footer_content_width;
     @include flex();
     flex-direction: column;
     .call_me {
