@@ -4,9 +4,7 @@
   height: $reuse_500;
   background-color: black;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
   .content {
     position: relative;
     display: flex;

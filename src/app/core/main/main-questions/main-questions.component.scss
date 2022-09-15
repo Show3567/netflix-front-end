@@ -3,9 +3,7 @@
 .container {
   background-color: black;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
   padding: $reuse_60 0;
 
   .content {
@@ -48,10 +46,8 @@
 
 .form_container {
   margin-top: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
+  @include flex(space-between);
+
   width: 100%;
   padding: 0 2.5rem;
 
