@@ -1,3 +1,5 @@
+@import "../../../styles.variables.scss";
+
 main {
   width: 100%;
 }
@@ -5,5 +7,5 @@ main {
 hr {
   border: none;
   height: 7px;
-  background-color: var(--home_hr_color);
+  background-color: $home_hr_color;
 }
