@@ -1,6 +1,8 @@
+@import "../../../../../styles.variables.scss";
+
 .main_container {
   width: 100vw;
-  height: calc(100vh - var(--reuse_80));
+  height: calc(100vh - $reuse_80);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +12,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: var(--reuse_300);
+    padding-bottom: $reuse_300;
     width: 21.875rem;
     .icon_check_circle {
       mat-icon {
@@ -52,7 +54,7 @@
       color: white;
       font-size: 1.5rem;
       width: 100%;
-      height: var(--reuse_60);
+      height: $reuse_60;
     }
   }
 }

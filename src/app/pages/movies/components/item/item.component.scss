@@ -1,3 +1,5 @@
+@import "../../../../../styles.variables.scss";
+
 .newbox {
   position: relative;
   margin: 20px 20px;
@@ -34,9 +36,9 @@
 
   .content {
     position: absolute;
-    bottom: var(--reuse_100);
+    bottom: $reuse_100;
     padding: 20px;
-    transform: translateY(var(--reuse_100));
+    transform: translateY($reuse_100);
     text-align: start;
     width: 100%;
 

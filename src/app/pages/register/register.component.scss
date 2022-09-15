@@ -1,18 +1,14 @@
-// :host {
-//   position: relative;
-//   height: 100vh;
-//   width: 100vw;
-// }
+@import "../../../styles.variables.scss";
 
 hr {
   height: 2px;
-  margin-top: var(--reuse_80);
+  margin-top: $reuse_80;
   background-color: white;
 }
 
 app-main-footer {
   width: 100vw;
-  height: var(--reuse_200);
+  height: $reuse_200;
   position: fixed;
   bottom: 0;
 }

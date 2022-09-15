@@ -1,3 +1,5 @@
+@import "../../../styles.variables.scss";
+
 :host {
   overflow: hidden;
 }
@@ -7,16 +9,16 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: var(--reuse_100);
+  height: $reuse_100;
   width: 100vw;
   position: fixed;
   top: 0;
 }
 .main {
   position: fixed;
-  top: var(--reuse_100);
+  top: $reuse_100;
   width: 100vw;
-  height: calc(100vh - var(--reuse_100));
+  height: calc(100vh - $reuse_100);
   background-color: green;
   background-image: url("../../../assets/notfound/bg-lost-in-space.png");
   background-size: cover;
@@ -57,7 +59,7 @@
     .error_code {
       border-left: 5px solid red;
       font-size: 2rem;
-      margin-top: var(--reuse_200);
+      margin-top: $reuse_200;
       padding: 2.5rem;
       span {
         color: rgb(199, 255, 255);
@@ -65,7 +67,7 @@
     }
   }
   .short_msg {
-    margin: 1.875rem var(--reuse_50);
+    margin: 1.875rem $reuse_50;
     position: fixed;
     right: 0;
     bottom: 0;

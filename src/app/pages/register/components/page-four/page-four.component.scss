@@ -1,6 +1,8 @@
+@import "../../../../../styles.variables.scss";
+
 .main_container {
   width: 100vw;
-  height: calc(100vh - var(--reuse_80));
+  height: calc(100vh - reuse_80);
   display: flex;
   justify-content: center;
   margin-top: 120px;
@@ -11,7 +13,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-bottom: var(--reuse_60);
+    padding-bottom: reuse_60;
     width: 68.75rem;
     // background-color: aqua;
     .icon_check_circle {
@@ -81,7 +83,7 @@
         }
       }
       .row {
-        height: var(--reuse_60);
+        height: reuse_60;
         line-height: 1.875rem;
         display: flex;
         width: 100%;
@@ -89,12 +91,12 @@
       .description {
         height: 100%;
         padding: 15px;
-        width: var(--reuse_500);
+        width: reuse_500;
       }
       .val_container {
         height: 100%;
         padding: 15px 1.875rem;
-        width: var(--reuse_200);
+        width: reuse_200;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -112,8 +114,8 @@
       background-color: red;
       color: white;
       font-size: 1.5rem;
-      width: var(--reuse_300);
-      height: var(--reuse_60);
+      width: reuse_300;
+      height: reuse_60;
     }
   }
 }
