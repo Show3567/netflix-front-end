@@ -23,9 +23,7 @@
     height: 100%;
     width: 100%;
     transform: skew(2deg, 2deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex();
     .bk-cover {
       height: 100%;
       width: 100%;
@@ -75,9 +73,8 @@
         height: 1.5em;
         font-size: 0.8em;
         margin-bottom: 5px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        @include flex(space-around);
+
         span {
           background-color: #8d143c;
           line-height: 100%;

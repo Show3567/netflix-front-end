@@ -1,3 +1,5 @@
+@import "../../../styles.variables.scss";
+
 .host {
   position: relative;
   height: 100vh;
@@ -13,9 +15,7 @@
     );
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    @include flex(center, flex-end);
 
     .fc {
       color: rgb(175, 178, 188);
@@ -28,10 +28,8 @@
       padding: 3% 0 3% 3%;
       color: white;
 
-      display: flex;
+      @include flex(flex-start, flex-start);
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
 
       section {
         width: 100%;
@@ -52,9 +50,7 @@
         letter-spacing: 0.1rem;
       }
       .list {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex(flex-start);
         width: 100%;
         overflow: auto;
 
@@ -74,10 +70,8 @@
           width: 5rem;
           padding: 0.5rem;
           margin-right: 1rem;
-          display: flex;
+          @include flex(flex-start);
           flex-direction: column;
-          justify-content: flex-start;
-          align-items: center;
           flex-shrink: 0;
           img {
             height: 100%;
@@ -98,32 +92,24 @@
         margin-bottom: 6rem;
       }
       .movie_info_list {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex(flex-start);
         font-size: 1.2rem;
 
         mat-icon {
           color: yellow;
           font-size: 1rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include flex();
         }
       }
       .btn_list {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex(flex-start);
 
         .btn {
           background-color: rgb(31, 88, 255);
           border: none;
           height: 4rem;
           width: 10rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include flex();
           border-radius: 10px;
           margin-right: 2.5rem;
           padding-top: 0.1rem;

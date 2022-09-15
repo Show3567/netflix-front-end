@@ -88,9 +88,7 @@
           height: 1.5rem;
           line-height: 1.5rem;
           width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          @include flex(space-between);
           color: rgb(179, 179, 179);
           mat-checkbox {
             height: 100%;
@@ -111,9 +109,7 @@
       .login_fb {
         height: 1.5rem;
         line-height: 1.5rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        @include flex(flex-start);
         margin: 20px 0;
         color: rgb(115, 115, 115);
         img {

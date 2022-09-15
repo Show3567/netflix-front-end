@@ -8,9 +8,7 @@
   background-color: black;
   border-radius: 20px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
 
   button {
     color: white;
@@ -18,9 +16,7 @@
 
   .video_list {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex();
     flex-wrap: nowrap;
 
     .no_signal {
@@ -43,9 +39,7 @@
 
     .video_switcher_left,
     .video_switcher_right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex();
 
       position: absolute;
       top: 50%;
