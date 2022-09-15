@@ -4,8 +4,7 @@
   background-color: black;
   border: 1px solid black;
 
-  @include flex();
-  flex-direction: column;
+  @include flex(center, center, column);
 
   .movie_Recommend {
     position: relative;
@@ -56,8 +55,7 @@
       margin-top: 10em;
       z-index: 10;
 
-      @include flex(space-around, flex-start);
-      flex-direction: column;
+      @include flex(space-around, flex-start, column);
 
       .recommend_item {
         cursor: default;
@@ -80,7 +78,6 @@
     width: 90vw;
     padding: 1.875rem;
     @include flex(space-between);
-    flex-direction: row;
     flex-wrap: wrap;
 
     .movie_item {

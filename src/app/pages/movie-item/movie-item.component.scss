@@ -28,8 +28,7 @@
       padding: 3% 0 3% 3%;
       color: white;
 
-      @include flex(flex-start, flex-start);
-      flex-direction: column;
+      @include flex(flex-start, flex-start, column);
 
       section {
         width: 100%;
@@ -70,8 +69,7 @@
           width: 5rem;
           padding: 0.5rem;
           margin-right: 1rem;
-          @include flex(flex-start);
-          flex-direction: column;
+          @include flex(flex-start, center, column);
           flex-shrink: 0;
           img {
             height: 100%;

@@ -8,8 +8,7 @@
   margin-top: 120px;
 
   .container {
-    @include flex(flex-start);
-    flex-direction: column;
+    @include flex(flex-start, center, column);
 
     padding-bottom: $reuse_60;
     width: 68.75rem;
@@ -47,8 +46,7 @@
     }
     .plan_table {
       width: 100%;
-      display: flex;
-      flex-direction: column;
+      @include flex(flex-start, stretch, column);
       .plan_icon {
         // background-color: antiquewhite;
         height: 9.4rem;

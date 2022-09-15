@@ -8,8 +8,7 @@
   justify-content: center;
   align-items: center;
   .container {
-    @include flex(flex-start);
-    flex-direction: column;
+    @include flex(flex-start, stretch, column);
 
     padding-bottom: $reuse_200;
     width: 21.875rem;

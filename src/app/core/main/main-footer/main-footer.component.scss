@@ -12,8 +12,7 @@
     margin-top: 2rem;
     height: 80%;
     width: $footer_content_width;
-    @include flex();
-    flex-direction: column;
+    @include flex(center, center, column);
     .call_me {
       margin-bottom: 2.5rem;
     }

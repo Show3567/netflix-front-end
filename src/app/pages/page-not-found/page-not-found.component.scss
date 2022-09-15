@@ -25,8 +25,7 @@
   @include flex();
 
   .error_msg_container {
-    @include flex(flex-start);
-    flex-direction: column;
+    @include flex(flex-start, center, column);
     padding: 2.5rem;
 
     color: white;

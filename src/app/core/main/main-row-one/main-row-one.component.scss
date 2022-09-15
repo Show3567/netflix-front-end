@@ -18,8 +18,7 @@
       rgba(0, 0, 0, 0.9)
     );
     .content {
-      @include flex();
-      flex-direction: column;
+      @include flex(center, center, column);
       width: 44rem;
 
       .row_text {
