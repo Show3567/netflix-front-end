@@ -1,15 +1,11 @@
-@mixin flex($justify: center, $items: center) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $items;
-}
+@import "../../../../styles.variables.scss";
 
 .home_header {
   position: absolute;
   z-index: 10;
   top: 0;
-  background-color: var(--transparent_color);
-  height: var(--header_height);
+  background-color: $transparent_color;
+  height: $header_height;
   width: 100%;
   @include flex;
 

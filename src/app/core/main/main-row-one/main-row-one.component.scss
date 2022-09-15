@@ -1,3 +1,5 @@
+@import "../../../../styles.variables.scss";
+
 .container {
   height: 47rem;
   width: 100%;
@@ -43,7 +45,7 @@
         position: relative;
         margin-top: 1.25rem;
         width: 100%;
-        height: var(--reuse_50);
+        height: $reuse_50;
 
         .input_container {
           position: relative;

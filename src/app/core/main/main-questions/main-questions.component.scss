@@ -1,10 +1,12 @@
+@import "../../../../styles.variables.scss";
+
 .container {
   background-color: black;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--reuse_60) 0;
+  padding: $reuse_60 0;
 
   .content {
     height: 80%;
@@ -12,7 +14,7 @@
 
     .content_header {
       text-align: center;
-      font-size: var(--reuse_50);
+      font-size: $reuse_50;
       line-height: 4.5rem;
       background-color: black;
       color: white;
@@ -20,7 +22,7 @@
     }
   }
   mat-expansion-panel {
-    background-color: var(--questionlist_background);
+    background-color: $questionlist_background;
     mat-expansion-panel-header {
       height: 70px;
       mat-panel-title {
@@ -66,7 +68,7 @@
     position: relative;
     margin-top: 1.25rem;
     width: 100%;
-    height: var(--reuse_50);
+    height: $reuse_50;
 
     .input_container {
       position: relative;
