@@ -17,15 +17,15 @@ import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 export class WithLocalstorageService {
   private jwtHelper = new JwtHelperService();
   private userSubject$!: BehaviorSubject<AppUserAuth>;
-  public user$!: Observable<AppUserAuth>;
+  user$!: Observable<AppUserAuth>;
 
   private appUserRegister = new AppUserRegister();
   private refreshTokenTimeout: any;
 
-  public get userValue(): AppUserAuth {
+  get userValue(): AppUserAuth {
     return this.userSubject$.value;
   }
-  public get appNewUser(): AppUserRegister {
+  get appNewUser(): AppUserRegister {
     return this.appUserRegister;
   }
 

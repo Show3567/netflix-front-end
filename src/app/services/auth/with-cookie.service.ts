@@ -11,9 +11,9 @@ import { AppUserAuth } from '../interfaces/user-auth.interface';
 })
 export class WithCookieService {
   private userSubject$!: BehaviorSubject<AppUserAuth>;
-  public user$!: Observable<AppUserAuth>;
+  user$!: Observable<AppUserAuth>;
 
-  public get userValue(): AppUserAuth {
+  get userValue(): AppUserAuth {
     return this.userSubject$.value;
   }
 

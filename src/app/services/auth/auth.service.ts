@@ -5,7 +5,7 @@ import { AppUser } from '../interfaces/user-login.interface';
 
 @Injectable()
 export class AuthService {
-  public user$!: Observable<AppUserAuth>;
+  user$!: Observable<AppUserAuth>;
 
   constructor() {}
 
