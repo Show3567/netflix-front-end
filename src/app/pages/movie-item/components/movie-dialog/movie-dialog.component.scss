@@ -1,3 +1,5 @@
+@import "../../../../../styles.variables.scss";
+
 .video_holder {
   position: relative;
   margin-top: 2em;
@@ -26,8 +28,8 @@
       top: 0;
 
       img:nth-child(1) {
-        height: var(--reuse_600);
-        width: var(--reuse_1200);
+        height: $reuse_600;
+        width: $reuse_1200;
       }
       img:nth-child(2) {
         position: absolute;
@@ -48,8 +50,8 @@
       position: absolute;
       top: 50%;
       font-size: 2em;
-      height: var(--reuse_80);
-      width: var(--reuse_80);
+      height: $reuse_80;
+      width: $reuse_80;
       border-radius: 50%;
       background-color: #8d143c;
     }

@@ -1,10 +1,12 @@
+@import "../../../styles.variables.scss";
+
 .header {
-  background-color: var(--transparent_color);
+  background-color: $transparent_color;
   padding: 0 2.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: var(--reuse_100);
+  height: $reuse_100;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -35,7 +37,7 @@
     );
     .login_container {
       margin: 7rem 0;
-      width: var(--reuse_400);
+      width: $reuse_400;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -43,7 +45,7 @@
 
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 4px;
-      height: var(--reuse_600);
+      height: $reuse_600;
 
       padding: 2.5rem;
 
@@ -148,7 +150,7 @@
 }
 app-main-footer {
   width: 100vw;
-  height: var(--reuse_200);
+  height: $reuse_200;
   position: fixed;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0);
