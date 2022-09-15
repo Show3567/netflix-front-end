@@ -34,10 +34,10 @@ export class MovieItemComponent implements OnInit {
   actors: Cast[] = [];
   posters: Poster[] = [];
 
-  size = {
-    height: visualViewport.height,
-    width: visualViewport.width,
-  };
+  // size = {
+  //   height: visualViewport.height,
+  //   width: visualViewport.width,
+  // };
 
   constructor(
     private readonly tmdbService: TmdbService,
