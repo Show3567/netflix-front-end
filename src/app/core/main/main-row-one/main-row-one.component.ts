@@ -5,7 +5,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-main-row-one',
@@ -21,7 +21,7 @@ export class MainRowOneComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private readonly router: Router,
-    private readonly authService: WithLocalstorageService
+    private readonly authService: AuthService
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({

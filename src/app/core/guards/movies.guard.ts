@@ -8,16 +8,13 @@ import {
   RouterStateSnapshot,
   UrlSegment,
 } from '@angular/router';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesGuard implements CanLoad, CanActivate {
-  constructor(
-    private router: Router,
-    private authService: WithLocalstorageService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const { jwtToken } = this.authService.userValue;

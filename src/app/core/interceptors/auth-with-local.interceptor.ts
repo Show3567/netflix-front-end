@@ -6,14 +6,14 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 import { AUTHSERVER } from 'src/app/app.module';
 import { tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable()
 export class AuthWithLocalInterceptor implements HttpInterceptor {
   constructor(
-    private authService: WithLocalstorageService,
+    private authService: AuthService,
     @Inject(AUTHSERVER) private autoServerPath: string
   ) {}
 

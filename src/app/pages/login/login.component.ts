@@ -7,7 +7,7 @@ import {
 import { Title } from '@angular/platform-browser';
 
 import { ProdTitle } from 'src/app/app.module';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private authService: WithLocalstorageService,
+    private authService: AuthService,
     private readonly titleService: Title,
     // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     @Inject(ProdTitle) private readonly prodTitle: string

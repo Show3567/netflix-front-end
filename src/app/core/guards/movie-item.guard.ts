@@ -8,7 +8,7 @@ import {
   RouterStateSnapshot,
   UrlSegment,
 } from '@angular/router';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Injectable({
@@ -16,8 +16,8 @@ import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 })
 export class MovieItemGuard implements CanLoad, CanActivate {
   constructor(
-    private router: Router,
-    private authService: WithLocalstorageService
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

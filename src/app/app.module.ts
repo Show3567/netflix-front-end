@@ -12,7 +12,6 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { WithLocalstorageService } from './services/auth/with-localstorage.service';
 
 import { appInitializer } from './core/app.initializer';
 import { AuthWithLocalInterceptor } from './core/interceptors/auth-with-local.interceptor';
@@ -46,7 +45,7 @@ const USECOOKIE = new InjectionToken<string>('');
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       multi: true,
-      deps: [WithLocalstorageService],
+      deps: [AuthService],
     },
     // authserver path;
     { provide: AUTHSERVER, useValue: 'http://localhost:4231' },

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 
 import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/app.module';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-page-two',
@@ -35,7 +35,7 @@ export class PageTwoComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly http: HttpClient,
-    private readonly authService: WithLocalstorageService,
+    private readonly authService: AuthService,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {}
   ngOnInit(): void {

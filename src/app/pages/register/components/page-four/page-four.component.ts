@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Component({
@@ -30,9 +30,8 @@ export class PageFourComponent implements OnInit {
   selecedColumn: 'USER' | 'SUPERUSER' | 'ADMIN' = 'ADMIN';
 
   constructor(
-    private router: Router,
-    private authService: WithLocalstorageService,
-    private readonly registerService: WithLocalstorageService
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
   ngOnInit(): void {}
 
@@ -43,16 +42,16 @@ export class PageFourComponent implements OnInit {
     // !this.authService.userValue.jwtToken
     //   ? this.router.navigate(['/login'])
     //   : this.router.navigate(['/movies']);
-    const { jwtToken } = this.registerService.userValue;
+    const { jwtToken } = this.authService.userValue;
 
     if (jwtToken) {
-      this.registerService
+      this.authService
         .upgradePermission({
           role: UserRole[this.selecedColumn],
         })
         .subscribe(console.log);
     } else {
-      this.registerService
+      this.authService
         .sighup({ role: UserRole[this.selecedColumn] })
         .subscribe();
     }

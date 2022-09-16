@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-main-header',
@@ -12,7 +12,7 @@ export class MainHeaderComponent implements OnInit {
   username = '';
 
   constructor(
-    private readonly authService: WithLocalstorageService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) {}
   ngOnInit(): void {
