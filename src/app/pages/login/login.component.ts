@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private authService: AuthService,
+    private readonly authService: AuthService,
     private readonly titleService: Title,
     // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     @Inject(ProdTitle) private readonly prodTitle: string

@@ -69,7 +69,7 @@ export class MoviesComponent implements OnInit {
   trackByFn(i: number, item: Movie) {
     return item.id;
   }
-
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
     // this.tmdbService
     //   .getDiscoverMovie(this.baseSearchMovie)
