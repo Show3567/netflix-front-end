@@ -16,7 +16,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { appInitializer } from './core/app.initializer';
 import { AuthWithLocalInterceptor } from './core/interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
-import { MovieComponent } from './pages/movie/movie.component';
 import { AuthService } from './services/auth/auth.service';
 import { TmdbService } from './services/tmdb/tmdb.service';
 import { WithCookieService } from './services/auth/with-cookie.service';
@@ -30,7 +29,7 @@ export const CD = new InjectionToken<string>('');
 const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
-  declarations: [AppComponent, MovieComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
