@@ -76,7 +76,7 @@ const USECOOKIE = new InjectionToken<string>('');
       ) => {
         return usecookie
           ? new WithCookieService(router, http, authpath)
-          : new WithLocalstorageService(router, http, tmdbservice, authpath);
+          : new AuthService(router, http, tmdbservice, authpath);
       },
       deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
     },

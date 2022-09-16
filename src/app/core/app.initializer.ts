@@ -1,6 +1,6 @@
-import { WithLocalstorageService } from '../services/auth/with-localstorage.service';
+import { AuthService } from '../services/auth/auth.service';
 
-export function appInitializer(authService: WithLocalstorageService) {
+export function appInitializer(authService: AuthService) {
   console.log('this is Initialization');
   return () =>
     new Promise((resolve) => {

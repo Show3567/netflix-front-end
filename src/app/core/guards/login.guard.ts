@@ -5,14 +5,14 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { WithLocalstorageService } from 'src/app/services/auth/with-localstorage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
   constructor(
-    private readonly authService: WithLocalstorageService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) {}
 
