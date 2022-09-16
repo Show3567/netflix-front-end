@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private authService: WithLocalstorageService,
     private readonly titleService: Title,
-    @Inject(ProdTitle) private readonly prodTitle: string // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
+    // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
+    @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-SignIn`);
@@ -63,6 +64,7 @@ export class LoginComponent implements OnInit {
         this.login_msg.msg = '';
       },
       (err) => {
+        console.log(err);
         this.login_msg.msg = 'Please check your login credentials';
       }
     );

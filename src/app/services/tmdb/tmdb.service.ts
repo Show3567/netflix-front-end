@@ -28,7 +28,6 @@ export class TmdbService {
   recommendListObs$ = this.recommendList$.asObservable();
 
   private currentPage = 1;
-
   private baseDiscoverMovie: DiscoverMovie = {
     api_key: '',
     page: 1,
@@ -51,7 +50,8 @@ export class TmdbService {
 
   // ~~~~~~~ lifecycle ~~~~~~~
   constructor(
-    private readonly http: HttpClient // @Inject(TMDBAPIKEY) private readonly myApiKey: string,
+    // @Inject(TMDBAPIKEY) private readonly myApiKey: string,
+    private readonly http: HttpClient
   ) {}
 
   // ~~~~~~~ methods ~~~~~~~
