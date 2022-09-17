@@ -84,3 +84,7 @@ const USECOOKIE = new InjectionToken<string>('');
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+/* 
+  myVpn_Activation_Code: E5Y82N8XKXQIYLURZHYAMSX
+*/
