@@ -87,4 +87,5 @@ export class AppModule {}
 
 /* 
   myVpn_Activation_Code: E5Y82N8XKXQIYLURZHYAMSX
+  $ E5Y82N8XKXQIYLURZHYAMSX
 */
