@@ -22,7 +22,7 @@
   color: white;
 
   .glass_layer {
-    @include flex();
+    @include flex(flex-start, center, column);
     height: 100%;
     width: 100%;
     background-image: linear-gradient(
