@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,11 @@ const USECOOKIE = new InjectionToken<string>('');
     HttpClientModule,
     CoreModule,
     SharedModule,
+    LoggerModule.forRoot({
+      serverLoggingUrl: '/api/logs',
+      level: NgxLoggerLevel.DEBUG,
+      serverLogLevel: NgxLoggerLevel.ERROR,
+    }),
   ],
   providers: [
     // Angular initializer;

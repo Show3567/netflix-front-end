@@ -1,6 +1,6 @@
 import { NavigationEnd, NavigationStart, Route } from '@angular/router';
 
-export interface RouterScrollService {
+export interface RouterScrolls {
   setCustomViewportToScroll(viewport: HTMLElement): void;
 
   disableScrollDefaultViewport(): void;
