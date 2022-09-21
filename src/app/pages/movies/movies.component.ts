@@ -1,11 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, Scroll } from '@angular/router';
 import { ProdTitle } from 'src/app/app.module';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
+import { Observable } from 'rxjs';
+import { ViewportScroller } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies',
@@ -13,10 +16,10 @@ import { Movie } from 'src/app/services/interfaces/movie.interface';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit {
-  movies: Movie[] = [];
+  movies$!: Observable<Movie[]>;
   recommend: Movie[] = [];
   showRecommendImg: string = '';
-  noRecommendImg = '../../../assets/video/VGA-no-signal-image.jpeg';
+  noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
   currentPage = 1;
   baseSearchMovie: DiscoverMovie = {
@@ -29,7 +32,8 @@ export class MoviesComponent implements OnInit {
 
   constructor(
     private readonly tmdbService: TmdbService,
-    private readonly _router: Router,
+    private readonly router: Router,
+    // private readonly viewPortScroller: ViewportScroller,
     private readonly titleService: Title,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
@@ -38,10 +42,8 @@ export class MoviesComponent implements OnInit {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
+    this.movies$ = this.tmdbService.movieListObs$;
 
-    this.tmdbService.movieListObs$.subscribe((movies) => {
-      this.movies = [...movies];
-    });
     this.tmdbService.recommendListObs$.subscribe((recom) => {
       this.recommend = [...recom];
       if (this.recommend.length && this.recommend[0].id) {
@@ -63,7 +65,7 @@ export class MoviesComponent implements OnInit {
   }
 
   navigateMovie(id: number) {
-    this._router.navigate(['/movies', id]);
+    this.router.navigate(['/movies', id]);
   }
 
   trackByFn(i: number, item: Movie) {

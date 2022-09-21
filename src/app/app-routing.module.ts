@@ -61,6 +61,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: MoviePreloadingStrategy,
+      scrollPositionRestoration: 'enabled',
+      scrollOffset: [0, 0],
+      anchorScrolling: 'enabled',
     }),
   ],
   exports: [RouterModule],

@@ -11,4 +11,6 @@ export class AppComponent implements OnInit {
   constructor(@Inject(CD) private cd: string) {}
 
   ngOnInit(): void {}
+
+  onActivate(e: any) {}
 }
