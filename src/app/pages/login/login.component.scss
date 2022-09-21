@@ -40,7 +40,7 @@
       border-radius: 4px;
       height: $reuse_600;
 
-      padding: 2.5rem;
+      padding: 2.5rem 1rem;
 
       .title {
         color: white;
@@ -50,6 +50,7 @@
       .login_form {
         @include flex(flex-start, stretch, column);
         margin-top: 1rem;
+        width: 95%;
 
         mat-label {
           color: rgba(255, 255, 255, 0.664);
@@ -106,6 +107,7 @@
       }
       .login_fb {
         height: 1.5rem;
+        width: 95%;
         line-height: 1.5rem;
         @include flex(flex-start);
         margin: 20px 0;
@@ -118,6 +120,7 @@
       }
       .sign_up_nav {
         margin-bottom: 1rem;
+        width: 95%;
         color: rgb(115, 115, 115);
         a {
           text-decoration: none;
@@ -126,6 +129,7 @@
       }
       .right_description {
         font-size: 0.8rem;
+        width: 95%;
         color: rgb(115, 115, 115);
         a {
           text-decoration: none;
