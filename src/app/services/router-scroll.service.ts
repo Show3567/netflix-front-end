@@ -7,14 +7,15 @@ import {
   Router,
 } from '@angular/router';
 import { asyncScheduler, Subscription } from 'rxjs';
+import { filter, observeOn, scan } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
+
 import {
   RouterScrolls,
   RouteScrollBehaviour,
   RouteScrollStrategy,
   ScrollPositionRestore,
 } from './interfaces/router-scrolll.service.interface';
-import { NGXLogger } from 'ngx-logger';
-import { filter, observeOn, scan } from 'rxjs/operators';
 
 const componentName = 'RouterScrollService';
 const defaultViewportKey = `defaultViewport`;
