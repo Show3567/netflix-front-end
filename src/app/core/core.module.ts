@@ -12,9 +12,9 @@ import { MainRowThreeComponent } from './main/main-row-three/main-row-three.comp
 import { TitlePipe } from './pipes/title.pipe';
 import { RouterScrollService } from '../services/router-scroll.service';
 
-export const ROUTER_SCROLL_SERVICE = new InjectionToken<string>(
-  'ROUTER_SCROLL_SERVICE'
-);
+// export const ROUTER_SCROLL_SERVICE = new InjectionToken<string>(
+//   'ROUTER_SCROLL_SERVICE'
+// );
 
 @NgModule({
   declarations: [
@@ -40,15 +40,15 @@ export const ROUTER_SCROLL_SERVICE = new InjectionToken<string>(
   ],
 })
 export class CoreModule {
-  public static forRoot(): ModuleWithProviders<CoreModule> {
-    return {
-      ngModule: CoreModule,
-      providers: [
-        {
-          provide: ROUTER_SCROLL_SERVICE,
-          useClass: RouterScrollService,
-        },
-      ],
-    };
-  }
+  // public static forRoot(): ModuleWithProviders<CoreModule> {
+  //   return {
+  //     ngModule: CoreModule,
+  //     providers: [
+  //       {
+  //         provide: ROUTER_SCROLL_SERVICE,
+  //         useClass: RouterScrollService,
+  //       },
+  //     ],
+  //   };
+  // }
 }

@@ -21,7 +21,7 @@ const componentName = 'RouterScrolls';
 const defaultViewportKey = `defaultViewport`;
 const customViewportKey = `customViewport`;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RouterScrollService implements RouterScrolls, OnDestroy {
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~ variables;
   private readonly scrollPositionRestorationSubscription: Subscription | null;
