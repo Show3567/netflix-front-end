@@ -6,7 +6,7 @@ import {
   NavigationStart,
   Router,
 } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { asyncScheduler, Subscription } from 'rxjs';
 import {
   RouterScrolls,
   RouteScrollBehaviour,
@@ -17,7 +17,6 @@ import { NGXLogger } from 'ngx-logger';
 import { filter, observeOn, scan } from 'rxjs/operators';
 
 const componentName = 'RouterScrollService';
-
 const defaultViewportKey = `defaultViewport`;
 const customViewportKey = `customViewport`;
 
@@ -56,13 +55,9 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
     private readonly viewportScroller: ViewportScroller,
     private readonly logger: NGXLogger
   ) {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(`${componentName}:: constructor`);
-    }
+    this.logger.trace(`${componentName}:: constructor`);
 
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(`${componentName}:: Subscribing to router events`);
-    }
+    this.logger.trace(`${componentName}:: Subscribing to router events`);
 
     const scrollPositionRestore$ = this.router.events.pipe(
       filter(
@@ -72,31 +67,28 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
       // Accumulate the scroll positions
       scan<NavigationEnd | NavigationStart, ScrollPositionRestore>(
         (acc, event) => {
-          if (environment.traceRouterScrolling) {
-            this.logger.trace(
-              `${componentName}:: Updating the known scroll positions`
-            );
-          }
+          this.logger.trace(
+            `${componentName}:: Updating the known scroll positions`
+          );
+
           const positions: Record<string, any> = {
             ...acc.positions, // Keep the previously known positions
           };
 
           if (event instanceof NavigationStart && this.scrollDefaultViewport) {
-            if (environment.traceRouterScrolling) {
-              this.logger.trace(
-                `${componentName}:: Storing the scroll position of the default viewport`
-              );
-            }
+            this.logger.trace(
+              `${componentName}:: Storing the scroll position of the default viewport`
+            );
+
             positions[`${event.id}-${defaultViewportKey}`] =
               this.viewportScroller.getScrollPosition();
           }
 
           if (event instanceof NavigationStart && this.customViewportToScroll) {
-            if (environment.traceRouterScrolling) {
-              this.logger.trace(
-                `${componentName}:: Storing the scroll position of the custom viewport`
-              );
-            }
+            this.logger.trace(
+              `${componentName}:: Storing the scroll position of the custom viewport`
+            );
+
             positions[`${event.id}-${customViewportKey}`] =
               this.customViewportToScroll.scrollTop;
           }
@@ -171,47 +163,41 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
             const shouldScrollToTop =
               !shouldKeepScrollPosition || imperativeTrigger;
 
-            if (environment.traceRouterScrolling) {
-              this.logger.trace(
-                `${componentName}:: Existing strategy with keep position behavior? `,
-                existingStrategyWithKeepScrollPositionBehavior
-              );
-              this.logger.trace(
-                `${componentName}:: Route data with keep position behavior? `,
-                routeDataWithKeepScrollPositionBehavior
-              );
-              this.logger.trace(
-                `${componentName}:: Imperative trigger? `,
-                imperativeTrigger
-              );
-              this.logger.debug(
-                `${componentName}:: Should scroll? `,
-                shouldScrollToTop
-              );
-            }
+            this.logger.trace(
+              `${componentName}:: Existing strategy with keep position behavior? `,
+              existingStrategyWithKeepScrollPositionBehavior
+            );
+            this.logger.trace(
+              `${componentName}:: Route data with keep position behavior? `,
+              routeDataWithKeepScrollPositionBehavior
+            );
+            this.logger.trace(
+              `${componentName}:: Imperative trigger? `,
+              imperativeTrigger
+            );
+            this.logger.debug(
+              `${componentName}:: Should scroll? `,
+              shouldScrollToTop
+            );
 
             if (shouldScrollToTop) {
               if (this.scrollDefaultViewport) {
-                if (environment.traceRouterScrolling) {
-                  this.logger.debug(
-                    `${componentName}:: Scrolling the default viewport`
-                  );
-                }
+                this.logger.debug(
+                  `${componentName}:: Scrolling the default viewport`
+                );
+
                 this.viewportScroller.scrollToPosition([0, 0]);
               }
               if (this.customViewportToScroll) {
-                if (environment.traceRouterScrolling) {
-                  this.logger.debug(
-                    `${componentName}:: Scrolling a custom viewport: `,
-                    this.customViewportToScroll
-                  );
-                }
+                this.logger.debug(
+                  `${componentName}:: Scrolling a custom viewport: `,
+                  this.customViewportToScroll
+                );
+
                 this.customViewportToScroll.scrollTop = 0;
               }
             } else {
-              if (environment.traceRouterScrolling) {
-                this.logger.debug(`${componentName}:: Not scrolling`);
-              }
+              this.logger.debug(`${componentName}:: Not scrolling`);
 
               if (this.scrollDefaultViewport) {
                 this.viewportScroller.scrollToPosition(
@@ -250,12 +236,11 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
     partialRoute: string,
     behaviour: RouteScrollBehaviour
   ): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(
-        `${componentName}:: Adding a strategy once for before navigation towards [${partialRoute}]: `,
-        behaviour
-      );
-    }
+    this.logger.trace(
+      `${componentName}:: Adding a strategy once for before navigation towards [${partialRoute}]: `,
+      behaviour
+    );
+
     this.addBeforeNavigationQueue.push({
       partialRoute: partialRoute,
       behaviour: behaviour,
@@ -267,49 +252,44 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
     partialRoute: string,
     behaviour: RouteScrollBehaviour
   ): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(
-        `${componentName}:: Adding a strategy for partial route: [${partialRoute}]`,
-        behaviour
-      );
-    }
+    this.logger.trace(
+      `${componentName}:: Adding a strategy for partial route: [${partialRoute}]`,
+      behaviour
+    );
+
     this.addQueue.push({ partialRoute: partialRoute, behaviour: behaviour });
   }
 
   removeStrategyForPartialRoute(partialRoute: string): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(
-        `${componentName}:: Removing strategory for: [${partialRoute}]: `
-      );
-    }
+    this.logger.trace(
+      `${componentName}:: Removing strategory for: [${partialRoute}]: `
+    );
+
     this.removeQueue.push(partialRoute);
   }
 
   setCustomViewportToScroll(viewport: HTMLElement): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(
-        `${componentName}:: Setting a custom viewport to scroll: `,
-        viewport
-      );
-    }
+    this.logger.trace(
+      `${componentName}:: Setting a custom viewport to scroll: `,
+      viewport
+    );
+
     this.customViewportToScroll = viewport;
   }
 
   disableScrollDefaultViewport(): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(
-        `${componentName}:: Disabling scrolling the default viewport`
-      );
-    }
+    this.logger.trace(
+      `${componentName}:: Disabling scrolling the default viewport`
+    );
+
     this.scrollDefaultViewport = false;
   }
 
   enableScrollDefaultViewPort(): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(
-        `${componentName}:: Enabling scrolling the default viewport`
-      );
-    }
+    this.logger.trace(
+      `${componentName}:: Enabling scrolling the default viewport`
+    );
+
     this.scrollDefaultViewport = true;
   }
 
@@ -345,9 +325,8 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (environment.traceRouterScrolling) {
-      this.logger.trace(`${componentName}:: ngOnDestroy`);
-    }
+    this.logger.trace(`${componentName}:: ngOnDestroy`);
+
     if (this.scrollPositionRestorationSubscription) {
       this.scrollPositionRestorationSubscription.unsubscribe();
     }
