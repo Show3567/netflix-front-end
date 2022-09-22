@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, InjectionToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
@@ -10,6 +10,11 @@ import { MainRowTwoComponent } from './main/main-row-two/main-row-two.component'
 import { MainQuestionsComponent } from './main/main-questions/main-questions.component';
 import { MainRowThreeComponent } from './main/main-row-three/main-row-three.component';
 import { TitlePipe } from './pipes/title.pipe';
+import { RouterScrollService } from '../services/router-scroll.service';
+
+export const ROUTER_SCROLL_SERVICE = new InjectionToken<string>(
+  'ROUTER_SCROLL_SERVICE'
+);
 
 @NgModule({
   declarations: [
@@ -34,4 +39,16 @@ import { TitlePipe } from './pipes/title.pipe';
     TitlePipe,
   ],
 })
-export class CoreModule {}
+export class CoreModule {
+  public static forRoot(): ModuleWithProviders<CoreModule> {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        {
+          provide: ROUTER_SCROLL_SERVICE,
+          useClass: RouterScrollService,
+        },
+      ],
+    };
+  }
+}

@@ -17,14 +17,14 @@ import {
   ScrollPositionRestore,
 } from './interfaces/router-scrolll.service.interface';
 
-const componentName = 'RouterScrollService';
+const componentName = 'RouterScrolls';
 const defaultViewportKey = `defaultViewport`;
 const customViewportKey = `customViewport`;
 
 @Injectable()
-export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
+export class RouterScrollService implements RouterScrolls, OnDestroy {
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~ variables;
   private readonly scrollPositionRestorationSubscription: Subscription | null;
-
   /**
    * Queue of strategies to add
    */
@@ -50,6 +50,7 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
    */
   private customViewportToScroll: HTMLElement | null = null;
 
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~ lifecycle;
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
@@ -57,7 +58,6 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
     private readonly logger: NGXLogger
   ) {
     this.logger.trace(`${componentName}:: constructor`);
-
     this.logger.trace(`${componentName}:: Subscribing to router events`);
 
     const scrollPositionRestore$ = this.router.events.pipe(
@@ -232,7 +232,15 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
         }
       );
   }
+  ngOnDestroy(): void {
+    this.logger.trace(`${componentName}:: ngOnDestroy`);
 
+    if (this.scrollPositionRestorationSubscription) {
+      this.scrollPositionRestorationSubscription.unsubscribe();
+    }
+  }
+
+  //& ~~~~~~~~~~~~~~~~~~~~~~~~~~ functions;
   addStrategyOnceBeforeNavigationForPartialRoute(
     partialRoute: string,
     behaviour: RouteScrollBehaviour
@@ -323,13 +331,5 @@ export class RouterScrollServiceImpl implements RouterScrolls, OnDestroy {
     return this.routeStrategies
       .map((strategy) => strategy.partialRoute)
       .indexOf(partialRoute);
-  }
-
-  ngOnDestroy(): void {
-    this.logger.trace(`${componentName}:: ngOnDestroy`);
-
-    if (this.scrollPositionRestorationSubscription) {
-      this.scrollPositionRestorationSubscription.unsubscribe();
-    }
   }
 }
