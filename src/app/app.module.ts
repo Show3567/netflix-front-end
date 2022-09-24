@@ -14,11 +14,11 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AuthService } from './services/auth/auth.service';
+import { TmdbService } from './services/tmdb/tmdb.service';
 import { appInitializer } from './core/app.initializer';
 import { AuthWithLocalInterceptor } from './core/interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
-import { AuthService } from './services/auth/auth.service';
-import { TmdbService } from './services/tmdb/tmdb.service';
 import { WithCookieService } from './services/auth/with-cookie.service';
 
 //* injection token */
