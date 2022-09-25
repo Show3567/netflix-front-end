@@ -3,8 +3,8 @@
 .container {
   background-color: black;
   width: 100%;
-  @include flex();
   padding: $reuse_60 0;
+  @include flex();
 
   .content {
     height: 80%;

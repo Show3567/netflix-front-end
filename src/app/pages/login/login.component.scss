@@ -3,11 +3,12 @@
 .header {
   background-color: $transparent_color;
   padding: 0 2.5rem;
-  @include flex(flex-start);
   height: $reuse_100;
   width: 100vw;
   position: fixed;
   top: 0;
+  @include flex(flex-start);
+
   img {
     height: 70%;
     width: auto;
@@ -22,7 +23,6 @@
   color: white;
 
   .glass_layer {
-    @include flex(flex-start, center, column);
     height: 100%;
     width: 100%;
     background-image: linear-gradient(
@@ -31,16 +31,17 @@
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.9)
     );
+    @include flex(flex-start, center, column);
     .login_container {
       margin: 7rem 0;
       width: $reuse_400;
-      @include flex(flex-start, center, column);
 
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 4px;
       height: $reuse_600;
 
       padding: 2.5rem 1rem;
+      @include flex(flex-start, center, column);
 
       .title {
         color: white;
@@ -48,9 +49,9 @@
         line-height: 2.5rem;
       }
       .login_form {
-        @include flex(flex-start, stretch, column);
         margin-top: 1rem;
         width: 95%;
+        @include flex(flex-start, stretch, column);
 
         mat-label {
           color: rgba(255, 255, 255, 0.664);
@@ -87,8 +88,9 @@
           height: 1.5rem;
           line-height: 1.5rem;
           width: 100%;
-          @include flex(space-between);
           color: rgb(179, 179, 179);
+          @include flex(space-between);
+
           mat-checkbox {
             height: 100%;
             margin-right: 10px;
@@ -109,9 +111,10 @@
         height: 1.5rem;
         width: 95%;
         line-height: 1.5rem;
-        @include flex(flex-start);
         margin: 20px 0;
         color: rgb(115, 115, 115);
+        @include flex(flex-start);
+
         img {
           height: 100%;
           width: auto;

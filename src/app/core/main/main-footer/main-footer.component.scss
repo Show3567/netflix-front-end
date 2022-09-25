@@ -17,8 +17,8 @@
       margin-bottom: 2.5rem;
     }
     .link_list {
-      @include flex(flex-start);
       flex-wrap: wrap;
+      @include flex(flex-start);
       .link_item {
         width: 25%;
         margin-bottom: 1rem;

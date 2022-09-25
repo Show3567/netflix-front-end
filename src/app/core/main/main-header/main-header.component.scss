@@ -17,8 +17,8 @@
 
     .login_container,
     .logout_container {
-      @include flex(space-around);
       color: white;
+      @include flex(space-around);
     }
     .logout_container {
       span {

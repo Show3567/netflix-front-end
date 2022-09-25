@@ -8,7 +8,6 @@
   color: white;
 
   .glass_layer {
-    @include flex();
     height: 100%;
     width: 100%;
     background-image: linear-gradient(
@@ -17,9 +16,11 @@
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.9)
     );
+    @include flex();
+
     .content {
-      @include flex(center, center, column);
       width: 44rem;
+      @include flex(center, center, column);
 
       .row_text {
         text-align: center;

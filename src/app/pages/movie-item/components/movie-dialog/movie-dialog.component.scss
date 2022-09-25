@@ -7,7 +7,6 @@
   width: 76.9rem;
   background-color: black;
   border-radius: 20px;
-
   @include flex();
 
   button {
@@ -16,8 +15,8 @@
 
   .video_list {
     height: 100%;
-    @include flex();
     flex-wrap: nowrap;
+    @include flex();
 
     .no_signal {
       position: absolute;
