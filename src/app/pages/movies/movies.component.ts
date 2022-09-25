@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, Scroll } from '@angular/router';
 import { ProdTitle } from 'src/app/app.module';
@@ -29,6 +29,11 @@ export class MoviesComponent implements OnInit {
   baseSearchTv: DiscoverTv = {
     page: 1,
   };
+  @HostListener('window:scroll', ['$event'])
+  doSomething() {
+    console.log('Scroll Event: ', window.pageYOffset);
+    // console.debug('Scroll Event: ', window.pageYOffset);
+  }
 
   constructor(
     private readonly tmdbService: TmdbService,
