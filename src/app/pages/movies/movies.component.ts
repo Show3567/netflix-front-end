@@ -29,11 +29,11 @@ export class MoviesComponent implements OnInit {
   baseSearchTv: DiscoverTv = {
     page: 1,
   };
-  @HostListener('window:scroll', ['$event'])
-  doSomething() {
-    console.log('Scroll Event: ', window.pageYOffset);
-    // console.debug('Scroll Event: ', window.pageYOffset);
-  }
+  // @HostListener('window:scroll', ['$event'])
+  // doSomething() {
+  //   console.log('Scroll Event: ', window.pageYOffset);
+  //   // console.debug('Scroll Event: ', window.pageYOffset);
+  // }
 
   constructor(
     private readonly tmdbService: TmdbService,

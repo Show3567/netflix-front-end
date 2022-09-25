@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -14,7 +15,10 @@ export class ItemComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(private tmdbService: TmdbService) {}
+  constructor(
+    private tmdbService: TmdbService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.year = this.movie.release_date
@@ -30,5 +34,11 @@ export class ItemComponent implements OnInit {
     } else {
       this.hasPoster_img = false;
     }
+  }
+
+  gotoDetailPage() {
+    this.isLoading = true;
+    this.router.navigate(['/movies', this.movie.id]);
+    console.log(window.scrollY);
   }
 }
