@@ -9,6 +9,7 @@ import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { Observable } from 'rxjs';
 import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { RouterScrollService } from '../../services/router-scroll.service';
 
 @Component({
   selector: 'app-movies',
@@ -38,8 +39,8 @@ export class MoviesComponent implements OnInit {
   constructor(
     private readonly tmdbService: TmdbService,
     private readonly router: Router,
-    // private readonly viewPortScroller: ViewportScroller,
     private readonly titleService: Title,
+    private readonly routerScroll: RouterScrollService,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
 
@@ -55,6 +56,11 @@ export class MoviesComponent implements OnInit {
         this.handleHoverRecommend(this.recommend[0].id);
       }
     });
+
+    const position = this.routerScroll.positions.movies;
+    if (position) {
+      window.scrollTo(...position);
+    }
   }
 
   handleHoverRecommend(id: number) {

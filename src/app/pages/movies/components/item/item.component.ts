@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Router } from '@angular/router';
+import { RouterScrollService } from '../../../../services/router-scroll.service';
 
 @Component({
   selector: 'app-item',
@@ -17,7 +18,8 @@ export class ItemComponent implements OnInit {
 
   constructor(
     private tmdbService: TmdbService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly routerScroll: RouterScrollService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,6 @@ export class ItemComponent implements OnInit {
   gotoDetailPage() {
     this.isLoading = true;
     this.router.navigate(['/movies', this.movie.id]);
-    console.log(window.scrollY);
+    this.routerScroll.setPositionState('movies', 0, window.scrollY);
   }
 }
