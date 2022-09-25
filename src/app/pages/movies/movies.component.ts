@@ -78,6 +78,7 @@ export class MoviesComponent implements OnInit {
   }
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
+    // window.scrollTo(0, 10000);
     // this.tmdbService
     //   .getDiscoverMovie(this.baseSearchMovie)
     //   .subscribe((data) => {
