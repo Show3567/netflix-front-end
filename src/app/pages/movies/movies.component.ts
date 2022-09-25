@@ -1,15 +1,13 @@
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, Scroll } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProdTitle } from 'src/app/app.module';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { Observable } from 'rxjs';
-import { ViewportScroller } from '@angular/common';
-import { filter } from 'rxjs/operators';
-import { RouterScrollService } from '../../services/router-scroll.service';
+import { RouterScrollService } from 'src/app/services/router-scroll.service';
 
 @Component({
   selector: 'app-movies',
@@ -57,7 +55,7 @@ export class MoviesComponent implements OnInit {
       }
     });
 
-    // backto the recorded position
+    //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
     const position = this.routerScroll.positions.movies;
     if (position) {
       setTimeout(() => {
