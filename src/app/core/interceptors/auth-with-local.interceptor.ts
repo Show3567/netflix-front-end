@@ -34,6 +34,6 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request).pipe(tap(console.log));
+    return next.handle(request).pipe(tap());
   }
 }

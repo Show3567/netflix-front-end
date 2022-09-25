@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-main-questions',
@@ -78,6 +82,6 @@ export class MainQuestionsComponent implements OnInit {
   ngOnDestroy(): void {}
 
   onSubmit() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
   }
 }

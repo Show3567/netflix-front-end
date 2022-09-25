@@ -57,9 +57,12 @@ export class MoviesComponent implements OnInit {
       }
     });
 
+    // backto the recorded position
     const position = this.routerScroll.positions.movies;
     if (position) {
-      window.scrollTo(...position);
+      setTimeout(() => {
+        window.scrollTo(...position);
+      });
     }
   }
 

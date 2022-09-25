@@ -49,7 +49,7 @@ export class PageFourComponent implements OnInit {
         .upgradePermission({
           role: UserRole[this.selecedColumn],
         })
-        .subscribe(console.log);
+        .subscribe();
     } else {
       this.authService
         .sighup({ role: UserRole[this.selecedColumn] })
