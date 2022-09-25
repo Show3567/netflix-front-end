@@ -5,11 +5,10 @@
   height: calc(100vh - $reuse_80);
   @include flex();
   .container {
-    @include flex(flex-start, stretch, column);
-
     padding-bottom: $reuse_200;
     width: $reuse_400;
     margin-bottom: $reuse_100;
+    @include flex(flex-start, stretch, column);
     .step,
     .p_1,
     .p_2,

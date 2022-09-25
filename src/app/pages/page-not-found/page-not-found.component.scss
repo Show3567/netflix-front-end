@@ -6,12 +6,12 @@
 .header {
   background-color: black;
   padding: 0 2.5rem;
-  @include flex(flex-start);
 
   height: $reuse_100;
   width: 100vw;
   position: fixed;
   top: 0;
+  @include flex(flex-start);
 }
 .main {
   position: fixed;
@@ -21,11 +21,9 @@
   background-color: green;
   background-image: url("../../../assets/notfound/bg-lost-in-space.png");
   background-size: cover;
-
   @include flex();
 
   .error_msg_container {
-    @include flex(flex-start, center, column);
     padding: 2.5rem;
 
     color: white;
@@ -34,6 +32,7 @@
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0)
     );
+    @include flex(flex-start, center, column);
     .msg_title {
       font-size: 5rem;
       line-height: 5.5rem;

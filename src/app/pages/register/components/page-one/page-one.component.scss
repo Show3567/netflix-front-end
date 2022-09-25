@@ -8,10 +8,10 @@
   justify-content: center;
   align-items: center;
   .container {
-    @include flex(flex-start, stretch, column);
-
     padding-bottom: $reuse_200;
     width: 21.875rem;
+    @include flex(flex-start, stretch, column);
+
     img {
       width: 80%;
       height: auto;

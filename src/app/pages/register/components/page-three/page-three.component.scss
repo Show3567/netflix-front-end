@@ -6,10 +6,10 @@
   @include flex();
 
   .container {
-    @include flex(flex-start, stretch, column);
-
     padding-bottom: $reuse_300;
     width: 21.875rem;
+    @include flex(flex-start, stretch, column);
+
     .icon_check_circle {
       mat-icon {
         color: red;
