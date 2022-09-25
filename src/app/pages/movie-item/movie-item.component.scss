@@ -27,14 +27,12 @@
       margin: 3% 0 3% 3%;
       padding: 3% 0 3% 3%;
       color: white;
-
       @include flex(flex-start, flex-start, column);
 
       section {
         width: 100%;
         margin-bottom: 2rem;
       }
-
       .homepage {
         font-size: 1.2rem;
         .btn_background_color {
@@ -49,9 +47,9 @@
         letter-spacing: 0.1rem;
       }
       .list {
-        @include flex(flex-start);
         width: 100%;
         overflow: auto;
+        @include flex(flex-start);
 
         .poster_item {
           height: 10rem;
@@ -69,8 +67,8 @@
           width: 5rem;
           padding: 0.5rem;
           margin-right: 1rem;
-          @include flex(flex-start, center, column);
           flex-shrink: 0;
+          @include flex(flex-start, center, column);
           img {
             height: 100%;
             width: 100%;
@@ -90,8 +88,8 @@
         margin-bottom: 6rem;
       }
       .movie_info_list {
-        @include flex(flex-start);
         font-size: 1.2rem;
+        @include flex(flex-start);
 
         mat-icon {
           color: yellow;
@@ -107,10 +105,10 @@
           border: none;
           height: 4rem;
           width: 10rem;
-          @include flex();
           border-radius: 10px;
           margin-right: 2.5rem;
           padding-top: 0.1rem;
+          @include flex();
         }
         .btn:nth-child(1) {
           padding-right: 0.5rem;
