@@ -119,7 +119,7 @@ export class AuthService {
       );
   }
 
-  // helper methods;
+  //* helper methods;
   refreshToken(): Observable<AuthDto | string> {
     const currentToken = localStorage.getItem('access_token');
     if (!currentToken) {
