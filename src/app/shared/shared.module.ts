@@ -12,11 +12,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
 import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { OverviewControlPipe } from './pipes/overview-control.pipe';
+import { TitlePipe } from './pipes/title.pipe';
 
 @NgModule({
-  declarations: [MainFooterComponent, MainHeaderComponent],
+  declarations: [
+    MainFooterComponent,
+    MainHeaderComponent,
+    OverviewControlPipe,
+    TitlePipe,
+  ],
   imports: [CommonModule, RouterModule],
   exports: [
     MatExpansionModule,
@@ -34,6 +42,8 @@ import { MainHeaderComponent } from './components/main-header/main-header.compon
 
     YouTubePlayerModule,
     InfiniteScrollModule,
+    OverviewControlPipe,
+    TitlePipe,
 
     MainFooterComponent,
     MainHeaderComponent,
