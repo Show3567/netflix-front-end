@@ -1,0 +1,58 @@
+@import "../../../../styles.variables.scss";
+
+.container {
+  height: $reuse_500;
+  background-color: black;
+  color: white;
+  @include flex();
+  .content {
+    position: relative;
+    display: flex;
+    width: $reuse_1000;
+    height: 80%;
+    .content_1 {
+      height: 100%;
+      width: $reuse_500;
+      @include flex(center, stretch, column);
+
+      .content_1_header {
+        font-size: $reuse_50;
+        line-height: 3.7rem;
+      }
+      .content_1_content {
+        margin-top: 1rem;
+        font-size: 1.625rem;
+        line-height: 2.2rem;
+      }
+    }
+    .content_2,
+    .content_tv,
+    .content_device {
+      position: absolute;
+      z-index: 2;
+      top: -20px;
+      right: 0;
+      width: $reuse_500;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+      }
+    }
+    .content_tv {
+      z-index: 1;
+      top: 55px;
+      right: 67px;
+      width: 385px;
+      height: 235px;
+    }
+    .content_device {
+      z-index: 1;
+      top: -25px;
+      right: 100px;
+      width: 310px;
+      height: 300px;
+    }
+  }
+}

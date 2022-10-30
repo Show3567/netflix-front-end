@@ -1,0 +1,86 @@
+@import "../../../../styles.variables.scss";
+
+.container {
+  height: $reuse_500;
+  background-color: black;
+  color: white;
+  @include flex();
+}
+
+.content {
+  position: relative;
+  display: flex;
+  width: $footer_content_width;
+  height: 80%;
+  background-color: black;
+
+  .content_text,
+  .content_kid {
+    position: absolute;
+    width: $reuse_500;
+    height: 100%;
+  }
+
+  .content_kid {
+    top: -3.125rem;
+    img {
+      height: $reuse_500;
+      width: auto;
+      background-size: cover;
+    }
+  }
+  .content_text {
+    right: 0;
+    color: white;
+    @include flex(center, stretch, column);
+
+    .content_text_header {
+      font-size: 2.925rem;
+      line-height: 3.5rem;
+    }
+    .content_text_content {
+      margin-top: 1rem;
+      font-size: 1.625rem;
+      line-height: 2.2rem;
+    }
+  }
+  .content_download {
+    position: relative;
+    left: 0;
+    background-color: red;
+    width: $reuse_500;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 25rem;
+      background-size: cover;
+    }
+    .download_box {
+      height: $reuse_100;
+      width: 20.6rem;
+      background-color: black;
+      border: 2px solid rgb(64, 64, 64);
+      border-radius: 10px;
+      position: absolute;
+      left: 5.31rem;
+      bottom: 1.6rem;
+      @include flex(space-around);
+
+      .boxshotImg {
+        height: 90%;
+        width: auto;
+      }
+      .text_holder {
+        @include flex(flex-start, stretch, column);
+        .dowloading {
+          margin-top: 10px;
+          color: rgb(1, 113, 235);
+        }
+      }
+      .download_icon {
+        height: 70%;
+        width: auto;
+      }
+    }
+  }
+}
