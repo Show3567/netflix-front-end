@@ -10,6 +10,8 @@ import { AppUserAuth } from '../interfaces/user-auth.interface';
   providedIn: 'root',
 })
 export class WithCookieService {
+  private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
+
   private userSubject$!: BehaviorSubject<AppUserAuth>;
   user$!: Observable<AppUserAuth>;
 
@@ -52,7 +54,7 @@ export class WithCookieService {
       .subscribe();
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   refreshToken() {
@@ -71,9 +73,7 @@ export class WithCookieService {
       );
   }
 
-  // helper methods;
-  private refreshTokenTimeout: any;
-
+  //* helper methods;
   private startRefreshTokenTimer() {
     if (this.userValue && this.userValue.jwtToken) {
       // parse json object from base64 encoded jwt token
