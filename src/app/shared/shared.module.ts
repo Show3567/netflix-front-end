@@ -12,10 +12,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MainFooterComponent } from './components/main-footer/main-footer.component';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  declarations: [MainFooterComponent, MainHeaderComponent],
+  imports: [CommonModule, RouterModule],
   exports: [
     MatExpansionModule,
     MatButtonModule,
@@ -32,6 +34,9 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 
     YouTubePlayerModule,
     InfiniteScrollModule,
+
+    MainFooterComponent,
+    MainHeaderComponent,
   ],
 })
 export class SharedModule {}

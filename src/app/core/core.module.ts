@@ -1,10 +1,8 @@
-import { ModuleWithProviders, NgModule, InjectionToken } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
 import { OverviewControlPipe } from './pipes/overview-control.pipe';
-import { MainFooterComponent } from './main/main-footer/main-footer.component';
-import { MainHeaderComponent } from './main/main-header/main-header.component';
 import { TitlePipe } from './pipes/title.pipe';
 
 // export const ROUTER_SCROLL_SERVICE = new InjectionToken<string>(
@@ -12,19 +10,9 @@ import { TitlePipe } from './pipes/title.pipe';
 // );
 
 @NgModule({
-  declarations: [
-    OverviewControlPipe,
-    MainFooterComponent,
-    MainHeaderComponent,
-    TitlePipe,
-  ],
+  declarations: [OverviewControlPipe, TitlePipe],
   imports: [CommonModule, SharedModule],
-  exports: [
-    OverviewControlPipe,
-    MainFooterComponent,
-    MainHeaderComponent,
-    TitlePipe,
-  ],
+  exports: [OverviewControlPipe, TitlePipe],
 })
 export class CoreModule {
   // public static forRoot(): ModuleWithProviders<CoreModule> {
