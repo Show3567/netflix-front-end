@@ -1,0 +1,10 @@
+<footer>
+  <div class="container" [style.background]="backgroundColor">
+    <div class="content">
+      <div class="call_me">Questions? Call {{ phoneNumber }}</div>
+      <div class="link_list">
+        <div class="link_item" *ngFor="let link of linkList">{{ link }}</div>
+      </div>
+    </div>
+  </div>
+</footer>
