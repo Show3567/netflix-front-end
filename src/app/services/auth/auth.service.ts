@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { AUTHSERVER } from 'src/app/app.module';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
+import { AUTHSERVER } from 'src/app/app.module';
 import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { AppUser } from '../interfaces/user-login.interface';
 import { TmdbService } from '../tmdb/tmdb.service';
