@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeComponent } from './home.component';
 import { MainQuestionsComponent } from './components/main-questions/main-questions.component';
@@ -20,11 +19,6 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     MainRowThreeComponent,
     MainRowTwoComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    CoreModule,
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
 export class HomeModule {}
