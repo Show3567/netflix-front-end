@@ -8,6 +8,7 @@ import { DiscoverTv } from '../interfaces/discoverTv.interface';
 import { Movie } from '../interfaces/movie.interface';
 import { Credit } from '../interfaces/credit.interface';
 import { MovieImage } from '../interfaces/poster.interface';
+import { SearchMovieDto } from '../interfaces/searchMovieDto.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,12 @@ export class TmdbService {
     include_adult: false,
     include_video: false,
     with_watch_monetization_types: 'flatrate',
+  };
+  private baseSearchMovie: SearchMovieDto = {
+    api_key: '',
+    query: '',
+    language: 'en-US',
+    page: 1,
   };
   private readonly baseDiscoverTv: DiscoverTv = {
     api_key: '',
