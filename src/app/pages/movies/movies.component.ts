@@ -7,7 +7,7 @@ import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { Observable } from 'rxjs';
-import { RouterScrollService } from 'src/app/services/router-scroll.service';
+import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 
 @Component({
   selector: 'app-movies',

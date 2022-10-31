@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Router } from '@angular/router';
-import { RouterScrollService } from '../../../../services/router-scroll.service';
+import { RouterScrollService } from '../../../../services/scroll/router-scroll.service';
 
 @Component({
   selector: 'app-item',
