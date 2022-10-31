@@ -33,6 +33,10 @@ export class TmdbService {
   private searchedMovieList$ = new BehaviorSubject(this.searchedMovieList);
   searchedMovieListObs$ = this.searchedMovieList$.asObservable();
 
+  private showMovieList: boolean = true;
+  private showMovieList$ = new BehaviorSubject(this.showMovieList);
+  showMovieObs$ = this.showMovieList$.asObservable();
+
   private currentPage = 1;
   private baseDiscoverMovie: DiscoverMovie = {
     api_key: '',
