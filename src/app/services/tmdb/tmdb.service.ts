@@ -17,6 +17,7 @@ export class TmdbService {
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
   private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
   private readonly discoverMoviePath = 'discover/movie?';
+  private readonly searchMoviePath = 'search/movie?';
   private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
 
@@ -27,6 +28,10 @@ export class TmdbService {
   private recommendList: Movie[] = [];
   private recommendList$ = new BehaviorSubject(this.recommendList);
   recommendListObs$ = this.recommendList$.asObservable();
+
+  private searchedMovieList: Movie[] = [];
+  private searchedMovieList$ = new BehaviorSubject(this.searchedMovieList);
+  searchedMovieListObs$ = this.searchedMovieList$.asObservable();
 
   private currentPage = 1;
   private baseDiscoverMovie: DiscoverMovie = {
@@ -63,9 +68,9 @@ export class TmdbService {
 
   // ~~~~~~~ methods ~~~~~~~
   getDiscoverMovie(search: DiscoverMovie) {
-    const discover = { ...this.baseDiscoverMovie, ...search };
+    const query = { ...this.baseDiscoverMovie, ...search };
     let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
-    Object.entries(discover).forEach(([key, value]) => {
+    Object.entries(query).forEach(([key, value]) => {
       url += `&${key}=${'' + value}`;
     });
     return this.http.get(url).pipe(
@@ -77,6 +82,23 @@ export class TmdbService {
           this.recommendList = [...this.movieList.slice(0, 7)];
           this.recommendList$.next(this.recommendList);
         }
+      })
+    );
+  }
+  searchMovie(search: SearchMovieDto) {
+    const query = { ...this.searchMovie, ...search };
+    let url = [this.tmdbBaseUrl, this.searchMoviePath].join('/');
+    Object.entries(query).forEach(([key, value]) => {
+      url += `&${key}=${'' + value}`;
+    });
+    return this.http.get(url).pipe(
+      tap((data: any) => {
+        if (!this.movieList.length) {
+          this.movieList = [...data.results];
+        } else {
+          this.movieList = [...this.movieList, ...data.results];
+        }
+        this.movieList$.next(this.movieList);
       })
     );
   }
