@@ -25,7 +25,13 @@ import { TitlePipe } from './pipes/title.pipe';
     OverviewControlPipe,
     TitlePipe,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+  ],
   exports: [
     MatExpansionModule,
     MatButtonModule,

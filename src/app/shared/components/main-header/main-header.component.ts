@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./main-header.component.scss'],
 })
 export class MainHeaderComponent implements OnInit {
+  @Input() showSearchForm: boolean = false;
   isLogin!: boolean;
   username = '';
 

@@ -6,6 +6,12 @@
       [routerLink]="['/home']"
     />
 
+    <mat-form-field appearance="outline" *ngIf="showSearchForm">
+      <mat-label>Search Movie</mat-label>
+      <input matInput placeholder="" />
+      <mat-icon matSuffix class="icon-display">search</mat-icon>
+    </mat-form-field>
+
     <div *ngIf="!isLogin" class="login_container">
       <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
         Sign In

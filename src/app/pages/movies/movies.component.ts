@@ -17,22 +17,18 @@ import { RouterScrollService } from 'src/app/services/scroll/router-scroll.servi
 export class MoviesComponent implements OnInit {
   movies$!: Observable<Movie[]>;
   recommend: Movie[] = [];
+  showSearchForm = true;
   showRecommendImg: string = '';
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
-  currentPage = 1;
-  baseSearchMovie: DiscoverMovie = {
+
+  private baseSearchMovie: DiscoverMovie = {
     page: 1,
     year: 2022,
   };
-  baseSearchTv: DiscoverTv = {
+  private baseSearchTv: DiscoverTv = {
     page: 1,
   };
-  // @HostListener('window:scroll', ['$event'])
-  // doSomething() {
-  //   console.log('Scroll Event: ', window.pageYOffset);
-  //   // console.debug('Scroll Event: ', window.pageYOffset);
-  // }
 
   constructor(
     private readonly tmdbService: TmdbService,
