@@ -7,9 +7,10 @@ import { WithCookieService } from '../services/auth/with-cookie.service';
 import { AuthService } from '../services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
 
+//* injection token */
+export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const ProdTitle = new InjectionToken<string>('');
-export const CD = new InjectionToken<string>('');
 export const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
@@ -53,11 +54,11 @@ export class CoreModule {
           },
           deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
         },
-        {
-          provide: CD,
-          useValue: 'pwd=sdf&username=fdgd/sdfsdjlr45hsdjflk',
-        },
-        // { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
+
+        // {
+        //   provide: TMDBAPIKEY,
+        //   useValue: 'ac7e1f44cec0dd6e260391374208b0cc',
+        // },
       ],
     };
   }

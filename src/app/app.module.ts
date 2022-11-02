@@ -21,9 +21,6 @@ import { AuthWithLocalInterceptor } from './core/interceptors/auth-with-local.in
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { WithCookieService } from './services/auth/with-cookie.service';
 
-//* injection token */
-export const TMDBAPIKEY = new InjectionToken<string>('');
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
