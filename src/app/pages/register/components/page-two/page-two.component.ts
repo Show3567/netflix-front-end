@@ -10,10 +10,10 @@ import {
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
-import { AUTHSERVER } from 'src/app/app.module';
+
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { AUTHSERVER } from 'src/app/core/core.module';
 
 @Component({
   selector: 'app-page-two',

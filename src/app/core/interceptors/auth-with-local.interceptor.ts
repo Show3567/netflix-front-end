@@ -6,9 +6,10 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AUTHSERVER } from 'src/app/app.module';
 import { tap } from 'rxjs/operators';
+
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { AUTHSERVER } from '../core.module';
 
 @Injectable()
 export class AuthWithLocalInterceptor implements HttpInterceptor {

@@ -1,20 +1,21 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ProdTitle } from 'src/app/app.module';
+
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { Observable } from 'rxjs';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
+import { ProdTitle } from 'src/app/core/core.module';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, AfterViewInit {
   movies$!: Observable<Movie[]>;
   recommend: Movie[] = [];
   showSearchForm = true;
@@ -52,11 +53,18 @@ export class MoviesComponent implements OnInit {
     });
 
     //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
+    // const position = this.routerScroll.positions.movies;
+    // if (position) {
+    //   setTimeout(() => {
+    //     window.scrollTo(...position);
+    //   });
+    // }
+  }
+  ngAfterViewInit(): void {
+    // throw new Error('Method not implemented.');
     const position = this.routerScroll.positions.movies;
     if (position) {
-      setTimeout(() => {
-        window.scrollTo(...position);
-      });
+      window.scrollTo(...position);
     }
   }
 

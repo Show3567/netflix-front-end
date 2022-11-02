@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ProdTitle } from 'src/app/app.module';
+import { ProdTitle } from 'src/app/core/core.module';
 
 @Component({
   selector: 'app-page-not-found',

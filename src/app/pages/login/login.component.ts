@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
-import { ProdTitle } from 'src/app/app.module';
+import { ProdTitle } from 'src/app/core/core.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({

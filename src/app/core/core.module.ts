@@ -1,9 +1,16 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { TmdbService } from '../services/tmdb/tmdb.service';
+import { WithCookieService } from '../services/auth/with-cookie.service';
+import { AuthService } from '../services/auth/auth.service';
+import { Title } from '@angular/platform-browser';
 
-// export const ROUTER_SCROLL_SERVICE = new InjectionToken<string>(
-//   'ROUTER_SCROLL_SERVICE'
-// );
+export const AUTHSERVER = new InjectionToken<string>('');
+export const ProdTitle = new InjectionToken<string>('');
+export const CD = new InjectionToken<string>('');
+export const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [],
@@ -11,15 +18,47 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class CoreModule {
-  // public static forRoot(): ModuleWithProviders<CoreModule> {
-  //   return {
-  //     ngModule: CoreModule,
-  //     providers: [
-  //       {
-  //         provide: ROUTER_SCROLL_SERVICE,
-  //         useClass: RouterScrollService,
-  //       },
-  //     ],
-  //   };
-  // }
+  public static forRoot(): ModuleWithProviders<CoreModule> {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        {
+          provide: Title,
+          useClass: Title,
+        },
+        {
+          provide: AUTHSERVER,
+          useValue: 'http://localhost:4231',
+        },
+        {
+          provide: ProdTitle,
+          useValue: 'Notflix',
+        },
+        {
+          provide: USECOOKIE,
+          useValue: false,
+        },
+        {
+          provide: AuthService,
+          useFactory: (
+            usecookie: boolean,
+            router: Router,
+            http: HttpClient,
+            tmdbservice: TmdbService,
+            authpath: string
+          ) => {
+            return usecookie
+              ? new WithCookieService(router, http, authpath)
+              : new AuthService(router, http, tmdbservice, authpath);
+          },
+          deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
+        },
+        {
+          provide: CD,
+          useValue: 'pwd=sdf&username=fdgd/sdfsdjlr45hsdjflk',
+        },
+        // { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
+      ],
+    };
+  }
 }

@@ -23,11 +23,6 @@ import { WithCookieService } from './services/auth/with-cookie.service';
 
 //* injection token */
 export const TMDBAPIKEY = new InjectionToken<string>('');
-export const AUTHSERVER = new InjectionToken<string>('');
-export const ProdTitle = new InjectionToken<string>('');
-export const CD = new InjectionToken<string>('');
-
-const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +31,7 @@ const USECOOKIE = new InjectionToken<string>('');
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule,
+    CoreModule.forRoot(),
     SharedModule,
     LoggerModule.forRoot({
       serverLoggingUrl: '/api/logs',
@@ -52,8 +47,6 @@ const USECOOKIE = new InjectionToken<string>('');
       multi: true,
       deps: [AuthService],
     },
-    // authserver path;
-    { provide: AUTHSERVER, useValue: 'http://localhost:4231' },
     // Interceptors;
     {
       provide: HTTP_INTERCEPTORS,
@@ -65,27 +58,6 @@ const USECOOKIE = new InjectionToken<string>('');
       useClass: ErrorInterceptor,
       multi: true,
     },
-    // Title
-    Title,
-    { provide: ProdTitle, useValue: 'Notflix' },
-    { provide: USECOOKIE, useValue: false },
-    {
-      provide: AuthService,
-      useFactory: (
-        usecookie: boolean,
-        router: Router,
-        http: HttpClient,
-        tmdbservice: TmdbService,
-        authpath: string
-      ) => {
-        return usecookie
-          ? new WithCookieService(router, http, authpath)
-          : new AuthService(router, http, tmdbservice, authpath);
-      },
-      deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
-    },
-    { provide: CD, useValue: 'pwd=sdf&username=fdgd/sdfsdjlr45hsdjflk' },
-    // { provide: TMDBAPIKEY, useValue: 'ac7e1f44cec0dd6e260391374208b0cc' },
   ],
   bootstrap: [AppComponent],
 })

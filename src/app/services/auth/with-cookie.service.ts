@@ -3,7 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AUTHSERVER } from 'src/app/app.module';
+
+import { AUTHSERVER } from 'src/app/core/core.module';
 import { AppUserAuth } from '../interfaces/user-auth.interface';
 
 @Injectable({
