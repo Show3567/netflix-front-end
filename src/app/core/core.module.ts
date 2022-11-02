@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { TmdbService } from '../services/tmdb/tmdb.service';
 import { WithCookieService } from '../services/auth/with-cookie.service';
 import { AuthService } from '../services/auth/auth.service';
-import { Title } from '@angular/platform-browser';
 import { appInitializer } from './app.initializer';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
