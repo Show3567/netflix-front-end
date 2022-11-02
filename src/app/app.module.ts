@@ -36,26 +36,7 @@ import { WithCookieService } from './services/auth/with-cookie.service';
       serverLogLevel: NgxLoggerLevel.ERROR,
     }),
   ],
-  providers: [
-    // Angular initializer;
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitializer,
-      multi: true,
-      deps: [AuthService],
-    },
-    // Interceptors;
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthWithLocalInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

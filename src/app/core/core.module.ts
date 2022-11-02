@@ -1,11 +1,19 @@
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import {
+  APP_INITIALIZER,
+  InjectionToken,
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TmdbService } from '../services/tmdb/tmdb.service';
 import { WithCookieService } from '../services/auth/with-cookie.service';
 import { AuthService } from '../services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
+import { appInitializer } from './app.initializer';
+import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 //* injection token */
 export const TMDBAPIKEY = new InjectionToken<string>('');
@@ -23,10 +31,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        {
-          provide: Title,
-          useClass: Title,
-        },
+        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Reuse values
         {
           provide: AUTHSERVER,
           useValue: 'http://localhost:4231',
@@ -35,6 +40,7 @@ export class CoreModule {
           provide: ProdTitle,
           useValue: 'Notflix',
         },
+        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ AuthService selector
         {
           provide: USECOOKIE,
           useValue: false,
@@ -54,12 +60,32 @@ export class CoreModule {
           },
           deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
         },
-
-        // {
-        //   provide: TMDBAPIKEY,
-        //   useValue: 'ac7e1f44cec0dd6e260391374208b0cc',
-        // },
+        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Angular initializer;
+        {
+          provide: APP_INITIALIZER,
+          useFactory: appInitializer,
+          multi: true,
+          deps: [AuthService],
+        },
+        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Interceptors;
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthWithLocalInterceptor,
+          multi: true,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ErrorInterceptor,
+          multi: true,
+        },
+        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Page Title control
+        Title,
       ],
     };
   }
 }
+
+// {
+//   provide: TMDBAPIKEY,
+//   useValue: 'ac7e1f44cec0dd6e260391374208b0cc',
+// },
