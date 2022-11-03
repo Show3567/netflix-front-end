@@ -19,7 +19,7 @@ export class AuthService {
   user$!: Observable<AppUserAuth>;
 
   private appUserRegister = new AppUserRegister();
-  private refreshTokenTimeout: any;
+  private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
 
   get userValue(): AppUserAuth {
     return this.userSubject$.value;

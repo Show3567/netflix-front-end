@@ -34,10 +34,10 @@ export class MovieDialogComponent implements OnInit {
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ switch trailers
   switchVideo(direction: string) {
     if (direction === 'left' && this.movieVideos.length) {
-      const videoOut: any = this.movieVideos.shift();
+      const videoOut: Video = this.movieVideos.shift() as Video;
       this.movieVideos.push(videoOut);
     } else if (direction === 'right' && this.movieVideos.length) {
-      const videoOut: any = this.movieVideos.pop();
+      const videoOut: Video = this.movieVideos.pop() as Video;
       this.movieVideos.unshift(videoOut);
     }
   }
