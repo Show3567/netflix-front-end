@@ -20,7 +20,8 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const ProdTitle = new InjectionToken<string>('');
-export const USECOOKIE = new InjectionToken<string>('');
+
+const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [],
