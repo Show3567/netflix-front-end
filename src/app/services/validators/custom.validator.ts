@@ -7,8 +7,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
-
-import { AUTHSERVER } from 'src/app/app.module';
+import { AUTHSERVER } from 'src/app/core/core.module';
 
 @Injectable({
   providedIn: 'root',
