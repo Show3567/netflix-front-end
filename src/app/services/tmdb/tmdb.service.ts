@@ -62,6 +62,7 @@ export class TmdbService {
   set setMyApiKey(api_key: string) {
     this.baseDiscoverMovie.api_key = api_key;
     this.baseDiscoverTv.api_key = api_key;
+    this.baseSearchMovie.api_key = api_key;
   }
 
   // ~~~~~~~ lifecycle ~~~~~~~
@@ -90,8 +91,8 @@ export class TmdbService {
     );
   }
 
-  searchMovie(search: SearchMovieDto) {
-    const query = { ...this.searchMovie, ...search };
+  searchMovie(keyword: string) {
+    const query = { ...this.baseSearchMovie, query: keyword };
     const url = [this.tmdbBaseUrl, this.searchMoviePath].join('/');
     const params = new HttpParams();
 

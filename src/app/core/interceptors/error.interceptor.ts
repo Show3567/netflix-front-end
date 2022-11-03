@@ -23,6 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         const authToken = this.authService.userValue.jwtToken;
         if ([401, 403].includes(err.status) && authToken) {
           // auto logout if 401 or 403 response returned from api
+          console.log('error happend!');
           this.authService.logout();
         }
 

@@ -33,15 +33,8 @@ export class MainHeaderComponent implements OnInit {
   }
 
   searchMovieByKeyWord() {
-    const { tmdb_key: key } = this.authService.userValue;
-    if (key) {
-      const searchDto: SearchMovieDto = {
-        api_key: key,
-        query: this.searchKeyWord,
-      };
-      this.searchKeyWord = '';
-      this.tmdbService.searchMovie(searchDto).subscribe(console.log);
-    }
+    this.tmdbService.searchMovie(this.searchKeyWord).subscribe(console.log);
+    this.searchKeyWord = '';
   }
 
   signOut() {
