@@ -9,6 +9,7 @@ import { Movie } from '../interfaces/movie.interface';
 import { Credit } from '../interfaces/credit.interface';
 import { MovieImage } from '../interfaces/poster.interface';
 import { SearchMovieDto } from '../interfaces/searchMovieDto.interface';
+import { SearchMovieReturn } from '../interfaces/searchMovidReturn.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -77,10 +78,10 @@ export class TmdbService {
       url += `&${key}=${value}`;
     });
 
-    return this.http.get(url).pipe(
-      tap((data: any) => {
+    return this.http.get<SearchMovieReturn>(url).pipe(
+      tap((data) => {
         if (!this.movieList.length) {
-          this.movieList = [...data.results];
+          this.movieList = [...(data.results as Movie[])];
           this.movieList$.next(this.movieList);
 
           this.recommendList = [...this.movieList.slice(0, 7)];
@@ -98,14 +99,14 @@ export class TmdbService {
       url += `&${key}=${value}`;
     });
 
-    return this.http.get(url).pipe(
-      tap((data: any) => {
-        // if (!this.movieList.length) {
-        //   this.movieList = [...data.results];
-        // } else {
-        //   this.movieList = [...this.movieList, ...data.results];
-        // }
-        // this.movieList$.next(this.movieList);
+    return this.http.get<SearchMovieReturn>(url).pipe(
+      tap((data) => {
+        if (!this.movieList.length) {
+          this.movieList = [...(data.results as Movie[])];
+        } else {
+          this.movieList = [...this.movieList, ...(data.results as Movie[])];
+        }
+        this.movieList$.next(this.movieList);
       })
     );
   }
@@ -118,9 +119,9 @@ export class TmdbService {
       url += `&${key}=${value}`;
     });
 
-    return this.http.get(url).pipe(
-      tap((data: any) => {
-        this.movieList = [...this.movieList, ...data.results];
+    return this.http.get<SearchMovieReturn>(url).pipe(
+      tap((data) => {
+        this.movieList = [...this.movieList, ...(data.results as Movie[])];
         this.movieList$.next(this.movieList);
 
         this.recommendList = [...this.movieList.slice(0, 7)];

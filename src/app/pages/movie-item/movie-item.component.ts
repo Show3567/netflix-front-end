@@ -25,8 +25,8 @@ export class MovieItemComponent implements OnInit {
   poster_img_high = '';
   backdrop_img_high = '';
   isMuted = false;
-  type: any = '';
-  date: any = '';
+  type!: string | undefined;
+  date!: string | undefined;
 
   movie!: MovieDetail;
   movieVideos: Video[] = [];
