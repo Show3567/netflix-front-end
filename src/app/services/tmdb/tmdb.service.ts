@@ -100,12 +100,12 @@ export class TmdbService {
 
     return this.http.get(url).pipe(
       tap((data: any) => {
-        if (!this.movieList.length) {
-          this.movieList = [...data.results];
-        } else {
-          this.movieList = [...this.movieList, ...data.results];
-        }
-        this.movieList$.next(this.movieList);
+        // if (!this.movieList.length) {
+        //   this.movieList = [...data.results];
+        // } else {
+        //   this.movieList = [...this.movieList, ...data.results];
+        // }
+        // this.movieList$.next(this.movieList);
       })
     );
   }
