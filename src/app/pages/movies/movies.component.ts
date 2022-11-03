@@ -25,7 +25,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
 
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
-    year: 2022,
+    year: 2023,
   };
   private baseSearchTv: DiscoverTv = {
     page: 1,
