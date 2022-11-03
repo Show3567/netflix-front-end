@@ -31,6 +31,8 @@ import { TitlePipe } from './pipes/title.pipe';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [
     MatExpansionModule,

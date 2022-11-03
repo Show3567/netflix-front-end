@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -9,13 +10,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MainHeaderComponent implements OnInit {
   @Input() showSearchForm: boolean = false;
+
   isLogin!: boolean;
   username = '';
+  searchKeyWord = '';
 
-  constructor(
-    private readonly authService: AuthService,
-    private readonly router: Router
-  ) {}
+  constructor(private readonly authService: AuthService) {}
   ngOnInit(): void {
     const { jwtToken, username } = this.authService.userValue;
     if (jwtToken && username) {
@@ -24,6 +24,10 @@ export class MainHeaderComponent implements OnInit {
     } else {
       this.isLogin = false;
     }
+  }
+
+  searchMovieByKeyWord() {
+    console.log(this.searchKeyWord);
   }
 
   signOut() {
