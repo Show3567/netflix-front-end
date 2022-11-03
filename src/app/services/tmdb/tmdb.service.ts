@@ -16,7 +16,7 @@ import { SearchMovieDto } from '../interfaces/searchMovieDto.interface';
 export class TmdbService {
   private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
   private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
-  private readonly discoverMoviePath = 'discover/movie?';
+  private readonly discoverMoviePath = 'discover/movie';
   private readonly searchMoviePath = 'search/movie';
   private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
@@ -70,11 +70,14 @@ export class TmdbService {
   // ~~~~~~~ methods ~~~~~~~
   getDiscoverMovie(search: DiscoverMovie) {
     const query = { ...this.baseDiscoverMovie, ...search };
-    let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
+    const url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
+    const params = new HttpParams();
+
     Object.entries(query).forEach(([key, value]) => {
-      url += `&${key}=${'' + value}`;
+      params.append(key, value);
     });
-    return this.http.get(url).pipe(
+
+    return this.http.get(url, { params }).pipe(
       tap((data: any) => {
         if (!this.movieList.length) {
           this.movieList = [...data.results];
@@ -89,14 +92,13 @@ export class TmdbService {
 
   searchMovie(search: SearchMovieDto) {
     const query = { ...this.searchMovie, ...search };
-    let url = [this.tmdbBaseUrl, this.searchMoviePath].join('/');
-
+    const url = [this.tmdbBaseUrl, this.searchMoviePath].join('/');
     const params = new HttpParams();
 
     Object.entries(query).forEach(([key, value]) => {
-      // url += `&${key}=${'' + value}`;
       params.append(key, value);
     });
+
     return this.http.get(url, { params }).pipe(
       tap((data: any) => {
         if (!this.movieList.length) {
@@ -111,12 +113,14 @@ export class TmdbService {
 
   handleScrol() {
     const discover = { ...this.baseDiscoverMovie, page: ++this.currentPage };
-    let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
+    const url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
+    const params = new HttpParams();
+
     Object.entries(discover).forEach(([key, value]) => {
-      url += `&${key}=${'' + value}`;
+      params.append(key, value);
     });
 
-    return this.http.get(url).pipe(
+    return this.http.get(url, { params }).pipe(
       tap((data: any) => {
         this.movieList = [...this.movieList, ...data.results];
         this.movieList$.next(this.movieList);
@@ -129,11 +133,13 @@ export class TmdbService {
 
   getDiscoverTV(search: DiscoverTv) {
     const discover = { ...this.baseDiscoverTv, ...search };
-    let url = [this.tmdbBaseUrl, this.discoverTvPath].join('/');
+    const url = [this.tmdbBaseUrl, this.discoverTvPath].join('/');
+    const params = new HttpParams();
+
     Object.entries(discover).forEach(([key, value]) => {
-      url += `&${key}=${'' + value}`;
+      params.append(key, value);
     });
-    return this.http.get(url).pipe(map((tv: any) => tv.results));
+    return this.http.get(url, { params }).pipe(map((tv: any) => tv.results));
   }
 
   getMovieImagePath(path: string, quality: string): string {
