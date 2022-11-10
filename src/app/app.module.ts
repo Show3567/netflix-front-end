@@ -31,6 +31,6 @@ import { SharedModule } from './shared/shared.module';
 export class AppModule {}
 
 /* 
-  myVpn_Activation_Code: E5Y82N8XKXQIYLURZHYAMSX
+  myVpn_Activation_Code:
   $ E5Y82N8XKXQIYLURZHYAMSX
 */
