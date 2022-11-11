@@ -33,7 +33,7 @@ export const SendSignUpRequest = createAction(
 );
 export const SignUpSuccess = createAction(
   '[Auth] SignUp Success',
-  props<AuthDto>()
+  props<AppUserAuth>()
 );
 export const SignUpFailed = createAction(
   '[Auth] SignUp Failed',

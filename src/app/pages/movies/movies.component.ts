@@ -94,7 +94,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
-    const value = this.getCurrentValueFromObservable(
+    const value = this.getCurValFromObs(
       this.store.select(AuthSeletors.getUserAuth)
     );
     console.log(value);
@@ -116,7 +116,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     //     this.handleHoverRecommend(this.recommend[0].id + '');
     // });
   }
-  private getCurrentValueFromObservable(obs: Observable<any>): any {
+  private getCurValFromObs(obs: Observable<any>): any {
     let value: any;
     obs.pipe(take(1)).subscribe((val) => {
       value = val;
