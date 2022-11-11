@@ -54,12 +54,14 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
-    this.authService.user$.subscribe((userinfo) =>
-      console.log('userinfo: ', userinfo)
-    );
+    // this.authService.user$.subscribe((userinfo) =>
+    //   console.log('userinfo: ', userinfo)
+    // );
 
     //* ~~~~~ Ngrx ~~~~~
-    this.store.select(AuthSelectors.getUserAuth).subscribe(console.log);
+    this.store
+      .select(AuthSelectors.getUserAuth)
+      .subscribe((data) => console.log('ngrx: ', data));
   }
 
   onSubmit() {
