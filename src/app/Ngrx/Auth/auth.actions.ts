@@ -1,7 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 
 import { AuthDto } from 'src/app/services/interfaces/authDto.interface';
-import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
+import {
+  AppUserAuth,
+  UserRole,
+} from 'src/app/services/interfaces/user-auth.interface';
 import { AppUser } from 'src/app/services/interfaces/user-login.interface';
 import { UserInfo } from 'src/app/services/interfaces/user-signup.interface';
 
@@ -12,7 +15,7 @@ export const SendLoginRequest = createAction(
 );
 export const LoginSuccess = createAction(
   '[Auth] Login Success',
-  props<AuthDto>()
+  props<AppUserAuth>()
 );
 export const LoginFailed = createAction(
   '[Auth] Login Failed',

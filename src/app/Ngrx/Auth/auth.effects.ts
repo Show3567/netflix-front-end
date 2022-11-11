@@ -26,11 +26,15 @@ export class AuthEffects {
         return this.http
           .post<AuthDto>(`${this.authServerPath}/auth/signin`, appUser)
           .pipe(
-            tap(({ accessToken, role }: AuthDto) => {
-              this.setUserValueByToken({ accessToken, role });
+            map(({ accessToken, role }: AuthDto) => {
+              const user: AppUserAuth = this.setUserValueByToken({
+                accessToken,
+                role,
+              });
               this.router.navigate(['/movies']);
+              return user;
             }),
-            map((appUser: AuthDto) => AuthActions.LoginSuccess(appUser)),
+            map((appUser: AppUserAuth) => AuthActions.LoginSuccess(appUser)),
             catchError((error: any) =>
               of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
             )
