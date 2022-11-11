@@ -10,6 +10,8 @@ import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
   providedIn: 'root',
 })
 export class AuthNgrxService {
+  private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
+
   constructor(private readonly store: Store) {}
 
   /* SignOut */
@@ -29,5 +31,21 @@ export class AuthNgrxService {
       value = val;
     });
     return value;
+  }
+
+  private startRefreshTokenTimer(exp: string) {
+    // set a timeout to refresh the token a minute before it expires
+    const expires = new Date(+exp * 1000);
+    const timeout = expires.getTime() - Date.now();
+
+    this.refreshTokenTimeout = setTimeout(() => {
+      //* ~~~~~~ Ngrx dispatch ~~~~
+      // if (this.userValue.jwtToken) {
+      //   this.refreshToken().subscribe();
+      // }
+    }, timeout);
+  }
+  private stopRefreshTokenTimer() {
+    clearTimeout(this.refreshTokenTimeout);
   }
 }

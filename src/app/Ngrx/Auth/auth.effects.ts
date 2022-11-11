@@ -63,10 +63,7 @@ export class AuthEffects {
       }),
       exhaustMap((appUserRegister) => {
         return this.http
-          .post<AuthDto>(
-            [this.authServerPath, 'auth', 'signup'].join('/'),
-            appUserRegister
-          )
+          .post<AuthDto>(`${this.authServerPath}/auth/signup`, appUserRegister)
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
               const user: AppUserAuth = this.setUserValueByToken({
@@ -90,10 +87,44 @@ export class AuthEffects {
       ofType(AuthActions.SendUpdateUserInfoRequest),
       exhaustMap((userRole: { role: UserRole }) => {
         return this.http
-          .patch<AuthDto>(
-            [this.authServerPath, 'auth', 'userupdate'].join('/'),
-            userRole
-          )
+          .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, userRole)
+          .pipe(
+            map(({ accessToken, role }: AuthDto) => {
+              const user: AppUserAuth = this.setUserValueByToken({
+                accessToken,
+                role,
+              });
+              this.router.navigate(['/movies']);
+              return AuthActions.SignUpSuccess(user);
+            }),
+            catchError((error: any) =>
+              of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
+            )
+          );
+      })
+    )
+  );
+
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RefreshToken effect
+  private refreshToken$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.SendRefreshTokenRequest),
+      exhaustMap((_) => {
+        const currentToken = localStorage.getItem('access_token');
+
+        if (!currentToken) {
+          this.router.navigate(['/']);
+          return of(
+            AuthActions.LoginFailed({ authErr: JSON.stringify('err') })
+          );
+        }
+
+        const { id, username, email, tmdb_key } =
+          this.jwtHelper.decodeToken(currentToken);
+        const user = { id, username, email, tmdb_key };
+
+        return this.http
+          .patch<AuthDto>(`${this.authServerPath}/auth/refresh-token`, user)
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
               const user: AppUserAuth = this.setUserValueByToken({
