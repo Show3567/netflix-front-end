@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import { AppUserAuth } from 'src/app/services/interfaces/user-auth.interface';
 import { UserInfo } from 'src/app/services/interfaces/user-signup.interface';
+
 import * as AuthActions from './auth.actions';
 
 const initialState = {
@@ -27,7 +28,7 @@ export const AuthReducer = createReducer(
   on(AuthActions.AddUserInfo, (state, userInfo: UserInfo) => {
     return {
       ...state,
-      userRegisterCollection: {
+      userRegisterInfo: {
         ...state.userRegisterInfo,
         ...userInfo,
       },

@@ -7,6 +7,10 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
+import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
+import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-page-two-ii',
   templateUrl: './page-two-ii.component.html',
@@ -27,7 +31,8 @@ export class PageTwoIiComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly store: Store
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -46,5 +51,8 @@ export class PageTwoIiComponent implements OnInit {
   onSubmit() {
     this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step3']);
+
+    //* ~~~~ Ngrx ~~~~
+    this.store.dispatch(AuthActions.AddUserInfo(this.form.value));
   }
 }

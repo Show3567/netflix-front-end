@@ -9,11 +9,15 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AUTHSERVER } from 'src/app/core/core.module';
+
+import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
+import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 
 @Component({
   selector: 'app-page-two',
@@ -36,6 +40,7 @@ export class PageTwoComponent implements OnInit {
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly authService: AuthService,
+    private readonly store: Store,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {}
   ngOnInit(): void {
@@ -58,6 +63,9 @@ export class PageTwoComponent implements OnInit {
   onSubmit() {
     this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step2ii']);
+
+    //* ~~~~ Ngrx ~~~~
+    this.store.dispatch(AuthActions.AddUserInfo(this.form.value));
   }
 
   /* customValidator */

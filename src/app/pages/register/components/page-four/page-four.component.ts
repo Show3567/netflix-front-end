@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { Store } from '@ngrx/store';
 
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
+import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
+import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 @Component({
   selector: 'app-page-four',
   templateUrl: './page-four.component.html',
@@ -31,7 +34,8 @@ export class PageFourComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly store: Store
   ) {}
   ngOnInit(): void {}
 
@@ -39,9 +43,6 @@ export class PageFourComponent implements OnInit {
     this.selecedColumn = user;
   }
   handleNavigate() {
-    // !this.authService.userValue.jwtToken
-    //   ? this.router.navigate(['/login'])
-    //   : this.router.navigate(['/movies']);
     const { jwtToken } = this.authService.userValue;
 
     if (jwtToken) {
@@ -54,6 +55,11 @@ export class PageFourComponent implements OnInit {
       this.authService
         .sighup({ role: UserRole[this.selecedColumn] })
         .subscribe();
+
+      //* ~~~~ Ngrx ~~~~
+      // this.store.dispatch(
+      //   AuthActions.SendSignUpRequest({ role: UserRole[this.selecedColumn] })
+      // );
     }
   }
 }

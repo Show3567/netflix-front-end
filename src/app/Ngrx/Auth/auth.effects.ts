@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, exhaustMap, map, take, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppUser } from 'src/app/services/interfaces/user-login.interface';
@@ -18,7 +19,6 @@ import {
 import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
 import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 import { AuthNgrxService } from 'src/app/services/auth/auth-ngrx.service';
-import { Store } from '@ngrx/store';
 
 @Injectable()
 export class AuthEffects {
@@ -54,15 +54,21 @@ export class AuthEffects {
   private signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.SendSignUpRequest),
-      exhaustMap((userRole: { role: UserRole }) => {
-        const userInfo = this.authNgrxService.getCurValFromObs(
-          this.store.select(AuthSelectors.getUserRegisterInfo)
+      switchMap(({ role }: { role: UserRole }) => {
+        return this.store.select(AuthSelectors.getUserRegisterInfo).pipe(
+          map(({ email, password, tmdb_key, username }) => {
+            console.log('userInfo: ', {
+              email,
+              password,
+              tmdb_key,
+              username,
+              role,
+            });
+            return { email, password, tmdb_key, username, role };
+          })
         );
-        const appUserRegister = {
-          ...userInfo,
-          ...userRole,
-        };
-
+      }),
+      exhaustMap((appUserRegister) => {
         return this.http
           .post<AuthDto>(
             [this.authServerPath, 'auth', 'signup'].join('/'),
