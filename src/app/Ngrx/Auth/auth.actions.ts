@@ -21,6 +21,7 @@ export const LoginFailed = createAction(
   '[Auth] Login Failed',
   props<{ authErr: string }>()
 );
+
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignUp
 export const AddUserInfo = createAction(
   '[Auth] Add User Register info',
@@ -42,3 +43,17 @@ export const SignUpFailed = createAction(
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut
 export const SignOut = createAction('[Auth] SignOut to Remove userInfo');
+
+//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upgrade Permission
+export const SendUpdateUserInfoRequest = createAction(
+  '[Auth] Send UpdateUserInfo Request',
+  props<{ role: UserRole }>()
+);
+export const UpdateUserInfoSuccess = createAction(
+  '[Auth] UpdateUserInfo Success',
+  props<AppUserAuth>()
+);
+export const UpdateUserInfoFailed = createAction(
+  '[Auth] UpdateUserInfo Failed',
+  props<{ authErr: string }>()
+);
