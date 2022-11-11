@@ -14,7 +14,11 @@ export const AuthReducer = createReducer(
   on(AuthActions.LoginSuccess, (state, authInfo: AppUserAuth) => {
     return { ...state, authInfo };
   }),
-  on(AuthActions.LoginFailed, (state) => {
-    return state;
+  on(AuthActions.LoginFailed, (state, { authErr }) => {
+    return {
+      userInfo: {},
+      authInfo: {},
+      authErr,
+    };
   })
 );
