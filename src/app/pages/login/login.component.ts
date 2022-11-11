@@ -5,9 +5,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
 
 import { ProdTitle } from 'src/app/core/core.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
+
+import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
+import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +43,7 @@ export class LoginComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private readonly authService: AuthService,
     private readonly titleService: Title,
+    private store: Store,
     // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
@@ -52,6 +57,9 @@ export class LoginComponent implements OnInit {
     this.authService.user$.subscribe((userinfo) =>
       console.log('userinfo: ', userinfo)
     );
+
+    //* ~~~~~ Ngrx ~~~~~
+    this.store.select(AuthSelectors.getUserAuth).subscribe(console.log);
   }
 
   onSubmit() {
@@ -68,5 +76,8 @@ export class LoginComponent implements OnInit {
         this.login_msg.msg = 'Please check your login credentials';
       }
     );
+
+    //* ~~~~~ Ngrx ~~~~~
+    this.store.dispatch(AuthActions.SendLoginRequest(credencialSignIn));
   }
 }
