@@ -54,9 +54,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
-    // this.authService.user$.subscribe((userinfo) =>
-    //   console.log('userinfo: ', userinfo)
-    // );
 
     //* ~~~~~ Ngrx ~~~~~
     this.store

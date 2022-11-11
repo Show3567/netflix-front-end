@@ -45,6 +45,32 @@ export class AuthEffects {
       })
     )
   );
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ signUp effect
+  //   private signUp$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(AuthActions.SendLoginRequest),
+  //     exhaustMap(({ email, password }: AppUser) => {
+  //       return this.http
+  //         .post<AuthDto>(`${this.authServerPath}/auth/signin`, {
+  //           email,
+  //           password,
+  //         })
+  //         .pipe(
+  //           map(({ accessToken, role }: AuthDto) => {
+  //             const user: AppUserAuth = this.setUserValueByToken({
+  //               accessToken,
+  //               role,
+  //             });
+  //             this.router.navigate(['/movies']);
+  //             return AuthActions.LoginSuccess(user);
+  //           }),
+  //           catchError((error: any) =>
+  //             of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
+  //           )
+  //         );
+  //     })
+  //   )
+  // );
 
   constructor(
     private readonly actions$: Actions,

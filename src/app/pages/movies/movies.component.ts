@@ -1,14 +1,18 @@
-import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, Pipe } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
-import { Observable } from 'rxjs';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
+
+import * as AuthSeletors from 'src/app/Ngrx/Auth/auth.selectors';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies',
@@ -36,6 +40,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
+    private readonly store: Store,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
 
@@ -89,6 +94,10 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
+    const value = this.getCurrentValueFromObservable(
+      this.store.select(AuthSeletors.getUserAuth)
+    );
+    console.log(value);
     // window.scrollTo(0, 10000);
     // this.tmdbService
     //   .getDiscoverMovie(this.baseSearchMovie)
@@ -106,5 +115,12 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     //   this.recommend[0].id &&
     //     this.handleHoverRecommend(this.recommend[0].id + '');
     // });
+  }
+  private getCurrentValueFromObservable(obs: Observable<any>): any {
+    let value: any;
+    obs.pipe(take(1)).subscribe((val) => {
+      value = val;
+    });
+    return value;
   }
 }
