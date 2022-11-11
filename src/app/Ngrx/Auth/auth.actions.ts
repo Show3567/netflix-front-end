@@ -57,3 +57,16 @@ export const UpdateUserInfoFailed = createAction(
   '[Auth] UpdateUserInfo Failed',
   props<{ authErr: string }>()
 );
+
+//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Refresh Token
+export const SendRefreshTokenRequest = createAction(
+  '[Auth] Send RefreshToken Request'
+);
+export const RefreshTokenSuccess = createAction(
+  '[Auth] RefreshToken Success',
+  props<AppUserAuth>()
+);
+export const RefreshTokenFailed = createAction(
+  '[Auth] RefreshToken Failed',
+  props<{ authErr: string }>()
+);

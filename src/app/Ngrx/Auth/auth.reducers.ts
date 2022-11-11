@@ -36,8 +36,15 @@ export const AuthReducer = createReducer(
   }),
   on(AuthActions.SignUpSuccess, (state, authInfo: AppUserAuth) => {
     return { ...state, authInfo };
-  }),
+  }), //& reuse loginsuccess logic ?
   on(AuthActions.SignUpFailed, (state, { authErr }) => {
     return { ...state, authErr };
-  })
+  }), //& reuse loginfailed logic ?
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upgrade Permission
+  on(AuthActions.UpdateUserInfoSuccess, (state, authInfo: AppUserAuth) => {
+    return { ...state, authInfo };
+  }), //& reuse loginsuccess logic ?
+  on(AuthActions.UpdateUserInfoFailed, (state, { authErr }) => {
+    return { ...state, authErr };
+  }) //& reuse loginfailed logic ?
 );
