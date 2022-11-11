@@ -19,7 +19,8 @@ import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 export class AuthEffects {
   private jwtHelper = new JwtHelperService();
 
-  login$ = createEffect(() =>
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ login effect
+  private login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.SendLoginRequest),
       exhaustMap(({ email, password }: AppUser) => {
@@ -30,14 +31,13 @@ export class AuthEffects {
           })
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
-              const user = this.setUserValueByToken({
+              const user: AppUserAuth = this.setUserValueByToken({
                 accessToken,
                 role,
               });
               this.router.navigate(['/movies']);
-              return user;
+              return AuthActions.LoginSuccess(user);
             }),
-            map((appUser: AppUserAuth) => AuthActions.LoginSuccess(appUser)),
             catchError((error: any) =>
               of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
             )
