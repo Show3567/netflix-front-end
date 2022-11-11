@@ -27,7 +27,7 @@ export class AuthEffects {
           .post<AuthDto>(`${this.authServerPath}/auth/signin`, appUser)
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
-              const user: AppUserAuth = this.setUserValueByToken({
+              const user = this.setUserValueByToken({
                 accessToken,
                 role,
               });
