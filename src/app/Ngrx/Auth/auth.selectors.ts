@@ -1,12 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AuthState } from '../interfaces/auth.interface';
 
-const selectAuth = createFeatureSelector('auth');
+const selectAuth = createFeatureSelector<AuthState>('auth');
 
 export const getUserAuth = createSelector(
   selectAuth,
-  (state: any) => state.authInfo
+  (state: AuthState) => state.authInfo
 );
 export const getUserRegisterInfo = createSelector(
   selectAuth,
-  (state: any) => state.userRegisterInfo
+  (state: AuthState) => state.userRegisterInfo
 );

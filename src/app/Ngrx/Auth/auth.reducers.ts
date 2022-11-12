@@ -2,10 +2,11 @@ import { createReducer, on } from '@ngrx/store';
 
 import { AppUserAuth } from 'src/app/services/interfaces/user-auth.interface';
 import { UserInfo } from 'src/app/services/interfaces/user-signup.interface';
+import { AuthState } from '../interfaces/auth.interface';
 
 import * as AuthActions from './auth.actions';
 
-const initialState = {
+const initialState: AuthState = {
   userRegisterInfo: {},
   authInfo: {},
   authErr: '',
