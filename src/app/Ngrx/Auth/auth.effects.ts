@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, exhaustMap, map, switchMap, take } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppUser } from 'src/app/services/interfaces/user-login.interface';
@@ -22,8 +22,9 @@ import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 @Injectable()
 export class AuthEffects {
   private jwtHelper = new JwtHelperService();
+  private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
 
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ login effect
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ signIn effect
   private login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.SendLoginRequest),
@@ -86,6 +87,8 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.SendUpdateUserInfoRequest),
       exhaustMap((userRole: { role: UserRole }) => {
+        this.stopRefreshTokenTimer();
+
         return this.http
           .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, userRole)
           .pipe(
@@ -142,6 +145,22 @@ export class AuthEffects {
     )
   );
 
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut effect
+  private signOut$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.TriggerSignOut),
+      exhaustMap((_) => {
+        localStorage.removeItem('access_token');
+        this.tmdbService.setMyApiKey = '';
+
+        this.stopRefreshTokenTimer();
+        this.router.navigate(['/home']);
+
+        return of(AuthActions.SignOut());
+      })
+    )
+  );
+
   constructor(
     private readonly actions$: Actions,
     private readonly http: HttpClient,
@@ -152,6 +171,7 @@ export class AuthEffects {
   ) {}
 
   //&  ~~~~~~~~~~~~~~~~~~~~ reuseable code in for signin, signup, refresh, update */
+  /* reuseable code in for signin, signup, refresh, update */
   private setUserValueByToken = ({
     accessToken,
     role,
@@ -167,6 +187,34 @@ export class AuthEffects {
       ...{ id, username, email, role, tmdb_key },
       jwtToken: accessToken,
     };
+
+    this.startRefreshTokenTimer(exp);
     return user;
   };
+
+  //& ~~~~~~~~~~~~~~~~~~~~ timer helper ~~~~~
+  private startRefreshTokenTimer(exp: string) {
+    // set a timeout to refresh the token a minute before it expires
+    const expires = new Date(+exp * 1000);
+    const timeout = expires.getTime() - Date.now();
+
+    this.refreshTokenTimeout = setTimeout(() => {
+      const userAuthInfo = this.getCurValFromObs(
+        this.store.select(AuthSelectors.getUserAuth)
+      );
+      if (userAuthInfo.jwtToken) {
+        this.store.dispatch(AuthActions.SendRefreshTokenRequest());
+      }
+    }, timeout);
+  }
+  private stopRefreshTokenTimer() {
+    clearTimeout(this.refreshTokenTimeout);
+  }
+  private getCurValFromObs(obs: Observable<any>): any {
+    let value: any;
+    obs.pipe(take(1)).subscribe((val) => {
+      value = val;
+    });
+    return value;
+  }
 }

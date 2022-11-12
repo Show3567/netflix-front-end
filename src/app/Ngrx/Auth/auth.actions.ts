@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-import { AuthDto } from 'src/app/services/interfaces/authDto.interface';
 import {
   AppUserAuth,
   UserRole,
@@ -42,6 +41,7 @@ export const SignUpFailed = createAction(
 );
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut
+export const TriggerSignOut = createAction('[Auth] Trigger SignOut');
 export const SignOut = createAction('[Auth] SignOut to Remove userInfo');
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upgrade Permission
