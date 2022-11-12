@@ -41,10 +41,14 @@ export class AuthEffects {
                 role,
               });
               this.router.navigate(['/movies']);
-              return AuthActions.LoginSuccess(user);
+              return AuthActions.UpdateAuthInfoSuccess(user);
             }),
             catchError((error: any) =>
-              of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
+              of(
+                AuthActions.UpdateAuthInfoFailed({
+                  authErr: JSON.stringify(error),
+                })
+              )
             )
           );
       })
@@ -72,10 +76,14 @@ export class AuthEffects {
                 role,
               });
               this.router.navigate(['/movies']);
-              return AuthActions.SignUpSuccess(user);
+              return AuthActions.UpdateAuthInfoSuccess(user);
             }),
             catchError((error: any) =>
-              of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
+              of(
+                AuthActions.UpdateAuthInfoFailed({
+                  authErr: JSON.stringify(error),
+                })
+              )
             )
           );
       })
@@ -98,10 +106,14 @@ export class AuthEffects {
                 role,
               });
               this.router.navigate(['/movies']);
-              return AuthActions.SignUpSuccess(user);
+              return AuthActions.UpdateAuthInfoSuccess(user);
             }),
             catchError((error: any) =>
-              of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
+              of(
+                AuthActions.UpdateAuthInfoFailed({
+                  authErr: JSON.stringify(error),
+                })
+              )
             )
           );
       })
@@ -118,7 +130,7 @@ export class AuthEffects {
         if (!currentToken) {
           this.router.navigate(['/']);
           return of(
-            AuthActions.LoginFailed({ authErr: JSON.stringify('err') })
+            AuthActions.UpdateAuthInfoFailed({ authErr: JSON.stringify('err') })
           );
         }
 
@@ -135,10 +147,14 @@ export class AuthEffects {
                 role,
               });
               this.router.navigate(['/movies']);
-              return AuthActions.SignUpSuccess(user);
+              return AuthActions.UpdateAuthInfoSuccess(user);
             }),
             catchError((error: any) =>
-              of(AuthActions.LoginFailed({ authErr: JSON.stringify(error) }))
+              of(
+                AuthActions.UpdateAuthInfoFailed({
+                  authErr: JSON.stringify(error),
+                })
+              )
             )
           );
       })

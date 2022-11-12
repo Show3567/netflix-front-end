@@ -14,16 +14,12 @@ const initialState: AuthState = {
 
 export const AuthReducer = createReducer(
   initialState,
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignIn
-  on(AuthActions.LoginSuccess, (state, authInfo: AppUserAuth) => {
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Update AuthInfo
+  on(AuthActions.UpdateAuthInfoSuccess, (state, authInfo: AppUserAuth) => {
     return { ...state, authInfo };
   }),
-  on(AuthActions.LoginFailed, (state, { authErr }) => {
+  on(AuthActions.UpdateAuthInfoFailed, (state, { authErr }) => {
     return { ...state, authErr };
-  }),
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut
-  on(AuthActions.SignOut, (state) => {
-    return { ...initialState };
   }),
   //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignUp
   on(AuthActions.AddUserInfo, (state, userInfo: UserInfo) => {
@@ -35,17 +31,8 @@ export const AuthReducer = createReducer(
       },
     };
   }),
-  on(AuthActions.SignUpSuccess, (state, authInfo: AppUserAuth) => {
-    return { ...state, authInfo };
-  }), //& reuse loginsuccess logic ?
-  on(AuthActions.SignUpFailed, (state, { authErr }) => {
-    return { ...state, authErr };
-  }), //& reuse loginfailed logic ?
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upgrade Permission
-  on(AuthActions.UpdateUserInfoSuccess, (state, authInfo: AppUserAuth) => {
-    return { ...state, authInfo };
-  }), //& reuse loginsuccess logic ?
-  on(AuthActions.UpdateUserInfoFailed, (state, { authErr }) => {
-    return { ...state, authErr };
-  }) //& reuse loginfailed logic ?
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut
+  on(AuthActions.SignOut, (state) => {
+    return { ...initialState };
+  })
 );
