@@ -8,10 +8,10 @@ export const GetDiscoverMovie = createAction(
 
 export const GetDiscoverMovieSuccess = createAction(
   '[ Movie ] Get Discover Movie Success',
-  props<{ movies: SearchMovieReturn }>()
+  props<{ data: SearchMovieReturn }>()
 );
 
 export const GetDiscoverMovieFailed = createAction(
-  '[ Movie ] Get Discover Movie Success',
-  props<{ movies: SearchMovieReturn }>()
+  '[ Movie ] Get Discover Movie Failed',
+  props<{ err: string }>()
 );
