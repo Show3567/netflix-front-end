@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
@@ -6,6 +6,7 @@ import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { SearchMovieDto } from 'src/app/services/interfaces/searchMovieDto.interface';
 
 import * as TmdbActions from 'src/app/Ngrx/Tmdb/tmdb.actions';
+import { MOVIEIMGBASEURL } from 'src/app/core/core.module';
 
 @Injectable({
   providedIn: 'root',
@@ -15,22 +16,6 @@ export class TmdbNgrxService {
   private readonly searchMoviePath = 'search/movie?';
   private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
-
-  // private movieList: Movie[] = [];
-  // private movieList$ = new BehaviorSubject(this.movieList);
-  // movieListObs$ = this.movieList$.asObservable();
-
-  // private recommendList: Movie[] = [];
-  // private recommendList$ = new BehaviorSubject(this.recommendList);
-  // recommendListObs$ = this.recommendList$.asObservable();
-
-  // private searchedMovieList: Movie[] = [];
-  // private searchedMovieList$ = new BehaviorSubject(this.searchedMovieList);
-  // searchedMovieListObs$ = this.searchedMovieList$.asObservable();
-
-  // private showMovieList: boolean = true;
-  // private showMovieList$ = new BehaviorSubject(this.showMovieList);
-  // showMovieObs$ = this.showMovieList$.asObservable();
 
   private currentPage = 1;
   private baseDiscoverMovie: DiscoverMovie = {
@@ -61,7 +46,10 @@ export class TmdbNgrxService {
     this.baseSearchMovie.api_key = api_key;
   }
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    @Inject(MOVIEIMGBASEURL) private baseMovieImage: string
+  ) {}
 
   // ~~~~~~~ methods ~~~~~~~
   getDiscoverMovie(search: DiscoverMovie) {
@@ -95,16 +83,6 @@ export class TmdbNgrxService {
     });
 
     this.store.dispatch(TmdbActions.SendHandleScrolMovie({ url }));
-
-    // return this.http.get<SearchMovieReturn>(url).pipe(
-    //   tap((data) => {
-    //     this.movieList = [...this.movieList, ...(data.results as Movie[])];
-    //     this.movieList$.next(this.movieList);
-
-    //     this.recommendList = [...this.movieList.slice(0, 7)];
-    //     this.recommendList$.next(this.recommendList);
-    //   })
-    // );
   }
 
   // getDiscoverTV(search: DiscoverTv) {
@@ -117,9 +95,9 @@ export class TmdbNgrxService {
   //   return this.http.get(url).pipe(map((tv: any) => tv.results));
   // }
 
-  // getMovieImagePath(path: string, quality: string): string {
-  //   return [this.baseMovieImage, quality, path].join('/');
-  // }
+  getMovieImagePath(path: string, quality: string): string {
+    return [this.baseMovieImage, quality, path].join('/');
+  }
 
   // getMovie(id: number): Observable<Movie> {
   //   if (this.baseDiscoverMovie.api_key) {
