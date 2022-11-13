@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { SearchMovieDto } from '../../../services/interfaces/searchMovieDto.interface';
 
 @Component({
   selector: 'app-main-header',
@@ -19,6 +17,7 @@ export class MainHeaderComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthService,
+    private readonly store: Store,
     private readonly tmdbService: TmdbService
   ) {}
 

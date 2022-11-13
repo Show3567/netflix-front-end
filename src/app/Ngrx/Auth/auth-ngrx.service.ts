@@ -6,10 +6,18 @@ import { AppUser } from 'src/app/services/interfaces/user-login.interface';
 import { UserInfo } from 'src/app/services/interfaces/user-signup.interface';
 
 import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
+import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthNgrxService {
+  get userValue() {
+    return this.getCurValFromObs(this.store.select(AuthSelectors.getUserAuth));
+  }
+
   constructor(private readonly store: Store) {}
 
   /* SignIn */
@@ -40,5 +48,13 @@ export class AuthNgrxService {
   /* refreshToken */
   refreshToken(): void {
     this.store.dispatch(AuthActions.SendRefreshTokenRequest());
+  }
+
+  private getCurValFromObs(obs: Observable<any>): any {
+    let value: any;
+    obs.pipe(take(1)).subscribe((val) => {
+      value = val;
+    });
+    return value;
   }
 }
