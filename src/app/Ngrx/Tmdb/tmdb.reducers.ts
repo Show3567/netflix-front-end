@@ -28,9 +28,6 @@ export const TmdbReducer = createReducer(
       };
     }
   ),
-  on(TmdbActions.DiscoverMovieFailed, (state, { err }) => {
-    return { ...initialState, err };
-  }),
   //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Search Movie
   on(
     TmdbActions.SearchMovieSuccess,
@@ -47,5 +44,23 @@ export const TmdbReducer = createReducer(
         movieList,
       };
     }
-  )
+  ),
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Handle Scroller
+  on(
+    TmdbActions.HandleScrolSuccess,
+    (state, { data }: { data: SearchMovieReturn }) => {
+      const movieList = [...state.movieList, ...(data.results as Movie[])];
+      const recommendList = [...movieList.slice(0, 7)];
+
+      return {
+        ...state,
+        movieList,
+        recommendList,
+      };
+    }
+  ),
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Error Handler
+  on(TmdbActions.ErrorCollectionUpdate, (state, { err }) => {
+    return { ...initialState, err };
+  })
 );

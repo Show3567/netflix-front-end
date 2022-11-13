@@ -86,24 +86,26 @@ export class TmdbNgrxService {
     this.store.dispatch(TmdbActions.SendSearchMovie({ url }));
   }
 
-  // handleScrol() {
-  //   const discover = { ...this.baseDiscoverMovie, page: ++this.currentPage };
-  //   let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
+  handleScrol() {
+    const discover = { ...this.baseDiscoverMovie, page: ++this.currentPage };
+    let url = [this.tmdbBaseUrl, this.discoverMoviePath].join('/');
 
-  //   Object.entries(discover).forEach(([key, value]) => {
-  //     url += `&${key}=${value}`;
-  //   });
+    Object.entries(discover).forEach(([key, value]) => {
+      url += `&${key}=${value}`;
+    });
 
-  //   return this.http.get<SearchMovieReturn>(url).pipe(
-  //     tap((data) => {
-  //       this.movieList = [...this.movieList, ...(data.results as Movie[])];
-  //       this.movieList$.next(this.movieList);
+    this.store.dispatch(TmdbActions.SendHandleScrolMovie({ url }));
 
-  //       this.recommendList = [...this.movieList.slice(0, 7)];
-  //       this.recommendList$.next(this.recommendList);
-  //     })
-  //   );
-  // }
+    // return this.http.get<SearchMovieReturn>(url).pipe(
+    //   tap((data) => {
+    //     this.movieList = [...this.movieList, ...(data.results as Movie[])];
+    //     this.movieList$.next(this.movieList);
+
+    //     this.recommendList = [...this.movieList.slice(0, 7)];
+    //     this.recommendList$.next(this.recommendList);
+    //   })
+    // );
+  }
 
   // getDiscoverTV(search: DiscoverTv) {
   //   const discover = { ...this.baseDiscoverTv, ...search };

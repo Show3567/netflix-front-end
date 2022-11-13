@@ -20,7 +20,7 @@ export class AuthEffects {
           }),
           catchError((err: any) => {
             return of(
-              TmdbActions.DiscoverMovieFailed({ err: JSON.stringify(err) })
+              TmdbActions.ErrorCollectionUpdate({ err: JSON.stringify(err) })
             );
           })
         );
@@ -37,7 +37,24 @@ export class AuthEffects {
           }),
           catchError((err: any) => {
             return of(
-              TmdbActions.DiscoverMovieFailed({ err: JSON.stringify(err) })
+              TmdbActions.ErrorCollectionUpdate({ err: JSON.stringify(err) })
+            );
+          })
+        );
+      })
+    )
+  );
+  private handleScorl$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TmdbActions.SendHandleScrolMovie),
+      exhaustMap(({ url }: { url: string }) => {
+        return this.http.get<SearchMovieReturn>(url).pipe(
+          map((data: SearchMovieReturn) => {
+            return TmdbActions.HandleScrolSuccess({ data });
+          }),
+          catchError((err: any) => {
+            return of(
+              TmdbActions.ErrorCollectionUpdate({ err: JSON.stringify(err) })
             );
           })
         );

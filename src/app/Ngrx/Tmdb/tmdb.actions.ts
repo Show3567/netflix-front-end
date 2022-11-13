@@ -12,11 +12,6 @@ export const DiscoverMovieSuccess = createAction(
   props<{ data: SearchMovieReturn }>()
 );
 
-export const DiscoverMovieFailed = createAction(
-  '[ Movie ] Get Discover Movie Failed',
-  props<{ err: string }>()
-);
-
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Search Movie
 export const SendSearchMovie = createAction(
   '[ Movie ] Send Search Movie Request',
@@ -28,7 +23,19 @@ export const SearchMovieSuccess = createAction(
   props<{ data: SearchMovieReturn }>()
 );
 
-export const SearchMovieFailed = createAction(
-  '[ Movie ] Search Movie Failed',
+//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Handle Scorller
+export const SendHandleScrolMovie = createAction(
+  '[ Movie ] Send Add Movies Request',
+  props<{ url: string }>()
+);
+
+export const HandleScrolSuccess = createAction(
+  '[ Movie ] Search Movie Success',
+  props<{ data: SearchMovieReturn }>()
+);
+
+//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Error Handler
+export const ErrorCollectionUpdate = createAction(
+  '[ Movie ] Get Discover Movie Failed',
   props<{ err: string }>()
 );
