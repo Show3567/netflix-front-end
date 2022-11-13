@@ -50,6 +50,7 @@ export class AuthNgrxService {
     this.store.dispatch(AuthActions.SendRefreshTokenRequest());
   }
 
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Helpers
   private getCurValFromObs(obs: Observable<any>): any {
     let value: any;
     obs.pipe(take(1)).subscribe((val) => {
