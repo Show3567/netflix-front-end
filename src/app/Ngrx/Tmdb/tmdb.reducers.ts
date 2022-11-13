@@ -14,8 +14,9 @@ const initialState: TmdbState = {
 
 export const TmdbReducer = createReducer(
   initialState,
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Discover Movie
   on(
-    TmdbActions.GetDiscoverMovieSuccess,
+    TmdbActions.DiscoverMovieSuccess,
     (state, { data }: { data: SearchMovieReturn }) => {
       const movieList = [...(data.results as Movie[])];
       const recommendList = [...movieList.slice(0, 7)];
@@ -27,7 +28,24 @@ export const TmdbReducer = createReducer(
       };
     }
   ),
-  on(TmdbActions.GetDiscoverMovieFailed, (state, { err }) => {
+  on(TmdbActions.DiscoverMovieFailed, (state, { err }) => {
     return { ...initialState, err };
-  })
+  }),
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Search Movie
+  on(
+    TmdbActions.SearchMovieSuccess,
+    (state, { data }: { data: SearchMovieReturn }) => {
+      let movieList = state.movieList;
+      if (movieList.length) {
+        movieList = [...(data.results as Movie[])];
+      } else {
+        movieList = [...movieList, ...(data.results as Movie[])];
+      }
+
+      return {
+        ...state,
+        movieList,
+      };
+    }
+  )
 );

@@ -12,15 +12,32 @@ import { of } from 'rxjs';
 export class AuthEffects {
   private getDiscoverMovies$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(TmdbActions.GetDiscoverMovie),
+      ofType(TmdbActions.DiscoverMovie),
       exhaustMap(({ url }: { url: string }) => {
         return this.http.get<SearchMovieReturn>(url).pipe(
           map((data: SearchMovieReturn) => {
-            return TmdbActions.GetDiscoverMovieSuccess({ data });
+            return TmdbActions.DiscoverMovieSuccess({ data });
           }),
           catchError((err: any) => {
             return of(
-              TmdbActions.GetDiscoverMovieFailed({ err: JSON.stringify(err) })
+              TmdbActions.DiscoverMovieFailed({ err: JSON.stringify(err) })
+            );
+          })
+        );
+      })
+    )
+  );
+  private searchMovies$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TmdbActions.SendSearchMovie),
+      exhaustMap(({ url }: { url: string }) => {
+        return this.http.get<SearchMovieReturn>(url).pipe(
+          map((data: SearchMovieReturn) => {
+            return TmdbActions.SearchMovieSuccess({ data });
+          }),
+          catchError((err: any) => {
+            return of(
+              TmdbActions.DiscoverMovieFailed({ err: JSON.stringify(err) })
             );
           })
         );

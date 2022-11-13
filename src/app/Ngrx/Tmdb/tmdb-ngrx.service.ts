@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
-import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { SearchMovieDto } from 'src/app/services/interfaces/searchMovieDto.interface';
 
 import * as TmdbActions from 'src/app/Ngrx/Tmdb/tmdb.actions';
@@ -73,40 +72,19 @@ export class TmdbNgrxService {
       url += `&${key}=${value}`;
     });
 
-    this.store.dispatch(TmdbActions.GetDiscoverMovie({ url }));
-
-    // return this.http.get<SearchMovieReturn>(url).pipe(
-    //   tap((data) => {
-    //     if (!this.movieList.length) {
-    //       this.movieList = [...(data.results as Movie[])];
-    //       this.movieList$.next(this.movieList);
-
-    //       this.recommendList = [...this.movieList.slice(0, 7)];
-    //       this.recommendList$.next(this.recommendList);
-    //     }
-    //   })
-    // );
+    this.store.dispatch(TmdbActions.DiscoverMovie({ url }));
   }
 
-  // searchMovie(keyword: string) {
-  //   const query = { ...this.baseSearchMovie, query: keyword };
-  //   let url = [this.tmdbBaseUrl, this.searchMoviePath].join('/');
+  searchMovie(keyword: string) {
+    const query = { ...this.baseSearchMovie, query: keyword };
+    let url = [this.tmdbBaseUrl, this.searchMoviePath].join('/');
 
-  //   Object.entries(query).forEach(([key, value]) => {
-  //     url += `&${key}=${value}`;
-  //   });
+    Object.entries(query).forEach(([key, value]) => {
+      url += `&${key}=${value}`;
+    });
 
-  //   return this.http.get<SearchMovieReturn>(url).pipe(
-  //     tap((data) => {
-  //       if (!this.movieList.length) {
-  //         this.movieList = [...(data.results as Movie[])];
-  //       } else {
-  //         this.movieList = [...this.movieList, ...(data.results as Movie[])];
-  //       }
-  //       this.movieList$.next(this.movieList);
-  //     })
-  //   );
-  // }
+    this.store.dispatch(TmdbActions.SendSearchMovie({ url }));
+  }
 
   // handleScrol() {
   //   const discover = { ...this.baseDiscoverMovie, page: ++this.currentPage };
