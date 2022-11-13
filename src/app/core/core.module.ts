@@ -21,6 +21,9 @@ export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const ProdTitle = new InjectionToken<string>('');
 
+export const TMDBBASEURL = new InjectionToken<string>('');
+export const MOVIEIMGBASEURL = new InjectionToken<string>('');
+
 const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
@@ -37,6 +40,14 @@ export class CoreModule {
         {
           provide: AUTHSERVER,
           useValue: 'http://localhost:4231',
+        },
+        {
+          provide: TMDBBASEURL,
+          useValue: 'https://api.themoviedb.org/3',
+        },
+        {
+          provide: MOVIEIMGBASEURL,
+          useValue: 'https://image.tmdb.org/t/p',
         },
         {
           provide: ProdTitle,
