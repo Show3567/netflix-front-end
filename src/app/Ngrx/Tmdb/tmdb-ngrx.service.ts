@@ -1,12 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { SearchMovieDto } from 'src/app/services/interfaces/searchMovieDto.interface';
 
 import * as TmdbActions from 'src/app/Ngrx/Tmdb/tmdb.actions';
-import { MOVIEIMGBASEURL } from 'src/app/core/core.module';
+import { MOVIEIMGBASEURL, TMDBBASEURL } from 'src/app/core/core.module';
+import { Movie } from 'src/app/services/interfaces/movie.interface';
+import { MovieImage } from 'src/app/services/interfaces/poster.interface';
+import { Credit } from 'src/app/services/interfaces/credit.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +19,8 @@ import { MOVIEIMGBASEURL } from 'src/app/core/core.module';
 export class TmdbNgrxService {
   private readonly discoverMoviePath = 'discover/movie?';
   private readonly searchMoviePath = 'search/movie?';
-  private readonly discoverTvPath = 'discover/tv?';
   private readonly moviePath = 'movie';
+  private readonly discoverTvPath = 'discover/tv?';
 
   private currentPage = 1;
   private baseDiscoverMovie: DiscoverMovie = {
@@ -38,7 +43,6 @@ export class TmdbNgrxService {
     page: 1,
     language: 'en-US',
   };
-  tmdbBaseUrl: any;
 
   set setMyApiKey(api_key: string) {
     this.baseDiscoverMovie.api_key = api_key;
@@ -48,7 +52,9 @@ export class TmdbNgrxService {
 
   constructor(
     private readonly store: Store,
-    @Inject(MOVIEIMGBASEURL) private baseMovieImage: string
+    private readonly http: HttpClient,
+    @Inject(MOVIEIMGBASEURL) private readonly baseMovieImage: string,
+    @Inject(TMDBBASEURL) private readonly tmdbBaseUrl: string
   ) {}
 
   // ~~~~~~~ methods ~~~~~~~
@@ -85,6 +91,61 @@ export class TmdbNgrxService {
     this.store.dispatch(TmdbActions.SendHandleScrolMovie({ url }));
   }
 
+  getMovieImagePath(path: string, quality: string): string {
+    return [this.baseMovieImage, quality, path].join('/');
+  }
+
+  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ For Resolver
+  getMovie(id: number): Observable<Movie> {
+    if (this.baseDiscoverMovie.api_key) {
+      const url = `${[this.tmdbBaseUrl, this.moviePath, id].join(
+        '/'
+      )}?api_key=${this.baseDiscoverMovie.api_key}`;
+      return this.http.get<Movie>(url);
+    } else {
+      // expected err;
+      return this.http.get<Movie>('');
+    }
+  }
+  getVideo(id: number) {
+    if (this.baseDiscoverMovie.api_key) {
+      const url = [
+        this.tmdbBaseUrl,
+        this.moviePath,
+        id,
+        `videos?api_key=${this.baseDiscoverMovie.api_key}`,
+      ].join('/');
+      return this.http.get(url);
+    } else {
+      // expected err;
+      return this.http.get('');
+    }
+  }
+  getCredits(id: number): Observable<Credit> {
+    if ((this.baseDiscoverMovie.api_key, id)) {
+      const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'credits'].join(
+        '/'
+      )}?api_key=${this.baseDiscoverMovie.api_key}`;
+
+      return this.http.get<Credit>(url);
+    } else {
+      // expected err;
+      return this.http.get<Credit>('');
+    }
+  }
+  getPosters(id: number): Observable<MovieImage> {
+    if ((this.baseDiscoverMovie.api_key, id)) {
+      const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'images'].join(
+        '/'
+      )}?api_key=${this.baseDiscoverMovie.api_key}`;
+
+      return this.http.get<MovieImage>(url);
+    } else {
+      // expected err;
+      return this.http.get<MovieImage>('');
+    }
+  }
+
   // getDiscoverTV(search: DiscoverTv) {
   //   const discover = { ...this.baseDiscoverTv, ...search };
   //   let url = [this.tmdbBaseUrl, this.discoverTvPath].join('/');
@@ -94,61 +155,15 @@ export class TmdbNgrxService {
   //   });
   //   return this.http.get(url).pipe(map((tv: any) => tv.results));
   // }
-
-  getMovieImagePath(path: string, quality: string): string {
-    return [this.baseMovieImage, quality, path].join('/');
-  }
-
-  // getMovie(id: number): Observable<Movie> {
-  //   if (this.baseDiscoverMovie.api_key) {
-  //     const url = `${[this.tmdbBaseUrl, this.moviePath, id].join(
-  //       '/'
-  //     )}?api_key=${this.baseDiscoverMovie.api_key}`;
-  //     return this.http.get<Movie>(url);
-  //   } else {
-  //     // expected err;
-  //     return this.http.get<Movie>('');
-  //   }
-  // }
-
-  // getCredits(id: number): Observable<Credit> {
-  //   if ((this.baseDiscoverMovie.api_key, id)) {
-  //     const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'credits'].join(
-  //       '/'
-  //     )}?api_key=${this.baseDiscoverMovie.api_key}`;
-
-  //     return this.http.get<Credit>(url);
-  //   } else {
-  //     // expected err;
-  //     return this.http.get<Credit>('');
-  //   }
-  // }
-
-  // getPosters(id: number): Observable<MovieImage> {
-  //   if ((this.baseDiscoverMovie.api_key, id)) {
-  //     const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'images'].join(
-  //       '/'
-  //     )}?api_key=${this.baseDiscoverMovie.api_key}`;
-
-  //     return this.http.get<MovieImage>(url);
-  //   } else {
-  //     // expected err;
-  //     return this.http.get<MovieImage>('');
-  //   }
-  // }
-
-  // getVideo(id: number) {
-  //   if (this.baseDiscoverMovie.api_key) {
-  //     const url = [
-  //       this.tmdbBaseUrl,
-  //       this.moviePath,
-  //       id,
-  //       `videos?api_key=${this.baseDiscoverMovie.api_key}`,
-  //     ].join('/');
-  //     return this.http.get(url);
-  //   } else {
-  //     // expected err;
-  //     return this.http.get('');
-  //   }
-  // }
 }
+
+/**
+ * 1. To get the config data like image base urls
+ * https://api.themoviedb.org/3/configuration?api_key=<APIKEY>
+ *
+ * 2. To fetch a list of movies based on a keyword
+ * https://api.themoviedb.org/3/search/movie?api_key=<APIKEY>&query=<keyword>
+ *
+ * 3. To fetch more details about a movie
+ * https://api.themoviedb.org/3/movie/<movie-id>?api_key=<APIKEY>
+ */
