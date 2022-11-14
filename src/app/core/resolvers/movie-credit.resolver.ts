@@ -7,12 +7,13 @@ import {
 import { Observable } from 'rxjs';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { map } from 'rxjs/operators';
+import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieCreditResolver implements Resolve<any> {
-  constructor(private readonly tmdbService: TmdbService) {}
+  constructor(private readonly tmdbService: TmdbNgrxService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,

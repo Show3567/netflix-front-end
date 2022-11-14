@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class MainHeaderComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthNgrxService,
-    private readonly tmdbService: TmdbService
+    private readonly tmdbService: TmdbNgrxService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +31,8 @@ export class MainHeaderComponent implements OnInit {
   }
 
   searchMovieByKeyWord() {
-    this.tmdbService.searchMovie(this.searchKeyWord).subscribe(console.log);
+    this.tmdbService.searchMovie(this.searchKeyWord);
+    // .subscribe(console.log);
     this.searchKeyWord = '';
   }
 

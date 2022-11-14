@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
@@ -10,9 +11,10 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
+import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
-import * as AuthSeletors from 'src/app/Ngrx/Auth/auth.selectors';
-import { take } from 'rxjs/operators';
+import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import * as TmdbSelectors from 'src/app/Ngrx/Tmdb/tmdb.selectors';
 
 @Component({
   selector: 'app-movies',
@@ -36,7 +38,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
-    private readonly tmdbService: TmdbService,
+    private readonly tmdbService: TmdbNgrxService,
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
@@ -47,10 +49,13 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
-    this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
-    this.movies$ = this.tmdbService.movieListObs$;
+    this.tmdbService.getDiscoverMovie(this.baseSearchMovie);
+    // .subscribe();
+    // this.movies$ = this.tmdbService.movieListObs$;
+    this.movies$ = this.store.select(TmdbSelectors.getMovies);
 
-    this.tmdbService.recommendListObs$.subscribe((recom) => {
+    // this.tmdbService.recommendListObs$.subscribe((recom) => {
+    this.store.select(TmdbSelectors.getCommendList).subscribe((recom) => {
       this.recommend = [...recom];
       if (this.recommend.length && this.recommend[0].id) {
         this.handleHoverRecommend(this.recommend[0].id);
@@ -82,7 +87,8 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
 
   onScroll() {
-    this.tmdbService.handleScrol().subscribe();
+    this.tmdbService.handleScrol();
+    // .subscribe();
   }
 
   navigateMovie(id: number) {
@@ -94,10 +100,10 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
-    const value = this.getCurValFromObs(
-      this.store.select(AuthSeletors.getUserAuth)
-    );
-    console.log(value);
+    // const value = this.getCurValFromObs(
+    //   this.store.select(AuthSelectors.getUserAuth)
+    // );
+    // console.log(value);
     // window.scrollTo(0, 10000);
     // this.tmdbService
     //   .getDiscoverMovie(this.baseSearchMovie)

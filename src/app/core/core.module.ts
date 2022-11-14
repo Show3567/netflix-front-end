@@ -16,6 +16,8 @@ import { appInitializer } from './app.initializer';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
+import { TmdbNgrxService } from '../Ngrx/Tmdb/tmdb-ngrx.service';
+import { Store } from '@ngrx/store';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
 export const TMDBAPIKEY = new InjectionToken<string>('');
@@ -65,14 +67,14 @@ export class CoreModule {
             usecookie: boolean,
             router: Router,
             http: HttpClient,
-            tmdbservice: TmdbService,
+            tmdbservice: TmdbNgrxService,
             authpath: string
           ) => {
             return usecookie
               ? new WithCookieService(router, http, authpath)
               : new AuthService(router, http, tmdbservice, authpath);
           },
-          deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
+          deps: [USECOOKIE, Router, HttpClient, TmdbNgrxService, AUTHSERVER],
         },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Angular initializer;
         {

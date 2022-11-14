@@ -11,6 +11,7 @@ import { TmdbService } from '../tmdb/tmdb.service';
 import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 import { AuthDto } from '../interfaces/authDto.interface';
 import { AUTHSERVER } from 'src/app/core/core.module';
+import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
 @Injectable()
 export class AuthService {
@@ -31,7 +32,7 @@ export class AuthService {
   constructor(
     private readonly router: Router,
     private readonly http: HttpClient,
-    private readonly tmdbService: TmdbService,
+    private readonly tmdbService: TmdbNgrxService,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {
     this.userSubject$ = new BehaviorSubject<AppUserAuth>({});

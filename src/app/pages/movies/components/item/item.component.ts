@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
+import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
 @Component({
   selector: 'app-item',
@@ -18,7 +19,7 @@ export class ItemComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private tmdbService: TmdbService,
+    private readonly tmdbService: TmdbNgrxService,
     private readonly router: Router,
     private readonly routerScroll: RouterScrollService
   ) {}
