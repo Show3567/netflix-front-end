@@ -138,8 +138,10 @@ export class AuthEffects {
           this.jwtHelper.decodeToken(currentToken);
         const user = { id, username, email, tmdb_key };
 
+        console.log(user, `${this.authServerPath}/auth/refresh-token`);
+
         return this.http
-          .patch<AuthDto>(`${this.authServerPath}/auth/refresh-token`, user)
+          .post<AuthDto>(`${this.authServerPath}/auth/refresh-token`, user)
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
               const user: AppUserAuth = this.setUserValueByToken({

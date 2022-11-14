@@ -5,5 +5,15 @@ import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
 export function appInitializer(authService: AuthNgrxService) {
   console.log('this is Initialization');
 
-  return () => of().pipe(tap(() => authService.refreshToken()));
+  return () =>
+    new Promise<void>((resolve, reject) => {
+      authService.refreshToken();
+      resolve();
+    });
+  // of().pipe(
+  //   tap(() => {
+  //     console.log('trigger from initializer!');
+  //     authService.refreshToken();
+  //   })
+  // );
 }

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthNgrxService } from './Ngrx/Auth/auth-ngrx.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,11 @@ export class AppComponent implements OnInit {
   @ViewChild('mainContent')
   private mainContentElement!: ElementRef<HTMLElement>;
 
-  constructor() {}
+  constructor(private readonly authService: AuthNgrxService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.authService.refreshToken();
+  }
 
   onActivate(e: any) {}
 }
