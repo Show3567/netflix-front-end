@@ -5,13 +5,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
 
 import { ProdTitle } from 'src/app/core/core.module';
-import { AuthService } from 'src/app/services/auth/auth.service';
-
-import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
-import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({
@@ -44,8 +39,6 @@ export class LoginComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private readonly authService: AuthNgrxService,
     private readonly titleService: Title,
-    private store: Store,
-    // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
   ngOnInit(): void {
@@ -55,11 +48,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
-
-    //* ~~~~~ Ngrx ~~~~~
-    this.store
-      .select(AuthSelectors.getUserAuth)
-      .subscribe((data) => console.log('ngrx: ', data));
   }
 
   onSubmit() {
@@ -68,17 +56,5 @@ export class LoginComponent implements OnInit {
       password: this.password?.value,
     };
     this.authService.login(credencialSignIn);
-    // .subscribe(
-    //   (_) => {
-    //     this.login_msg.msg = '';
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.login_msg.msg = 'Please check your login credentials';
-    //   }
-    // );
-
-    //* ~~~~~ Ngrx ~~~~~
-    this.store.dispatch(AuthActions.SendLoginRequest(credencialSignIn));
   }
 }

@@ -5,11 +5,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
-
-import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
-import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 import { Store } from '@ngrx/store';
+
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({
@@ -52,8 +49,5 @@ export class PageTwoIiComponent implements OnInit {
   onSubmit() {
     this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step3']);
-
-    //* ~~~~ Ngrx ~~~~
-    this.store.dispatch(AuthActions.AddUserInfo(this.form.value));
   }
 }

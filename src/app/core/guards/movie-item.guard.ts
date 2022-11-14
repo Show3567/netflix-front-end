@@ -9,7 +9,6 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Injectable({

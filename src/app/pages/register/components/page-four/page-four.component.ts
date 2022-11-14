@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
-
-import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
-import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 @Component({
   selector: 'app-page-four',
@@ -33,11 +27,7 @@ export class PageFourComponent implements OnInit {
   };
   selecedColumn: 'USER' | 'SUPERUSER' | 'ADMIN' = 'ADMIN';
 
-  constructor(
-    private readonly router: Router,
-    private readonly authService: AuthNgrxService,
-    private readonly store: Store
-  ) {}
+  constructor(private readonly authService: AuthNgrxService) {}
   ngOnInit(): void {}
 
   selectPlan(user: 'USER' | 'SUPERUSER' | 'ADMIN') {
@@ -50,15 +40,8 @@ export class PageFourComponent implements OnInit {
       this.authService.upgradePermission({
         role: UserRole[this.selecedColumn],
       });
-      // .subscribe();
     } else {
       this.authService.sighup({ role: UserRole[this.selecedColumn] });
-      // .subscribe();
-
-      //* ~~~~ Ngrx ~~~~
-      // this.store.dispatch(
-      //   AuthActions.SendSignUpRequest({ role: UserRole[this.selecedColumn] })
-      // );
     }
   }
 }

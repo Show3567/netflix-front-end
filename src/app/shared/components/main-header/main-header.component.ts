@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Component({
