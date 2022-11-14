@@ -7,6 +7,7 @@ import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
 import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 @Component({
   selector: 'app-page-four',
   templateUrl: './page-four.component.html',
@@ -34,7 +35,7 @@ export class PageFourComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly authService: AuthService,
+    private readonly authService: AuthNgrxService,
     private readonly store: Store
   ) {}
   ngOnInit(): void {}
@@ -46,15 +47,13 @@ export class PageFourComponent implements OnInit {
     const { jwtToken } = this.authService.userValue;
 
     if (jwtToken) {
-      this.authService
-        .upgradePermission({
-          role: UserRole[this.selecedColumn],
-        })
-        .subscribe();
+      this.authService.upgradePermission({
+        role: UserRole[this.selecedColumn],
+      });
+      // .subscribe();
     } else {
-      this.authService
-        .sighup({ role: UserRole[this.selecedColumn] })
-        .subscribe();
+      this.authService.sighup({ role: UserRole[this.selecedColumn] });
+      // .subscribe();
 
       //* ~~~~ Ngrx ~~~~
       // this.store.dispatch(

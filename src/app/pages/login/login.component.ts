@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 
 import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
 import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private readonly authService: AuthService,
+    private readonly authService: AuthNgrxService,
     private readonly titleService: Title,
     private store: Store,
     // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
@@ -66,15 +67,16 @@ export class LoginComponent implements OnInit {
       email: this.email?.value,
       password: this.password?.value,
     };
-    this.authService.login(credencialSignIn).subscribe(
-      (_) => {
-        this.login_msg.msg = '';
-      },
-      (err) => {
-        console.log(err);
-        this.login_msg.msg = 'Please check your login credentials';
-      }
-    );
+    this.authService.login(credencialSignIn);
+    // .subscribe(
+    //   (_) => {
+    //     this.login_msg.msg = '';
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //     this.login_msg.msg = 'Please check your login credentials';
+    //   }
+    // );
 
     //* ~~~~~ Ngrx ~~~~~
     this.store.dispatch(AuthActions.SendLoginRequest(credencialSignIn));

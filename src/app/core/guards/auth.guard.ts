@@ -5,13 +5,17 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly authService: AuthNgrxService
+  ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const { jwtToken, role } = this.authService.userValue;

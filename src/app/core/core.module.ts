@@ -15,6 +15,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { appInitializer } from './app.initializer';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
 export const TMDBAPIKEY = new InjectionToken<string>('');
@@ -78,7 +79,7 @@ export class CoreModule {
           provide: APP_INITIALIZER,
           useFactory: appInitializer,
           multi: true,
-          deps: [AuthService],
+          deps: [AuthNgrxService],
         },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Interceptors;
         {
