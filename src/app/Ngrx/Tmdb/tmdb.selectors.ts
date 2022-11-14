@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TmdbState } from '../interfaces/tmdb.interface';
 
-const selectTmdbMovies = createFeatureSelector<TmdbState>('auth');
+const selectTmdbMovies = createFeatureSelector<TmdbState>('tmdbMovies');
 
 export const getMovies = createSelector(
   selectTmdbMovies,

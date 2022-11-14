@@ -18,6 +18,7 @@ import {
 
 import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
 import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import { TmdbNgrxService } from '../Tmdb/tmdb-ngrx.service';
 
 @Injectable()
 export class AuthEffects {
@@ -138,7 +139,7 @@ export class AuthEffects {
           this.jwtHelper.decodeToken(currentToken);
         const user = { id, username, email, tmdb_key };
 
-        console.log(user, `${this.authServerPath}/auth/refresh-token`);
+        // console.log(user, `${this.authServerPath}/auth/refresh-token`);
 
         return this.http
           .post<AuthDto>(`${this.authServerPath}/auth/refresh-token`, user)
@@ -182,7 +183,7 @@ export class AuthEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly http: HttpClient,
-    private readonly tmdbService: TmdbService,
+    private readonly tmdbService: TmdbNgrxService,
     private readonly router: Router,
     private readonly store: Store,
     @Inject(AUTHSERVER) private readonly authServerPath: string

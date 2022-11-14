@@ -9,7 +9,7 @@ import * as TmdbActions from 'src/app/Ngrx/Tmdb/tmdb.actions';
 import { of } from 'rxjs';
 
 @Injectable()
-export class AuthEffects {
+export class TmdbEffects {
   private getDiscoverMovies$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TmdbActions.DiscoverMovie),

@@ -52,7 +52,6 @@ export class AuthNgrxService {
 
   /* refreshToken */
   refreshToken(): void {
-    console.log('init token');
     this.store.dispatch(AuthActions.SendRefreshTokenRequest());
   }
 

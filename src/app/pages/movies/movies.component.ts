@@ -56,6 +56,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
 
     // this.tmdbService.recommendListObs$.subscribe((recom) => {
     this.store.select(TmdbSelectors.getCommendList).subscribe((recom) => {
+      console.log(recom);
       this.recommend = [...recom];
       if (this.recommend.length && this.recommend[0].id) {
         this.handleHoverRecommend(this.recommend[0].id);

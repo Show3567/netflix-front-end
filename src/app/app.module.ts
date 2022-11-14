@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AuthReducer } from './Ngrx/Auth/auth.reducers';
 import { AuthEffects } from './Ngrx/Auth/auth.effects';
 import { TmdbReducer } from './Ngrx/Tmdb/tmdb.reducers';
+import { TmdbEffects } from './Ngrx/Tmdb/tmdb.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,7 @@ import { TmdbReducer } from './Ngrx/Tmdb/tmdb.reducers';
       serverLogLevel: NgxLoggerLevel.ERROR,
     }),
     StoreModule.forRoot({ auth: AuthReducer, tmdbMovies: TmdbReducer }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, TmdbEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Movie Web',
       maxAge: 25,
