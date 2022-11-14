@@ -17,6 +17,11 @@ export class AuthNgrxService {
   get userValue() {
     return this.getCurValFromObs(this.store.select(AuthSelectors.getUserAuth));
   }
+  get appNewUser() {
+    return this.getCurValFromObs(
+      this.store.select(AuthSelectors.getUserRegisterInfo)
+    );
+  }
 
   constructor(private readonly store: Store) {}
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
@@ -16,8 +16,7 @@ export class MainHeaderComponent implements OnInit {
   searchKeyWord = '';
 
   constructor(
-    private readonly authService: AuthService,
-    private readonly store: Store,
+    private readonly authService: AuthNgrxService,
     private readonly tmdbService: TmdbService
   ) {}
 

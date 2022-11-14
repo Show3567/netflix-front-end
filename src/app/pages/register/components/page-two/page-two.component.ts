@@ -18,6 +18,7 @@ import { AUTHSERVER } from 'src/app/core/core.module';
 
 import * as AuthActions from 'src/app/Ngrx/Auth/auth.actions';
 import * as AuthSelectors from 'src/app/Ngrx/Auth/auth.selectors';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({
   selector: 'app-page-two',
@@ -39,7 +40,7 @@ export class PageTwoComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly http: HttpClient,
-    private readonly authService: AuthService,
+    private readonly authService: AuthNgrxService,
     private readonly store: Store,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {}
