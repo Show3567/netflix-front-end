@@ -17,6 +17,7 @@ import { AuthReducer } from './Ngrx/Auth/auth.reducers';
 import { AuthEffects } from './Ngrx/Auth/auth.effects';
 import { TmdbReducer } from './Ngrx/Tmdb/tmdb.reducers';
 import { TmdbEffects } from './Ngrx/Tmdb/tmdb.effects';
+import { PositionReducer } from './Ngrx/Scroll/scroll.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,11 @@ import { TmdbEffects } from './Ngrx/Tmdb/tmdb.effects';
       level: NgxLoggerLevel.DEBUG,
       serverLogLevel: NgxLoggerLevel.ERROR,
     }),
-    StoreModule.forRoot({ auth: AuthReducer, tmdbMovies: TmdbReducer }),
+    StoreModule.forRoot({
+      auth: AuthReducer,
+      tmdbMovies: TmdbReducer,
+      positionRecord: PositionReducer,
+    }),
     EffectsModule.forRoot([AuthEffects, TmdbEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Movie Web',
