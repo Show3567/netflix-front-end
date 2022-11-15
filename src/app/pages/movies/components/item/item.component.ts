@@ -6,6 +6,7 @@ import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 import { PositionKey } from '../../movies.module';
 
 import * as PositionAction from 'src/app/Ngrx/Scroll/scroll.action';
+import { Movie } from 'src/app/services/interfaces/movie.interface';
 
 @Component({
   selector: 'app-item',
@@ -13,7 +14,7 @@ import * as PositionAction from 'src/app/Ngrx/Scroll/scroll.action';
   styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
-  @Input() movie: any;
+  @Input() movie!: any;
   hasPoster_img = true;
   poster_img_high = '';
   year!: number;

@@ -80,7 +80,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       this.store.select(PositionSelector.selectScrollPosition)
     );
 
-    if (position[this.moviesPositionKey].length) {
+    if (position[this.moviesPositionKey]) {
       setTimeout(() => {
         window.scrollTo(...position.movies);
       });

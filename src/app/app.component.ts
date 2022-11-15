@@ -7,14 +7,9 @@ import { AuthNgrxService } from './Ngrx/Auth/auth-ngrx.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild('mainContent')
-  private mainContentElement!: ElementRef<HTMLElement>;
+  constructor() {}
 
-  constructor(private readonly authService: AuthNgrxService) {}
-
-  ngOnInit(): void {
-    // this.authService.refreshToken();
-  }
+  ngOnInit(): void {}
 
   onActivate(e: any) {}
 }

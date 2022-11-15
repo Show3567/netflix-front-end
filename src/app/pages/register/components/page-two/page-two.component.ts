@@ -70,12 +70,12 @@ export class PageTwoComponent implements OnInit {
         }),
         debounceTime(500),
         switchMap((_) => {
-          return this.http.post(
+          return this.http.post<boolean>(
             [this.authServerPath, 'auth', 'check-email'].join('/'),
             { email }
           );
         }),
-        map((result: any) => {
+        map((result: boolean) => {
           this.isLoading = false;
           return result ? { hasemail: true } : null;
         }),

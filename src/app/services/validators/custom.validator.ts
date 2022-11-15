@@ -22,10 +22,12 @@ export class CustomValidator {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const email = control.value;
       return this.http
-        .post([this.authServerPath, 'auth', 'check-email'].join('/'), { email })
+        .post<boolean>([this.authServerPath, 'auth', 'check-email'].join('/'), {
+          email,
+        })
         .pipe(
           debounceTime(500),
-          map((result: any) => {
+          map((result: boolean) => {
             return result ? { hasemail: true } : null;
           })
         );
