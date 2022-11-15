@@ -7,7 +7,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 import { AppUser } from '../interfaces/user-login.interface';
-import { TmdbService } from '../tmdb/tmdb.service';
 import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 import { AUTHSERVER } from 'src/app/core/core.module';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
