@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
+import { PositionState } from '../interfaces/position.interface';
 import * as PositionActions from './scroll.action';
 
-const initalState = {
+const initalState: PositionState = {
   positionState: {},
 };
 

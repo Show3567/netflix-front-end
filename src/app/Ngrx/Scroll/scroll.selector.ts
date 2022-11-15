@@ -1,8 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { PositionState } from '../interfaces/position.interface';
 
-const selectPosition = createFeatureSelector('positionRecord');
+const selectPosition = createFeatureSelector<PositionState>('positionRecord');
 
 export const selectScrollPosition = createSelector(
   selectPosition,
-  (state: any) => state.positionState
+  (state: PositionState) => state.positionState
 );
