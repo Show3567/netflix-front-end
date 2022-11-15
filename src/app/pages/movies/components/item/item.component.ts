@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 

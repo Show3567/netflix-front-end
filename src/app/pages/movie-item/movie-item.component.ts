@@ -2,16 +2,15 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ActivatedRoute } from '@angular/router';
-
-import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { Video } from 'src/app/services/interfaces/video.interface';
-import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
-import { Cast } from 'src/app/services/interfaces/credit.interface';
-import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 import { MatDialog } from '@angular/material/dialog';
+
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
-import { ProdTitle } from 'src/app/core/core.module';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
+import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
+import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
+import { ProdTitle } from 'src/app/core/core.module';
+import { Video } from 'src/app/services/interfaces/video.interface';
+import { Cast } from 'src/app/services/interfaces/credit.interface';
 
 @Component({
   selector: 'app-movie-item',
