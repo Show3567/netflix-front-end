@@ -6,7 +6,6 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
-import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Injectable({
   providedIn: 'root',

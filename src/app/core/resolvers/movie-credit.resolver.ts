@@ -5,7 +5,6 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { map } from 'rxjs/operators';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 

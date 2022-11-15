@@ -10,7 +10,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppUser } from 'src/app/services/interfaces/user-login.interface';
 import { AuthDto } from 'src/app/services/interfaces/authDto.interface';
 import { AUTHSERVER } from 'src/app/core/core.module';
-import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import {
   AppUserAuth,
   UserRole,
