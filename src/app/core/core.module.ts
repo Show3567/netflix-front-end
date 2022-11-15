@@ -67,14 +67,14 @@ export class CoreModule {
             usecookie: boolean,
             router: Router,
             http: HttpClient,
-            tmdbservice: TmdbNgrxService,
+            tmdbservice: TmdbService,
             authpath: string
           ) => {
             return usecookie
               ? new WithCookieService(router, http, authpath)
               : new AuthService(router, http, tmdbservice, authpath);
           },
-          deps: [USECOOKIE, Router, HttpClient, TmdbNgrxService, AUTHSERVER],
+          deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
         },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Angular initializer;
         {
