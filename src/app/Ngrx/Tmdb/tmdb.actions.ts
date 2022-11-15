@@ -25,17 +25,17 @@ export const SearchMovieSuccess = createAction(
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Handle Scorller
 export const SendHandleScrolMovie = createAction(
-  '[ Movie ] Send Add Movies Request',
+  '[ Movie ] Send Handle Movies Request',
   props<{ url: string }>()
 );
 
 export const HandleScrolSuccess = createAction(
-  '[ Movie ] Search Movie Success',
+  '[ Movie ] Handle Movie Success',
   props<{ data: SearchMovieReturn }>()
 );
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Error Handler
 export const ErrorCollectionUpdate = createAction(
-  '[ Movie ] Get Discover Movie Failed',
+  '[ Movie ] Error Update',
   props<{ err: string }>()
 );

@@ -32,7 +32,6 @@ export class MainHeaderComponent implements OnInit {
 
   searchMovieByKeyWord() {
     this.tmdbService.searchMovie(this.searchKeyWord);
-    // .subscribe(console.log);
     this.searchKeyWord = '';
   }
 

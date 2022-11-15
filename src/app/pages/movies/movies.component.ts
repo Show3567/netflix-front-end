@@ -38,10 +38,10 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
-    private readonly tmdbService: TmdbNgrxService,
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
+    private readonly tmdbService: TmdbNgrxService,
     private readonly store: Store,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
@@ -78,7 +78,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
 
   onScroll() {
     this.tmdbService.handleScrol();
-    // .subscribe();
+    console.log('onScrolling...');
   }
 
   navigateMovie(id: number) {
@@ -90,6 +90,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
+    this.tmdbService.handleScrol();
     // const value = this.getCurValFromObs(
     //   this.store.select(AuthSelectors.getUserAuth)
     // );
