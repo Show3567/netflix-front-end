@@ -50,11 +50,8 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie);
-    // .subscribe();
-    // this.movies$ = this.tmdbService.movieListObs$;
     this.movies$ = this.store.select(TmdbSelectors.getMovies);
 
-    // this.tmdbService.recommendListObs$.subscribe((recom) => {
     this.store.select(TmdbSelectors.getCommendList).subscribe((recom) => {
       console.log(recom);
       this.recommend = [...recom];
@@ -62,17 +59,9 @@ export class MoviesComponent implements OnInit, AfterViewInit {
         this.handleHoverRecommend(this.recommend[0].id);
       }
     });
-
-    //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
-    // const position = this.routerScroll.positions.movies;
-    // if (position) {
-    //   setTimeout(() => {
-    //     window.scrollTo(...position);
-    //   });
-    // }
   }
   ngAfterViewInit(): void {
-    // throw new Error('Method not implemented.');
+    //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
     const position = this.routerScroll.positions.movies;
     if (position) {
       window.scrollTo(...position);

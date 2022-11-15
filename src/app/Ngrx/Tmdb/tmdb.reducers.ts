@@ -21,8 +21,6 @@ export const TmdbReducer = createReducer(
       const movieList = [...(data.results as Movie[])];
       const recommendList = [...movieList.slice(0, 7)];
 
-      console.log('wtf: ', movieList, recommendList);
-
       return {
         ...state,
         movieList,
@@ -53,6 +51,8 @@ export const TmdbReducer = createReducer(
     (state, { data }: { data: SearchMovieReturn }) => {
       const movieList = [...state.movieList, ...(data.results as Movie[])];
       const recommendList = [...movieList.slice(0, 7)];
+
+      console.log('movieList: ', movieList);
 
       return {
         ...state,
