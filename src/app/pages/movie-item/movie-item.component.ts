@@ -6,11 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
+import { Video } from 'src/app/services/interfaces/video.interface';
+import { Cast } from 'src/app/services/interfaces/credit.interface';
 import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
 import { ProdTitle } from 'src/app/core/core.module';
-import { Video } from 'src/app/services/interfaces/video.interface';
-import { Cast } from 'src/app/services/interfaces/credit.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -18,7 +18,8 @@ import { Cast } from 'src/app/services/interfaces/credit.interface';
   styleUrls: ['./movie-item.component.scss'],
 })
 export class MovieItemComponent implements OnInit {
-  @ViewChild(YouTubePlayer, { static: true }) youTubePlayer!: YouTubePlayer;
+  @ViewChild(YouTubePlayer, { static: true })
+  private youTubePlayer!: YouTubePlayer;
 
   hasposter_img = true;
   hasbackdrop_img = true;

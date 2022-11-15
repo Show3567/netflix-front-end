@@ -8,11 +8,12 @@ import { take } from 'rxjs/operators';
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
-import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
 import * as TmdbSelectors from 'src/app/Ngrx/Tmdb/tmdb.selectors';
+import * as PositionSelector from 'src/app/Ngrx/Scroll/scroll.selector';
 
 @Component({
   selector: 'app-movies',
@@ -38,8 +39,8 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly router: Router,
     private readonly titleService: Title,
-    private readonly routerScroll: RouterScrollService,
     private readonly tmdbService: TmdbNgrxService,
+    private readonly authService: AuthNgrxService,
     private readonly store: Store,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
@@ -59,9 +60,12 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
-    const position = this.routerScroll.positions.movies;
-    if (position) {
-      window.scrollTo(...position);
+    const position = this.authService.getCurValFromObs(
+      this.store.select(PositionSelector.selectScrollPosition)
+    );
+
+    if (position.movies) {
+      window.scrollTo(...position.movies);
     }
   }
 

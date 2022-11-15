@@ -56,7 +56,7 @@ export class AuthNgrxService {
   }
 
   //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Helpers
-  private getCurValFromObs(obs: Observable<any>): any {
+  getCurValFromObs(obs: Observable<any>): any {
     let value: any;
     obs.pipe(take(1)).subscribe((val) => {
       value = val;
