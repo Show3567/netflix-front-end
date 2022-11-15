@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { debounceTime, map, switchMap, take, tap } from 'rxjs/operators';
 import { AUTHSERVER } from 'src/app/core/core.module';
 
 @Injectable({
@@ -18,19 +18,26 @@ export class CustomValidator {
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {}
 
-  hasEmail(): AsyncValidatorFn {
+  hasEmail(obj: any): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const email = control.value;
-      return this.http
-        .post<boolean>([this.authServerPath, 'auth', 'check-email'].join('/'), {
-          email,
-        })
-        .pipe(
-          debounceTime(500),
-          map((result: boolean) => {
-            return result ? { hasemail: true } : null;
-          })
-        );
+      return control.valueChanges.pipe(
+        tap((_) => {
+          obj.isLoading = true;
+        }),
+        debounceTime(500),
+        switchMap((_) => {
+          return this.http.post<boolean>(
+            [this.authServerPath, 'auth', 'check-email'].join('/'),
+            { email }
+          );
+        }),
+        map((result: boolean) => {
+          obj.isLoading = false;
+          return result ? { hasemail: true } : null;
+        }),
+        take(1)
+      );
     };
   }
 }

@@ -1,19 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {
-  AbstractControl,
-  AsyncValidatorFn,
   UntypedFormBuilder,
   UntypedFormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
 
 import { AUTHSERVER } from 'src/app/core/core.module';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { CustomValidator } from 'src/app/services/validators/custom.validator';
 
 @Component({
   selector: 'app-page-two',
@@ -32,10 +28,11 @@ export class PageTwoComponent implements OnInit {
   }
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private readonly fb: UntypedFormBuilder,
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly authService: AuthNgrxService,
+    private readonly customValidator: CustomValidator,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {}
   ngOnInit(): void {
@@ -44,7 +41,11 @@ export class PageTwoComponent implements OnInit {
       : '';
 
     this.form = this.fb.group({
-      email: [initemailVal, [Validators.email], [this.hasEmail()]],
+      email: [
+        initemailVal,
+        [Validators.email],
+        [this.customValidator.hasEmail(this)],
+      ],
       password: [''],
     });
   }
@@ -58,29 +59,5 @@ export class PageTwoComponent implements OnInit {
   onSubmit() {
     this.authService.addUserInfo(this.form.value);
     this.router.navigate(['/register/step2ii']);
-  }
-
-  /* customValidator */
-  hasEmail(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      const email = control.value;
-      return control.valueChanges.pipe(
-        tap((_) => {
-          this.isLoading = true;
-        }),
-        debounceTime(500),
-        switchMap((_) => {
-          return this.http.post<boolean>(
-            [this.authServerPath, 'auth', 'check-email'].join('/'),
-            { email }
-          );
-        }),
-        map((result: boolean) => {
-          this.isLoading = false;
-          return result ? { hasemail: true } : null;
-        }),
-        take(1)
-      );
-    };
   }
 }
