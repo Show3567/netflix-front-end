@@ -2,14 +2,14 @@ import { createReducer, on } from '@ngrx/store';
 import * as PositionActions from './scroll.action';
 
 const initalState = {
-  positionState: { movies: [0, 0] },
+  positionState: {},
 };
 
 export const PositionReducer = createReducer(
   initalState,
-  on(PositionActions.RecordScrollPosition, (state, { x, y }) => {
+  on(PositionActions.RecordScrollPosition, (state, { name, x, y }) => {
     return {
-      positionState: { movies: [x, y] },
+      positionState: { [name]: [x, y] },
     };
   })
 );

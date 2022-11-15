@@ -1,8 +1,15 @@
-import { AfterViewInit, Component, Inject, OnInit, Pipe } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Pipe,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
@@ -14,19 +21,21 @@ import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
 import * as TmdbSelectors from 'src/app/Ngrx/Tmdb/tmdb.selectors';
 import * as PositionSelector from 'src/app/Ngrx/Scroll/scroll.selector';
+import { PositionKey } from './movies.module';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
-export class MoviesComponent implements OnInit, AfterViewInit {
+export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movies$!: Observable<Movie[]>;
   recommend: Movie[] = [];
   showSearchForm = true;
   showRecommendImg: string = '';
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
+  private subscriptions = new Subscription();
 
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
@@ -42,21 +51,28 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     private readonly tmdbService: TmdbNgrxService,
     private readonly authService: AuthNgrxService,
     private readonly store: Store,
-    @Inject(ProdTitle) private readonly prodTitle: string
+    @Inject(ProdTitle) private readonly prodTitle: string,
+    @Inject(PositionKey) private readonly moviesPositionKey: string
   ) {}
 
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
-    this.tmdbService.getDiscoverMovie(this.baseSearchMovie);
     this.movies$ = this.store.select(TmdbSelectors.getMovies);
+    const movies = this.authService.getCurValFromObs(this.movies$);
 
-    this.store.select(TmdbSelectors.getCommendList).subscribe((recom) => {
-      this.recommend = [...recom];
-      if (this.recommend.length && this.recommend[0].id) {
-        this.handleHoverRecommend(this.recommend[0].id);
-      }
-    });
+    if (!movies.length) {
+      this.tmdbService.getDiscoverMovie(this.baseSearchMovie);
+    }
+
+    this.subscriptions = this.store
+      .select(TmdbSelectors.getCommendList)
+      .subscribe((recom) => {
+        this.recommend = [...recom];
+        if (this.recommend.length && this.recommend[0].id) {
+          this.handleHoverRecommend(this.recommend[0].id);
+        }
+      });
   }
   ngAfterViewInit(): void {
     //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
@@ -64,9 +80,14 @@ export class MoviesComponent implements OnInit, AfterViewInit {
       this.store.select(PositionSelector.selectScrollPosition)
     );
 
-    if (position.movies) {
-      window.scrollTo(...position.movies);
+    if (position[this.moviesPositionKey].length) {
+      setTimeout(() => {
+        window.scrollTo(...position.movies);
+      });
     }
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   handleHoverRecommend(id: number) {

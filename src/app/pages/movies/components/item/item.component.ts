@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
+import { PositionKey } from '../../movies.module';
 
 import * as PositionAction from 'src/app/Ngrx/Scroll/scroll.action';
 
@@ -23,8 +23,8 @@ export class ItemComponent implements OnInit {
   constructor(
     private readonly tmdbService: TmdbNgrxService,
     private readonly router: Router,
-    private readonly routerScroll: RouterScrollService,
-    private readonly store: Store
+    private readonly store: Store,
+    @Inject(PositionKey) private readonly moviesPositionKey: string
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +48,12 @@ export class ItemComponent implements OnInit {
     this.router.navigate(['/movies', this.movie.id]);
     // this.routerScroll.setPositionState('movies', 0, window.scrollY);
     this.store.dispatch(
-      PositionAction.RecordScrollPosition({ x: 0, y: window.scrollY })
+      PositionAction.RecordScrollPosition({
+        name: this.moviesPositionKey,
+        x: 0,
+        y: window.scrollY,
+      })
     );
+    console.log(window.scrollY);
   }
 }
