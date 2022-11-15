@@ -46,7 +46,6 @@ export class AuthNgrxService {
   /* upgrade Uer Permission */
   upgradePermission(userRole: { role: UserRole }): void {
     console.log('Change permission class to: ', userRole.role);
-
     this.store.dispatch(AuthActions.SendUpdateUserInfoRequest(userRole));
   }
 

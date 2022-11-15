@@ -47,7 +47,7 @@ export class ItemComponent implements OnInit {
   gotoDetailPage() {
     this.isLoading = true;
     this.router.navigate(['/movies', this.movie.id]);
-    // this.routerScroll.setPositionState('movies', 0, window.scrollY);
+
     this.store.dispatch(
       PositionAction.RecordScrollPosition({
         name: this.moviesPositionKey,
@@ -55,6 +55,5 @@ export class ItemComponent implements OnInit {
         y: window.scrollY,
       })
     );
-    console.log(window.scrollY);
   }
 }
