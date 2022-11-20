@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
@@ -28,11 +27,6 @@ import { PositionReducer } from './Ngrx/Scroll/scroll.reducer';
     HttpClientModule,
     CoreModule.forRoot(),
     SharedModule,
-    LoggerModule.forRoot({
-      serverLoggingUrl: '/api/logs',
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
-    }),
     StoreModule.forRoot({
       auth: AuthReducer,
       tmdbMovies: TmdbReducer,

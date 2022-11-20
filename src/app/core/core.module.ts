@@ -5,19 +5,14 @@ import {
   NgModule,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
-import { TmdbService } from '../services/tmdb/tmdb.service';
-import { WithCookieService } from '../services/auth/with-cookie.service';
-import { AuthService } from '../services/auth/auth.service';
 import { appInitializer } from './app.initializer';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
-import { TmdbNgrxService } from '../Ngrx/Tmdb/tmdb-ngrx.service';
-import { Store } from '@ngrx/store';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
 export const TMDBAPIKEY = new InjectionToken<string>('');
@@ -27,12 +22,17 @@ export const ProdTitle = new InjectionToken<string>('');
 export const TMDBBASEURL = new InjectionToken<string>('');
 export const MOVIEIMGBASEURL = new InjectionToken<string>('');
 
-const USECOOKIE = new InjectionToken<string>('');
-
 @NgModule({
   declarations: [],
-  exports: [],
-  imports: [CommonModule],
+  exports: [LoggerModule],
+  imports: [
+    CommonModule,
+    LoggerModule.forRoot({
+      serverLoggingUrl: '/api/logs',
+      level: NgxLoggerLevel.DEBUG,
+      serverLogLevel: NgxLoggerLevel.ERROR,
+    }),
+  ],
 })
 export class CoreModule {
   public static forRoot(): ModuleWithProviders<CoreModule> {
@@ -55,26 +55,6 @@ export class CoreModule {
         {
           provide: ProdTitle,
           useValue: 'Notflix',
-        },
-        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ AuthService selector
-        {
-          provide: USECOOKIE,
-          useValue: false,
-        },
-        {
-          provide: AuthService,
-          useFactory: (
-            usecookie: boolean,
-            router: Router,
-            http: HttpClient,
-            tmdbservice: TmdbService,
-            authpath: string
-          ) => {
-            return usecookie
-              ? new WithCookieService(router, http, authpath)
-              : new AuthService(router, http, tmdbservice, authpath);
-          },
-          deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
         },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Angular initializer;
         {
