@@ -1,3 +1,6 @@
-<main #mainContent>
-  <router-outlet (activate)="onActivate($event)"></router-outlet>
+<main
+  #mainContent
+  [@slideInAnimation]="main.isActivated ? main.activatedRoute : ''"
+>
+  <router-outlet (activate)="onActivate($event)" #main="outlet"></router-outlet>
 </main>
