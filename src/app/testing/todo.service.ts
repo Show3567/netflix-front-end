@@ -8,7 +8,7 @@ export class TodoService {
   constructor(private fetch: Function = window.fetch.bind(window)) {}
 
   async getTodos(): Promise<string[]> {
-    const response = await this.fetch('/todo');
+    const response: Response = await this.fetch('/todo');
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
     }
@@ -16,3 +16,14 @@ export class TodoService {
     return await response.json();
   }
 }
+
+// Fake todos and response object
+const todos = ['shop groceries', 'mow the lawn', 'take the cat to the vet'];
+const okResponse = new Response(JSON.stringify(todos), {
+  status: 200,
+  statusText: 'OK',
+});
+const errorResponse = new Response('Not Found', {
+  status: 404,
+  statusText: 'Not Found',
+});
