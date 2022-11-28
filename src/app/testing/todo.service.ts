@@ -27,3 +27,15 @@ const errorResponse = new Response('Not Found', {
   status: 404,
   statusText: 'Not Found',
 });
+
+describe('TodoService', () => {
+  it('should send request when trigger getTodos', async () => {
+    const fetchSpy = jasmine.createSpy('fetch').and.returnValue(okResponse);
+    const todoService = new TodoService(fetchSpy);
+
+    const actualResault = await todoService.getTodos();
+
+    expect(actualResault).toEqual(todos);
+    expect(fetchSpy).toHaveBeenCalledWith('/todo');
+  });
+});
