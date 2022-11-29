@@ -13,13 +13,6 @@ const errorResponse = new Response('Not Found', {
 });
 
 describe('TodoService', () => {
-  // let service: TodoService;
-  // beforeEach(() => {
-  //   TestBed.configureTestingModule({
-  //     providers: [TodoService],
-  //   });
-  //   service = TestBed.inject(TodoService);
-  // });
   it('should send request when trigger getTodos', async () => {
     const fetchSpy = jasmine.createSpy('fetch').and.returnValue(okResponse);
     const todoService = new TodoService(fetchSpy);
