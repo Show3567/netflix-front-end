@@ -1,11 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  UntypedFormGroup,
-  UntypedFormBuilder,
-  Validators,
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 import { ProdTitle } from 'src/app/core/core.module';

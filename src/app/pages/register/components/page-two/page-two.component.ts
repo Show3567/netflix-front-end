@@ -1,9 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,7 +13,7 @@ import { CustomValidator } from 'src/app/services/validators/custom.validator';
   styleUrls: ['./page-two.component.scss'],
 })
 export class PageTwoComponent implements OnInit {
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   isLoading = false;
 
   get email() {
@@ -28,7 +24,7 @@ export class PageTwoComponent implements OnInit {
   }
 
   constructor(
-    private readonly fb: UntypedFormBuilder,
+    private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly authService: AuthNgrxService,

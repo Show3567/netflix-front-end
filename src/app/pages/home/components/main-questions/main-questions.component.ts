@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-main-questions',
@@ -63,12 +59,12 @@ export class MainQuestionsComponent implements OnInit {
         'the maturity rating of content kids can watch and block specific titles you don’t want kids to see.',
     },
   ];
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   get email() {
     return this.form.get('email');
   }
 
-  constructor(private fb: UntypedFormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({

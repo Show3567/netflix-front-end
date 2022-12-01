@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
@@ -13,13 +9,13 @@ import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
   styleUrls: ['./main-row-one.component.scss'],
 })
 export class MainRowOneComponent implements OnInit {
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   get email() {
     return this.form.get('email');
   }
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private readonly router: Router,
     private readonly authService: AuthNgrxService
   ) {}

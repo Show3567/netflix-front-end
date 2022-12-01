@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -17,7 +13,7 @@ import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 export class PageTwoIiComponent implements OnInit {
   applyTmdbApiKey =
     'https://developers.themoviedb.org/3/getting-started/authentication';
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
   get username() {
     return this.form.get('username');
@@ -27,7 +23,7 @@ export class PageTwoIiComponent implements OnInit {
   }
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private readonly router: Router,
     private readonly authService: AuthNgrxService,
     private readonly store: Store
