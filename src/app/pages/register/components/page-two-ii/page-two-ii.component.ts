@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 
+import { ApplyTmdbApiKey } from 'src/app/core/core.module';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({
@@ -11,8 +11,6 @@ import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
   styleUrls: ['./page-two-ii.component.scss'],
 })
 export class PageTwoIiComponent implements OnInit {
-  applyTmdbApiKey =
-    'https://developers.themoviedb.org/3/getting-started/authentication';
   form!: FormGroup;
 
   get username() {
@@ -26,7 +24,7 @@ export class PageTwoIiComponent implements OnInit {
     private fb: FormBuilder,
     private readonly router: Router,
     private readonly authService: AuthNgrxService,
-    private readonly store: Store
+    @Inject(ApplyTmdbApiKey) private applyTmdbApiKey: string
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({

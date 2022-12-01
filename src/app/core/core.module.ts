@@ -18,6 +18,7 @@ import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
 export const TMDBAPIKEY = new InjectionToken<string>('');
 export const AUTHSERVER = new InjectionToken<string>('');
 export const ProdTitle = new InjectionToken<string>('');
+export const ApplyTmdbApiKey = new InjectionToken<string>('');
 
 export const TMDBBASEURL = new InjectionToken<string>('');
 export const MOVIEIMGBASEURL = new InjectionToken<string>('');
@@ -51,6 +52,11 @@ export class CoreModule {
         {
           provide: MOVIEIMGBASEURL,
           useValue: 'https://image.tmdb.org/t/p',
+        },
+        {
+          provide: ApplyTmdbApiKey,
+          useValue:
+            'https://developers.themoviedb.org/3/getting-started/authentication',
         },
         {
           provide: ProdTitle,
