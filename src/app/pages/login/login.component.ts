@@ -3,6 +3,8 @@ import {
   UntypedFormGroup,
   UntypedFormBuilder,
   Validators,
+  FormBuilder,
+  FormGroup,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
     'Cookie Preferences',
     'Corporate Information',
   ];
-  loginForm!: UntypedFormGroup;
+  loginForm!: FormGroup;
   login_msg = { msg: '' };
 
   get email() {
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private readonly authService: AuthNgrxService,
     private readonly titleService: Title,
     @Inject(ProdTitle) private readonly prodTitle: string
