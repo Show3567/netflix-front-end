@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { slideInAnimation } from 'src/app/animation/router.anim';
-import { SseService } from './sse.service';
+import { SseService } from './services/sse.service';
 
 @Component({
   selector: 'app-root',
