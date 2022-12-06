@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { slideInAnimation } from 'src/app/animation/router.anim';
+import { SseService } from './sse.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import { slideInAnimation } from 'src/app/animation/router.anim';
   animations: [slideInAnimation],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly sseService: SseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sseService.getServerSendEvent().subscribe(console.log);
+  }
 
   onActivate(e: any) {}
 }
