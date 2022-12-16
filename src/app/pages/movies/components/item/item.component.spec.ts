@@ -9,9 +9,7 @@ describe('ItemComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ItemComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
