@@ -30,38 +30,38 @@ export class WithCookieService {
     this.user$ = this.userSubject$.asObservable();
   }
 
-  /* SignUp */
-  addUserInfo(userInfo: UserInfo) {
-    this.appUserRegister = {
-      ...this.appUserRegister,
-      ...userInfo,
-    };
-  }
-  sighup(userRole: { role: UserRole }): Observable<AuthDto | string> {
-    this.appUserRegister = {
-      ...this.appUserRegister,
-      ...userRole,
-    };
-    const { username, password, email, role, tmdb_key } = this.appUserRegister;
+  // /* SignUp */
+  // addUserInfo(userInfo: UserInfo) {
+  //   this.appUserRegister = {
+  //     ...this.appUserRegister,
+  //     ...userInfo,
+  //   };
+  // }
+  // sighup(userRole: { role: UserRole }): Observable<AuthDto | string> {
+  //   this.appUserRegister = {
+  //     ...this.appUserRegister,
+  //     ...userRole,
+  //   };
+  //   const { username, password, email, role, tmdb_key } = this.appUserRegister;
 
-    if (!username || !password || !email || !role || !tmdb_key)
-      return of('Register failed');
+  //   if (!username || !password || !email || !role || !tmdb_key)
+  //     return of('Register failed');
 
-    return this.http
-      .post<AuthDto>(
-        [this.authServerPath, 'auth', 'signup'].join('/'),
-        this.appUserRegister
-      )
-      .pipe(
-        tap(({ accessToken, role }: AuthDto) => {
-          this.setUserValueByToken({ accessToken, role });
-          this.router.navigate(['/movies']);
-        }),
-        catchError((error) => {
-          return throwError('SomeThing Wrong during sign up!', error);
-        })
-      );
-  }
+  //   return this.http
+  //     .post<AuthDto>(
+  //       [this.authServerPath, 'auth', 'signup'].join('/'),
+  //       this.appUserRegister
+  //     )
+  //     .pipe(
+  //       tap(({ accessToken, role }: AuthDto) => {
+  //         this.setUserValueByToken({ accessToken, role });
+  //         this.router.navigate(['/movies']);
+  //       }),
+  //       catchError((error) => {
+  //         return throwError('SomeThing Wrong during sign up!', error);
+  //       })
+  //     );
+  // }
 
   login(username: string, password: string) {
     return this.http
