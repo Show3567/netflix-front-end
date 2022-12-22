@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { AUTHSERVER } from 'src/app/core/core.module';
-import { AppUserAuth } from '../interfaces/user-auth.interface';
+import { AppUserAuthCookie } from '../interfaces/user-auth-c.interface';
+import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -29,15 +30,48 @@ export class WithCookieService {
     this.user$ = this.userSubject$.asObservable();
   }
 
+  /* SignUp */
+  addUserInfo(userInfo: UserInfo) {
+    this.appUserRegister = {
+      ...this.appUserRegister,
+      ...userInfo,
+    };
+  }
+  sighup(userRole: { role: UserRole }): Observable<AuthDto | string> {
+    this.appUserRegister = {
+      ...this.appUserRegister,
+      ...userRole,
+    };
+    const { username, password, email, role, tmdb_key } = this.appUserRegister;
+
+    if (!username || !password || !email || !role || !tmdb_key)
+      return of('Register failed');
+
+    return this.http
+      .post<AuthDto>(
+        [this.authServerPath, 'auth', 'signup'].join('/'),
+        this.appUserRegister
+      )
+      .pipe(
+        tap(({ accessToken, role }: AuthDto) => {
+          this.setUserValueByToken({ accessToken, role });
+          this.router.navigate(['/movies']);
+        }),
+        catchError((error) => {
+          return throwError('SomeThing Wrong during sign up!', error);
+        })
+      );
+  }
+
   login(username: string, password: string) {
     return this.http
-      .post<any>(
-        `${this.authServerPath}/auth/signin`,
+      .post<AppUserAuthCookie>(
+        `${this.authServerPath}/auth-c/signin`,
         { username, password },
         { withCredentials: true }
       )
       .pipe(
-        map((user) => {
+        map((user: AppUserAuthCookie) => {
           this.userSubject$.next(user);
           this.startRefreshTokenTimer();
           return user;
@@ -48,7 +82,7 @@ export class WithCookieService {
   logout() {
     this.http
       .post<any>(
-        `${this.authServerPath}/auth/revoke-token`,
+        `${this.authServerPath}/auth-c/revoke-token`,
         {},
         { withCredentials: true }
       )
@@ -61,7 +95,7 @@ export class WithCookieService {
   refreshToken() {
     return this.http
       .post<any>(
-        `${this.authServerPath}/auth/refresh-token`,
+        `${this.authServerPath}/auth-c/refresh-token`,
         {},
         { withCredentials: true }
       )
@@ -76,16 +110,12 @@ export class WithCookieService {
 
   //* helper methods;
   private startRefreshTokenTimer() {
-    if (this.userValue && this.userValue.jwtToken) {
-      // parse json object from base64 encoded jwt token
-      const jwtToken = JSON.parse(atob(this.userValue.jwtToken.split('.')[1]));
-
-      // set a timeout to refresh the token a minute before it expires
-      const expires = new Date(jwtToken.exp * 1000);
-      const timeout = expires.getTime() - Date.now() - 60 * 1000;
+    if (this.userValue) {
+      // & maybe chech cookie expire time !!!!
       this.refreshTokenTimeout = setTimeout(
         () => this.refreshToken().subscribe(),
-        timeout
+        0
+        // timeout
       );
     }
   }
