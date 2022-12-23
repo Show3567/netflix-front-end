@@ -18,7 +18,9 @@ export class AppComponent implements OnInit {
   constructor(private readonly sseService: SseService) {}
 
   ngOnInit(): void {
-    this.sseService.getServerSendEvent().subscribe(console.log);
+    this.sseService.getServerSendEvent().subscribe((res: any) => {
+      console.log(JSON.parse(res.data));
+    });
   }
 
   onActivate(e: any) {}

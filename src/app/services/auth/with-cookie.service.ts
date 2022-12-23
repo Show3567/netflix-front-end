@@ -80,13 +80,8 @@ export class WithCookieService {
   }
 
   logout() {
-    this.http
-      .post<any>(
-        `${this.authServerPath}/auth-c/revoke-token`,
-        {},
-        { withCredentials: true }
-      )
-      .subscribe();
+    this.http.get(`${this.authServerPath}/auth-c/signout`).subscribe();
+
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
     this.router.navigate(['/home']);
