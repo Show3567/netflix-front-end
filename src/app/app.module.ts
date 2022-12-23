@@ -43,3 +43,5 @@ import { PositionReducer } from './Ngrx/Scroll/scroll.reducer';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+/* by ngrx and services */
