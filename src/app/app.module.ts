@@ -30,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
 })
 export class AppModule {}
 
+/* this is the version by only services */
 /* 
   myVpn_Activation_Code:
   $ E5Y82N8XKXQIYLURZHYAMSX
