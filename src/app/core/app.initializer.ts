@@ -1,5 +1,3 @@
-import { tap } from 'rxjs/operators';
-import { of } from 'rxjs';
 import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
 
 export function appInitializer(authService: AuthNgrxService) {
@@ -10,10 +8,4 @@ export function appInitializer(authService: AuthNgrxService) {
       authService.refreshToken();
       resolve();
     });
-  // of().pipe(
-  //   tap(() => {
-  //     console.log('trigger from initializer!');
-  //     authService.refreshToken();
-  //   })
-  // );
 }

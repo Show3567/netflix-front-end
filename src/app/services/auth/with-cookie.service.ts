@@ -85,4 +85,18 @@ export class WithCookieService {
     this.userSubject$.next({});
     this.router.navigate(['/home']);
   }
+
+  refreshToken(): Observable<AppUserAuthCookie> {
+    return this.http
+      .get<AppUserAuthCookie>(`${this.authServerPath}/auth-c/initapp`)
+      .pipe(
+        tap((user: AppUserAuthCookie) => {
+          this.userSubject$.next(user);
+          this.router.navigate(['/movies']);
+        }),
+        catchError((error) => {
+          return throwError('SomeThing Wrong during sign up!', error);
+        })
+      );
+  }
 }
