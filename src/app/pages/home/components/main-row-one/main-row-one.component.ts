@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-main-row-one',
@@ -17,7 +17,7 @@ export class MainRowOneComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly router: Router,
-    private readonly authService: AuthNgrxService
+    private readonly authService: AuthService
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({

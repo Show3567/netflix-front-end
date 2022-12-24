@@ -6,14 +6,14 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
   constructor(
-    private readonly authService: AuthNgrxService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) {}
 

@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AUTHSERVER } from '../core.module';
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable()
 export class AuthWithLocalInterceptor implements HttpInterceptor {
   constructor(
-    private authService: AuthNgrxService,
+    private authService: AuthService,
     @Inject(AUTHSERVER) private autoServerPath: string
   ) {}
 

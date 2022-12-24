@@ -5,8 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly router: Router,
-    private readonly authService: AuthNgrxService
+    private readonly authService: AuthService
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

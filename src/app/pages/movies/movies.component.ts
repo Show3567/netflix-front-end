@@ -16,12 +16,12 @@ import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interf
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { ProdTitle } from 'src/app/core/core.module';
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 
 import * as TmdbSelectors from 'src/app/Ngrx/Tmdb/tmdb.selectors';
 import * as PositionSelector from 'src/app/Ngrx/Scroll/scroll.selector';
 import { PositionKey } from './movies.module';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-movies',
@@ -49,7 +49,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly tmdbService: TmdbNgrxService,
-    private readonly authService: AuthNgrxService,
+    private readonly authService: AuthService,
     private readonly store: Store,
     @Inject(ProdTitle) private readonly prodTitle: string,
     @Inject(PositionKey) private readonly moviesPositionKey: string

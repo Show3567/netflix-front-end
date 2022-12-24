@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { AUTHSERVER } from 'src/app/core/core.module';
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 import { CustomValidator } from 'src/app/services/validators/custom.validator';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-page-two',
@@ -27,7 +27,7 @@ export class PageTwoComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly http: HttpClient,
-    private readonly authService: AuthNgrxService,
+    private readonly authService: AuthService,
     private readonly customValidator: CustomValidator,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {}

@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 import { ProdTitle } from 'src/app/core/core.module';
-import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private readonly authService: AuthNgrxService,
+    private readonly authService: AuthService,
     private readonly titleService: Title,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
