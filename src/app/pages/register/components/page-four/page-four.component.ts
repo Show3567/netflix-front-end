@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 @Component({
   selector: 'app-page-four',
   templateUrl: './page-four.component.html',
@@ -27,7 +28,7 @@ export class PageFourComponent implements OnInit {
   };
   selecedColumn: 'USER' | 'SUPERUSER' | 'ADMIN' = 'ADMIN';
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthNgrxService) {}
   ngOnInit(): void {}
 
   selectPlan(user: 'USER' | 'SUPERUSER' | 'ADMIN') {

@@ -5,6 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -13,7 +14,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginGuard implements CanActivate {
   constructor(
-    private readonly authService: AuthService,
+    private readonly authService: AuthNgrxService,
     private readonly router: Router
   ) {}
 
