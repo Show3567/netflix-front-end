@@ -31,6 +31,7 @@ export class WithCookieService {
     this.user$ = this.userSubject$.asObservable();
   }
 
+  //& With Cookie auth, only care about: signUp, signIn, signOut, refershToken */
   /* SignUp */
   addUserInfo(userInfo: UserInfo) {
     this.appUserRegister = {
@@ -64,6 +65,7 @@ export class WithCookieService {
       );
   }
 
+  /* SignIn */
   login(username: string, password: string): Observable<AppUserAuthCookie> {
     return this.http
       .post<AppUserAuthCookie>(
@@ -79,6 +81,7 @@ export class WithCookieService {
       );
   }
 
+  /* SignOut */
   logout() {
     this.http.get(`${this.authServerPath}/auth-c/signout`).subscribe();
 
@@ -86,6 +89,7 @@ export class WithCookieService {
     this.router.navigate(['/home']);
   }
 
+  /* RefreshToken */
   refreshToken(): Observable<AppUserAuthCookie> {
     return this.http
       .get<AppUserAuthCookie>(`${this.authServerPath}/auth-c/initapp`)
