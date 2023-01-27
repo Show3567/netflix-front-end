@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, take } from 'rxjs/operators';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppUser } from 'src/app/services/interfaces/user-login.interface';
 import { AuthDto } from 'src/app/services/interfaces/authDto.interface';
