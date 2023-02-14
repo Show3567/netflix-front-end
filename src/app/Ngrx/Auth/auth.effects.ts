@@ -101,6 +101,7 @@ export class AuthEffects {
           .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, userRole)
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
+              console.log(accessToken);
               const user: AppUserAuth = this.setUserValueByToken({
                 accessToken,
                 role,

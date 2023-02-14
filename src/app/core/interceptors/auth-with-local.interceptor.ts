@@ -30,12 +30,14 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
     const isApiUrl = request.url.startsWith(
       `${this.autoServerPath}/auth/userupdate`
     );
+
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${user.jwtToken}` },
       });
     }
+    console.log(request.headers);
 
-    return next.handle(request).pipe(tap());
+    return next.handle(request);
   }
 }

@@ -22,6 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err) => {
         const authToken = this.authService.userValue.jwtToken;
+
         if ([401, 403].includes(err.status) && authToken) {
           // auto logout if 401 or 403 response returned from api
           console.log('error happend!');
@@ -29,7 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         const error = (err && err.error && err.error.message) || err.statusText;
-        console.error(err);
+        console.error('error: ', err);
         return throwError(error);
       })
     );
