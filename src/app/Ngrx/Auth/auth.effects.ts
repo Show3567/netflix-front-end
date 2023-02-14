@@ -96,12 +96,15 @@ export class AuthEffects {
       ofType(AuthActions.SendUpdateUserInfoRequest),
       exhaustMap((userRole: { role: UserRole }) => {
         this.stopRefreshTokenTimer();
-        console.log('hello~~~~');
+        console.log('userRole: ', userRole);
         return this.http
-          .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, userRole)
+          .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, {
+            role: userRole.role,
+          })
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
-              console.log(accessToken);
+              console.log('accessToken', accessToken);
+
               const user: AppUserAuth = this.setUserValueByToken({
                 accessToken,
                 role,
