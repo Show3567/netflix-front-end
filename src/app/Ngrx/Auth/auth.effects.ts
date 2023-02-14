@@ -94,13 +94,11 @@ export class AuthEffects {
   private updateUserInfo$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.SendUpdateUserInfoRequest),
-      exhaustMap((userRole: { role: UserRole }) => {
+      exhaustMap(({ role }: { role: UserRole }) => {
         this.stopRefreshTokenTimer();
-        console.log('userRole: ', userRole);
+
         return this.http
-          .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, {
-            role: userRole.role,
-          })
+          .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, { role })
           .pipe(
             map(({ accessToken, role }: AuthDto) => {
               console.log('accessToken', accessToken);
