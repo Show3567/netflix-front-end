@@ -96,7 +96,7 @@ export class AuthEffects {
       ofType(AuthActions.SendUpdateUserInfoRequest),
       exhaustMap((userRole: { role: UserRole }) => {
         this.stopRefreshTokenTimer();
-
+        console.log('hello~~~~');
         return this.http
           .patch<AuthDto>(`${this.authServerPath}/auth/userupdate`, userRole)
           .pipe(
