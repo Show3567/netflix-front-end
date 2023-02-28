@@ -82,6 +82,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     if (position[this.moviesPositionKey]) {
+      console.log('position: ', position);
       setTimeout(() => {
         window.scrollTo(...position.movies);
       });

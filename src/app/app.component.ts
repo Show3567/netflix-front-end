@@ -12,7 +12,7 @@ import { SseService } from './services/sse.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [slideInAnimation],
+  // animations: [slideInAnimation],
 })
 export class AppComponent implements OnInit {
   constructor(private readonly sseService: SseService) {}
