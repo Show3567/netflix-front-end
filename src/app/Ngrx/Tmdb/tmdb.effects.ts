@@ -54,7 +54,6 @@ export class TmdbEffects {
     this.actions$.pipe(
       ofType(TmdbActions.SendHandleScrolMovie),
       mergeMap(({ url }: { url: string }) => {
-        console.log(url.split('&'));
         return this.http.get<SearchMovieReturn>(url).pipe(
           map((data: SearchMovieReturn) => {
             return TmdbActions.HandleScrolSuccess({ data });

@@ -36,7 +36,6 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
         setHeaders: { Authorization: `Bearer ${user.jwtToken}` },
       });
     }
-    console.log(request.headers);
 
     return next.handle(request);
   }
