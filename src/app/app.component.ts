@@ -11,7 +11,9 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // localStorage.getItem('access_token');
+  }
 
   onActivate(e: any) {}
 }
