@@ -7,6 +7,8 @@ export class AppUserAuth {
   jwtToken?: string;
 }
 
+
+
 export enum UserRole {
   USER = 'USER',
   SUPERUSER = 'SUPERUSER',

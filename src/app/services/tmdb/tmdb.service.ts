@@ -160,7 +160,7 @@ export class TmdbService {
   }
 
   getCredits(id: number): Observable<Credit> {
-    if ((this.baseDiscoverMovie.api_key, id)) {
+    if (this.baseDiscoverMovie.api_key && id) {
       const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'credits'].join(
         '/'
       )}?api_key=${this.baseDiscoverMovie.api_key}`;
