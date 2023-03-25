@@ -15,7 +15,7 @@
         (mouseover)="handleHoverRecommend(item.id)"
         (click)="navigateMovie(item.id)"
       >
-        {{ item.title | overviewControl: 18 }}
+        {{ item.title | overviewControl : 18 }}
         <!-- {{ (item.title ? item.title : item.name) | overviewControl: 18 }} -->
       </div>
     </div>
@@ -43,7 +43,10 @@
     <div class="cover_img_right"></div>
   </div>
 
-  <div class="movie_list">
+  <cdk-virtual-scroll-viewport itemSize="20" class="movie_list">
+  </cdk-virtual-scroll-viewport>
+
+  <!-- <div class="movie_list">
     <div
       class="movie_item"
       *ngFor="let movie of movies$ | async; let i = index; trackBy: trackByFn"
@@ -64,5 +67,5 @@
     </div>
 
     <div class="notification is-warning" *ngIf="finished"></div>
-  </div>
+  </div> -->
 </div>

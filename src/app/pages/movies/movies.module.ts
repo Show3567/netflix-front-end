@@ -7,6 +7,7 @@ import { MoviesComponent } from './movies.component';
 import { ItemComponent } from './components/item/item.component';
 import { MoviesGuard } from 'src/app/core/guards/movies.guard';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MoviesComponent, ItemComponent],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+    ScrollingModule,
+  ],
 })
 export class MoviesModule {}
