@@ -3,6 +3,7 @@ import {
   Component,
   Inject,
   NgZone,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -13,7 +14,7 @@ import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interf
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -24,7 +25,7 @@ import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
-export class MoviesComponent implements OnInit, AfterViewInit {
+export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movies$!: Observable<Movie[]>;
   recommend: Movie[] = [];
   showSearchForm = true;
@@ -32,6 +33,8 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
   movies: any = [];
+
+  private scrollerSubscription = new Subscription();
 
   @ViewChild(CdkVirtualScrollViewport, { static: true })
   scorller!: CdkVirtualScrollViewport;
@@ -79,7 +82,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     // }
   }
   ngAfterViewInit(): void {
-    this.scorller
+    this.scrollerSubscription = this.scorller
       .elementScrolled()
       .pipe(
         map(() => {
@@ -100,6 +103,9 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     if (position) {
       window.scrollTo(...position);
     }
+  }
+  ngOnDestroy(): void {
+    this.scrollerSubscription.unsubscribe();
   }
 
   handleHoverRecommend(id: number) {
