@@ -22,6 +22,7 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   showRecommendImg: string = '';
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
+  movies: any = [];
 
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
@@ -43,7 +44,11 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
-    this.movies$ = this.tmdbService.movieListObs$;
+    // this.movies$ = this.tmdbService.movieListObs$;
+    this.tmdbService.movieListObs$.subscribe((data) => {
+      console.log(data);
+      this.movies = data;
+    });
 
     this.tmdbService.recommendListObs$.subscribe((recom) => {
       this.recommend = [...recom];
