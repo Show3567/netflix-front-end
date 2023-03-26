@@ -32,12 +32,12 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   showRecommendImg: string = '';
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
-  movies: any = [];
 
-  private scrollerSubscription = new Subscription();
+  // movies: any = [];
+  // private scrollerSubscription = new Subscription();
 
-  @ViewChild(CdkVirtualScrollViewport, { static: true })
-  scorller!: CdkVirtualScrollViewport;
+  // @ViewChild(CdkVirtualScrollViewport, { static: true })
+  // scorller!: CdkVirtualScrollViewport;
 
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
@@ -52,9 +52,9 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
-    @Inject(ProdTitle) private readonly prodTitle: string,
-    private zone: NgZone
-  ) {}
+    @Inject(ProdTitle) private readonly prodTitle: string
+  ) // private zone: NgZone
+  {}
 
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
