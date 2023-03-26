@@ -9,16 +9,16 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Observable, Subscription } from 'rxjs';
+import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
-import { Observable, Subscription } from 'rxjs';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies',
@@ -60,11 +60,11 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
-    // this.movies$ = this.tmdbService.movieListObs$;
-    this.tmdbService.movieListObs$.subscribe((data) => {
-      console.log(data);
-      this.movies = data;
-    });
+    this.movies$ = this.tmdbService.movieListObs$;
+    // this.tmdbService.movieListObs$.subscribe((data) => {
+    //   console.log(data);
+    //   this.movies = data;
+    // });
 
     this.tmdbService.recommendListObs$.subscribe((recom) => {
       this.recommend = [...recom];
@@ -82,21 +82,21 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     // }
   }
   ngAfterViewInit(): void {
-    this.scrollerSubscription = this.scorller
-      .elementScrolled()
-      .pipe(
-        map(() => {
-          return this.scorller.measureScrollOffset('bottom');
-        }),
-        pairwise(),
-        filter(([x, y]) => y < x && y < 40),
-        throttleTime(200)
-      )
-      .subscribe((_) => {
-        this.zone.run(() => {
-          this.onScroll();
-        });
-      });
+    // this.scrollerSubscription = this.scorller
+    //   .elementScrolled()
+    //   .pipe(
+    //     map(() => {
+    //       return this.scorller.measureScrollOffset('bottom');
+    //     }),
+    //     pairwise(),
+    //     filter(([x, y]) => y < x && y < 40),
+    //     throttleTime(200)
+    //   )
+    //   .subscribe((_) => {
+    //     this.zone.run(() => {
+    //       this.onScroll();
+    //     });
+    //   }); // https://www.youtube.com/watch?v=cUNmtRNc-8s&t=2s
 
     // throw new Error('Method not implemented.');
     const position = this.routerScroll.positions.movies;
