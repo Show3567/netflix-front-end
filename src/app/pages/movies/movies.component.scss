@@ -76,6 +76,7 @@
     position: relative;
     width: 90vw;
     padding: 1.875rem;
+    height: 60vh;
     flex-wrap: wrap;
     @include flex(space-between);
 

@@ -35,7 +35,11 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   showRecommendImg: string = '';
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
+<<<<<<< HEAD
   private subscriptions = new Subscription();
+=======
+  movies: any = [];
+>>>>>>> 5deffe5 (update)
 
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
@@ -58,8 +62,17 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
+<<<<<<< HEAD
     this.movies$ = this.store.select(TmdbSelectors.getMovies);
     const movies = this.authService.getCurValFromObs(this.movies$);
+=======
+    this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
+    // this.movies$ = this.tmdbService.movieListObs$;
+    this.tmdbService.movieListObs$.subscribe((data) => {
+      console.log(data);
+      this.movies = data;
+    });
+>>>>>>> 5deffe5 (update)
 
     if (!movies.length) {
       this.tmdbService.getDiscoverMovie(this.baseSearchMovie);
