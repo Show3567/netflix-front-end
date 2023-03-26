@@ -111,6 +111,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   trackByFn(i: number, item: Movie) {
     return item.id;
   }
+
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
     this.tmdbService.handleScrol();
