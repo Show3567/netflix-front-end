@@ -43,7 +43,7 @@
     <div class="cover_img_right"></div>
   </div>
 
-  <cdk-virtual-scroll-viewport itemSize="400" class="movie_list">
+  <cdk-virtual-scroll-viewport #scorller itemSize="20" class="movie_list">
     <div
       class="movie_item"
       *cdkVirtualFor="let movie of movies; let i = index; trackBy: trackByFn"
