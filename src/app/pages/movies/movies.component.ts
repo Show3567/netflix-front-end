@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  NgZone,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -9,6 +16,8 @@ import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { Observable } from 'rxjs';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies',
@@ -24,6 +33,9 @@ export class MoviesComponent implements OnInit, AfterViewInit {
   finished = false;
   movies: any = [];
 
+  @ViewChild(CdkVirtualScrollViewport, { static: true })
+  scorller!: CdkVirtualScrollViewport;
+
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
     year: 2023,
@@ -37,7 +49,8 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
-    @Inject(ProdTitle) private readonly prodTitle: string
+    @Inject(ProdTitle) private readonly prodTitle: string,
+    private zone: NgZone
   ) {}
 
   ngOnInit(): void {
@@ -66,6 +79,22 @@ export class MoviesComponent implements OnInit, AfterViewInit {
     // }
   }
   ngAfterViewInit(): void {
+    this.scorller
+      .elementScrolled()
+      .pipe(
+        map(() => {
+          return this.scorller.measureScrollOffset('bottom');
+        }),
+        pairwise(),
+        filter(([x, y]) => y < x && y < 40),
+        throttleTime(200)
+      )
+      .subscribe((_) => {
+        this.zone.run(() => {
+          this.onScroll();
+        });
+      });
+
     // throw new Error('Method not implemented.');
     const position = this.routerScroll.positions.movies;
     if (position) {
