@@ -34,7 +34,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   finished = false;
 
   // movies: any = [];
-  // private scrollerSubscription = new Subscription();
+  private scrollerSubscription = new Subscription();
 
   // @ViewChild(CdkVirtualScrollViewport, { static: true })
   // scorller!: CdkVirtualScrollViewport;
@@ -52,9 +52,8 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
-    @Inject(ProdTitle) private readonly prodTitle: string
-  ) // private zone: NgZone
-  {}
+    @Inject(ProdTitle) private readonly prodTitle: string // private zone: NgZone
+  ) {}
 
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
@@ -127,6 +126,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   trackByFn(i: number, item: Movie) {
     return item.id;
   }
+
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
   switchToMoiveList() {
     // window.scrollTo(0, 10000);
