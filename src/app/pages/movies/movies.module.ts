@@ -22,16 +22,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MoviesComponent, ItemComponent],
-<<<<<<< HEAD
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  providers: [{ provide: PositionKey, useValue: 'movies' }],
-=======
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
     ScrollingModule,
   ],
->>>>>>> 08297d7 (update)
+  providers: [{ provide: PositionKey, useValue: 'movies' }],
 })
 export class MoviesModule {}
