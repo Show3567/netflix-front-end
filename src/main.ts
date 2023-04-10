@@ -8,5 +8,11 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));
+
+/* 
+  TODO: all test cases to this project 
+  TODO: add charts to somewhere
+*/
