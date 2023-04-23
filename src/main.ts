@@ -15,4 +15,19 @@ platformBrowserDynamic()
 /* 
   TODO: all test cases to this project 
   TODO: add charts to somewhere
+
+  ? when you build the application, if there some error said 'bundle initial exceeded maximum budget'
+  ? go to angular.json --> 
+  "budgets": [
+    {
+      "type": "initial",
+      "maximumWarning": "1mb", <---------------- change the warning limited
+      "maximumError": "3mb" <---------------- change the warning limited
+    },
+    {
+      "type": "anyComponentStyle",
+      "maximumWarning": "4kb", <---------------- change the warning limited
+      "maximumError": "5kb" <---------------- change the warning limited
+    }
+  ],
 */
