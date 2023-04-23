@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { slideInAnimation } from 'src/app/animation/router.anim';
 import { SseService } from './services/sse.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,8 @@ export class AppComponent implements OnInit {
     // this.sseService.getServerSendEvent().subscribe((res: any) => {
     //   console.log(JSON.parse(res.data));
     // });
+
+    console.log('markdown: ', environment.webapiurl);
   }
 
   onActivate(e: any) {}
