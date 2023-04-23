@@ -22,8 +22,7 @@ export class AppComponent implements OnInit {
     // this.sseService.getServerSendEvent().subscribe((res: any) => {
     //   console.log(JSON.parse(res.data));
     // });
-
-    console.log('markdown: ', environment.webapiurl);
+    // console.log('markdown: ', environment.webapiurl);
   }
 
   onActivate(e: any) {}
