@@ -8,7 +8,7 @@ export class SseService {
   constructor(private readonly zone: NgZone) {}
 
   getServerSendEvent() {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       const eventSource = new EventSource(this.url);
 
       eventSource.onmessage = (event) =>
