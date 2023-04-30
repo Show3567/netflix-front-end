@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 @Component({
   selector: 'app-page-four',

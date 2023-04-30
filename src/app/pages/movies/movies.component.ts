@@ -21,7 +21,6 @@ import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 import * as TmdbSelectors from 'src/app/Ngrx/Tmdb/tmdb.selectors';
 import * as PositionSelector from 'src/app/Ngrx/Scroll/scroll.selector';
 import { PositionKey } from './movies.module';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({

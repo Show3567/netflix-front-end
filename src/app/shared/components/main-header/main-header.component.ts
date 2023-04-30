@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-main-header',
