@@ -7,8 +7,6 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Injectable()

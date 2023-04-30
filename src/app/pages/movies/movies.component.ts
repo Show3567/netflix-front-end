@@ -4,7 +4,6 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  Pipe,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
