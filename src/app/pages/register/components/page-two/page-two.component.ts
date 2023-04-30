@@ -1,11 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 import { AUTHSERVER } from 'src/app/core/core.module';
 import { CustomValidator } from 'src/app/services/validators/custom.validator';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Component({
@@ -27,7 +25,6 @@ export class PageTwoComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
-    private readonly http: HttpClient,
     private readonly authService: AuthNgrxService,
     private readonly customValidator: CustomValidator,
     @Inject(AUTHSERVER) private readonly authServerPath: string
