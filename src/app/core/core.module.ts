@@ -12,7 +12,6 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { appInitializer } from './app.initializer';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { AuthService } from '../services/auth/auth.service';
 import { AuthNgrxService } from '../Ngrx/Auth/auth-ngrx.service';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
