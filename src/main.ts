@@ -30,4 +30,6 @@ platformBrowserDynamic()
       "maximumError": "5kb" <---------------- change the warning limited
     }
   ],
+  TODO: Add a websocket in this project.
+  TODO: Upload video to this app.
 */
