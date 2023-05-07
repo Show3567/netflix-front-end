@@ -32,4 +32,6 @@ platformBrowserDynamic()
   ],
   TODO: Add a websocket in this project.
   TODO: Upload video to this app.
+  TODO: Add to AWS
+  TODO: CICD
 */
