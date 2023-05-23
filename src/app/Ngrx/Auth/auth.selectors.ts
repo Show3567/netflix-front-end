@@ -11,3 +11,5 @@ export const getUserRegisterInfo = createSelector(
   selectAuth,
   (state: AuthState) => state.userRegisterInfo
 );
+
+// this.stor.select(getUserRegisterInfo) | async
