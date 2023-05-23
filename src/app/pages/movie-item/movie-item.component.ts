@@ -86,7 +86,9 @@ export class MovieItemComponent implements OnInit {
     if (videos && videos.results) {
       this.movieVideos = [...videos.results];
     }
+
     this.movie = this.activatedRoute.snapshot.data['movie'];
+
     this.actors = this.activatedRoute.snapshot.data['credits'].map(
       (actor: Cast): Cast => {
         const profile_path = actor.profile_path
@@ -95,6 +97,7 @@ export class MovieItemComponent implements OnInit {
         return { ...actor, profile_path };
       }
     );
+
     this.posters = this.activatedRoute.snapshot.data['posters']
       .map((backdrop: Backdrop): Backdrop => {
         const file_path = this.tmdbService.getMovieImagePath(
@@ -120,6 +123,7 @@ export class MovieItemComponent implements OnInit {
         'original'
       );
     } else this.hasbackdrop_img = false;
+
     if (this.movie.poster_path) {
       this.hasposter_img = true;
       this.poster_img_high = this.tmdbService.getMovieImagePath(
