@@ -57,7 +57,7 @@
       class="movie_item"
       *ngFor="let movie of movies$ | async; let i = index; trackBy: trackByFn"
     >
-      <app-item [movie]="movie"></app-item>
+      <app-item [movie]="movie"> </app-item>
     </div>
 
     <div
