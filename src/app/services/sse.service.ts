@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SseService {
-  readonly url = 'http://localhost:4231/sse';
+  private readonly url = 'http://localhost:4231/sse';
 
   constructor(private readonly zone: NgZone) {}
 
