@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { SseService } from './sse.service';
 import { NgZone } from '@angular/core';
 
-describe('SseService', () => {
+fdescribe('SseService', () => {
   let service: SseService;
 
   beforeEach(() => {
@@ -13,7 +13,14 @@ describe('SseService', () => {
     service = TestBed.inject(SseService);
   });
 
-  xit('should be created', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should return an Observable after call getServerSendEvent fn', () => {
+    const spy = spyOn(service, 'getServerSendEvent');
+    service.getServerSendEvent();
+
+    expect(typeof spy).toBe('observable'); // ??
   });
 });
