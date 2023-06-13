@@ -46,16 +46,15 @@ export class WithCookieService {
   }
 
   logout() {
-    this.http
-      .post<any>(
-        `${this.authServerPath}/auth/revoke-token`,
-        {},
-        { withCredentials: true }
-      )
-      .subscribe();
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
     this.router.navigate(['/home']);
+
+    return this.http.post<any>(
+      `${this.authServerPath}/auth/revoke-token`,
+      {},
+      { withCredentials: true }
+    );
   }
 
   refreshToken() {
