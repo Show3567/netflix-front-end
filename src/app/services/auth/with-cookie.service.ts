@@ -80,11 +80,20 @@ export class WithCookieService {
   }
 
   logout() {
+<<<<<<< HEAD
     this.http.get(`${this.authServerPath}/auth-c/signout`).subscribe();
 
+=======
+>>>>>>> 57a4d2c (update)
     this.stopRefreshTokenTimer();
     this.userSubject$.next({});
     this.router.navigate(['/home']);
+
+    return this.http.post<any>(
+      `${this.authServerPath}/auth/revoke-token`,
+      {},
+      { withCredentials: true }
+    );
   }
 
   refreshToken() {
