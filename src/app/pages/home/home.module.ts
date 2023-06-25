@@ -9,7 +9,9 @@ import { MainRowThreeComponent } from './components/main-row-three/main-row-thre
 import { MainRowTwoComponent } from './components/main-row-two/main-row-two.component';
 import { MainRowOneComponent } from './components/main-row-one/main-row-one.component';
 
-const routes: Routes = [{ path: '', component: HomeComponent }];
+const routes: Routes = [
+  { path: '', component: HomeComponent, title: 'NotFlix-Home' },
+];
 
 @NgModule({
   declarations: [

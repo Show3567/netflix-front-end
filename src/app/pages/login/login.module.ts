@@ -7,7 +7,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LoginGuard } from 'src/app/core/guards/login.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [LoginGuard] },
+  {
+    path: '',
+    component: LoginComponent,
+    canActivate: [LoginGuard],
+    title: 'NotFlix-Login',
+  },
 ];
 
 @NgModule({

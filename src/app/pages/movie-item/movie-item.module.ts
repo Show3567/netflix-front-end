@@ -17,6 +17,7 @@ const routes: Routes = [
     data: {
       claimType: [UserRole.ADMIN, UserRole.SUPERUSER],
     },
+    title: 'NotFlix-MovieDetails',
   },
 ];
 

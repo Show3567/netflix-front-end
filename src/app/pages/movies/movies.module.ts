@@ -16,6 +16,7 @@ const routes: Routes = [
     component: MoviesComponent,
     canActivate: [MoviesGuard],
     data: { claimType: [UserRole.ADMIN, UserRole.SUPERUSER, UserRole.USER] },
+    title: 'NotFlix-Movies',
   },
 ];
 
