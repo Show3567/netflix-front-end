@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,12 +32,14 @@ import { PositionReducer } from './Ngrx/Scroll/scroll.reducer';
       tmdbMovies: TmdbReducer,
       positionRecord: PositionReducer,
     }),
-    EffectsModule.forRoot([AuthEffects, TmdbEffects]),
+    EffectsModule.forRoot([AuthEffects, TmdbEffects, ]),
     StoreDevtoolsModule.instrument({
       name: 'Movie Web',
       maxAge: 25,
       logOnly: environment.production,
     }),
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
   bootstrap: [AppComponent],
