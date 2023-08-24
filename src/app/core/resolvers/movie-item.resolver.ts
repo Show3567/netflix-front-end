@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-} from '@angular/router';
+import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
@@ -11,7 +7,7 @@ import { TmdbNgrxService } from 'src/app/Ngrx/Tmdb/tmdb-ngrx.service';
 @Injectable({
   providedIn: 'root',
 })
-export class MovieItemResolver implements Resolve<any> {
+export class MovieItemResolver  {
   constructor(private readonly tmdbService: TmdbNgrxService) {}
 
   resolve(

@@ -1,19 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanLoad,
-  Route,
-  Router,
-  RouterStateSnapshot,
-  UrlSegment,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MoviesGuard implements CanLoad, CanActivate {
+export class MoviesGuard  {
   constructor(
     private readonly router: Router,
     private readonly authService: AuthNgrxService
