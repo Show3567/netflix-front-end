@@ -32,7 +32,7 @@ import { PositionReducer } from './Ngrx/Scroll/scroll.reducer';
       tmdbMovies: TmdbReducer,
       positionRecord: PositionReducer,
     }),
-    EffectsModule.forRoot([AuthEffects, TmdbEffects, ]),
+    EffectsModule.forRoot([AuthEffects, TmdbEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Movie Web',
       maxAge: 25,
@@ -45,3 +45,9 @@ import { PositionReducer } from './Ngrx/Scroll/scroll.reducer';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+/* 
+  & remove all the conflix resouse from package.json
+  & upgrade follow the angular upgrade guaid
+  & reinstall these dependence by the latest version
+*/
