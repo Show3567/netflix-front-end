@@ -8,7 +8,7 @@ import { ProdTitle } from 'src/app/core/core.module';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  linkList = [
+  linkList: string[] = [
     'FAQ',
     'Help Center',
     'Account',
