@@ -8,7 +8,7 @@ import { Video } from 'src/app/services/interfaces/video.interface';
 import { MovieDetail } from 'src/app/services/interfaces/movie-detail.interface';
 import { Cast } from 'src/app/services/interfaces/credit.interface';
 import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { ProdTitle } from 'src/app/core/core.module';
 
