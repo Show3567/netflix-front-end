@@ -8,9 +8,12 @@ const initalState: PositionState = {
 
 export const PositionReducer = createReducer(
   initalState,
-  on(PositionActions.RecordScrollPosition, (state, { name, x, y }) => {
-    return {
-      positionState: { [name]: [x, y] },
-    };
-  })
+  on(
+    PositionActions.RecordScrollPosition,
+    (state, { name, x, y }): PositionState => {
+      return {
+        positionState: { [name]: [x, y] },
+      };
+    }
+  )
 );
