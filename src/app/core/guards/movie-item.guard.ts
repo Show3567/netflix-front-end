@@ -1,20 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanLoad,
-  Route,
-  Router,
-  RouterStateSnapshot,
-  UrlSegment,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MovieItemGuard implements CanLoad, CanActivate {
+export class MovieItemGuard  {
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService
