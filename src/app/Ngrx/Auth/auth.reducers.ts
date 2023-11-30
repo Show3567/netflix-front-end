@@ -11,28 +11,30 @@ const initialState: AuthState = {
   authInfo: {},
   authErr: '',
 };
+export const AuthReducer = createReducer(initialState);
 
-export const AuthReducer = createReducer(
-  initialState,
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Update AuthInfo
-  on(AuthActions.UpdateAuthInfoSuccess, (state, authInfo: AppUserAuth) => {
-    return { ...state, authInfo };
-  }),
-  on(AuthActions.UpdateAuthInfoFailed, (state, { authErr }) => {
-    return { ...state, authErr };
-  }),
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignUp
-  on(AuthActions.AddUserInfo, (state, userInfo: UserInfo) => {
-    return {
-      ...state,
-      userRegisterInfo: {
-        ...state.userRegisterInfo,
-        ...userInfo,
-      },
-    };
-  }),
-  //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut
-  on(AuthActions.SignOut, (state) => {
-    return { ...initialState };
-  })
-);
+// export const AuthReducer = createReducer(
+//   initialState,
+//   //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Update AuthInfo
+//   on(AuthActions.UpdateAuthInfoSuccess, (state, authInfo: AppUserAuth) => {
+//     return { ...state, authInfo };
+//   }),
+//   on(AuthActions.UpdateAuthInfoFailed, (state, { authErr }) => {
+//     console.log('reducer: ', authErr);
+//     return { ...state, authErr };
+//   }),
+//   //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignUp
+//   on(AuthActions.AddUserInfo, (state, userInfo: UserInfo) => {
+//     return {
+//       ...state,
+//       userRegisterInfo: {
+//         ...state.userRegisterInfo,
+//         ...userInfo,
+//       },
+//     };
+//   }),
+//   //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SignOut
+//   on(AuthActions.SignOut, (state) => {
+//     return { ...initialState };
+//   })
+// );

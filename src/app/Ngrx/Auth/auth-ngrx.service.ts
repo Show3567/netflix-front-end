@@ -58,6 +58,7 @@ export class AuthNgrxService {
   getCurValFromObs(obs: Observable<any>): any {
     let value: any;
     obs.pipe(take(1)).subscribe((val) => {
+      console.log('val: ', val);
       value = val;
     });
     return value;

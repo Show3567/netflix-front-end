@@ -20,4 +20,8 @@ const routes: Routes = [
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   providers: [],
 })
-export class LoginModule {}
+export class LoginModule {
+  constructor() {
+    console.log('this is login module');
+  }
+}

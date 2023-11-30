@@ -13,18 +13,22 @@ export class LoginGuard {
   constructor(
     private readonly authService: AuthNgrxService,
     private readonly router: Router
-  ) {}
+  ) {
+    console.log('this is login guard');
+  }
 
   canActivate(
     activatedRouteSnapshot: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
     const { jwtToken } = this.authService.userValue;
-    if (!jwtToken) {
-      return true;
-    } else {
-      this.router.navigate(['/']);
-      return false;
-    }
+    console.log(jwtToken);
+    return true;
+    // if (!jwtToken) {
+    //   return true;
+    // } else {
+    //   this.router.navigate(['/']);
+    //   return false;
+    // }
   }
 }
