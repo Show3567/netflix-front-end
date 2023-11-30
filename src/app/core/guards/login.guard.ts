@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { AuthNgrxService } from 'src/app/Ngrx/Auth/auth-ngrx.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuard  {
+export class LoginGuard {
   constructor(
     private readonly authService: AuthNgrxService,
     private readonly router: Router

@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     private readonly titleService: Title,
     @Inject(ProdTitle) private readonly prodTitle: string
   ) {}
+
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-SignIn`);
     this.loginForm = this.fb.group({
