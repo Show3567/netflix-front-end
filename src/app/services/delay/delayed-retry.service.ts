@@ -6,7 +6,7 @@ import { delay, retryWhen, mergeMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DelayedRetryService {
-  DEFAULT_MAX_RETRIES = 5;
+  private DEFAULT_MAX_RETRIES = 5;
 
   constructor() {}
 
