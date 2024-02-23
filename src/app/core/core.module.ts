@@ -15,7 +15,6 @@ import { AuthService } from '../services/auth/auth.service';
 import { appInitializer } from './app.initializer';
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { CheckIdleComponent } from './components/check-idle/check-idle.component';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
 export const TMDBAPIKEY = new InjectionToken<string>('');
@@ -25,8 +24,8 @@ export const ProdTitle = new InjectionToken<string>('');
 const USECOOKIE = new InjectionToken<string>('');
 
 @NgModule({
-  declarations: [CheckIdleComponent],
-  exports: [CheckIdleComponent],
+  declarations: [],
+  exports: [],
   imports: [CommonModule],
 })
 export class CoreModule {
