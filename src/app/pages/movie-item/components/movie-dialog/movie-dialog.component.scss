@@ -2,11 +2,10 @@
 
 .video_holder {
   position: relative;
-  margin-top: 2em;
   height: 38.75rem;
   width: 76.9rem;
-  background-color: black;
-  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 0.5px;
   @include flex();
 
   button {
@@ -50,11 +49,11 @@
     }
     .video_switcher_left {
       left: 0;
-      transform: translate(-120%, -50%);
+      transform: translate(0, -50%);
     }
     .video_switcher_right {
       right: 0;
-      transform: translate(120%, -50%);
+      transform: translate(0, -50%);
     }
     .video_switcher_left:hover,
     .video_switcher_right:hover {
