@@ -19,7 +19,7 @@
     @include flex();
 
     .content {
-      width: 44rem;
+      width: $reuse_1000;
       @include flex(center, center, column);
 
       .row_text {
@@ -28,19 +28,22 @@
         margin-top: 2rem;
       }
       .content_h1 {
+        width: 80%;
         line-height: 4rem;
         font-size: 3.425rem;
       }
       .content_h2 {
+        width: 80%;
         font-size: 1.625rem;
       }
       .content_h3 {
+        width: 80%;
         font-size: 1.2rem;
       }
       .start_form {
         position: relative;
         margin-top: 1.25rem;
-        width: 100%;
+        width: 80%;
         height: $reuse_50;
 
         .input_container {

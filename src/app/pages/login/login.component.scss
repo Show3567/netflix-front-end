@@ -56,15 +56,16 @@
         mat-label {
           color: rgba(255, 255, 255, 0.664);
         }
-        ::ng-deep .mat-form-field-flex {
+        ::ng-deep .mat-mdc-text-field-wrapper {
           margin-top: 1.1rem;
           color: white;
           height: 3.45rem;
           font-size: 1rem;
           background-color: rgb(51, 51, 51);
         }
-        ::ng-deep .mat-form-field-underline::before,
-        ::ng-deep .mat-form-field-ripple {
+        // ::ng-deep .mat-form-field-underline::before,
+        // ::ng-deep .mat-form-field-ripple {
+        ::ng-deep .mdc-line-ripple {
           background-color: rgb(232, 124, 3);
         }
         mat-error,
