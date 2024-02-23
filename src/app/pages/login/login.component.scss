@@ -63,7 +63,10 @@
           font-size: 1rem;
           background-color: rgb(51, 51, 51);
         }
-        // ::ng-deep .mat-form-field-underline::before,
+        .mat-mdc-input-element {
+          color: white;
+        }
+        ::ng-deep .mat-form-field-underline::before,
         // ::ng-deep .mat-form-field-ripple {
         ::ng-deep .mdc-line-ripple {
           background-color: rgb(232, 124, 3);

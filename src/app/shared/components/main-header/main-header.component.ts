@@ -30,6 +30,7 @@ export class MainHeaderComponent implements OnInit {
     } else {
       this.isLogin = false;
     }
+    this.showSearchForm = false; // remove the searchfrom currentlly;
   }
 
   searchMovieByKeyWord() {

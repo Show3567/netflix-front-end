@@ -4,7 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'overviewControl',
 })
 export class OverviewControlPipe implements PipeTransform {
-  transform(value: string, len: number): string {
+  transform(value: string | null | undefined, len: number): string {
+    if (!value) return '';
     return value.length < len ? value : value.substring(0, len) + '...';
   }
 }

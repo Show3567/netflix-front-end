@@ -8,7 +8,9 @@
   <app-main-header></app-main-header>
   <div class="container">
     <article class="movie_info">
-      <section class="movie_name">{{ movie.title | title }}</section>
+      <section class="movie_name">
+        {{ movie.title | overviewControl : 20 }}
+      </section>
       <section class="movie_info_list">
         <mat-icon>star</mat-icon>
         <span style="font-size: 1.6rem" class="fc">
@@ -19,7 +21,9 @@
           {{ movie.runtime }} mins · {{ type }} · {{ date }}
         </span>
       </section>
-      <section class="description fc">{{ movie.overview }}</section>
+      <section class="description fc">
+        {{ movie.overview }}
+      </section>
       <section class="homepage">
         <p *ngIf="movie.homepage">
           Home Page <mat-icon>fingerprint</mat-icon>

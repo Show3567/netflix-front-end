@@ -5,6 +5,7 @@
   height: 100vh;
   width: 100vw;
   background-color: rgb(0, 0, 0);
+  overflow: hidden;
 
   .container {
     position: relative;
@@ -22,7 +23,7 @@
     }
 
     .movie_info {
-      height: 50%;
+      height: 60%;
       width: 50%;
       margin: 3% 0 3% 3%;
       padding: 3% 0 3% 3%;
@@ -42,6 +43,7 @@
         }
       }
       .description {
+        overflow: auto;
         font-size: 1.2rem;
         line-height: 1.8rem;
         letter-spacing: 0.1rem;
@@ -82,7 +84,7 @@
 
       .movie_name {
         color: white;
-        font-size: 7rem;
+        font-size: 4rem;
         font-weight: 900;
         font-family: "Roboto Condensed", sans-serif;
         margin-bottom: 6rem;
