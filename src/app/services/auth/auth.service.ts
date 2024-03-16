@@ -57,7 +57,6 @@ export class AuthService {
   /* SignOut */
   logout() {
     localStorage.removeItem('access_token');
-    this.tmdbService.setMyApiKey = '';
 
     this.stopRefreshTokenTimer();
 

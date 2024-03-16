@@ -61,7 +61,6 @@ export class WithLocalstorageService {
   /* SignOut */
   logout() {
     localStorage.removeItem('access_token');
-    this.tmdbService.setMyApiKey = '';
 
     this.stopRefreshTokenTimer();
 

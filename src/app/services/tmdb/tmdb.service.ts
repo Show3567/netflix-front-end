@@ -40,7 +40,6 @@ export class TmdbService {
 
   private currentPage = 1;
   private baseDiscoverMovie: DiscoverMovie = {
-    api_key: '',
     page: 1,
     language: 'en-US',
     sort_by: 'popularity.desc',
@@ -49,22 +48,14 @@ export class TmdbService {
     with_watch_monetization_types: 'flatrate',
   };
   private baseSearchMovie: SearchMovieDto = {
-    api_key: '',
     query: '',
     language: 'en-US',
     page: 1,
   };
   private readonly baseDiscoverTv: DiscoverTv = {
-    api_key: '',
     page: 1,
     language: 'en-US',
   };
-
-  set setMyApiKey(api_key: string) {
-    this.baseDiscoverMovie.api_key = api_key;
-    this.baseDiscoverTv.api_key = api_key;
-    this.baseSearchMovie.api_key = api_key;
-  }
 
   // ~~~~~~~ lifecycle ~~~~~~~
   constructor(private readonly http: HttpClient) {}
@@ -145,56 +136,27 @@ export class TmdbService {
   }
 
   getMovie(id: number): Observable<Movie> {
-    if (this.baseDiscoverMovie.api_key) {
-      const url = `${[this.tmdbBaseUrl, this.moviePath, id].join(
-        '/'
-      )}?api_key=${this.baseDiscoverMovie.api_key}`;
-      return this.http.get<Movie>(url);
-    } else {
-      // expected err;
-      return this.http.get<Movie>('');
-    }
+    return this.http.get<Movie>(
+      [this.tmdbBaseUrl, this.moviePath, id].join('/')
+    );
   }
 
   getCredits(id: number): Observable<Credit> {
-    if (this.baseDiscoverMovie.api_key && id) {
-      const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'credits'].join(
-        '/'
-      )}?api_key=${this.baseDiscoverMovie.api_key}`;
-
-      return this.http.get<Credit>(url);
-    } else {
-      // expected err;
-      return this.http.get<Credit>('');
-    }
+    return this.http.get<Credit>(
+      [this.tmdbBaseUrl, this.moviePath, id, 'credits'].join('/')
+    );
   }
 
   getPosters(id: number): Observable<MovieImage> {
-    if ((this.baseDiscoverMovie.api_key, id)) {
-      const url = `${[this.tmdbBaseUrl, this.moviePath, id, 'images'].join(
-        '/'
-      )}?api_key=${this.baseDiscoverMovie.api_key}`;
-
-      return this.http.get<MovieImage>(url);
-    } else {
-      // expected err;
-      return this.http.get<MovieImage>('');
-    }
+    return this.http.get<MovieImage>(
+      [this.tmdbBaseUrl, this.moviePath, id, 'images'].join('/')
+    );
   }
 
   getVideo(id: number) {
-    if (this.baseDiscoverMovie.api_key) {
-      const url = [
-        this.tmdbBaseUrl,
-        this.moviePath,
-        id,
-        `videos?api_key=${this.baseDiscoverMovie.api_key}`,
-      ].join('/');
-      return this.http.get(url);
-    } else {
-      // expected err;
-      return this.http.get('');
-    }
+    return this.http.get(
+      [this.tmdbBaseUrl, this.moviePath, id, 'video'].join('/')
+    );
   }
 }
 

@@ -1,5 +1,4 @@
 export interface SearchMovieDto {
-  api_key: string;
   query: string;
   language?: string;
   page?: number;

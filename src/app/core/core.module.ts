@@ -36,7 +36,7 @@ export class CoreModule {
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Reuse values
         {
           provide: AUTHSERVER,
-          useValue: 'http://localhost:4231',
+          useValue: 'http://localhost:5566/api/v1',
         },
         {
           provide: ProdTitle,

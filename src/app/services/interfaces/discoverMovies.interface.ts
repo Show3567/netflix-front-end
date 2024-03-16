@@ -1,6 +1,4 @@
 export interface DiscoverMovie {
-  api_key?: string;
-
   language?: string;
 
   region?: string;
