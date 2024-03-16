@@ -29,8 +29,3 @@ import { SharedModule } from './shared/shared.module';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-/* 
-  myVpn_Activation_Code:
-  $ E5Y82N8XKXQIYLURZHYAMSX
-*/
