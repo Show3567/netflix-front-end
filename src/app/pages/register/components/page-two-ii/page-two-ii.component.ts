@@ -20,9 +20,9 @@ export class PageTwoIiComponent implements OnInit {
   get username() {
     return this.form.get('username');
   }
-  get tmdb_key() {
-    return this.form.get('tmdb_key');
-  }
+  // get tmdb_key() {
+  //   return this.form.get('tmdb_key');
+  // }
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -32,7 +32,7 @@ export class PageTwoIiComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       username: [''],
-      tmdb_key: ['', Validators.minLength(30)],
+      // tmdb_key: ['', Validators.minLength(30)],
     });
   }
 

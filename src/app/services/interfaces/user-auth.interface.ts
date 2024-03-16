@@ -3,7 +3,6 @@ export class AppUserAuth {
   username?: string;
   email?: string;
   role?: UserRole = UserRole.USER;
-  tmdb_key?: string;
   jwtToken?: string;
 }
 

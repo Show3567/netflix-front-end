@@ -81,10 +81,9 @@ export class WithLocalstorageService {
       ...this.appUserRegister,
       ...userRole,
     };
-    const { username, password, email, role, tmdb_key } = this.appUserRegister;
+    const { username, password, email, role } = this.appUserRegister;
 
-    if (!username || !password || !email || !role || !tmdb_key)
-      return of('Register failed');
+    if (!username || !password || !email || !role) return of('Register failed');
 
     return this.http
       .post<{ accessToken: string }>(
@@ -131,9 +130,9 @@ export class WithLocalstorageService {
       return of('err');
     }
 
-    const { id, username, email, role, tmdb_key } =
+    const { id, username, email, role } =
       this.jwtHelper.decodeToken(currentToken);
-    const user = { id, username, email, role, tmdb_key };
+    const user = { id, username, email, role };
 
     return this.http
       .post<any>(`${this.authServerPath}/auth/refresh-token`, user)
@@ -162,13 +161,13 @@ export class WithLocalstorageService {
   private setUserValueByToken = ({ accessToken }: { accessToken: string }) => {
     localStorage.setItem('access_token', accessToken);
 
-    const { id, username, email, role, tmdb_key, exp } =
+    const { id, username, email, role, exp } =
       this.jwtHelper.decodeToken(accessToken);
 
-    this.tmdbService.setMyApiKey = tmdb_key;
+    // this.tmdbService.setMyApiKey = tmdb_key;
 
     const user = {
-      ...{ id, username, email, role, tmdb_key },
+      ...{ id, username, email, role },
       jwtToken: accessToken,
     };
     this.userSubject$.next(user);
