@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -10,12 +10,12 @@ import { Credit } from '../interfaces/credit.interface';
 import { MovieImage } from '../interfaces/poster.interface';
 import { SearchMovieDto } from '../interfaces/searchMovieDto.interface';
 import { SearchMovieReturn } from '../interfaces/searchMovidReturn.interface';
+import { AUTHSERVER } from 'src/app/core/core.module';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TmdbService {
-  private readonly tmdbBaseUrl = 'https://api.themoviedb.org/3';
   private readonly baseMovieImage = 'https://image.tmdb.org/t/p';
   private readonly discoverMoviePath = 'discover/movie?';
   private readonly searchMoviePath = 'search/movie?';
@@ -58,7 +58,10 @@ export class TmdbService {
   };
 
   // ~~~~~~~ lifecycle ~~~~~~~
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    @Inject(AUTHSERVER) private tmdbBaseUrl: string
+  ) {}
 
   // ~~~~~~~ methods ~~~~~~~
   getDiscoverMovie(search: DiscoverMovie) {
@@ -155,7 +158,7 @@ export class TmdbService {
 
   getVideo(id: number) {
     return this.http.get(
-      [this.tmdbBaseUrl, this.moviePath, id, 'video'].join('/')
+      [this.tmdbBaseUrl, this.moviePath, id, 'videos'].join('/')
     );
   }
 }

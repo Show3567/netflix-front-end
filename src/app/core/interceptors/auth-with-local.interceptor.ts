@@ -24,7 +24,11 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const user = this.authService.userValue;
 
-    if (user && user.jwtToken) {
+    const isApiUrl = request.url.startsWith(
+      `${this.authServerPath}/auth/refresh-token`
+    );
+
+    if (user && user.jwtToken && !isApiUrl) {
       request = request.clone({
         setHeaders: { Authorization: user.jwtToken },
       });

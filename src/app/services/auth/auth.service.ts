@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -119,17 +119,15 @@ export class AuthService {
 
   //* helper methods;
   refreshToken(): Observable<AuthDto | string> {
-    const currentToken = localStorage.getItem('access_token');
-    if (!currentToken) {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
       this.router.navigate(['/']);
       return of('err');
     }
-
-    const { id, username, email } = this.jwtHelper.decodeToken(currentToken);
-    const user = { id, username, email };
-
+    this.logout();
+    const headers = new HttpHeaders().set('Authorization', token);
     return this.http
-      .post<AuthDto>(`${this.authServerPath}/auth/refresh-token`, user)
+      .get<AuthDto>(`${this.authServerPath}/auth/refresh-token`)
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
           this.setUserValueByToken({ accessToken, role });
