@@ -124,10 +124,10 @@ export class AuthService {
       this.router.navigate(['/']);
       return of('err');
     }
-    this.logout();
     const headers = new HttpHeaders().set('Authorization', token);
+    console.log('headers: ', headers);
     return this.http
-      .get<AuthDto>(`${this.authServerPath}/auth/refresh-token`)
+      .get<AuthDto>(`${this.authServerPath}/auth/refresh-token`, { headers })
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
           this.setUserValueByToken({ accessToken, role });
