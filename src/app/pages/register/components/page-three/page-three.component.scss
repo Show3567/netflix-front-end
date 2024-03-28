@@ -8,13 +8,18 @@
   .container {
     padding-bottom: $reuse_300;
     width: 21.875rem;
-    @include flex(flex-start, stretch, column);
+    @include flex(flex-start, center, column);
 
     .icon_check_circle {
+      height: 4rem;
+      width: 4rem;
+      // @include flex(center, center, column);
       mat-icon {
+        height: 100%;
+        width: 100%;
         color: red;
         font-size: 4rem;
-        transform: translate(-22px, 0);
+        // transform: translate(-22px, 0);
       }
     }
     .step,

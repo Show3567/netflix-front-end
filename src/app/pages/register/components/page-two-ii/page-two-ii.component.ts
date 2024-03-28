@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -15,10 +11,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class PageTwoIiComponent implements OnInit {
   applyTmdbApiKey =
     'https://developers.themoviedb.org/3/getting-started/authentication';
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
-  get username() {
-    return this.form.get('username');
+  get username(): FormControl {
+    return this.form.get('username') as FormControl;
   }
   // get tmdb_key() {
   //   return this.form.get('tmdb_key');

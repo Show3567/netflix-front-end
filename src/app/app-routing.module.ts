@@ -7,10 +7,12 @@ import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.reso
 import { MoviePreloadingStrategy } from './core/preloading-strategies/movie.preloading';
 import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
 import { MoviePosterResolver } from './core/resolvers/movie-poster.resolver';
+import { PageThreeComponent } from './pages/register/components/page-three/page-three.component';
 
 const routes: Routes = [
   {
     path: 'home',
+    // component: PageThreeComponent,
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
