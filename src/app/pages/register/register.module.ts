@@ -9,6 +9,7 @@ import { PageTwoComponent } from './components/page-two/page-two.component';
 import { PageTwoIiComponent } from './components/page-two-ii/page-two-ii.component';
 import { PageThreeComponent } from './components/page-three/page-three.component';
 import { PageFourComponent } from './components/page-four/page-four.component';
+import { PlanCardComponent } from './components/plan-card/plan-card.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     PageTwoIiComponent,
     PageThreeComponent,
     PageFourComponent,
+    PlanCardComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
