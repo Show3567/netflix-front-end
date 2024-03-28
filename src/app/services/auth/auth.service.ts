@@ -40,10 +40,12 @@ export class AuthService {
 
   /* SignIn */
   login(appUser: AppUser): Observable<AuthDto> {
+    console.log('hello');
     return this.http
       .post<AuthDto>(`${this.authServerPath}/auth/signin`, appUser)
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
+          console.log(accessToken, role);
           this.setUserValueByToken({ accessToken, role });
 
           this.router.navigate(['/movies']);
