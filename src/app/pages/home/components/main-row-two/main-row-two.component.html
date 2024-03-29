@@ -5,11 +5,12 @@
       <div class="content_1_content">{{ content }}</div>
     </div>
 
-    <div class="content_2" *ngIf="templatePic === 'tv'">
-      <img src="../../../../assets/home/tv.png" alt="" />
-    </div>
-    <div class="content_2" *ngIf="templatePic === 'device'">
-      <img src="../../../../assets/home/device-pile.png" alt="" />
+    <div class="content_2">
+      @if (templatePic === "tv") {
+        <img src="../../../../assets/home/tv.png" alt="" />
+      } @else if (templatePic === "device") {
+        <img src="../../../../assets/home/device-pile.png" alt="" />
+      }
     </div>
 
     <video

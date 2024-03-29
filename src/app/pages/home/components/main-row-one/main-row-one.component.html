@@ -25,15 +25,16 @@
             Get Started >
           </button>
         </div>
-        <div
-          class="form_validate_msg"
-          *ngIf="!email?.valid && (email?.dirty || email?.touched)"
-        >
-          <div *ngIf="email?.errors?.required">Email is required!</div>
-          <div *ngIf="email?.errors?.email">
-            Please enter a valid email address!
+        @if (!email?.valid && (email?.dirty || email?.touched)) {
+          <div class="form_validate_msg">
+            @if (email?.errors?.required) {
+              <div>Email is required!</div>
+            }
+            @if (email?.errors?.email) {
+              <div>Please enter a valid email address!</div>
+            }
           </div>
-        </div>
+        }
       </form>
     </div>
   </div>

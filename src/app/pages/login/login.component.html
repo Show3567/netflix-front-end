@@ -12,14 +12,12 @@
           <mat-label>Email or phone number</mat-label>
           <input type="email" matInput formControlName="email" />
 
-          <mat-error
-            *ngIf="email?.hasError('email') && !email?.hasError('required')"
-          >
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="email?.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
+          @if (email?.hasError("email") && !email?.hasError("required")) {
+            <mat-error> Please enter a valid email address </mat-error>
+          }
+          @if (email?.hasError("required")) {
+            <mat-error> Email is <strong>required</strong> </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="login_password" appearance="fill">
@@ -38,18 +36,20 @@
           >
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
-          <mat-error *ngIf="password?.hasError('required')">
-            Please enter a valid password
-          </mat-error>
-          <mat-error *ngIf="password?.hasError('required')">
-            Password is <strong>required</strong>
-          </mat-error>
+          @if (password?.hasError("required")) {
+            <mat-error> Please enter a valid password </mat-error>
+          }
+          <!-- @if (password?.hasError("required")) {
+            <mat-error> Password is <strong>required</strong> </mat-error>
+          } -->
         </mat-form-field>
 
         <button class="submit_btn" mat-raised-button type="submit">
           Sign In
         </button>
-        <div class="login_error" *ngIf="login_msg.msg">{{ login_msg.msg }}</div>
+        @if (login_msg.msg) {
+          <div class="login_error">{{ login_msg.msg }}</div>
+        }
         <div class="rem_holder">
           <div class="rem_me">
             <mat-checkbox
