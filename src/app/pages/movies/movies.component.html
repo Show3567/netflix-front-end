@@ -9,19 +9,15 @@
   >
     <app-main-header [showSearchForm]="showSearchForm"></app-main-header>
     <div class="recommend_list">
-      <div
-        class="recommend_item"
-        *ngFor="
-          let item of recommendSignal();
-          let i = index;
-          trackBy: trackByFn
-        "
-        (mouseover)="handleHoverRecommend(item.id)"
-        (click)="navigateMovie(item.id)"
-      >
-        {{ item.title | overviewControl : 18 }}
-        <!-- {{ (item.title ? item.title : item.name) | overviewControl: 18 }} -->
-      </div>
+      @for (item of recommendSignal(); track $index) {
+        <div
+          class="recommend_item"
+          (mouseover)="handleHoverRecommend(item.id)"
+          (click)="navigateMovie(item.id)"
+        >
+          {{ item.title | overviewControl: 18 }}
+        </div>
+      }
     </div>
     <div class="cover_img_bottom">
       <div class="button_container">
