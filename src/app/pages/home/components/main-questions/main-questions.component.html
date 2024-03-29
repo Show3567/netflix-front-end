@@ -4,16 +4,17 @@
     <div class="content_header">Frequently Asked Questions</div>
     <!-- ------------------------------------------------------------------- -->
     <mat-accordion>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-        *ngFor="let question of questionList"
-      >
-        <mat-expansion-panel-header>
-          <mat-panel-title> {{ question.title }} </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>{{ question.description }}</p>
-      </mat-expansion-panel>
+      @for (question of questionList; track $index) {
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ question.title }} </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{ question.description }}</p>
+        </mat-expansion-panel>
+      }
     </mat-accordion>
     <!-- ------------------------------------------------------------------- -->
     <div class="form_container">

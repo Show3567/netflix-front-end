@@ -6,28 +6,32 @@
       [routerLink]="['/home']"
     />
 
-    <mat-form-field appearance="outline" *ngIf="showSearchForm">
-      <mat-label>Search Movie</mat-label>
-      <input
-        matInput
-        placeholder=""
-        [(ngModel)]="searchKeyWord"
-        (keyup.enter)="searchMovieByKeyWord()"
-      />
-      <mat-icon matSuffix class="icon-display">search</mat-icon>
-    </mat-form-field>
+    @if (showSearchForm) {
+      <mat-form-field appearance="outline">
+        <mat-label>Search Movie</mat-label>
+        <input
+          matInput
+          placeholder=""
+          [(ngModel)]="searchKeyWord"
+          (keyup.enter)="searchMovieByKeyWord()"
+        />
+        <mat-icon matSuffix class="icon-display">search</mat-icon>
+      </mat-form-field>
+    }
 
-    <div *ngIf="!isLogin" class="login_container">
-      <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
-        Sign In
-      </button>
-    </div>
-
-    <div *ngIf="isLogin" class="logout_container">
-      <span> {{ username }} </span>
-      <button mat-raised-button class="signOut_btn" (click)="signOut()">
-        Sign Out
-      </button>
-    </div>
+    @if (!isLogin) {
+      <div class="login_container">
+        <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
+          Sign In
+        </button>
+      </div>
+    } @else {
+      <div class="logout_container">
+        <span> {{ username }} </span>
+        <button mat-raised-button class="signOut_btn" (click)="signOut()">
+          Sign Out
+        </button>
+      </div>
+    }
   </div>
 </header>

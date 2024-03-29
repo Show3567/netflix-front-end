@@ -53,12 +53,11 @@
   </cdk-virtual-scroll-viewport> -->
 
   <div class="movie_list">
-    <div
-      class="movie_item"
-      *ngFor="let movie of movieSignal(); let i = index; trackBy: trackByFn"
-    >
-      <app-item [movie]="movie"> </app-item>
-    </div>
+    @for (movie of movieSignal(); track $index) {
+      <div class="movie_item">
+        <app-item [movie]="movie"> </app-item>
+      </div>
+    }
 
     <div
       class="infinite_scroll_mark"

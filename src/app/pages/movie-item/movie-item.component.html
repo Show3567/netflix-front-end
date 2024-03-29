@@ -9,7 +9,7 @@
   <div class="container">
     <article class="movie_info">
       <section class="movie_name">
-        {{ movie.title | overviewControl : 20 }}
+        {{ movie.title | overviewControl: 20 }}
       </section>
       <section class="movie_info_list">
         <mat-icon>star</mat-icon>
@@ -53,9 +53,11 @@
       <section class="posters_list">
         <h1>Poster</h1>
         <div class="list">
-          <div class="poster_item" *ngFor="let poster of posters">
-            <img [src]="poster.file_path" />
-          </div>
+          @for (poster of posters; track $index) {
+            <div class="poster_item">
+              <img [src]="poster.file_path" />
+            </div>
+          }
         </div>
       </section>
       <div class="takeplace"></div>
@@ -63,19 +65,21 @@
       <section class="actors_list">
         <h1>Actors</h1>
         <div class="list">
-          <div class="actor_item" *ngFor="let actor of actors">
-            <ng-container *ngIf="actor.profile_path; else notfound">
-              <img [src]="actor.profile_path" />
-              <div style="text-align: center">{{ actor.name }}</div>
-            </ng-container>
-            <ng-template #notfound>
-              <img
-                src="../../../assets/video/VGA-no-signal-image.jpeg"
-                style="height: 100%"
-              />
-              <div style="text-align: center">{{ actor.name }}</div>
-            </ng-template>
-          </div>
+          @for (actor of actors; track $index) {
+            <div class="actor_item">
+              <ng-container *ngIf="actor.profile_path; else notfound">
+                <img [src]="actor.profile_path" />
+                <div style="text-align: center">{{ actor.name }}</div>
+              </ng-container>
+              <ng-template #notfound>
+                <img
+                  src="../../../assets/video/VGA-no-signal-image.jpeg"
+                  style="height: 100%"
+                />
+                <div style="text-align: center">{{ actor.name }}</div>
+              </ng-template>
+            </div>
+          }
         </div>
       </section>
     </article>
