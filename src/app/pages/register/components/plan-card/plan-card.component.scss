@@ -1,0 +1,52 @@
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 40rem;
+  width: 18rem;
+  padding: 0.5rem;
+
+  border: 1px solid black;
+  border-radius: 0.5rem;
+
+  .color-pad {
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+    background-image: linear-gradient(
+      to bottom right,
+      rgb(0, 102, 255),
+      rgb(166, 0, 255)
+    );
+    .title {
+      font-size: larger;
+      margin-bottom: 0.2rem;
+    }
+    .resolution {
+      font-size: smaller;
+    }
+
+    mat-radio-button {
+      position: absolute;
+      bottom: -0.1rem;
+      right: -0.5rem;
+    }
+  }
+}
+
+.mat-mdc-radio-button.mat-accent {
+  --mdc-radio-unselected-hover-icon-color: #ff4081;
+  --mdc-radio-unselected-icon-color: white;
+}
+
+.row {
+  padding: 0 1rem;
+}
+
+h5 {
+  margin: 0.5rem 0 0.1rem 0;
+}
