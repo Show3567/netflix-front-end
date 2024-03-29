@@ -15,21 +15,13 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your username</mat-label>
         <input matInput formControlName="username" required />
-        <mat-error *ngIf="username?.invalid">{{
-          errorMessageUsername()
-        }}</mat-error>
+        @if (username.invalid) {
+          <mat-error>{{ errorMessageUsername() }}</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Add your Tmdb Api_Key</mat-label>
         <input matInput [disabled]="true" />
-        <!-- <mat-error *ngIf="tmdb_key?.errors?.required">
-          We need your Tmdb Api Key!
-        </mat-error>
-        <mat-error
-          *ngIf="tmdb_key?.errors?.minlength || tmdb_key?.errors?.maxlength"
-        >
-          Your tmdb_key not Valided!
-        </mat-error> -->
       </mat-form-field>
       <button
         mat-raised-button

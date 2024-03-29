@@ -1,7 +1,9 @@
 <div class="newbox">
-  <div class="spinner_container" *ngIf="isLoading">
-    <mat-spinner></mat-spinner>
-  </div>
+  @if (isLoading) {
+    <div class="spinner_container">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
 
   <div
     class="bk-image"
@@ -14,14 +16,14 @@
   </div>
   <div class="content">
     <div class="movie_poster">
-      <img [src]="poster_img_high" alt="" *ngIf="hasPoster_img" />
-      <img
-        src="../../../../assets/movie/notfoundimg.jpeg"
-        *ngIf="!hasPoster_img"
-      />
+      @if (hasPoster_img) {
+        <img [src]="poster_img_high" alt="" />
+      } @else {
+        <img src="../../../../assets/movie/notfoundimg.jpeg" />
+      }
     </div>
     <h3>
-      {{ movie.title ? movie.title : (movie.name | overviewControl : 20) }}
+      {{ movie.title ? movie.title : (movie.name | overviewControl: 20) }}
     </h3>
     <div class="simple_inof">
       <div class="yr_len_vo">
@@ -30,7 +32,7 @@
         <span class="vote">{{ movie.vote_average }}</span>
       </div>
       <p>
-        {{ movie.overview | overviewControl : 95 }}
+        {{ movie.overview | overviewControl: 95 }}
       </p>
     </div>
     <a (click)="gotoDetailPage()"> More Details </a>

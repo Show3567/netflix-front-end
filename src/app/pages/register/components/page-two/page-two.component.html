@@ -9,33 +9,35 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input matInput formControlName="email" required />
-        <mat-spinner matSuffix *ngIf="isLoading" [diameter]="25"></mat-spinner>
-        <mat-icon
-          class="check_email_ok"
-          *ngIf="!email?.errors?.hasemail && !isLoading"
-          matSuffix
-        >
-          check_circle_outline
-        </mat-icon>
-        <mat-icon
-          class="check_email_not"
-          *ngIf="email?.errors?.hasemail && !isLoading"
-          matSuffix
-        >
-          not_interested
-        </mat-icon>
-        <mat-error *ngIf="email?.errors?.required">
-          Email is required!
-        </mat-error>
-        <mat-error *ngIf="email?.errors?.email">Email not Valided!</mat-error>
-        <mat-error *ngIf="email?.errors?.hasemail">
-          This email already exist...
-        </mat-error>
+        @if (isLoading) {
+          <mat-spinner matSuffix [diameter]="25"></mat-spinner>
+        }
+        @if (!email?.errors?.hasemail && !isLoading) {
+          <mat-icon class="check_email_ok" matSuffix>
+            check_circle_outline
+          </mat-icon>
+        }
+        @if (email?.errors?.hasemail && !isLoading) {
+          <mat-icon class="check_email_not" matSuffix>
+            not_interested
+          </mat-icon>
+        }
+        @if (email?.errors?.required) {
+          <mat-error>Email is required!</mat-error>
+        }
+        @if (email?.errors?.email) {
+          <mat-error>Email not Valided!</mat-error>
+        }
+        @if (email?.errors?.hasemail) {
+          <mat-error> This email already exist... </mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Add a password</mat-label>
         <input matInput formControlName="password" required />
-        <mat-error *ngIf="password?.invalid">Password is required!</mat-error>
+        @if (password?.invalid) {
+          <mat-error>Password is required!</mat-error>
+        }
       </mat-form-field>
       <button
         mat-raised-button

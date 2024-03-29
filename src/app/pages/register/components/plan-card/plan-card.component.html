@@ -30,11 +30,15 @@
     <p>{{ plan.resolution }}</p>
     <hr />
   </div>
-  <div *ngIf="plan.spatialAudio" class="row">
-    <h5>Spatial audio (immersive sound)</h5>
-    <p>{{ plan.spatialAudio }}</p>
-    <hr />
-  </div>
+
+  @if (plan.spatialAudio) {
+    <div class="row">
+      <h5>Spatial audio (immersive sound)</h5>
+      <p>{{ plan.spatialAudio }}</p>
+      <hr />
+    </div>
+  }
+
   <div class="row">
     <h5>Supported devices</h5>
     <p>

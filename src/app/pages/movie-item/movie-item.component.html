@@ -25,17 +25,19 @@
         {{ movie.overview }}
       </section>
       <section class="homepage">
-        <p *ngIf="movie.homepage">
-          Home Page <mat-icon>fingerprint</mat-icon>
-          <a
-            mat-raised-button
-            [href]="movie.homepage"
-            (click)="openNewTab()"
-            class="detail_font-style btn_background_color"
-          >
-            {{ movie.homepage }}
-          </a>
-        </p>
+        @if (movie.homepage) {
+          <p>
+            Home Page <mat-icon>fingerprint</mat-icon>
+            <a
+              mat-raised-button
+              [href]="movie.homepage"
+              (click)="openNewTab()"
+              class="detail_font-style btn_background_color"
+            >
+              {{ movie.homepage }}
+            </a>
+          </p>
+        }
       </section>
       <div class="takeplace"></div>
 
@@ -67,17 +69,16 @@
         <div class="list">
           @for (actor of actors; track $index) {
             <div class="actor_item">
-              <ng-container *ngIf="actor.profile_path; else notfound">
+              @if (actor.profile_path) {
                 <img [src]="actor.profile_path" />
                 <div style="text-align: center">{{ actor.name }}</div>
-              </ng-container>
-              <ng-template #notfound>
+              } @else {
                 <img
                   src="../../../assets/video/VGA-no-signal-image.jpeg"
                   style="height: 100%"
                 />
                 <div style="text-align: center">{{ actor.name }}</div>
-              </ng-template>
+              }
             </div>
           }
         </div>

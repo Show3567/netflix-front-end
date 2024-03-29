@@ -6,25 +6,32 @@
     <button class="video_switcher_right" mat-fab (click)="switchVideo('right')">
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
-    <div class="no_signal" *ngIf="!movieVideos[0]">
-      <img [src]="backdrop_img_high" alt="" *ngIf="hasbackdrop_img" />
-      <img src="../../../../../assets/video/VGA-no-signal-image.jpeg" alt="" />
-    </div>
-    <youtube-player
-      *ngIf="movieVideos[0]"
-      [videoId]="movieVideos[0].key"
-      suggestedQuality="highres"
-      [playerVars]="{
-        autoplay: 1,
-        controls: 1,
-        playlist: movieVideos[0].key,
-        loop: 1,
-        modestbranding: 1
-      }"
-      [height]="600"
-      [width]="1001"
-    >
-    </youtube-player>
+    @if (!movieVideos[0]) {
+      <div class="no_signal">
+        @if (hasbackdrop_img) {
+          <img [src]="backdrop_img_high" alt="" />
+        }
+        <img
+          src="../../../../../assets/video/VGA-no-signal-image.jpeg"
+          alt=""
+        />
+      </div>
+    } @else {
+      <youtube-player
+        [videoId]="movieVideos[0].key"
+        suggestedQuality="highres"
+        [playerVars]="{
+          autoplay: 1,
+          controls: 1,
+          playlist: movieVideos[0].key,
+          loop: 1,
+          modestbranding: 1
+        }"
+        [height]="600"
+        [width]="1001"
+      >
+      </youtube-player>
+    }
   </div>
 </section>
 <!-- <div mat-dialog-actions>
