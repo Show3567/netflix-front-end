@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
 import { AppUserAuth, UserRole } from '../interfaces/user-auth.interface';
@@ -15,18 +15,11 @@ import { AUTHSERVER } from 'src/app/core/core.module';
 @Injectable()
 export class AuthService {
   private jwtHelper = new JwtHelperService();
-  // private userSubject$!: BehaviorSubject<AppUserAuth>;
-  // user$!: Observable<AppUserAuth>;
-
-  // * signal
   userSignal = signal<AppUserAuth>({});
 
   private appUserRegister = new AppUserRegister();
   private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
 
-  // get userValue(): AppUserAuth {
-  //   return this.userSubject$.value;
-  // }
   get appNewUser(): AppUserRegister {
     return this.appUserRegister;
   }
@@ -36,10 +29,7 @@ export class AuthService {
     private readonly http: HttpClient,
     private readonly tmdbService: TmdbService,
     @Inject(AUTHSERVER) private readonly authServerPath: string
-  ) {
-    // this.userSubject$ = new BehaviorSubject<AppUserAuth>({});
-    // this.user$ = this.userSubject$.asObservable();
-  }
+  ) {}
 
   /* SignIn */
   login(appUser: AppUser): Observable<AuthDto> {
@@ -62,8 +52,6 @@ export class AuthService {
 
     this.stopRefreshTokenTimer();
 
-    // this.userSubject$.next({});
-    // * signal
     this.userSignal.set({});
     this.router.navigate(['/home']);
   }
@@ -143,7 +131,6 @@ export class AuthService {
     const timeout = expires.getTime() - Date.now();
 
     this.refreshTokenTimeout = setTimeout(() => {
-      // if (this.userValue.jwtToken) {
       if (this.userSignal().jwtToken) {
         this.refreshToken().subscribe();
       }
@@ -164,8 +151,6 @@ export class AuthService {
       ...{ id, username, email, role },
       jwtToken: accessToken,
     };
-    // this.userSubject$.next(user);
-    // * signal
     this.userSignal.set(user);
     this.startRefreshTokenTimer(exp);
   };

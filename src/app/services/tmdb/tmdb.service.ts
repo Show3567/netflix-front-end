@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Inject, Injectable, signal } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { DiscoverMovie } from '../interfaces/discoverMovies.interface';
@@ -23,20 +23,16 @@ export class TmdbService {
   private readonly moviePath = 'movie';
 
   private movieList: Movie[] = [];
-  private movieList$ = new BehaviorSubject(this.movieList);
-  movieListObs$ = this.movieList$.asObservable();
+  movieSignal = signal(this.movieList);
 
   private recommendList: Movie[] = [];
-  private recommendList$ = new BehaviorSubject(this.recommendList);
-  recommendListObs$ = this.recommendList$.asObservable();
+  recommendSignal = signal(this.recommendList);
 
   private searchedMovieList: Movie[] = [];
-  private searchedMovieList$ = new BehaviorSubject(this.searchedMovieList);
-  searchedMovieListObs$ = this.searchedMovieList$.asObservable();
+  searchedMovieSignal = signal(this.searchedMovieList);
 
   private showMovieList: boolean = true;
-  private showMovieList$ = new BehaviorSubject(this.showMovieList);
-  showMovieObs$ = this.showMovieList$.asObservable();
+  showMovieSignal = signal(this.showMovieList);
 
   private currentPage = 1;
   private baseDiscoverMovie: DiscoverMovie = {
@@ -76,10 +72,10 @@ export class TmdbService {
       tap((data) => {
         if (!this.movieList.length) {
           this.movieList = [...(data.results as Movie[])];
-          this.movieList$.next(this.movieList);
+          this.movieSignal.set(this.movieList);
 
           this.recommendList = [...this.movieList.slice(0, 7)];
-          this.recommendList$.next(this.recommendList);
+          this.recommendSignal.set(this.recommendList);
         }
       })
     );
@@ -100,7 +96,7 @@ export class TmdbService {
         } else {
           this.movieList = [...this.movieList, ...(data.results as Movie[])];
         }
-        this.movieList$.next(this.movieList);
+        this.movieSignal.set(this.movieList);
       })
     );
   }
@@ -116,10 +112,10 @@ export class TmdbService {
     return this.http.get<SearchMovieReturn>(url).pipe(
       tap((data) => {
         this.movieList = [...this.movieList, ...(data.results as Movie[])];
-        this.movieList$.next(this.movieList);
+        this.movieSignal.set(this.movieList);
 
         this.recommendList = [...this.movieList.slice(0, 7)];
-        this.recommendList$.next(this.recommendList);
+        this.recommendSignal.set(this.recommendList);
       })
     );
   }

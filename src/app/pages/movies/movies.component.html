@@ -11,7 +11,11 @@
     <div class="recommend_list">
       <div
         class="recommend_item"
-        *ngFor="let item of recommend; let i = index; trackBy: trackByFn"
+        *ngFor="
+          let item of recommendSignal();
+          let i = index;
+          trackBy: trackByFn
+        "
         (mouseover)="handleHoverRecommend(item.id)"
         (click)="navigateMovie(item.id)"
       >
@@ -55,7 +59,7 @@
   <div class="movie_list">
     <div
       class="movie_item"
-      *ngFor="let movie of movies$ | async; let i = index; trackBy: trackByFn"
+      *ngFor="let movie of movieSignal(); let i = index; trackBy: trackByFn"
     >
       <app-item [movie]="movie"> </app-item>
     </div>
