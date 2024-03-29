@@ -34,7 +34,7 @@ export class MainRowOneComponent implements OnInit {
   ngOnDestroy(): void {}
 
   onSubmit() {
-    const { jwtToken } = this.authService.userValue;
+    const { jwtToken } = this.authService.userSignal();
     if (jwtToken) {
       this.router.navigate(['/movies']);
     } else {

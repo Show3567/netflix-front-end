@@ -23,7 +23,7 @@ export class MainHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const { jwtToken, username } = this.authService.userValue;
+    const { jwtToken, username } = this.authService.userSignal();
     if (jwtToken && username) {
       this.isLogin = true;
       this.username = username;

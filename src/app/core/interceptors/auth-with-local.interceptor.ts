@@ -22,7 +22,7 @@ export class AuthWithLocalInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const user = this.authService.userValue;
+    const user = this.authService.userSignal();
     console.log('user.jwtToken: ', user.jwtToken);
 
     const isApiUrl = request.url.startsWith(`${this.authServerPath}/auth/sign`);

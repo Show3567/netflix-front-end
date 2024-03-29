@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Signal } from '@angular/core';
 import {
   UntypedFormGroup,
   UntypedFormBuilder,
@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 
 import { ProdTitle } from 'src/app/core/core.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { AppUserAuth } from 'src/app/services/interfaces/user-auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   ];
   loginForm!: UntypedFormGroup;
   login_msg = { msg: '' };
+  userSignal!: Signal<AppUserAuth>;
 
   get email() {
     return this.loginForm.get('email');
@@ -49,9 +51,10 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       loginFacebook: [false],
     });
-    this.authService.user$.subscribe((userinfo) =>
-      console.log('userinfo: ', userinfo)
-    );
+    this.userSignal = this.authService.userSignal;
+    // this.authService.user$.subscribe((userinfo) =>
+    //   console.log('userinfo: ', userinfo)
+    // );
   }
 
   onSubmit() {

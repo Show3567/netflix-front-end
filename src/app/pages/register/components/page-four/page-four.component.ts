@@ -42,7 +42,7 @@ export class PageFourComponent implements OnInit {
     // !this.authService.userValue.jwtToken
     //   ? this.router.navigate(['/login'])
     //   : this.router.navigate(['/movies']);
-    const { jwtToken } = this.authService.userValue;
+    const { jwtToken } = this.authService.userSignal();
 
     if (jwtToken) {
       this.authService

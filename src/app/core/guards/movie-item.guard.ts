@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+} from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MovieItemGuard  {
+export class MovieItemGuard {
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const { jwtToken, role } = this.authService.userValue;
+    const { jwtToken, role } = this.authService.userSignal();
     if (
       jwtToken &&
       role &&
@@ -28,7 +34,7 @@ export class MovieItemGuard  {
     }
   }
   canLoad(route: Route, segments: UrlSegment[]) {
-    const { jwtToken, role } = this.authService.userValue;
+    const { jwtToken, role } = this.authService.userSignal();
     if (
       jwtToken &&
       role &&

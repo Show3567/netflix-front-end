@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const { jwtToken, role } = this.authService.userValue;
+    const { jwtToken, role } = this.authService.userSignal();
     const claimType: string = next.data.claimType;
 
     if (jwtToken && role && claimType.includes(role)) {

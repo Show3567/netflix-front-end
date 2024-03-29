@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
@@ -15,15 +15,18 @@ import { AUTHSERVER } from 'src/app/core/core.module';
 @Injectable()
 export class AuthService {
   private jwtHelper = new JwtHelperService();
-  private userSubject$!: BehaviorSubject<AppUserAuth>;
-  user$!: Observable<AppUserAuth>;
+  // private userSubject$!: BehaviorSubject<AppUserAuth>;
+  // user$!: Observable<AppUserAuth>;
+
+  // * signal
+  userSignal = signal<AppUserAuth>({});
 
   private appUserRegister = new AppUserRegister();
   private refreshTokenTimeout!: ReturnType<typeof setTimeout>;
 
-  get userValue(): AppUserAuth {
-    return this.userSubject$.value;
-  }
+  // get userValue(): AppUserAuth {
+  //   return this.userSubject$.value;
+  // }
   get appNewUser(): AppUserRegister {
     return this.appUserRegister;
   }
@@ -34,20 +37,17 @@ export class AuthService {
     private readonly tmdbService: TmdbService,
     @Inject(AUTHSERVER) private readonly authServerPath: string
   ) {
-    this.userSubject$ = new BehaviorSubject<AppUserAuth>({});
-    this.user$ = this.userSubject$.asObservable();
+    // this.userSubject$ = new BehaviorSubject<AppUserAuth>({});
+    // this.user$ = this.userSubject$.asObservable();
   }
 
   /* SignIn */
   login(appUser: AppUser): Observable<AuthDto> {
-    console.log('hello');
     return this.http
       .post<AuthDto>(`${this.authServerPath}/auth/signin`, appUser)
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
-          console.log(accessToken, role);
           this.setUserValueByToken({ accessToken, role });
-
           this.router.navigate(['/movies']);
         }),
         catchError((error) => {
@@ -62,7 +62,9 @@ export class AuthService {
 
     this.stopRefreshTokenTimer();
 
-    this.userSubject$.next({});
+    // this.userSubject$.next({});
+    // * signal
+    this.userSignal.set({});
     this.router.navigate(['/home']);
   }
 
@@ -127,7 +129,6 @@ export class AuthService {
       return of('err');
     }
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('headers: ', headers);
     return this.http
       .get<AuthDto>(`${this.authServerPath}/auth/refresh-token`, { headers })
       .pipe(
@@ -142,7 +143,8 @@ export class AuthService {
     const timeout = expires.getTime() - Date.now();
 
     this.refreshTokenTimeout = setTimeout(() => {
-      if (this.userValue.jwtToken) {
+      // if (this.userValue.jwtToken) {
+      if (this.userSignal().jwtToken) {
         this.refreshToken().subscribe();
       }
     }, timeout);
@@ -158,13 +160,13 @@ export class AuthService {
     const { id, username, email, exp } =
       this.jwtHelper.decodeToken(accessToken);
 
-    // this.tmdbService.setMyApiKey = tmdb_key;
-
     const user = {
       ...{ id, username, email, role },
       jwtToken: accessToken,
     };
-    this.userSubject$.next(user);
+    // this.userSubject$.next(user);
+    // * signal
+    this.userSignal.set(user);
     this.startRefreshTokenTimer(exp);
   };
 }

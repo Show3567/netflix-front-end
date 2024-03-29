@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     console.log('url: ', request.url);
     return next.handle(request).pipe(
       catchError((err) => {
-        const authToken = this.authService.userValue.jwtToken;
+        const authToken = this.authService.userSignal().jwtToken;
         if ([401, 403].includes(err.status) && authToken) {
           // auto logout if 401 or 403 response returned from api
           console.log('error happend!');
