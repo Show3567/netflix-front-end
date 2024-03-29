@@ -1,4 +1,5 @@
 export interface Plan {
+  id: number;
   planTitle: string;
   resolutionTitle: string;
   monthlyPrice: number;

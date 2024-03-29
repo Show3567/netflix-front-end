@@ -1,7 +1,58 @@
 <mat-radio-group [(ngModel)]="selectedPlan">
-  <div class="color-pad">
-    <div class="title"></div>
-    <div class="resolution"></div>
-    <input type="checkbox" />
-  </div>
+  <ng-container *ngFor="let plan of plans">
+    <ng-container
+      *ngTemplateOutlet="plancard; context: { $implicit: plan }"
+    ></ng-container>
+  </ng-container>
 </mat-radio-group>
+
+<ng-template #plancard let-plan>
+  <div class="color-pad">
+    <div class="title">{{ plan.planTitle }}</div>
+    <div class="resolution">{{ plan.resolutionTitle }}</div>
+    <mat-radio-button [value]="plan.id"></mat-radio-button>
+  </div>
+  <div>
+    <h5>Monthly Price</h5>
+    <p>{{ plan.monthlyPrice }}</p>
+    <hr />
+  </div>
+  <div>
+    <h5>Video and sound quality</h5>
+    <p>{{ plan.vsQuality }}</p>
+    <hr />
+  </div>
+  <div>
+    <h5>Resolution</h5>
+    <p>{{ plan.resolution }}</p>
+    <hr />
+  </div>
+  <div *ngIf="plan.spatialAudio">
+    <h5>Spatial audio (immersive sound)</h5>
+    <p>{{ plan.spatialAudio }}</p>
+    <hr />
+  </div>
+  <div>
+    <h5>Supported devices</h5>
+    <p>
+      <span *ngFor="let device of plan.supportedDevices">
+        {{ device }}
+      </span>
+    </p>
+    <hr />
+  </div>
+  <div>
+    <h5>Devices your household can watch at the same time</h5>
+    <p>{{ plan.shareNum }}</p>
+    <hr />
+  </div>
+  <div>
+    <h5>Download devices</h5>
+    <p>{{ plan.downloadDevices }}</p>
+    <hr />
+  </div>
+  <div>
+    <h5>Ads</h5>
+    <p>{{ plan.ads }}</p>
+  </div>
+</ng-template>
