@@ -12,9 +12,9 @@ import { PlanCardComponent } from './pages/register/components/plan-card/plan-ca
 const routes: Routes = [
   {
     path: 'home',
-    component: PlanCardComponent,
-    // loadChildren: () =>
-    //   import('./pages/home/home.module').then((m) => m.HomeModule),
+    // component: PlanCardComponent,
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'login',
