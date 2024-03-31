@@ -5,6 +5,8 @@ import {
   OnDestroy,
   OnInit,
   Signal,
+  computed,
+  signal,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -25,9 +27,18 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movieSignal!: Signal<Movie[]>;
   recommendSignal!: Signal<Movie[]>;
   showSearchForm = true;
-  showRecommendImg: string = '';
+  // showRecommendImg: string = '';
+  currentId = signal(this.tmdbService.recommendSignal()[0].id);
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
+  showRecommendImg = computed(() => {
+    const movie = this.recommendSignal().find(
+      (item: Movie | any) => +item.id === +this.currentId(),
+    );
+    return movie && movie.backdrop_path
+      ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
+      : this.noRecommendImg;
+  });
 
   // @ViewChild(CdkVirtualScrollViewport, { static: true })
   // scorller!: CdkVirtualScrollViewport;
@@ -45,7 +56,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
-    @Inject(ProdTitle) private readonly prodTitle: string // private zone: NgZone
+    @Inject(ProdTitle) private readonly prodTitle: string, // private zone: NgZone
   ) {}
 
   ngOnInit(): void {
@@ -53,12 +64,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
     this.movieSignal = this.tmdbService.movieSignal;
-
     this.recommendSignal = this.tmdbService.recommendSignal;
-    const initMovies = this.recommendSignal();
-    if (initMovies.length) {
-      this.handleHoverRecommend(this.recommendSignal()[0].id);
-    }
 
     //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
     // const position = this.routerScroll.positions.movies;
@@ -69,6 +75,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     // }
   }
   ngAfterViewInit(): void {
+    this.handleHoverRecommend(this.currentId());
     // this.scrollerSubscription = this.scorller
     //   .elementScrolled()
     //   .pipe(
@@ -94,13 +101,14 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {}
 
   handleHoverRecommend(id: number) {
-    const movie = this.recommendSignal().find(
-      (item: Movie | any) => +item.id === +id
-    );
-    this.showRecommendImg =
-      movie && movie.backdrop_path
-        ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
-        : this.noRecommendImg;
+    this.currentId.set(id);
+    // const movie = this.recommendSignal().find(
+    //   (item: Movie | any) => +item.id === +id,
+    // );
+    // this.showRecommendImg =
+    //   movie && movie.backdrop_path
+    //     ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
+    //     : this.noRecommendImg;
   }
 
   onScroll() {

@@ -15,16 +15,14 @@ import { AUTHSERVER } from '../core.module';
 export class AuthWithLocalInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
-    @Inject(AUTHSERVER) private authServerPath: string
+    @Inject(AUTHSERVER) private authServerPath: string,
   ) {}
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     const user = this.authService.userSignal();
-    console.log('user.jwtToken: ', user.jwtToken);
-
     const isApiUrl = request.url.startsWith(`${this.authServerPath}/auth/sign`);
 
     if (user && user.jwtToken && !isApiUrl) {

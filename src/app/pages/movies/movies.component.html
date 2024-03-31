@@ -1,4 +1,4 @@
-<div class="movie_list">
+<!-- <div class="movie_list">
   <div
     class="movie_Recommend"
     [ngStyle]="{
@@ -43,15 +43,6 @@
     <div class="cover_img_right"></div>
   </div>
 
-  <!-- <cdk-virtual-scroll-viewport #scorller itemSize="20" class="movie_list">
-    <div
-      class="movie_item"
-      *cdkVirtualFor="let movie of movies; let i = index; trackBy: trackByFn"
-    >
-      <app-item [movie]="movie"></app-item>
-    </div>
-  </cdk-virtual-scroll-viewport> -->
-
   <div class="movie_list">
     @for (movie of movieSignal(); track $index) {
       <div class="movie_item">
@@ -75,4 +66,8 @@
       <div class="notification is-warning"></div>
     }
   </div>
-</div>
+</div> -->
+
+<!-- <div (mouseover)="handleHoverRecommend(5)">hello</div> -->
+{{ currentId() }}
+{{ recommendSignal() }}
