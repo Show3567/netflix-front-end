@@ -20,7 +20,7 @@ export class ItemComponent implements OnInit {
   constructor(
     private tmdbService: TmdbService,
     private readonly router: Router,
-    private readonly routerScroll: RouterScrollService
+    private readonly routerScroll: RouterScrollService,
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +31,8 @@ export class ItemComponent implements OnInit {
     if (this.movie.poster_path) {
       this.hasPoster_img = true;
       this.poster_img_high = this.tmdbService.getMovieImagePath(
+        'w780',
         this.movie.poster_path,
-        'w780'
       );
     } else {
       this.hasPoster_img = false;

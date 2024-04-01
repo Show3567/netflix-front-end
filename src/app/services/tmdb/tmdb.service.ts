@@ -130,7 +130,10 @@ export class TmdbService {
     return this.http.get(url).pipe(map((tv: any) => tv.results));
   }
 
-  getMovieImagePath(path: string, quality: string): string {
+  getMovieImagePath(
+    quality: 'w500' | 'w780' | 'w1280' | 'original',
+    path: string,
+  ): string {
     return [this.baseMovieImage, quality].join('/') + path;
   }
 

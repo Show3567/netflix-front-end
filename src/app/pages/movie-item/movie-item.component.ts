@@ -45,7 +45,7 @@ export class MovieItemComponent implements OnInit {
     private readonly titleService: Title,
     private readonly router: Router,
     public dialog: MatDialog,
-    @Inject(ProdTitle) private readonly prodTitle: string
+    @Inject(ProdTitle) private readonly prodTitle: string,
   ) {}
 
   ngOnInit(): void {
@@ -90,16 +90,16 @@ export class MovieItemComponent implements OnInit {
     this.actors = this.activatedRoute.snapshot.data['credits'].map(
       (actor: Cast): Cast => {
         const profile_path = actor.profile_path
-          ? this.tmdbService.getMovieImagePath(actor.profile_path, 'w500')
+          ? this.tmdbService.getMovieImagePath('w500', actor.profile_path)
           : '';
         return { ...actor, profile_path };
-      }
+      },
     );
     this.posters = this.activatedRoute.snapshot.data['posters']
       .map((backdrop: Backdrop): Backdrop => {
         const file_path = this.tmdbService.getMovieImagePath(
+          'w500',
           backdrop.file_path,
-          'w500'
         );
         return { ...backdrop, file_path };
       })
@@ -109,22 +109,22 @@ export class MovieItemComponent implements OnInit {
       this.movie.production_companies.forEach((company: any) => {
         company.logo_path !== null &&
           this.companies_icons.push(
-            this.tmdbService.getMovieImagePath(company.logo_path, 'w500')
+            this.tmdbService.getMovieImagePath('w500', company.logo_path),
           );
       });
     }
     if (this.movie.backdrop_path) {
       this.hasbackdrop_img = true;
       this.backdrop_img_high = this.tmdbService.getMovieImagePath(
+        'original',
         this.movie.backdrop_path,
-        'original'
       );
     } else this.hasbackdrop_img = false;
     if (this.movie.poster_path) {
       this.hasposter_img = true;
       this.poster_img_high = this.tmdbService.getMovieImagePath(
+        'w780',
         this.movie.poster_path,
-        'w780'
       );
     } else this.hasposter_img = false;
   }

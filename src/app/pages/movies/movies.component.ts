@@ -37,7 +37,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     );
     console.log(movie?.backdrop_path);
     return movie && movie.backdrop_path
-      ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
+      ? this.tmdbService.getMovieImagePath('w1280', movie.backdrop_path)
       : this.noRecommendImg;
   });
 
