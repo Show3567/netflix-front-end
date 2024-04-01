@@ -1,4 +1,4 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, input, model, signal } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
@@ -8,13 +8,14 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
   styleUrls: ['./main-header.component.scss'],
 })
 export class MainHeaderComponent implements OnInit {
-  showSearchForm = input(false, {
-    transform: (val: boolean) => false, // remove the searchfrom currentlly;
-  });
+  // showSearchForm = input(false, {
+  //   transform: (val: boolean) => false, // remove the searchfrom currentlly;
+  // });
+  showSearchForm = model(false);
 
   isLogin!: boolean;
   username = '';
-  searchKeyWord = '';
+  searchKeyWord = signal('');
 
   constructor(
     private readonly authService: AuthService,
@@ -29,11 +30,12 @@ export class MainHeaderComponent implements OnInit {
     } else {
       this.isLogin = false;
     }
+    this.showSearchForm.set(false);
   }
 
   searchMovieByKeyWord() {
-    this.tmdbService.searchMovie(this.searchKeyWord).subscribe(console.log);
-    this.searchKeyWord = '';
+    this.tmdbService.searchMovie(this.searchKeyWord()).subscribe(console.log);
+    this.searchKeyWord.set('');
   }
   signOut() {
     this.authService.logout();

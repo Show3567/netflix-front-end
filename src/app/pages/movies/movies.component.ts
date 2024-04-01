@@ -26,7 +26,7 @@ import { ProdTitle } from 'src/app/core/core.module';
 export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movieSignal!: Signal<Movie[]>;
   recommendSignal!: Signal<Movie[]>;
-  showSearchForm = true;
+  showSearchForm = signal(true);
 
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
