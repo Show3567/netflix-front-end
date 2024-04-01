@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content">
     <!-- --------------------------------------------- -->
-    @if (channel === "download") {
+    @if (channel() === "download") {
       <div class="content_download">
         <img src="../../../../assets/home/mobile-0819.jpeg" alt="" />
         <div class="download_box">
@@ -21,7 +21,7 @@
           />
         </div>
       </div>
-    } @else if (channel === "kid") {
+    } @else if (channel() === "kid") {
       <div class="content_kid">
         <img src="../../../../assets/home/WechatIMG136.png" alt="" />
       </div>
@@ -29,10 +29,10 @@
     <!-- --------------------------------------------- -->
     <div class="content_text">
       <div class="content_text_header">
-        {{ header }}
+        {{ header() }}
       </div>
       <div class="content_text_content">
-        {{ content }}
+        {{ content() }}
       </div>
     </div>
     <!-- --------------------------------------------- -->

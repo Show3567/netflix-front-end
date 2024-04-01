@@ -27,10 +27,10 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movieSignal!: Signal<Movie[]>;
   recommendSignal!: Signal<Movie[]>;
   showSearchForm = true;
-  // showRecommendImg: string = '';
-  currentId = signal(0);
+
   noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
+  currentId = signal(0);
   showRecommendImg = computed(() => {
     const movie = this.recommendSignal().find(
       (item: Movie | any) => +item.id === +this.currentId(),
@@ -67,7 +67,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.recommendSignal = this.tmdbService.recommendSignal;
   }
   ngAfterViewInit(): void {
-    // this.handleHoverRecommend(this.tmdbService.recommendSignal()[0].id);
     const position = this.routerScroll.positions.movies;
     if (position) {
       window.scrollTo(...position);
