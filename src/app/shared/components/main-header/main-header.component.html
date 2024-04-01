@@ -6,7 +6,7 @@
       [routerLink]="['/home']"
     />
 
-    @if (showSearchForm) {
+    @if (showSearchForm()) {
       <mat-form-field appearance="outline">
         <mat-label>Search Movie</mat-label>
         <input

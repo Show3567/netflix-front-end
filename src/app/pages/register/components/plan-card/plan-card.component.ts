@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { Plan } from 'src/app/services/interfaces/plan.interface';
 
 @Component({
@@ -10,7 +10,7 @@ export class PlanCardComponent {
   selectedPlan: 'Standard with ads' | 'Standard' | 'Premium' =
     'Standard with ads';
 
-  @Input() plan: Plan = {
+  plan = input<Plan>({
     id: 1,
     planTitle: 'Standard with ads',
     resolutionTitle: '1080p',
@@ -21,7 +21,7 @@ export class PlanCardComponent {
     shareNum: 2,
     downloadDevices: 2,
     ads: 'A few ad breaks',
-  };
+  });
 
   // plans: Plan[] = [
   //   {

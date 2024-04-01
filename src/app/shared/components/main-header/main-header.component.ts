@@ -1,9 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
-import { SearchMovieDto } from '../../../services/interfaces/searchMovieDto.interface';
 
 @Component({
   selector: 'app-main-header',
@@ -11,7 +8,9 @@ import { SearchMovieDto } from '../../../services/interfaces/searchMovieDto.inte
   styleUrls: ['./main-header.component.scss'],
 })
 export class MainHeaderComponent implements OnInit {
-  @Input() showSearchForm: boolean = false;
+  showSearchForm = input(false, {
+    transform: (val: boolean) => false, // remove the searchfrom currentlly;
+  });
 
   isLogin!: boolean;
   username = '';
@@ -19,7 +18,7 @@ export class MainHeaderComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly tmdbService: TmdbService
+    private readonly tmdbService: TmdbService,
   ) {}
 
   ngOnInit(): void {
@@ -30,14 +29,12 @@ export class MainHeaderComponent implements OnInit {
     } else {
       this.isLogin = false;
     }
-    this.showSearchForm = false; // remove the searchfrom currentlly;
   }
 
   searchMovieByKeyWord() {
     this.tmdbService.searchMovie(this.searchKeyWord).subscribe(console.log);
     this.searchKeyWord = '';
   }
-
   signOut() {
     this.authService.logout();
     this.isLogin = false;

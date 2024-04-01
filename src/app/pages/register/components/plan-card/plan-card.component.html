@@ -11,30 +11,30 @@
 <!-- <ng-template #plancard let-plan> -->
 <div class="container">
   <div class="color-pad">
-    <div class="title">{{ plan.planTitle }}</div>
-    <div class="resolution">{{ plan.resolutionTitle }}</div>
-    <mat-radio-button [value]="plan.planTitle"></mat-radio-button>
+    <div class="title">{{ plan().planTitle }}</div>
+    <div class="resolution">{{ plan().resolutionTitle }}</div>
+    <mat-radio-button [value]="plan().planTitle"></mat-radio-button>
   </div>
   <div class="row">
     <h5>Monthly Price</h5>
-    <p>{{ plan.monthlyPrice }}</p>
+    <p>{{ plan().monthlyPrice }}</p>
     <hr />
   </div>
   <div class="row">
     <h5>Video and sound quality</h5>
-    <p>{{ plan.vsQuality }}</p>
+    <p>{{ plan().vsQuality }}</p>
     <hr />
   </div>
   <div class="row">
     <h5>Resolution</h5>
-    <p>{{ plan.resolution }}</p>
+    <p>{{ plan().resolution }}</p>
     <hr />
   </div>
 
-  @if (plan.spatialAudio) {
+  @if (plan().spatialAudio) {
     <div class="row">
       <h5>Spatial audio (immersive sound)</h5>
-      <p>{{ plan.spatialAudio }}</p>
+      <p>{{ plan().spatialAudio }}</p>
       <hr />
     </div>
   }
@@ -42,7 +42,7 @@
   <div class="row">
     <h5>Supported devices</h5>
     <p>
-      @for (device of plan.supportedDevices; track $index) {
+      @for (device of plan().supportedDevices; track $index) {
         <span>{{ device }}</span>
       }
     </p>
@@ -50,17 +50,17 @@
   </div>
   <div class="row">
     <h5>Devices your household can watch at the same time</h5>
-    <p>{{ plan.shareNum }}</p>
+    <p>{{ plan().shareNum }}</p>
     <hr />
   </div>
   <div class="row">
     <h5>Download devices</h5>
-    <p>{{ plan.downloadDevices }}</p>
+    <p>{{ plan().downloadDevices }}</p>
     <hr />
   </div>
   <div class="row">
     <h5>Ads</h5>
-    <p>{{ plan.ads }}</p>
+    <p>{{ plan().ads }}</p>
   </div>
 </div>
 <!-- </ng-template> -->

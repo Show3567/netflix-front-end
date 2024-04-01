@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, input } from '@angular/core';
 
 @Component({
   selector: 'app-main-footer',
@@ -8,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MainFooterComponent implements OnInit {
   phoneNumber = '+86 185-1841-8130';
 
-  @Input() linkList: string[] = [];
-  @Input() backgroundColor: string = 'black';
+  linkList = input<string[]>([]);
+  backgroundColor = input<string>('black');
 
   constructor() {}
 

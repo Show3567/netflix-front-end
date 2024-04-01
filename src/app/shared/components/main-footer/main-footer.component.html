@@ -3,7 +3,7 @@
     <div class="content">
       <div class="call_me">Questions? Call {{ phoneNumber }}</div>
       <div class="link_list">
-        @for (link of linkList; track $index) {
+        @for (link of linkList(); track $index) {
           <div class="link_item">{{ link }}</div>
         }
       </div>

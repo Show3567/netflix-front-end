@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+  input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-main-row-two',
@@ -6,10 +13,10 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./main-row-two.component.scss'],
 })
 export class MainRowTwoComponent implements OnInit {
-  @Input() header = '';
-  @Input() content = '';
-  @Input() templatePic = '';
-  @Input() videoIncome = '';
+  header = input('');
+  content = input('');
+  templatePic = input('');
+  videoIncome = input('');
 
   @ViewChild('video_holder', { static: true })
   videoHolder?: ElementRef;
@@ -22,6 +29,5 @@ export class MainRowTwoComponent implements OnInit {
 
   ngOnInit(): void {
     this.video = this.baseAssets + this.videoIncome;
-    // this.videoHolder?.nativeElement.play();
   }
 }

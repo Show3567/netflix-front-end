@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
+import { Movie } from 'src/app/services/interfaces/movie.interface';
 
 @Component({
   selector: 'app-item',
@@ -10,7 +11,7 @@ import { RouterScrollService } from 'src/app/services/scroll/router-scroll.servi
   styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
-  @Input() movie: any;
+  movie = input.required<any>();
   hasPoster_img = true;
   poster_img_high = '';
   year!: number;
@@ -24,15 +25,15 @@ export class ItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.year = this.movie.release_date
-      ? new Date(this.movie.release_date).getFullYear()
-      : new Date(this.movie.first_air_date).getFullYear();
+    this.year = this.movie().release_date
+      ? new Date(this.movie().release_date).getFullYear()
+      : new Date(this.movie().first_air_date).getFullYear();
 
-    if (this.movie.poster_path) {
+    if (this.movie().poster_path) {
       this.hasPoster_img = true;
       this.poster_img_high = this.tmdbService.getMovieImagePath(
         'w780',
-        this.movie.poster_path,
+        this.movie().poster_path,
       );
     } else {
       this.hasPoster_img = false;
@@ -41,7 +42,7 @@ export class ItemComponent implements OnInit {
 
   gotoDetailPage() {
     this.isLoading = true;
-    this.router.navigate(['/movies', this.movie.id]);
+    this.router.navigate(['/movies', this.movie().id]);
     this.routerScroll.setPositionState('movies', 0, window.scrollY);
   }
 }
