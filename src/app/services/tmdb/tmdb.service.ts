@@ -56,7 +56,7 @@ export class TmdbService {
   // ~~~~~~~ lifecycle ~~~~~~~
   constructor(
     private readonly http: HttpClient,
-    @Inject(AUTHSERVER) private tmdbBaseUrl: string
+    @Inject(AUTHSERVER) private tmdbBaseUrl: string,
   ) {}
 
   // ~~~~~~~ methods ~~~~~~~
@@ -77,7 +77,7 @@ export class TmdbService {
           this.recommendList = [...this.movieList.slice(0, 7)];
           this.recommendSignal.set(this.recommendList);
         }
-      })
+      }),
     );
   }
 
@@ -97,7 +97,7 @@ export class TmdbService {
           this.movieList = [...this.movieList, ...(data.results as Movie[])];
         }
         this.movieSignal.set(this.movieList);
-      })
+      }),
     );
   }
 
@@ -116,7 +116,7 @@ export class TmdbService {
 
         this.recommendList = [...this.movieList.slice(0, 7)];
         this.recommendSignal.set(this.recommendList);
-      })
+      }),
     );
   }
 
@@ -131,30 +131,30 @@ export class TmdbService {
   }
 
   getMovieImagePath(path: string, quality: string): string {
-    return [this.baseMovieImage, quality, path].join('/');
+    return [this.baseMovieImage, quality].join('/') + path;
   }
 
   getMovie(id: number): Observable<Movie> {
     return this.http.get<Movie>(
-      [this.tmdbBaseUrl, this.moviePath, id].join('/')
+      [this.tmdbBaseUrl, this.moviePath, id].join('/'),
     );
   }
 
   getCredits(id: number): Observable<Credit> {
     return this.http.get<Credit>(
-      [this.tmdbBaseUrl, this.moviePath, id, 'credits'].join('/')
+      [this.tmdbBaseUrl, this.moviePath, id, 'credits'].join('/'),
     );
   }
 
   getPosters(id: number): Observable<MovieImage> {
     return this.http.get<MovieImage>(
-      [this.tmdbBaseUrl, this.moviePath, id, 'images'].join('/')
+      [this.tmdbBaseUrl, this.moviePath, id, 'images'].join('/'),
     );
   }
 
   getVideo(id: number) {
     return this.http.get(
-      [this.tmdbBaseUrl, this.moviePath, id, 'videos'].join('/')
+      [this.tmdbBaseUrl, this.moviePath, id, 'videos'].join('/'),
     );
   }
 }

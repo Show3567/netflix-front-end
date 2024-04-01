@@ -16,9 +16,9 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    console.log('url: ', request.url);
+    // console.log('url: ', request.url);
     return next.handle(request).pipe(
       catchError((err) => {
         const authToken = this.authService.userSignal().jwtToken;
@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         const error = (err && err.error && err.error.message) || err.statusText;
         console.error(err);
         return throwError(error);
-      })
+      }),
     );
   }
 }

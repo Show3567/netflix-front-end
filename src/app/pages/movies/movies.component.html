@@ -1,8 +1,8 @@
-<!-- <div class="movie_list">
+<div class="movie_list">
   <div
     class="movie_Recommend"
     [ngStyle]="{
-      'background-image': 'url(' + showRecommendImg + ')',
+      'background-image': 'url(' + showRecommendImg() + ')',
       'background-size': '100% auto',
       'background-position': 'center'
     }"
@@ -66,8 +66,19 @@
       <div class="notification is-warning"></div>
     }
   </div>
-</div> -->
+</div>
 
 <!-- <div (mouseover)="handleHoverRecommend(5)">hello</div> -->
+<!-- <div class="recommend_list">
+  @for (item of recommendSignal(); track $index) {
+    <div
+      class="recommend_item"
+      (mouseover)="handleHoverRecommend(item.id)"
+      (click)="navigateMovie(item.id)"
+    >
+      {{ item.title | overviewControl: 18 }}
+    </div>
+  }
+</div>
 {{ currentId() }}
-{{ recommendSignal() }}
+{{ showRecommendImg() }} -->
