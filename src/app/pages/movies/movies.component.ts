@@ -60,7 +60,9 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
-    this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
+    this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe((e) => {
+      this.handleHoverRecommend(this.tmdbService.recommendSignal()[0].id);
+    });
     this.movieSignal = this.tmdbService.movieSignal;
     this.recommendSignal = this.tmdbService.recommendSignal;
   }
