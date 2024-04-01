@@ -40,9 +40,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       : this.noRecommendImg;
   });
 
-  // @ViewChild(CdkVirtualScrollViewport, { static: true })
-  // scorller!: CdkVirtualScrollViewport;
-
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
     year: 2024,
@@ -65,34 +62,9 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe();
     this.movieSignal = this.tmdbService.movieSignal;
     this.recommendSignal = this.tmdbService.recommendSignal;
-
-    //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~backto the recorded position
-    // const position = this.routerScroll.positions.movies;
-    // if (position) {
-    //   setTimeout(() => {
-    //     window.scrollTo(...position);
-    //   });
-    // }
   }
   ngAfterViewInit(): void {
     this.handleHoverRecommend(this.currentId());
-    // this.scrollerSubscription = this.scorller
-    //   .elementScrolled()
-    //   .pipe(
-    //     map(() => {
-    //       return this.scorller.measureScrollOffset('bottom');
-    //     }),
-    //     pairwise(),
-    //     filter(([x, y]) => y < x && y < 40),
-    //     throttleTime(200)
-    //   )
-    //   .subscribe((_) => {
-    //     this.zone.run(() => {
-    //       this.onScroll();
-    //     });
-    //   }); // https://www.youtube.com/watch?v=cUNmtRNc-8s&t=2s
-
-    // throw new Error('Method not implemented.');
     const position = this.routerScroll.positions.movies;
     if (position) {
       window.scrollTo(...position);
@@ -102,23 +74,13 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handleHoverRecommend(id: number) {
     this.currentId.set(id);
-    // const movie = this.recommendSignal().find(
-    //   (item: Movie | any) => +item.id === +id,
-    // );
-    // this.showRecommendImg =
-    //   movie && movie.backdrop_path
-    //     ? this.tmdbService.getMovieImagePath(movie.backdrop_path, 'w1280')
-    //     : this.noRecommendImg;
   }
-
   onScroll() {
     this.tmdbService.handleScrol().subscribe();
   }
-
   navigateMovie(id: number) {
     this.router.navigate(['/movies', id]);
   }
-
   trackByFn(i: number, item: Movie) {
     return item.id;
   }

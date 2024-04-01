@@ -7,12 +7,10 @@ import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.reso
 import { MoviePreloadingStrategy } from './core/preloading-strategies/movie.preloading';
 import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
 import { MoviePosterResolver } from './core/resolvers/movie-poster.resolver';
-import { PlanCardComponent } from './pages/register/components/plan-card/plan-card.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    // component: PlanCardComponent,
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
@@ -39,7 +37,7 @@ const routes: Routes = [
     path: 'movies/:id',
     loadChildren: () =>
       import('./pages/movie-item/movie-item.module').then(
-        (m) => m.MovieItemModule
+        (m) => m.MovieItemModule,
       ),
     canLoad: [MovieItemGuard],
     resolve: {
@@ -54,7 +52,7 @@ const routes: Routes = [
     path: '**',
     loadChildren: () =>
       import('./pages/page-not-found/page-not-found.module').then(
-        (m) => m.PageNotFoundModule
+        (m) => m.PageNotFoundModule,
       ),
   },
 ];
