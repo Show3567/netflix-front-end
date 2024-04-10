@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,5 +32,16 @@ fdescribe('AppComponent', () => {
 
   it('should create the app', () => {
     expect(appComponent).toBeTruthy();
+  });
+
+  it('should initialize mainContentElement', () => {
+    expect(fixture.debugElement).toBeDefined();
+  });
+
+  it('should call onActivate method', () => {
+    const dummyElement = document.createElement('div');
+    spyOn(appComponent, 'onActivate');
+    appComponent.onActivate(dummyElement);
+    expect(appComponent.onActivate).toHaveBeenCalledWith(dummyElement);
   });
 });
