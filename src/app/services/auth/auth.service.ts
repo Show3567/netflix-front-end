@@ -28,7 +28,7 @@ export class AuthService {
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly tmdbService: TmdbService,
-    @Inject(AUTHSERVER) private readonly authServerPath: string
+    @Inject(AUTHSERVER) private readonly authServerPath: string,
   ) {}
 
   /* SignIn */
@@ -42,7 +42,7 @@ export class AuthService {
         }),
         catchError((error) => {
           return throwError('SomeThing Wrong during sign in!', error);
-        })
+        }),
       );
   }
 
@@ -63,7 +63,7 @@ export class AuthService {
       ...userInfo,
     };
   }
-  sighup(userRole: { role: UserRole }): Observable<AuthDto | string> {
+  signup(userRole: { role: UserRole }): Observable<AuthDto | string> {
     this.appUserRegister = {
       ...this.appUserRegister,
       ...userRole,
@@ -75,7 +75,7 @@ export class AuthService {
     return this.http
       .post<AuthDto>(
         [this.authServerPath, 'auth', 'signup'].join('/'),
-        this.appUserRegister
+        this.appUserRegister,
       )
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
@@ -84,7 +84,7 @@ export class AuthService {
         }),
         catchError((error) => {
           return throwError('SomeThing Wrong during sign up!', error);
-        })
+        }),
       );
   }
 
@@ -96,7 +96,7 @@ export class AuthService {
     return this.http
       .patch<AuthDto>(
         [this.authServerPath, 'auth', 'userupdate'].join('/'),
-        userRole
+        userRole,
       )
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
@@ -105,7 +105,7 @@ export class AuthService {
         }),
         catchError((error) => {
           return throwError('SomeThing Wrong during sign up!', error);
-        })
+        }),
       );
   }
 
@@ -122,7 +122,7 @@ export class AuthService {
       .pipe(
         tap(({ accessToken, role }: AuthDto) => {
           this.setUserValueByToken({ accessToken, role });
-        })
+        }),
       );
   }
   private startRefreshTokenTimer(exp: string) {

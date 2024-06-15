@@ -31,7 +31,7 @@ export class PageFourComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {}
   ngOnInit(): void {}
 
@@ -39,9 +39,6 @@ export class PageFourComponent implements OnInit {
     this.selecedColumn = user;
   }
   handleNavigate() {
-    // !this.authService.userValue.jwtToken
-    //   ? this.router.navigate(['/login'])
-    //   : this.router.navigate(['/movies']);
     const { jwtToken } = this.authService.userSignal();
 
     if (jwtToken) {
@@ -50,10 +47,12 @@ export class PageFourComponent implements OnInit {
           role: UserRole[this.selecedColumn],
         })
         .subscribe();
+      this.router.navigate(['/movies']);
     } else {
       this.authService
-        .sighup({ role: UserRole[this.selecedColumn] })
+        .signup({ role: UserRole[this.selecedColumn] })
         .subscribe();
+      this.router.navigate(['/login']);
     }
   }
 }

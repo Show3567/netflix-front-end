@@ -33,7 +33,7 @@ export class WithLocalstorageService {
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly tmdbService: TmdbService,
-    @Inject(AUTHSERVER) private readonly authServerPath: string
+    @Inject(AUTHSERVER) private readonly authServerPath: string,
   ) {
     this.userSubject$ = new BehaviorSubject<AppUserAuth>({});
     this.user$ = this.userSubject$.asObservable();
@@ -42,10 +42,9 @@ export class WithLocalstorageService {
   /* SignIn */
   login(appUser: AppUser): Observable<{ accessToken: string }> {
     return this.http
-      .post<{ accessToken: string }>(
-        `${this.authServerPath}/auth/signin`,
-        appUser
-      )
+      .post<{
+        accessToken: string;
+      }>(`${this.authServerPath}/auth/signin`, appUser)
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
           this.setUserValueByToken({ accessToken });
@@ -54,7 +53,7 @@ export class WithLocalstorageService {
         }),
         catchError((error) => {
           return throwError('SomeThing Wrong during sign in!', error);
-        })
+        }),
       );
   }
 
@@ -82,12 +81,16 @@ export class WithLocalstorageService {
     };
     const { username, password, email, role } = this.appUserRegister;
 
-    if (!username || !password || !email || !role) return of('Register failed');
+    if (!username || !password || !email || !role) {
+      return of('Register failed');
+    }
 
     return this.http
-      .post<{ accessToken: string }>(
+      .post<{
+        accessToken: string;
+      }>(
         [this.authServerPath, 'auth', 'signup'].join('/'),
-        this.appUserRegister
+        this.appUserRegister,
       )
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
@@ -96,7 +99,7 @@ export class WithLocalstorageService {
         }),
         catchError((error) => {
           return throwError('SomeThing Wrong during sign up!', error);
-        })
+        }),
       );
   }
 
@@ -106,10 +109,9 @@ export class WithLocalstorageService {
     this.stopRefreshTokenTimer();
 
     return this.http
-      .patch<{ accessToken: string }>(
-        [this.authServerPath, 'auth', 'userupdate'].join('/'),
-        userRole
-      )
+      .patch<{
+        accessToken: string;
+      }>([this.authServerPath, 'auth', 'userupdate'].join('/'), userRole)
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
           this.setUserValueByToken({ accessToken });
@@ -117,7 +119,7 @@ export class WithLocalstorageService {
         }),
         catchError((error) => {
           return throwError('SomeThing Wrong during sign up!', error);
-        })
+        }),
       );
   }
 
@@ -138,7 +140,7 @@ export class WithLocalstorageService {
       .pipe(
         tap(({ accessToken }: { accessToken: string }) => {
           this.setUserValueByToken({ accessToken });
-        })
+        }),
       );
   }
   private startRefreshTokenTimer(exp: string) {
