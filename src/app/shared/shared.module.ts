@@ -13,6 +13,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { YouTubePlayerModule } from '@angular/youtube-player';
@@ -48,6 +49,7 @@ import { TitlePipe } from './pipes/title.pipe';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatRadioModule,
+    ScrollingModule,
 
     ReactiveFormsModule,
     FormsModule,

@@ -17,6 +17,8 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies',
@@ -48,6 +50,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   private baseSearchTv: DiscoverTv = {
     page: 1,
   };
+  private notifier = new Subject();
 
   constructor(
     private readonly tmdbService: TmdbService,
@@ -60,9 +63,12 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-Movies`);
 
-    this.tmdbService.getDiscoverMovie(this.baseSearchMovie).subscribe((e) => {
-      this.handleHoverRecommend(this.tmdbService.recommendSignal()[0].id);
-    });
+    this.tmdbService
+      .getDiscoverMovie(this.baseSearchMovie)
+      .pipe(takeUntil(this.notifier))
+      .subscribe((e) => {
+        this.handleHoverRecommend(this.tmdbService.recommendSignal()[0].id);
+      });
     this.movieSignal = this.tmdbService.movieSignal;
     this.recommendSignal = this.tmdbService.recommendSignal;
   }
@@ -72,19 +78,25 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       window.scrollTo(...position);
     }
   }
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.stopObs();
+  }
 
   handleHoverRecommend(id: number) {
     this.currentId.set(id);
   }
   onScroll() {
-    this.tmdbService.handleScrol().subscribe();
+    this.tmdbService.handleScrol().pipe(takeUntil(this.notifier)).subscribe();
   }
   navigateMovie(id: number) {
     this.router.navigate(['/movies', id]);
   }
   trackByFn(i: number, item: Movie) {
     return item.id;
+  }
+  private stopObs() {
+    this.notifier.next();
+    this.notifier.complete();
   }
 
   //& ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Switch Movie & TV
