@@ -1,5 +1,5 @@
 <div class="movie_list">
-  <div
+  <!-- <div
     class="movie_Recommend"
     [ngStyle]="{
       'background-image': 'url(' + showRecommendImg() + ')',
@@ -41,16 +41,17 @@
     </div>
     <div class="cover_img_left"></div>
     <div class="cover_img_right"></div>
-  </div>
+  </div> -->
 
-  <div class="movie_list">
-    <cdk-virtual-scroll-viewport itemSize="100">
-      <div
-        class="movie_item"
-        *cdkVirtualFor="let movie of movieSignal(); trackBy: trackByFn"
-        (scrolledIndexChange)="onScroll()"
-      >
-        <app-item [movie]="movie"></app-item>
+  <div>
+    <cdk-virtual-scroll-viewport
+      itemSize="80"
+      class="viewport"
+      (scrolledIndexChange)="onScroll()"
+    >
+      <div *cdkVirtualFor="let movie of movieSignal(); trackBy: trackByFn">
+        <div style="background-color: red; height: 80px; width: 10rem"></div>
+        <!-- <app-item [movie]="movie"></app-item> -->
       </div>
     </cdk-virtual-scroll-viewport>
 
