@@ -33,7 +33,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const list: Movie[][] = [];
     const movieList = [...movies];
-    console.log(movieList.length);
     while (movieList.length) {
       const arr: Movie[] = [];
       for (let i = 0; i < 3; i++) {
@@ -44,9 +43,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       list.push(arr);
     }
-    console.log(list.length);
     return list;
-    // return movies;
   });
 
   recommendSignal!: Signal<Movie[]>;
@@ -59,7 +56,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     const movie = this.recommendSignal().find(
       (item: Movie | any) => +item.id === +this.currentId(),
     );
-    console.log(movie?.backdrop_path);
     return movie && movie.backdrop_path
       ? this.tmdbService.getMovieImagePath('w1280', movie.backdrop_path)
       : this.noRecommendImg;
@@ -124,8 +120,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentId.set(id);
   }
   onScroll() {
-    // console.log('hello', this.viewport.measureScrollOffset());
-
     const end = this.viewport.getRenderedRange().end;
     const total = this.viewport.getDataLength();
     const threshold = 2;
@@ -136,7 +130,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
         .handleScrol()
         .pipe(takeUntil(this.notifier))
         .subscribe((movies) => {
-          console.log(movies);
           this.isloading.set(false);
         });
     }

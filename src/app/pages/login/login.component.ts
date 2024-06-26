@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly titleService: Title,
     // this.titleService.setTitle(`${this.prodTitle}-SignIn`);
-    @Inject(ProdTitle) private readonly prodTitle: string
+    @Inject(ProdTitle) private readonly prodTitle: string,
   ) {}
   ngOnInit(): void {
     this.titleService.setTitle(`${this.prodTitle}-SignIn`);
@@ -52,9 +52,6 @@ export class LoginComponent implements OnInit {
       loginFacebook: [false],
     });
     this.userSignal = this.authService.userSignal;
-    // this.authService.user$.subscribe((userinfo) =>
-    //   console.log('userinfo: ', userinfo)
-    // );
   }
 
   onSubmit() {
@@ -69,7 +66,7 @@ export class LoginComponent implements OnInit {
       (err) => {
         console.log(err);
         this.login_msg.msg = 'Please check your login credentials';
-      }
+      },
     );
   }
 }

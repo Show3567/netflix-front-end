@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class RouterScrollService implements OnInit {
+export class RouterScrollService {
   private positionState: any = {};
   private positionState$ = new BehaviorSubject(this.positionState);
 
@@ -10,12 +10,8 @@ export class RouterScrollService implements OnInit {
     return this.positionState$.value;
   }
 
-  ngOnInit(): void {}
-
   setPositionState(name: string, vertical: number, horizontal: number) {
     this.positionState[name] = [vertical, horizontal];
-    console.log('positionState: ', this.positionState);
-
     this.positionState$.next(this.positionState);
   }
 }
