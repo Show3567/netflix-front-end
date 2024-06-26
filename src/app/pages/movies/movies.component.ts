@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   Signal,
+  ViewChild,
   computed,
   signal,
 } from '@angular/core';
@@ -19,6 +20,7 @@ import { RouterScrollService } from 'src/app/services/scroll/router-scroll.servi
 import { ProdTitle } from 'src/app/core/core.module';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-movies',
@@ -42,6 +44,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       ? this.tmdbService.getMovieImagePath('w1280', movie.backdrop_path)
       : this.noRecommendImg;
   });
+  @ViewChild(CdkVirtualScrollViewport) viewport!: CdkVirtualScrollViewport;
 
   private baseSearchMovie: DiscoverMovie = {
     page: 1,
@@ -50,6 +53,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   private baseSearchTv: DiscoverTv = {
     page: 1,
   };
+  private isloading = signal(false);
   private notifier = new Subject();
 
   constructor(
@@ -86,7 +90,16 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentId.set(id);
   }
   onScroll() {
-    this.tmdbService.handleScrol().pipe(takeUntil(this.notifier)).subscribe();
+    console.log('hello');
+    // if (!this.isloading()) {
+    //   this.isloading.set(true);
+    //   this.tmdbService
+    //     .handleScrol()
+    //     .pipe(takeUntil(this.notifier))
+    //     .subscribe((_) => {
+    //       this.isloading.set(false);
+    //     });
+    // }
   }
   navigateMovie(id: number) {
     this.router.navigate(['/movies', id]);

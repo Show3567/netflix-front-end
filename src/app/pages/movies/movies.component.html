@@ -43,25 +43,26 @@
     <div class="cover_img_right"></div>
   </div> -->
 
-  <div>
-    <cdk-virtual-scroll-viewport
-      itemSize="80"
-      class="viewport"
-      (scrolledIndexChange)="onScroll()"
+  <cdk-virtual-scroll-viewport
+    itemSize="33.75rem"
+    class="viewport"
+    (scrolledIndexChange)="onScroll()"
+  >
+    <ng-container
+      *cdkVirtualFor="let movie of movieSignal(); trackBy: trackByFn"
     >
-      <div *cdkVirtualFor="let movie of movieSignal(); trackBy: trackByFn">
-        <div style="background-color: red; height: 80px; width: 10rem"></div>
-        <!-- <app-item [movie]="movie"></app-item> -->
-      </div>
-    </cdk-virtual-scroll-viewport>
+      <app-item [movie]="movie"></app-item>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
 
-    <!-- @for (movie of movieSignal(); track $index) {
+  <!-- <div>
+    @for (movie of movieSignal(); track $index) {
       <div class="movie_item">
         <app-item [movie]="movie"> </app-item>
       </div>
-    } -->
+    }
 
-    <!-- <div
+    <div
       class="infinite_scroll_mark"
       infiniteScroll
       [infiniteScrollDistance]="1"
@@ -75,6 +76,6 @@
       </div>
     } @else {
       <div class="notification is-warning"></div>
-    } -->
-  </div>
+    }
+  </div> -->
 </div>
