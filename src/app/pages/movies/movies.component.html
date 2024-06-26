@@ -49,11 +49,12 @@
     (scrolledIndexChange)="onScroll()"
   >
     <div *cdkVirtualFor="let movies of movieSignal()" class="movie_row">
-      @for (movie of movies; track $index) {
-        <ng-container>
+      <hr />
+      <div class="movie_row_container">
+        @for (movie of movies; track $index) {
           <app-item [movie]="movie"></app-item>
-        </ng-container>
-      }
+        }
+      </div>
     </div>
   </cdk-virtual-scroll-viewport>
 
