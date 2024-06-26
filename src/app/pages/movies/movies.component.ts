@@ -28,7 +28,27 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
-  movieSignal!: Signal<Movie[]>;
+  movieSignal: Signal<Movie[][]> = computed(() => {
+    const movies = this.tmdbService.movieSignal();
+
+    const list: Movie[][] = [];
+    const movieList = [...movies];
+    console.log(movieList.length);
+    while (movieList.length) {
+      const arr: Movie[] = [];
+      for (let i = 0; i < 3; i++) {
+        const movie = movieList.shift();
+        if (movie) {
+          arr.push(movie);
+        } else break;
+      }
+      list.push(arr);
+    }
+    console.log(list.length);
+    return list;
+    // return movies;
+  });
+
   recommendSignal!: Signal<Movie[]>;
   showSearchForm = signal(true);
 
@@ -57,7 +77,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   private notifier = new Subject();
 
   get itemSizePx(): number {
-    return this.remToPx(33.75);
+    return this.remToPx(33);
   }
 
   constructor(
@@ -77,7 +97,8 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((e) => {
         this.handleHoverRecommend(this.tmdbService.recommendSignal()[0].id);
       });
-    this.movieSignal = this.tmdbService.movieSignal;
+    // this.movieSignal = this.tmdbService.movieSignal;
+
     this.recommendSignal = this.tmdbService.recommendSignal;
   }
   ngAfterViewInit(): void {
@@ -98,7 +119,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const end = this.viewport.getRenderedRange().end;
     const total = this.viewport.getDataLength();
-    const threshold = 5;
+    const threshold = 2;
 
     if (end >= total - threshold && !this.isloading()) {
       this.isloading.set(true);
@@ -114,8 +135,8 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   navigateMovie(id: number) {
     this.router.navigate(['/movies', id]);
   }
-  trackByFn(i: number, item: Movie) {
-    return item.id;
+  trackByFn(i: number, item: Movie[]) {
+    return item[0].id;
   }
   private remToPx(rem: number): number {
     return (

@@ -115,6 +115,14 @@
 }
 
 .viewport {
-  height: 300rem;
-  width: 50vw;
+  height: 150rem;
+  width: 90%;
+
+  .movie_row {
+    display: flex;
+    height: 32.75rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 }
