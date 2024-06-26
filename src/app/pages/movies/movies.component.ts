@@ -124,7 +124,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentId.set(id);
   }
   onScroll() {
-    console.log('hello', this.viewport.measureScrollOffset());
+    // console.log('hello', this.viewport.measureScrollOffset());
 
     const end = this.viewport.getRenderedRange().end;
     const total = this.viewport.getDataLength();

@@ -93,23 +93,6 @@
       height: 9.4rem;
       width: 100%;
       @include flex();
-
-      hr {
-        height: 100%;
-        width: 100%;
-        border: 0;
-        background: linear-gradient(235deg, #e91e63, #5d02ff);
-        animation: animate1 5s linear infinite;
-      }
-      @keyframes animate1 {
-        0%,
-        100% {
-          filter: hue-rotate(0deg);
-        }
-        50% {
-          filter: hue-rotate(360deg);
-        }
-      }
     }
   }
 }
@@ -124,5 +107,22 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+  }
+}
+
+hr {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background: linear-gradient(235deg, #e91e63, #5d02ff);
+  animation: animate1 5s linear infinite;
+}
+@keyframes animate1 {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(360deg);
   }
 }

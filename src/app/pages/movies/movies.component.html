@@ -50,7 +50,9 @@
   >
     <div *cdkVirtualFor="let movies of movieSignal()" class="movie_row">
       @for (movie of movies; track $index) {
-        <app-item [movie]="movie"></app-item>
+        <ng-container>
+          <app-item [movie]="movie"></app-item>
+        </ng-container>
       }
     </div>
   </cdk-virtual-scroll-viewport>
