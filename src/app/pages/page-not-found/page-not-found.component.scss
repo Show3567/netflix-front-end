@@ -19,7 +19,7 @@
   width: 100vw;
   height: calc(100vh - $reuse_100);
   background-color: green;
-  background-image: url("../../../assets/notfound/bg-lost-in-space.png");
+  background-image: url("/assets/notfound/bg-lost-in-space.png");
   background-size: cover;
   @include flex();
 
