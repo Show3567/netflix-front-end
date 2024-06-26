@@ -12,8 +12,10 @@ export class RouterScrollService implements OnInit {
 
   ngOnInit(): void {}
 
-  setPositionState(name: string, x: number, y: number) {
-    this.positionState[name] = [x, y];
+  setPositionState(name: string, vertical: number, horizontal: number) {
+    this.positionState[name] = [vertical, horizontal];
+    console.log('positionState: ', this.positionState);
+
     this.positionState$.next(this.positionState);
   }
 }

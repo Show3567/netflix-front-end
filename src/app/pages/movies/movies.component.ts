@@ -10,7 +10,7 @@ import {
   signal,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
@@ -74,6 +74,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     page: 1,
   };
   private isloading = signal(false);
+  private readonly scrollPositionKey = 'movielist';
   private notifier = new Subject();
 
   get itemSizePx(): number {
@@ -97,17 +98,25 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((e) => {
         this.handleHoverRecommend(this.tmdbService.recommendSignal()[0].id);
       });
-    // this.movieSignal = this.tmdbService.movieSignal;
 
     this.recommendSignal = this.tmdbService.recommendSignal;
+
+    this.router.events.pipe(takeUntil(this.notifier)).subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.setPosition();
+      }
+    });
   }
   ngAfterViewInit(): void {
-    const position = this.routerScroll.positions.movies;
-    if (position) {
-      window.scrollTo(...position);
-    }
+    setTimeout(() => {
+      const position = this.routerScroll.positions[this.scrollPositionKey];
+      if (position) {
+        this.viewport.scrollToOffset(position[0]);
+      }
+    }, 50);
   }
   ngOnDestroy(): void {
+    this.setPosition();
     this.stopObs();
   }
 
@@ -115,7 +124,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentId.set(id);
   }
   onScroll() {
-    console.log('hello');
+    console.log('hello', this.viewport.measureScrollOffset());
 
     const end = this.viewport.getRenderedRange().end;
     const total = this.viewport.getDataLength();
@@ -137,6 +146,14 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   trackByFn(i: number, item: Movie[]) {
     return item[0].id;
+  }
+
+  private setPosition() {
+    this.routerScroll.setPositionState(
+      this.scrollPositionKey,
+      this.viewport.measureScrollOffset(),
+      0,
+    );
   }
   private remToPx(rem: number): number {
     return (

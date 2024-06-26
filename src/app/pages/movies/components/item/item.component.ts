@@ -34,18 +34,15 @@ export class ItemComponent {
     }
     return '';
   });
-
   isLoading = false;
 
   constructor(
     private tmdbService: TmdbService,
     private readonly router: Router,
-    private readonly routerScroll: RouterScrollService,
   ) {}
 
   gotoDetailPage() {
     this.isLoading = true;
     this.router.navigate(['/movies', this.movie().id]);
-    this.routerScroll.setPositionState('movies', 0, window.scrollY);
   }
 }
