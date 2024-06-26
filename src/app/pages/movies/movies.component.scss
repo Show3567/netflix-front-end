@@ -1,7 +1,7 @@
 @import "../../../styles.variables.scss";
 
 .movie_list {
-  background-color: black;
+  background-color: rgba(13, 13, 13, 0.947);
   border: 1px solid black;
   @include flex(center, center, column);
 
@@ -76,7 +76,6 @@
     position: relative;
     width: 90vw;
     padding: 1.875rem;
-    // height: 100vh;
     flex-wrap: wrap;
     @include flex(space-between);
 
@@ -118,10 +117,11 @@
   }
 }
 
-hr {
+.hr {
   height: 0.5rem;
   width: 100%;
   border: 0;
+  border-radius: 0.2rem;
   background: linear-gradient(235deg, #e91e63, #5d02ff);
   animation: animate1 5s linear infinite;
 }

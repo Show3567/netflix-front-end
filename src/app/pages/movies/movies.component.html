@@ -49,7 +49,7 @@
     (scrolledIndexChange)="onScroll()"
   >
     <div *cdkVirtualFor="let movies of movieSignal()" class="movie_row">
-      <hr />
+      <div class="hr"></div>
       <div class="movie_row_container">
         @for (movie of movies; track $index) {
           <app-item [movie]="movie"></app-item>
