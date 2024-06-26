@@ -17,7 +17,7 @@
   <div class="content">
     <div class="movie_poster">
       @if (hasPoster_img) {
-        <img [src]="poster_img_high" alt="" />
+        <img [src]="poster_img_high()" alt="" />
       } @else {
         <img src="/assets/movie/notfoundimg.jpeg" />
       }
@@ -27,7 +27,7 @@
     </h3>
     <div class="simple_inof">
       <div class="yr_len_vo">
-        <span class="publish_year">{{ year }}</span>
+        <span class="publish_year">{{ year() }}</span>
         <span class="lenguage">{{
           movie().original_language | uppercase
         }}</span>

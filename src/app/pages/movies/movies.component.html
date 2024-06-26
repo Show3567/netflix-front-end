@@ -44,13 +44,11 @@
   </div> -->
 
   <cdk-virtual-scroll-viewport
-    itemSize="33.75rem"
+    [itemSize]="itemSizePx"
     class="viewport"
     (scrolledIndexChange)="onScroll()"
   >
-    <ng-container
-      *cdkVirtualFor="let movie of movieSignal(); trackBy: trackByFn"
-    >
+    <ng-container *cdkVirtualFor="let movie of movieSignal()">
       <app-item [movie]="movie"></app-item>
     </ng-container>
   </cdk-virtual-scroll-viewport>

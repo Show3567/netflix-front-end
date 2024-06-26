@@ -56,6 +56,10 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   private isloading = signal(false);
   private notifier = new Subject();
 
+  get itemSizePx(): number {
+    return this.remToPx(33.75);
+  }
+
   constructor(
     private readonly tmdbService: TmdbService,
     private readonly router: Router,
@@ -91,21 +95,32 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   onScroll() {
     console.log('hello');
-    // if (!this.isloading()) {
-    //   this.isloading.set(true);
-    //   this.tmdbService
-    //     .handleScrol()
-    //     .pipe(takeUntil(this.notifier))
-    //     .subscribe((_) => {
-    //       this.isloading.set(false);
-    //     });
-    // }
+
+    const end = this.viewport.getRenderedRange().end;
+    const total = this.viewport.getDataLength();
+    const threshold = 5;
+
+    if (end >= total - threshold && !this.isloading()) {
+      this.isloading.set(true);
+      this.tmdbService
+        .handleScrol()
+        .pipe(takeUntil(this.notifier))
+        .subscribe((movies) => {
+          console.log(movies);
+          this.isloading.set(false);
+        });
+    }
   }
   navigateMovie(id: number) {
     this.router.navigate(['/movies', id]);
   }
   trackByFn(i: number, item: Movie) {
     return item.id;
+  }
+  private remToPx(rem: number): number {
+    return (
+      rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+    );
   }
   private stopObs() {
     this.notifier.next();

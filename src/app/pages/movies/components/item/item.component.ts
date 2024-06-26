@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, input } from '@angular/core';
+import { Component, Input, OnInit, computed, input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
@@ -10,11 +10,30 @@ import { Movie } from 'src/app/services/interfaces/movie.interface';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
 })
-export class ItemComponent implements OnInit {
-  movie = input.required<any>();
+export class ItemComponent {
+  movie = input.required<Movie>();
   hasPoster_img = true;
-  poster_img_high = '';
-  year!: number;
+
+  poster_img_high = computed(() => {
+    const path = this.movie().poster_path;
+    if (path) {
+      this.hasPoster_img = true;
+      return this.tmdbService.getMovieImagePath('w780', path);
+    } else {
+      this.hasPoster_img = false;
+      return '';
+    }
+  });
+  year = computed(() => {
+    const date = this.movie().release_date;
+    const air_date = this.movie().first_air_date;
+    if (date) {
+      return new Date(date).getFullYear();
+    } else if (air_date) {
+      return new Date(air_date).getFullYear();
+    }
+    return '';
+  });
 
   isLoading = false;
 
@@ -23,22 +42,6 @@ export class ItemComponent implements OnInit {
     private readonly router: Router,
     private readonly routerScroll: RouterScrollService,
   ) {}
-
-  ngOnInit(): void {
-    this.year = this.movie().release_date
-      ? new Date(this.movie().release_date).getFullYear()
-      : new Date(this.movie().first_air_date).getFullYear();
-
-    if (this.movie().poster_path) {
-      this.hasPoster_img = true;
-      this.poster_img_high = this.tmdbService.getMovieImagePath(
-        'w780',
-        this.movie().poster_path,
-      );
-    } else {
-      this.hasPoster_img = false;
-    }
-  }
 
   gotoDetailPage() {
     this.isLoading = true;
