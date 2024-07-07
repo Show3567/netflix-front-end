@@ -4,7 +4,6 @@ import {
   ModuleWithProviders,
   NgModule,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -26,7 +25,7 @@ const USECOOKIE = new InjectionToken<string>('');
 @NgModule({
   declarations: [],
   exports: [],
-  imports: [CommonModule],
+  imports: [],
 })
 export class CoreModule {
   public static forRoot(): ModuleWithProviders<CoreModule> {
@@ -54,7 +53,7 @@ export class CoreModule {
             router: Router,
             http: HttpClient,
             tmdbservice: TmdbService,
-            authpath: string
+            authpath: string,
           ) => {
             return usecookie
               ? new WithCookieService(router, http, authpath)
