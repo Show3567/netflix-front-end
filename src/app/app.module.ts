@@ -31,8 +31,3 @@ import { SharedModule } from './shared/shared.module';
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class AppModule {}
-
-/* 
-  myVpn_Activation_Code:
-  $ E5Y82N8XKXQIYLURZHYAMSX
-*/

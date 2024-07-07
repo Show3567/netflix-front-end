@@ -11,9 +11,10 @@ import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TmdbService } from '../services/tmdb/tmdb.service';
 import { WithCookieService } from '../services/auth/with-cookie.service';
 import { AuthService } from '../services/auth/auth.service';
-import { appInitializer } from './app.initializer';
+
 import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { appInitializer } from './app.initializer';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
 export const TMDBAPIKEY = new InjectionToken<string>('');
@@ -85,8 +86,3 @@ export class CoreModule {
     };
   }
 }
-
-// {
-//   provide: TMDBAPIKEY,
-//   useValue: 'ac7e1f44cec0dd6e260391374208b0cc',
-// },
