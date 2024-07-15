@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { LoginGuard } from './core/guards/login.guard';
-import { MoviesGuard } from './core/guards/movies.guard';
-import { MovieItemGuard } from './core/guards/movie-item.guard';
+import { movieItemFnGuard } from './core/guards/movie-item-fn.guard';
+import { loginFnGuard } from './core/guards/login-fn.guard';
+import { moviesFnGuard } from './core/guards/movies-fn.guard';
 import { UserRole } from './services/interfaces/user-auth.interface';
 
 import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
@@ -28,7 +28,7 @@ const loginRoutes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    canActivate: [LoginGuard],
+    canActivate: [loginFnGuard],
   },
 ];
 const registerRoutes: Routes = [
@@ -49,7 +49,7 @@ const moviesRoutes: Routes = [
   {
     path: '',
     component: MoviesComponent,
-    canActivate: [MoviesGuard],
+    canActivate: [moviesFnGuard],
     data: { claimType: [UserRole.ADMIN, UserRole.SUPERUSER, UserRole.USER] },
   },
 ];
@@ -57,7 +57,7 @@ const movieDetailsRoutes: Routes = [
   {
     path: '',
     component: MovieItemComponent,
-    canActivate: [MovieItemGuard],
+    canActivate: [movieItemFnGuard],
     data: {
       claimType: [UserRole.ADMIN, UserRole.SUPERUSER],
     },
@@ -101,7 +101,7 @@ export const routes: Routes = [
         (c) => c.MovieItemComponent,
       ),
     loadChildren: () => movieDetailsRoutes,
-    canLoad: [MovieItemGuard],
+    canLoad: [movieItemFnGuard],
     resolve: {
       videos: MovieItemVideosResolver,
       movie: MovieItemResolver,
