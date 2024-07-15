@@ -1,10 +1,14 @@
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, NgClass, CurrencyPipe],
   selector: 'app-page-four',
   templateUrl: './page-four.component.html',
   styleUrls: ['./page-four.component.scss'],

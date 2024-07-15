@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-page-one',
   templateUrl: './page-one.component.html',
   styleUrls: ['./page-one.component.scss'],

@@ -1,7 +1,10 @@
 import { Component, Input, input } from '@angular/core';
 import { Plan } from 'src/app/services/interfaces/plan.interface';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-plan-card',
   templateUrl: './plan-card.component.html',
   styleUrl: './plan-card.component.scss',

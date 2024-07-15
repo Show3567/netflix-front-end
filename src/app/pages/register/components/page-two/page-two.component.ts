@@ -14,8 +14,12 @@ import { debounceTime, map, switchMap, tap, take } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AUTHSERVER } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NgClass } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, NgClass],
   selector: 'app-page-two',
   templateUrl: './page-two.component.html',
   styleUrls: ['./page-two.component.scss'],
@@ -36,7 +40,7 @@ export class PageTwoComponent implements OnInit {
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly authService: AuthService,
-    @Inject(AUTHSERVER) private readonly authServerPath: string
+    @Inject(AUTHSERVER) private readonly authServerPath: string,
   ) {}
   ngOnInit(): void {
     const initemailVal = this.authService.appNewUser.email
@@ -72,14 +76,14 @@ export class PageTwoComponent implements OnInit {
         switchMap((_) => {
           return this.http.post(
             [this.authServerPath, 'auth', 'check-email'].join('/'),
-            { email }
+            { email },
           );
         }),
         map((result: any) => {
           this.isLoading = false;
           return result ? { hasemail: true } : null;
         }),
-        take(1)
+        take(1),
       );
     };
   }

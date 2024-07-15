@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Video } from 'src/app/services/interfaces/video.interface';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-movie-dialog',
   templateUrl: './movie-dialog.component.html',
   styleUrls: ['./movie-dialog.component.scss'],
@@ -16,7 +19,7 @@ export class MovieDialogComponent implements OnInit {
 
   constructor(
     private readonly dialogRef: MatDialogRef<MovieDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any
+    @Inject(MAT_DIALOG_DATA) private data: any,
   ) {}
 
   ngOnInit(): void {

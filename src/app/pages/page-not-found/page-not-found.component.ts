@@ -1,8 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
+
 import { ProdTitle } from 'src/app/core/core.module';
 
 @Component({
+  standalone: true,
+  imports: [RouterLink],
   selector: 'app-page-not-found',
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss'],
@@ -10,7 +14,7 @@ import { ProdTitle } from 'src/app/core/core.module';
 export class PageNotFoundComponent implements OnInit {
   constructor(
     private readonly titleService: Title,
-    @Inject(ProdTitle) private readonly prodTitle: string
+    @Inject(ProdTitle) private readonly prodTitle: string,
   ) {}
 
   ngOnInit(): void {

@@ -11,18 +11,27 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
+import {
+  CdkVirtualScrollViewport,
+  ScrollingModule,
+} from '@angular/cdk/scrolling';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { DiscoverMovie } from 'src/app/services/interfaces/discoverMovies.interface';
 import { DiscoverTv } from 'src/app/services/interfaces/discoverTv.interface';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
+
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { ProdTitle } from 'src/app/core/core.module';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ItemComponent } from './components/item/item.component';
+import { NgStyle } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, ScrollingModule, ItemComponent, NgStyle],
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],

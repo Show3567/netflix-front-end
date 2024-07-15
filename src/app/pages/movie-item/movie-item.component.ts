@@ -11,8 +11,13 @@ import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { ProdTitle } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NgStyle } from '@angular/common';
+import { VideoItemComponent } from './components/video-item/video-item.component';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, NgStyle, VideoItemComponent, MovieDialogComponent],
   selector: 'app-movie-item',
   templateUrl: './movie-item.component.html',
   styleUrls: ['./movie-item.component.scss'],

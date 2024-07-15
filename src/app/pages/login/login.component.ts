@@ -9,8 +9,11 @@ import { Title } from '@angular/platform-browser';
 import { ProdTitle } from 'src/app/core/core.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AppUserAuth } from 'src/app/services/interfaces/user-auth.interface';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],

@@ -6,8 +6,11 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-main-row-one',
   templateUrl: './main-row-one.component.html',
   styleUrls: ['./main-row-one.component.scss'],
@@ -21,7 +24,7 @@ export class MainRowOneComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({

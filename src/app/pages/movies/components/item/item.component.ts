@@ -4,8 +4,12 @@ import { Router } from '@angular/router';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { RouterScrollService } from 'src/app/services/scroll/router-scroll.service';
 import { Movie } from 'src/app/services/interfaces/movie.interface';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NgStyle, UpperCasePipe } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, NgStyle, UpperCasePipe],
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],

@@ -1,9 +1,13 @@
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, NgClass],
   selector: 'app-page-two-ii',
   templateUrl: './page-two-ii.component.html',
   styleUrls: ['./page-two-ii.component.scss'],
@@ -23,7 +27,7 @@ export class PageTwoIiComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
