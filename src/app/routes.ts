@@ -4,10 +4,10 @@ import { loginFnGuard } from './core/guards/login-fn.guard';
 import { moviesFnGuard } from './core/guards/movies-fn.guard';
 import { UserRole } from './services/interfaces/user-auth.interface';
 
-import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
-import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.resolver';
-import { MovieItemResolver } from './core/resolvers/movie-item.resolver';
-import { MoviePosterResolver } from './core/resolvers/movie-poster.resolver';
+import { movieCreditFnResolver } from './core/resolvers/movie-credit-fn.resolver';
+import { movieItemFnResolver } from './core/resolvers/movie-item-fn.resolver';
+import { movieItemVideosFnResolver } from './core/resolvers/movie-item-videos-fn.resolver';
+import { moviePosterFnResolver } from './core/resolvers/movie-poster-fn.resolver';
 
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -103,10 +103,10 @@ export const routes: Routes = [
     loadChildren: () => movieDetailsRoutes,
     canLoad: [movieItemFnGuard],
     resolve: {
-      videos: MovieItemVideosResolver,
-      movie: MovieItemResolver,
-      credits: MovieCreditResolver,
-      posters: MoviePosterResolver,
+      videos: movieItemVideosFnResolver,
+      movie: movieItemFnResolver,
+      credits: movieCreditFnResolver,
+      posters: moviePosterFnResolver,
     },
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
