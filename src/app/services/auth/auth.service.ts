@@ -28,7 +28,7 @@ export class AuthService {
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly tmdbService: TmdbService,
-    @Inject(AUTHSERVER) private readonly authServerPath: string,
+    @Inject(AUTHSERVER) public readonly authServerPath: string,
   ) {}
 
   /* SignIn */

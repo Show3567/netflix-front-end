@@ -1,10 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './auth.service';
-import { AppUser, AuthDto, UserRole } from '../interfaces';
+
 import { TmdbService } from '../tmdb/tmdb.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { AppUser } from '../interfaces/user-login.interface';
+import { AuthDto } from '../interfaces/authDto.interface';
+import { UserRole } from '../interfaces/user-auth.interface';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -12,9 +21,14 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    providers: [AuthService, TmdbService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+      imports: [RouterTestingModule],
+      providers: [
+        AuthService,
+        TmdbService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    });
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
   });
@@ -28,8 +42,8 @@ describe('AuthService', () => {
   });
 
   it('should login successfully', () => {
-    const appUser: AppUser = { username: 'testuser', password: 'testpassword' };
-    const authDto: AuthDto = { accessToken: 'testtoken', role: UserRole.User };
+    const appUser: AppUser = { email: 'testuser', password: 'testpassword' };
+    const authDto: AuthDto = { accessToken: 'testtoken', role: UserRole.USER };
 
     service.login(appUser).subscribe((response) => {
       expect(response).toEqual(authDto);
@@ -41,7 +55,7 @@ describe('AuthService', () => {
   });
 
   it('should handle login error', () => {
-    const appUser: AppUser = { username: 'testuser', password: 'testpassword' };
+    const appUser: AppUser = { email: 'testuser', password: 'testpassword' };
 
     service.login(appUser).subscribe(
       () => {},

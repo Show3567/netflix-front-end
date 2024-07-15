@@ -70,16 +70,16 @@ export class CoreModule {
           deps: [AuthService],
         },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Interceptors;
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthWithLocalInterceptor,
-          multi: true,
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: ErrorInterceptor,
-          multi: true,
-        },
+        // {
+        //   provide: HTTP_INTERCEPTORS,
+        //   useClass: AuthWithLocalInterceptor,
+        //   multi: true,
+        // },
+        // {
+        //   provide: HTTP_INTERCEPTORS,
+        //   useClass: ErrorInterceptor,
+        //   multi: true,
+        // },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Page Title control
         Title,
       ],

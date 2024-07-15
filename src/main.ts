@@ -9,10 +9,16 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { CoreModule } from './app/core/core.module';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { routes } from './app/routes';
+import { authInterceptor } from './app/core/interceptors/auth.interceptor';
+import { errorFnInterceptor } from './app/core/interceptors/error-fn.interceptor';
 
 if (environment.production) {
   enableProdMode();
@@ -20,7 +26,10 @@ if (environment.production) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch()),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authInterceptor, errorFnInterceptor]),
+    ),
     provideRouter(routes),
     provideAnimations(),
 

@@ -27,7 +27,7 @@ const loginRoutes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    // canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
 ];
 const registerRoutes: Routes = [
@@ -48,7 +48,7 @@ const moviesRoutes: Routes = [
   {
     path: '',
     component: MoviesComponent,
-    // canActivate: [MoviesGuard],
+    canActivate: [MoviesGuard],
     data: { claimType: [UserRole.ADMIN, UserRole.SUPERUSER, UserRole.USER] },
   },
 ];
@@ -56,7 +56,7 @@ const movieDetailsRoutes: Routes = [
   {
     path: '',
     component: MovieItemComponent,
-    // canActivate: [MovieItemGuard],
+    canActivate: [MovieItemGuard],
     data: {
       claimType: [UserRole.ADMIN, UserRole.SUPERUSER],
     },
@@ -100,7 +100,7 @@ export const routes: Routes = [
         (c) => c.MovieItemComponent,
       ),
     loadChildren: () => movieDetailsRoutes,
-    // canLoad: [MovieItemGuard],
+    canLoad: [MovieItemGuard],
     resolve: {
       videos: MovieItemVideosResolver,
       movie: MovieItemResolver,
