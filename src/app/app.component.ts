@@ -5,13 +5,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  @ViewChild('mainContent')
-  private mainContentElement!: ElementRef<HTMLElement>;
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
+export class AppComponent {
   onActivate(e: any) {}
 }
