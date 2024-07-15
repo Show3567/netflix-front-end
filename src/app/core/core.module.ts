@@ -6,14 +6,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { TmdbService } from '../services/tmdb/tmdb.service';
 import { WithCookieService } from '../services/auth/with-cookie.service';
 import { AuthService } from '../services/auth/auth.service';
 
-import { AuthWithLocalInterceptor } from './interceptors/auth-with-local.interceptor';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { appInitializer } from './app.initializer';
 
 //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ injection token
@@ -69,17 +67,6 @@ export class CoreModule {
           multi: true,
           deps: [AuthService],
         },
-        //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Interceptors;
-        // {
-        //   provide: HTTP_INTERCEPTORS,
-        //   useClass: AuthWithLocalInterceptor,
-        //   multi: true,
-        // },
-        // {
-        //   provide: HTTP_INTERCEPTORS,
-        //   useClass: ErrorInterceptor,
-        //   multi: true,
-        // },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Page Title control
         Title,
       ],

@@ -1,5 +1,13 @@
 import { Routes } from '@angular/router';
 import { LoginGuard } from './core/guards/login.guard';
+import { MoviesGuard } from './core/guards/movies.guard';
+import { MovieItemGuard } from './core/guards/movie-item.guard';
+import { UserRole } from './services/interfaces/user-auth.interface';
+
+import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
+import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.resolver';
+import { MovieItemResolver } from './core/resolvers/movie-item.resolver';
+import { MoviePosterResolver } from './core/resolvers/movie-poster.resolver';
 
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -12,13 +20,6 @@ import { PageFourComponent } from './pages/register/components/page-four/page-fo
 import { PageThreeComponent } from './pages/register/components/page-three/page-three.component';
 import { PageTwoIiComponent } from './pages/register/components/page-two-ii/page-two-ii.component';
 import { MoviesComponent } from './pages/movies/movies.component';
-import { MoviesGuard } from './core/guards/movies.guard';
-import { UserRole } from './services/interfaces/user-auth.interface';
-import { MovieItemGuard } from './core/guards/movie-item.guard';
-import { MovieCreditResolver } from './core/resolvers/movie-credit.resolver';
-import { MovieItemVideosResolver } from './core/resolvers/movie-item-videos.resolver';
-import { MovieItemResolver } from './core/resolvers/movie-item.resolver';
-import { MoviePosterResolver } from './core/resolvers/movie-poster.resolver';
 import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 
 const notFoundRoutes: Routes = [{ path: '', component: PageNotFoundComponent }];

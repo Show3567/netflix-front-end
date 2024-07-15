@@ -13,8 +13,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
@@ -54,7 +52,6 @@ import { TitlePipe } from './pipes/title.pipe';
     RouterModule,
 
     YouTubePlayerModule,
-    // InfiniteScrollModule,
     OverviewControlPipe,
     TitlePipe,
 
