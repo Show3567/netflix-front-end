@@ -49,7 +49,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   recommendSignal!: Signal<Movie[]>;
   showSearchForm = signal(true);
 
-  noRecommendImg = 'src/assets/video/VGA-no-signal-image.jpeg';
+  noRecommendImg = '/assets/video/VGA-no-signal-image.jpeg';
   finished = false;
   currentId = signal(0);
   showRecommendImg = computed(() => {
