@@ -12,7 +12,6 @@ export const errorFnInterceptor: HttpInterceptorFn = (req, next) => {
       const authToken = authService.userSignal().jwtToken;
       if ([401, 403].includes(err.status) && authToken) {
         // auto logout if 401 or 403 response returned from api
-        console.log('error happend!');
         authService.logout();
       }
 

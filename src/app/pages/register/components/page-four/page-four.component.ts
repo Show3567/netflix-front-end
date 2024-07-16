@@ -50,7 +50,12 @@ export class PageFourComponent implements OnInit {
         .upgradePermission({
           role: UserRole[this.selecedColumn],
         })
-        .subscribe();
+        .subscribe(
+          () => {},
+          (error) => {
+            console.log('show error for updateUserPermission: ', error);
+          },
+        );
       this.router.navigate(['/movies']);
     } else {
       this.authService

@@ -67,7 +67,6 @@ export class LoginComponent implements OnInit {
         this.login_msg.msg = '';
       },
       (err) => {
-        console.log(err);
         this.login_msg.msg = 'Please check your login credentials';
       },
     );

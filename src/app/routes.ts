@@ -101,7 +101,6 @@ export const routes: Routes = [
         (c) => c.MovieItemComponent,
       ),
     loadChildren: () => movieDetailsRoutes,
-    canLoad: [movieItemFnGuard],
     resolve: {
       videos: movieItemVideosFnResolver,
       movie: movieItemFnResolver,

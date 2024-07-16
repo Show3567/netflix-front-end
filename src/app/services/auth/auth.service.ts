@@ -90,7 +90,6 @@ export class AuthService {
 
   /* upgrade Uer Permission */
   upgradePermission(userRole: { role: UserRole }): Observable<AuthDto> {
-    console.log('Change permission class to: ', userRole.role);
     this.stopRefreshTokenTimer();
 
     return this.http

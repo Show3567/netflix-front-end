@@ -105,7 +105,6 @@ export class WithLocalstorageService {
 
   /* upgrade Uer Permission */
   upgradePermission(userRole: { role: UserRole }) {
-    console.log('Change permission class to: ', userRole.role);
     this.stopRefreshTokenTimer();
 
     return this.http
