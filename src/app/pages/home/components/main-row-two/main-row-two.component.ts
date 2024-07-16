@@ -1,5 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild, input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  input,
+} from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
@@ -9,7 +16,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   templateUrl: './main-row-two.component.html',
   styleUrls: ['./main-row-two.component.scss'],
 })
-export class MainRowTwoComponent implements OnInit {
+export class MainRowTwoComponent implements OnInit, AfterViewInit {
   header = input('');
   content = input('');
   templatePic = input('');
@@ -26,5 +33,12 @@ export class MainRowTwoComponent implements OnInit {
 
   ngOnInit(): void {
     this.video = this.baseAssets + this.videoIncome();
+  }
+  ngAfterViewInit(): void {
+    this.videoHolder?.nativeElement
+      .play()
+      .catch((error: any) =>
+        console.error('Error attempting to play video:', error),
+      );
   }
 }

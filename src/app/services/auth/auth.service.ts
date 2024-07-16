@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable, signal } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of, throwError } from 'rxjs';
@@ -11,6 +11,7 @@ import { TmdbService } from '../tmdb/tmdb.service';
 import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 import { AuthDto } from '../interfaces/authDto.interface';
 import { AUTHSERVER } from 'src/app/core/core.module';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class AuthService {
@@ -24,12 +25,18 @@ export class AuthService {
     return this.appUserRegister;
   }
 
+  // private readonly document = inject(DOCUMENT);
+  private isBrowser!: boolean;
+  private readonly platform = inject(PLATFORM_ID);
+
   constructor(
     private readonly router: Router,
     private readonly http: HttpClient,
     private readonly tmdbService: TmdbService,
     @Inject(AUTHSERVER) public readonly authServerPath: string,
-  ) {}
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platform);
+  }
 
   /* SignIn */
   login(appUser: AppUser): Observable<AuthDto> {
@@ -48,12 +55,13 @@ export class AuthService {
 
   /* SignOut */
   logout() {
-    localStorage.removeItem('access_token');
+    if (this.isBrowser) {
+      localStorage.removeItem('access_token');
+      this.stopRefreshTokenTimer();
 
-    this.stopRefreshTokenTimer();
-
-    this.userSignal.set({});
-    this.router.navigate(['/home']);
+      this.userSignal.set({});
+      this.router.navigate(['/home']);
+    }
   }
 
   /* SignUp */
@@ -110,7 +118,10 @@ export class AuthService {
 
   //* helper methods;
   refreshToken(): Observable<AuthDto | string> {
-    const token = localStorage.getItem('access_token');
+    let token;
+    if (this.isBrowser) {
+      token = localStorage.getItem('access_token');
+    }
     if (!token) {
       this.router.navigate(['/']);
       return of('err');
@@ -141,7 +152,9 @@ export class AuthService {
 
   /* reuseable code in for signin, signup, refresh, update */
   private setUserValueByToken = ({ accessToken, role }: AuthDto) => {
-    localStorage.setItem('access_token', accessToken);
+    if (this.isBrowser) {
+      localStorage.setItem('access_token', accessToken);
+    }
 
     const { id, username, email, exp } =
       this.jwtHelper.decodeToken(accessToken);
