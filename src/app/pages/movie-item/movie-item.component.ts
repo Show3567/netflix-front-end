@@ -23,7 +23,8 @@ import { VideoItemComponent } from './components/video-item/video-item.component
   styleUrls: ['./movie-item.component.scss'],
 })
 export class MovieItemComponent implements OnInit {
-  @ViewChild(YouTubePlayer, { static: true }) youTubePlayer!: YouTubePlayer;
+  @ViewChild(YouTubePlayer, { static: true })
+  youTubePlayer!: YouTubePlayer;
 
   hasposter_img = true;
   hasbackdrop_img = true;
