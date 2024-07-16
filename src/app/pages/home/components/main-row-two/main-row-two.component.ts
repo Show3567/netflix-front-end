@@ -1,10 +1,12 @@
-import { NgClass } from '@angular/common';
+import { NgClass, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
   OnInit,
+  PLATFORM_ID,
   ViewChild,
+  inject,
   input,
 } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -23,22 +25,29 @@ export class MainRowTwoComponent implements OnInit, AfterViewInit {
   videoIncome = input.required();
 
   @ViewChild('video_holder', { static: true })
-  videoHolder?: ElementRef;
+  videoHolder?: ElementRef<HTMLVideoElement>;
+
+  private isBrowser!: boolean;
+  private readonly platform = inject(PLATFORM_ID);
 
   video = '';
   video_class = '';
   baseAssets = '/assets/home/';
 
-  constructor() {}
+  constructor() {
+    this.isBrowser = isPlatformBrowser(this.platform);
+  }
 
   ngOnInit(): void {
     this.video = this.baseAssets + this.videoIncome();
   }
   ngAfterViewInit(): void {
-    this.videoHolder?.nativeElement
-      .play()
-      .catch((error: any) =>
-        console.error('Error attempting to play video:', error),
-      );
+    if (this.isBrowser && this.videoHolder) {
+      this.videoHolder.nativeElement
+        .play()
+        .catch((error: any) =>
+          console.error('Error attempting to play video:', error),
+        );
+    }
   }
 }

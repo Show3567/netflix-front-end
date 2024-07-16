@@ -11,7 +11,7 @@ import { TmdbService } from '../tmdb/tmdb.service';
 import { AppUserRegister, UserInfo } from '../interfaces/user-signup.interface';
 import { AuthDto } from '../interfaces/authDto.interface';
 import { AUTHSERVER } from 'src/app/core/core.module';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +25,6 @@ export class AuthService {
     return this.appUserRegister;
   }
 
-  // private readonly document = inject(DOCUMENT);
   private isBrowser!: boolean;
   private readonly platform = inject(PLATFORM_ID);
 
