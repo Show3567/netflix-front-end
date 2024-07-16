@@ -21,11 +21,7 @@ export const ProdTitle = new InjectionToken<string>('');
 
 const USECOOKIE = new InjectionToken<string>('');
 
-@NgModule({
-  declarations: [],
-  exports: [],
-  imports: [],
-})
+@NgModule({})
 export class CoreModule {
   public static forRoot(): ModuleWithProviders<CoreModule> {
     return {
