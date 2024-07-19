@@ -41,7 +41,9 @@
               "includePaths": ["."]
             },
             "server": "src/main.server.ts",
-            "prerender": true,
+            "prerender": {
+              "discoverRoutes": true
+            },
             "ssr": {
               "entry": "server.ts"
             }
