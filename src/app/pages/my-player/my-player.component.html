@@ -1,0 +1,27 @@
+<media-controller>
+  <video
+    playsinline
+    muted
+    crossorigin
+    slot="media"
+    [src]="videoPath"
+    poster="https://image.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/thumbnail.jpg"
+  >
+    <track
+      default
+      label="thumbnails"
+      kind="metadata"
+      src="https://image.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/storyboard.vtt"
+    />
+  </video>
+  <media-control-bar>
+    <!-- <media-play-button></media-play-button>
+    <media-seek-backward-button></media-seek-backward-button>
+    <media-seek-forward-button></media-seek-forward-button>
+    <media-mute-button></media-mute-button>
+    <media-volume-range></media-volume-range> -->
+    <media-time-range></media-time-range>
+    <!-- <media-time-display></media-time-display> -->
+    <!-- <media-fullscreen-button></media-fullscreen-button> -->
+  </media-control-bar>
+</media-controller>

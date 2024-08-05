@@ -21,6 +21,7 @@ import { PageThreeComponent } from './pages/register/components/page-three/page-
 import { PageTwoIiComponent } from './pages/register/components/page-two-ii/page-two-ii.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { MovieItemComponent } from './pages/movie-item/movie-item.component';
+import { MyPlayerComponent } from './pages/my-player/my-player.component';
 
 const notFoundRoutes: Routes = [{ path: '', component: PageNotFoundComponent }];
 const homeRoutes: Routes = [{ path: '', component: HomeComponent }];
@@ -108,6 +109,12 @@ export const routes: Routes = [
       posters: moviePosterFnResolver,
     },
   },
+
+  {
+    path: 'my-player',
+    component: MyPlayerComponent,
+  },
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '**',
