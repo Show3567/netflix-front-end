@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   staging: false,
+  amc_api: '04ADA7CD-1D75-46B8-A20D-66A7445EB055',
 };
 
 /*
