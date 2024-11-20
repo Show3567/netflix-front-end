@@ -11,18 +11,19 @@ import { PageTwoComponent } from './components/page-two/page-two.component';
 import { PlanCardComponent } from './components/plan-card/plan-card.component';
 
 @Component({
-    imports: [
-        SharedModule,
-        PageOneComponent,
-        PageTwoComponent,
-        PageTwoIiComponent,
-        PageThreeComponent,
-        PageFourComponent,
-        PlanCardComponent,
-    ],
-    selector: 'app-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+  standalone: true,
+  imports: [
+    SharedModule,
+    PageOneComponent,
+    PageTwoComponent,
+    PageTwoIiComponent,
+    PageThreeComponent,
+    PageFourComponent,
+    PlanCardComponent,
+  ],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   linkList = [

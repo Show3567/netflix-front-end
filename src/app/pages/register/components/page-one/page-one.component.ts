@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule],
-    selector: 'app-page-one',
-    templateUrl: './page-one.component.html',
-    styleUrls: ['./page-one.component.scss']
+  standalone: true,
+  imports: [SharedModule],
+  selector: 'app-page-one',
+  templateUrl: './page-one.component.html',
+  styleUrls: ['./page-one.component.scss'],
 })
 export class PageOneComponent implements OnInit {
   linkList = [

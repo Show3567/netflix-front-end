@@ -3,10 +3,11 @@ import { Plan } from 'src/app/services/interfaces/plan.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule],
-    selector: 'app-plan-card',
-    templateUrl: './plan-card.component.html',
-    styleUrl: './plan-card.component.scss'
+  standalone: true,
+  imports: [SharedModule],
+  selector: 'app-plan-card',
+  templateUrl: './plan-card.component.html',
+  styleUrl: './plan-card.component.scss',
 })
 export class PlanCardComponent {
   selectedPlan: 'Standard with ads' | 'Standard' | 'Premium' =

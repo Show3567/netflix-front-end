@@ -7,10 +7,11 @@ import { UserRole } from 'src/app/services/interfaces/user-auth.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule, NgClass, CurrencyPipe],
-    selector: 'app-page-four',
-    templateUrl: './page-four.component.html',
-    styleUrls: ['./page-four.component.scss']
+  standalone: true,
+  imports: [SharedModule, NgClass, CurrencyPipe],
+  selector: 'app-page-four',
+  templateUrl: './page-four.component.html',
+  styleUrls: ['./page-four.component.scss'],
 })
 export class PageFourComponent implements OnInit {
   plans = {

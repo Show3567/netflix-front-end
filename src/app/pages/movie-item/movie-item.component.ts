@@ -14,13 +14,14 @@ import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { ProdTitle } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { VideoItemComponent } from './components/video-item/video-item.component';
+// import { VideoItemComponent } from './components/video-item/video-item.component';
 
 @Component({
-    imports: [SharedModule, NgStyle, VideoItemComponent, MovieDialogComponent],
-    selector: 'app-movie-item',
-    templateUrl: './movie-item.component.html',
-    styleUrls: ['./movie-item.component.scss']
+  standalone: true,
+  imports: [SharedModule, NgStyle, MovieDialogComponent],
+  selector: 'app-movie-item',
+  templateUrl: './movie-item.component.html',
+  styleUrls: ['./movie-item.component.scss'],
 })
 export class MovieItemComponent implements OnInit {
   @ViewChild(YouTubePlayer, { static: true })

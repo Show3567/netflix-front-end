@@ -6,10 +6,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule, NgClass],
-    selector: 'app-page-two-ii',
-    templateUrl: './page-two-ii.component.html',
-    styleUrls: ['./page-two-ii.component.scss']
+  standalone: true,
+  imports: [SharedModule, NgClass],
+  selector: 'app-page-two-ii',
+  templateUrl: './page-two-ii.component.html',
+  styleUrls: ['./page-two-ii.component.scss'],
 })
 export class PageTwoIiComponent implements OnInit {
   applyTmdbApiKey =

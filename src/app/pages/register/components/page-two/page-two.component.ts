@@ -18,10 +18,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgClass } from '@angular/common';
 
 @Component({
-    imports: [SharedModule, NgClass],
-    selector: 'app-page-two',
-    templateUrl: './page-two.component.html',
-    styleUrls: ['./page-two.component.scss']
+  standalone: true,
+  imports: [SharedModule, NgClass],
+  selector: 'app-page-two',
+  templateUrl: './page-two.component.html',
+  styleUrls: ['./page-two.component.scss'],
 })
 export class PageTwoComponent implements OnInit {
   form!: UntypedFormGroup;
