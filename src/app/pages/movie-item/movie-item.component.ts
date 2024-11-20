@@ -17,11 +17,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { VideoItemComponent } from './components/video-item/video-item.component';
 
 @Component({
-  standalone: true,
-  imports: [SharedModule, NgStyle, VideoItemComponent, MovieDialogComponent],
-  selector: 'app-movie-item',
-  templateUrl: './movie-item.component.html',
-  styleUrls: ['./movie-item.component.scss'],
+    imports: [SharedModule, NgStyle, VideoItemComponent, MovieDialogComponent],
+    selector: 'app-movie-item',
+    templateUrl: './movie-item.component.html',
+    styleUrls: ['./movie-item.component.scss']
 })
 export class MovieItemComponent implements OnInit {
   @ViewChild(YouTubePlayer, { static: true })

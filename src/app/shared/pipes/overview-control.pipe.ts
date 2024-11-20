@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'overviewControl',
+    name: 'overviewControl',
+    standalone: false
 })
 export class OverviewControlPipe implements PipeTransform {
   transform(value: string | null | undefined, len: number): string {

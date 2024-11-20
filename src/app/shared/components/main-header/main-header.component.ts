@@ -3,9 +3,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Component({
-  selector: 'app-main-header',
-  templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.scss'],
+    selector: 'app-main-header',
+    templateUrl: './main-header.component.html',
+    styleUrls: ['./main-header.component.scss'],
+    standalone: false
 })
 export class MainHeaderComponent implements OnInit {
   // showSearchForm = input(false, {

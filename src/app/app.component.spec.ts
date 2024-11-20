@@ -5,8 +5,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  template: `<div>Home Page</div>`,
+    selector: 'app-home',
+    template: `<div>Home Page</div>`,
+    standalone: false
 })
 class HomeComponent {}
 

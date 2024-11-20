@@ -8,17 +8,16 @@ import { MainRowThreeComponent } from './components/main-row-three/main-row-thre
 import { MainRowTwoComponent } from './components/main-row-two/main-row-two.component';
 
 @Component({
-  standalone: true,
-  imports: [
-    SharedModule,
-    MainQuestionsComponent,
-    MainRowOneComponent,
-    MainRowThreeComponent,
-    MainRowTwoComponent,
-  ],
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    imports: [
+        SharedModule,
+        MainQuestionsComponent,
+        MainRowOneComponent,
+        MainRowThreeComponent,
+        MainRowTwoComponent,
+    ],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   linkList = [

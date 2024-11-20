@@ -4,11 +4,10 @@ import { Video } from 'src/app/services/interfaces/video.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-  standalone: true,
-  imports: [SharedModule],
-  selector: 'app-movie-dialog',
-  templateUrl: './movie-dialog.component.html',
-  styleUrls: ['./movie-dialog.component.scss'],
+    imports: [SharedModule],
+    selector: 'app-movie-dialog',
+    templateUrl: './movie-dialog.component.html',
+    styleUrls: ['./movie-dialog.component.scss']
 })
 export class MovieDialogComponent implements OnInit {
   movieVideos: Video[] = [];

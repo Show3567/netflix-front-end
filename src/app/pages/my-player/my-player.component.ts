@@ -2,12 +2,11 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-  selector: 'app-my-player',
-  standalone: true,
-  imports: [SharedModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './my-player.component.html',
-  styleUrl: './my-player.component.scss',
+    selector: 'app-my-player',
+    imports: [SharedModule],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './my-player.component.html',
+    styleUrl: './my-player.component.scss'
 })
 export class MyPlayerComponent {
   // videoPath = '/assets/home/jojo_6.mp4';

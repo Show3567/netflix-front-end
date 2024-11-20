@@ -30,11 +30,10 @@ import { ItemComponent } from './components/item/item.component';
 import { NgStyle } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [SharedModule, ScrollingModule, ItemComponent, NgStyle],
-  selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss'],
+    imports: [SharedModule, ScrollingModule, ItemComponent, NgStyle],
+    selector: 'app-movies',
+    templateUrl: './movies.component.html',
+    styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movieSignal: Signal<Movie[][]> = computed(() => {
