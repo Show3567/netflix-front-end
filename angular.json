@@ -27,10 +27,15 @@
               "base": "dist/netflix-front-end"
             },
             "index": "src/index.html",
-            "polyfills": ["src/polyfills.ts"],
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/rose-red.css",
               "src/styles.scss"
@@ -38,7 +43,9 @@
             "scripts": [],
             "browser": "src/main.ts",
             "stylePreprocessorOptions": {
-              "includePaths": ["."],
+              "includePaths": [
+                "."
+              ],
               "sass": {
                 "silenceDeprecations": [
                   "mixed-decls",
@@ -49,12 +56,10 @@
               }
             },
             "server": "src/main.server.ts",
-            "prerender": {
-              "discoverRoutes": true
-            },
             "ssr": {
-              "entry": "server.ts"
-            }
+              "entry": "src/server.ts"
+            },
+            "outputMode": "server"
           },
           "configurations": {
             "production": {
