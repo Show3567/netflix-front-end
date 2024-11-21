@@ -18,7 +18,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   standalone: true,
-  imports: [SharedModule, NgStyle, MovieDialogComponent],
+  imports: [
+    SharedModule,
+    NgStyle,
+    // MovieDialogComponent
+  ],
   selector: 'app-movie-item',
   templateUrl: './movie-item.component.html',
   styleUrls: ['./movie-item.component.scss'],
