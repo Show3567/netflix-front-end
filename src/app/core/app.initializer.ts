@@ -8,7 +8,6 @@ export const appInitializer = (authService: AuthService) => {
       if (isInitialized) {
         console.log('Initialization skipped');
         resolve();
-        return;
       }
       console.log('Initialization started');
       isInitialized = true;

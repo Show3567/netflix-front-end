@@ -1,12 +1,12 @@
-import { Component, OnInit, input, model, signal } from '@angular/core';
+import { Component, OnInit, inject, input, model, signal } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
 @Component({
-    selector: 'app-main-header',
-    templateUrl: './main-header.component.html',
-    styleUrls: ['./main-header.component.scss'],
-    standalone: false
+  selector: 'app-main-header',
+  templateUrl: './main-header.component.html',
+  styleUrls: ['./main-header.component.scss'],
+  standalone: false,
 })
 export class MainHeaderComponent implements OnInit {
   // showSearchForm = input(false, {
@@ -14,22 +14,22 @@ export class MainHeaderComponent implements OnInit {
   // });
   showSearchForm = model(false);
 
-  isLogin!: boolean;
+  isLogin = signal(true);
   username = '';
   searchKeyWord = signal('');
 
-  constructor(
-    private readonly authService: AuthService,
-    private readonly tmdbService: TmdbService,
-  ) {}
+  private readonly authService = inject(AuthService);
+  private readonly tmdbService = inject(TmdbService);
 
   ngOnInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
     if (jwtToken && username) {
-      this.isLogin = true;
+      console.log('islogin: ', this.isLogin());
+      this.isLogin.set(true);
       this.username = username;
     } else {
-      this.isLogin = false;
+      console.log(': ', this.isLogin());
+      this.isLogin.set(false);
     }
     this.showSearchForm.set(false);
   }
@@ -40,7 +40,7 @@ export class MainHeaderComponent implements OnInit {
   }
   signOut() {
     this.authService.logout();
-    this.isLogin = false;
+    this.isLogin.set(false);
     this.username = '';
   }
 }

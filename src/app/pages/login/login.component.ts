@@ -12,10 +12,11 @@ import { AppUserAuth } from 'src/app/services/interfaces/user-auth.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule],
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+  standalone: true,
+  imports: [SharedModule],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   hide = true;
