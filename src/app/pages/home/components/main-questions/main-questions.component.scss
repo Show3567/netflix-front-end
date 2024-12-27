@@ -46,7 +46,7 @@
 
 .form_container {
   margin-top: 2.5rem;
-  @include flex(space-between);
+  @include flex(space-between, center, column);
 
   width: 100%;
   padding: 0 2.5rem;
@@ -69,6 +69,7 @@
     .input_container {
       position: relative;
       height: 100%;
+      width: 100%;
       .start_input {
         margin: auto;
         border: none;
@@ -77,7 +78,7 @@
         height: 100%;
         padding-left: 1rem;
         font-size: 1rem;
-        border-radius: 5px;
+        border-radius: 20px;
       }
       .start_btn {
         position: absolute;

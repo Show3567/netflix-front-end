@@ -7,10 +7,11 @@ import {
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule],
-    selector: 'app-main-questions',
-    templateUrl: './main-questions.component.html',
-    styleUrls: ['./main-questions.component.scss']
+  standalone: true,
+  imports: [SharedModule],
+  selector: 'app-main-questions',
+  templateUrl: './main-questions.component.html',
+  styleUrls: ['./main-questions.component.scss'],
 })
 export class MainQuestionsComponent implements OnInit {
   panelOpenState = false;

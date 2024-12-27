@@ -12,10 +12,11 @@ import {
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule, NgClass],
-    selector: 'app-main-row-two',
-    templateUrl: './main-row-two.component.html',
-    styleUrls: ['./main-row-two.component.scss']
+  standalone: true,
+  imports: [SharedModule, NgClass],
+  selector: 'app-main-row-two',
+  templateUrl: './main-row-two.component.html',
+  styleUrls: ['./main-row-two.component.scss'],
 })
 export class MainRowTwoComponent implements OnInit, AfterViewInit {
   header = input('');

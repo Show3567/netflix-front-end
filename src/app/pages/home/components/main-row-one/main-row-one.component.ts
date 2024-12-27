@@ -9,10 +9,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
-    imports: [SharedModule],
-    selector: 'app-main-row-one',
-    templateUrl: './main-row-one.component.html',
-    styleUrls: ['./main-row-one.component.scss']
+  standalone: true,
+  imports: [SharedModule],
+  selector: 'app-main-row-one',
+  templateUrl: './main-row-one.component.html',
+  styleUrls: ['./main-row-one.component.scss'],
 })
 export class MainRowOneComponent implements OnInit {
   form!: UntypedFormGroup;
