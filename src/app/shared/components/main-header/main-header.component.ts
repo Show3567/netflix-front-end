@@ -24,22 +24,23 @@ export class MainHeaderComponent implements OnInit {
   isLogin = signal(true);
   username = '';
   searchKeyWord = signal('');
+  loading = signal(true);
 
   private readonly authService = inject(AuthService);
   private readonly tmdbService = inject(TmdbService);
-  private readonly cdr = inject(ChangeDetectorRef);
+
+  constructor() {
+    this.loading.set(true);
+  }
 
   ngOnInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
-    if (jwtToken && username) {
-      console.log('islogin: ', this.isLogin());
-      this.isLogin.set(true);
-      this.username = username;
-    } else {
-      console.log(': ', this.isLogin());
-      this.isLogin.set(false);
-    }
-    this.cdr.detectChanges();
+    this.isLogin.set(!!jwtToken && !!username);
+    this.username = username ?? '';
+    console.log('check loading: ', this.loading(), this.isLogin());
+
+    this.loading.set(false);
+    console.log('check loading: ', this.loading());
     this.showSearchForm.set(false);
   }
 

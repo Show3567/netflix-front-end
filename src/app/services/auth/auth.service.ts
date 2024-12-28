@@ -163,6 +163,7 @@ export class AuthService {
       jwtToken: accessToken,
     };
     this.userSignal.set(user);
+    console.log('user: ', this.userSignal());
     this.startRefreshTokenTimer(exp);
   };
 }
