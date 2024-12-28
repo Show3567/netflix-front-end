@@ -30,6 +30,7 @@ import { ItemComponent } from './components/item/item.component';
 import { NgStyle } from '@angular/common';
 
 @Component({
+  standalone: true,
   imports: [SharedModule, ScrollingModule, ItemComponent, NgStyle],
   selector: 'app-movies',
   templateUrl: './movies.component.html',

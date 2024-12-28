@@ -1,4 +1,11 @@
-import { Component, OnInit, inject, input, model, signal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  inject,
+  model,
+  signal,
+} from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
@@ -20,6 +27,7 @@ export class MainHeaderComponent implements OnInit {
 
   private readonly authService = inject(AuthService);
   private readonly tmdbService = inject(TmdbService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
@@ -31,6 +39,7 @@ export class MainHeaderComponent implements OnInit {
       console.log(': ', this.isLogin());
       this.isLogin.set(false);
     }
+    this.cdr.detectChanges();
     this.showSearchForm.set(false);
   }
 

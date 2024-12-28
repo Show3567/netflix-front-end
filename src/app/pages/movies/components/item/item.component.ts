@@ -8,10 +8,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgStyle, UpperCasePipe } from '@angular/common';
 
 @Component({
-    imports: [SharedModule, NgStyle, UpperCasePipe],
-    selector: 'app-item',
-    templateUrl: './item.component.html',
-    styleUrls: ['./item.component.scss']
+  standalone: true,
+  imports: [SharedModule, NgStyle, UpperCasePipe],
+  selector: 'app-item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent {
   movie = input.required<Movie>();
