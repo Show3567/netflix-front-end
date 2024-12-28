@@ -1,4 +1,12 @@
-import { Component, OnInit, input, model, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  input,
+  model,
+  signal,
+} from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 
@@ -7,29 +15,34 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.scss'],
 })
-export class MainHeaderComponent implements OnInit {
+export class MainHeaderComponent implements OnInit, AfterViewInit {
   // showSearchForm = input(false, {
   //   transform: (val: boolean) => false, // remove the searchfrom currentlly;
   // });
   showSearchForm = model(false);
 
-  isLogin!: boolean;
+  isLogin = signal(false);
   username = '';
   searchKeyWord = signal('');
 
   constructor(
     private readonly authService: AuthService,
     private readonly tmdbService: TmdbService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  ngAfterViewInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
+    console.log('jwtToken: ', jwtToken, 'username: ', username);
     if (jwtToken && username) {
-      this.isLogin = true;
+      this.isLogin.set(true);
       this.username = username;
     } else {
-      this.isLogin = false;
+      this.isLogin.set(false);
     }
+    console.log(this.isLogin);
+    this.cdr.detectChanges();
     this.showSearchForm.set(false);
   }
 
@@ -39,7 +52,7 @@ export class MainHeaderComponent implements OnInit {
   }
   signOut() {
     this.authService.logout();
-    this.isLogin = false;
+    this.isLogin.set(false);
     this.username = '';
   }
 }

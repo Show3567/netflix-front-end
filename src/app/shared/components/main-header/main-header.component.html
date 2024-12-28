@@ -18,8 +18,7 @@
         <mat-icon matSuffix class="icon-display">search</mat-icon>
       </mat-form-field>
     }
-
-    @if (!isLogin) {
+    @if (!isLogin()) {
       <div class="login_container">
         <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
           Sign In
