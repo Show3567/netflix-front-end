@@ -28,7 +28,7 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly authService: AuthService,
     private readonly tmdbService: TmdbService,
-    private readonly cdr: ChangeDetectorRef,
+    // private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {}
@@ -42,7 +42,7 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
       this.isLogin.set(false);
     }
     console.log(this.isLogin);
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
     this.showSearchForm.set(false);
   }
 
