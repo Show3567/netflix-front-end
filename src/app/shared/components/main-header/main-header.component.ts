@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   OnInit,
@@ -15,7 +16,7 @@ import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
   styleUrls: ['./main-header.component.scss'],
   standalone: false,
 })
-export class MainHeaderComponent implements OnInit {
+export class MainHeaderComponent implements OnInit, AfterViewInit {
   // showSearchForm = input(false, {
   //   transform: (val: boolean) => false, // remove the searchfrom currentlly;
   // });
@@ -29,18 +30,15 @@ export class MainHeaderComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly tmdbService = inject(TmdbService);
 
-  constructor() {
+  ngOnInit(): void {
     this.loading.set(true);
   }
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
     this.isLogin.set(!!jwtToken && !!username);
     this.username = username ?? '';
-    console.log('check loading: ', this.loading(), this.isLogin());
 
     this.loading.set(false);
-    console.log('check loading: ', this.loading());
     this.showSearchForm.set(false);
   }
 
