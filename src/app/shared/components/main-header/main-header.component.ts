@@ -28,21 +28,18 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly authService: AuthService,
     private readonly tmdbService: TmdbService,
-    // private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
-    console.log('jwtToken: ', jwtToken, 'username: ', username);
+
     if (jwtToken && username) {
       this.isLogin.set(true);
       this.username = username;
     } else {
       this.isLogin.set(false);
     }
-    console.log(this.isLogin);
-    // this.cdr.detectChanges();
     this.showSearchForm.set(false);
   }
 
