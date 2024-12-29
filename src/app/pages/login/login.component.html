@@ -7,7 +7,12 @@
       <!-- ----------------------- ----------------------- -->
       <div class="title">Sign In</div>
       <!-- ----------------------- ----------------------- -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="login_form"
+        (keydown.enter)="$event.preventDefault()"
+      >
         <mat-form-field class="login_username" appearance="fill">
           <mat-label>Email or phone number</mat-label>
           <input type="email" matInput formControlName="email" />
@@ -26,6 +31,7 @@
             [type]="hide ? 'password' : 'text'"
             matInput
             formControlName="password"
+            (keydown.enter)="onSubmit()"
           />
           <button
             mat-icon-button
@@ -39,9 +45,6 @@
           @if (password?.hasError("required")) {
             <mat-error> Please enter a valid password </mat-error>
           }
-          <!-- @if (password?.hasError("required")) {
-            <mat-error> Password is <strong>required</strong> </mat-error>
-          } -->
         </mat-form-field>
 
         <button class="submit_btn" mat-raised-button type="submit">
