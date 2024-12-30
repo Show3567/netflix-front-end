@@ -7,7 +7,12 @@
       <!-- ----------------------- ----------------------- -->
       <div class="title">Sign In</div>
       <!-- ----------------------- ----------------------- -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="login_form"
+        (keydown.enter)="$event.preventDefault()"
+      >
         <mat-form-field class="login_username" appearance="fill">
           <mat-label>Email or phone number</mat-label>
           <input type="email" matInput formControlName="email" />

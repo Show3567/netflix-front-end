@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
 import { RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,9 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private authService: AuthService) {
+    this.authService.refreshToken().subscribe();
+    console.log('refresh token in appcomponent');
+  }
+}

@@ -32,8 +32,6 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loading.set(true);
-  }
-  ngAfterViewInit(): void {
     const { jwtToken, username } = this.authService.userSignal();
     this.isLogin.set(!!jwtToken && !!username);
     this.username = username ?? '';
@@ -41,6 +39,7 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
     this.loading.set(false);
     this.showSearchForm.set(false);
   }
+  ngAfterViewInit(): void {}
 
   searchMovieByKeyWord() {
     this.tmdbService.searchMovie(this.searchKeyWord()).subscribe(console.log);

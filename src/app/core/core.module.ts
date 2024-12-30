@@ -57,12 +57,12 @@ export class CoreModule {
           deps: [USECOOKIE, Router, HttpClient, TmdbService, AUTHSERVER],
         },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Angular initializer;
-        {
-          provide: APP_INITIALIZER,
-          useFactory: appInitializer,
-          multi: true,
-          deps: [AuthService],
-        },
+        // {
+        //   provide: APP_INITIALIZER,
+        //   useFactory: appInitializer,
+        //   multi: true,
+        //   deps: [AuthService],
+        // },
         //* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Page Title control
         Title,
       ],
