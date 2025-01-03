@@ -97,7 +97,7 @@ export class AuthService {
 
   /* upgrade Uer Permission */
   upgradePermission(userRole: { role: UserRole }): Observable<AuthDto> {
-    this.stopRefreshTokenTimer();
+    // this.stopRefreshTokenTimer();
 
     return this.http
       .patch<AuthDto>(
@@ -154,6 +154,7 @@ export class AuthService {
     if (this.isBrowser) {
       localStorage.setItem('access_token', accessToken);
     }
+    this.stopRefreshTokenTimer();
 
     const { id, username, email, exp } =
       this.jwtHelper.decodeToken(accessToken);

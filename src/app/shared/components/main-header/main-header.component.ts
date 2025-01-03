@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  computed,
   inject,
   model,
   signal,
@@ -21,9 +22,13 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
   //   transform: (val: boolean) => false, // remove the searchfrom currentlly;
   // });
   showSearchForm = model(false);
-
-  isLogin = signal(true);
   username = '';
+
+  isLogin = computed(() => {
+    const { jwtToken, username } = this.authService.userSignal();
+    this.username = username ?? '';
+    return !!jwtToken && !!username;
+  });
   searchKeyWord = signal('');
   loading = signal(true);
 
@@ -31,10 +36,7 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
   private readonly tmdbService = inject(TmdbService);
 
   ngOnInit(): void {
-    this.loading.set(true);
-    const { jwtToken, username } = this.authService.userSignal();
-    this.isLogin.set(!!jwtToken && !!username);
-    this.username = username ?? '';
+    console.log('mark: ', this.isLogin());
 
     this.loading.set(false);
     this.showSearchForm.set(false);
@@ -47,7 +49,6 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
   }
   signOut() {
     this.authService.logout();
-    this.isLogin.set(false);
     this.username = '';
   }
 }

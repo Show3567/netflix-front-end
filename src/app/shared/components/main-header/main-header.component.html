@@ -20,20 +20,26 @@
     } -->
 
     <!-- @if (!loading() && isLogin()) { -->
-    @if (isLogin()) {
-      <div class="logout_container">
-        <span> {{ username }} </span>
-        <button mat-raised-button class="signOut_btn" (click)="signOut()">
-          Sign Out
-        </button>
-      </div>
-    } @else {
-      <!-- @else if (!loading() && !isLogin()) { -->
-      <div class="login_container">
-        <button mat-raised-button class="signIn_btn" [routerLink]="['/login']">
-          Sign In
-        </button>
-      </div>
+    @defer {
+      @if (isLogin()) {
+        <div class="logout_container">
+          <span> {{ username }} </span>
+          <button mat-raised-button class="signOut_btn" (click)="signOut()">
+            Sign Out
+          </button>
+        </div>
+      } @else {
+        <!-- @else if (!loading() && !isLogin()) { -->
+        <div class="login_container">
+          <button
+            mat-raised-button
+            class="signIn_btn"
+            [routerLink]="['/login']"
+          >
+            Sign In
+          </button>
+        </div>
+      }
     }
     <!-- @else {
       <div></div>

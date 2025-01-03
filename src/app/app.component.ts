@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth/auth.service';
@@ -11,8 +11,5 @@ import { AuthService } from './services/auth/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private authService: AuthService) {
-    this.authService.refreshToken().subscribe();
-    console.log('refresh token in appcomponent');
-  }
+  constructor(private authService: AuthService) {}
 }
