@@ -66,12 +66,13 @@ const movieDetailsRoutes: Routes = [
 ];
 
 export const routes: Routes = [
-  {
-    path: 'home',
-    loadComponent: () =>
-      import('./pages/home/home.component').then((c) => c.HomeComponent),
-    loadChildren: () => homeRoutes,
-  },
+  { path: 'home', component: HomeComponent },
+  // {
+  //   path: 'home',
+  //   loadComponent: () =>
+  //     import('./pages/home/home.component').then((c) => c.HomeComponent),
+  //   loadChildren: () => homeRoutes,
+  // },
   {
     path: 'login',
     loadComponent: () =>

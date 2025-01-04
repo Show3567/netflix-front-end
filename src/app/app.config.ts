@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideRouter(routes),
     provideAnimations(),
-    // provideClientHydration(),
+    provideClientHydration(),
 
     importProvidersFrom(
       CoreModule.forRoot(),

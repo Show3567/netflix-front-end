@@ -6,7 +6,7 @@
   @include flex(center, center, column);
 
   .movie_Recommend {
-    position: relative;
+    // position: relative;
     height: 50vh;
     width: 100vw;
     background-color: rgb(29, 17, 2);
@@ -73,7 +73,7 @@
     }
   }
   .movie_list {
-    position: relative;
+    // position: relative;
     width: 90vw;
     padding: 1.875rem;
     flex-wrap: wrap;
