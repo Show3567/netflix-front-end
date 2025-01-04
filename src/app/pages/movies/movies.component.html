@@ -4,7 +4,7 @@
     [ngStyle]="{
       'background-image': 'url(' + showRecommendImg() + ')',
       'background-size': '100% auto',
-      'background-position': 'center'
+      'background-position': 'center',
     }"
   >
     <app-main-header [(showSearchForm)]="showSearchForm"></app-main-header>
@@ -43,18 +43,20 @@
     <div class="cover_img_right"></div>
   </div>
 
-  <cdk-virtual-scroll-viewport
-    [itemSize]="itemSizePx"
-    class="viewport"
-    (scrolledIndexChange)="onScroll()"
-  >
-    <div *cdkVirtualFor="let movies of movieSignal()" class="movie_row">
-      <div class="hr"></div>
-      <div class="movie_row_container">
-        @for (movie of movies; track $index) {
-          <app-item [movie]="movie"></app-item>
-        }
+  @defer {
+    <cdk-virtual-scroll-viewport
+      [itemSize]="itemSizePx"
+      class="viewport"
+      (scrolledIndexChange)="onScroll()"
+    >
+      <div *cdkVirtualFor="let movies of movieSignal()" class="movie_row">
+        <div class="hr"></div>
+        <div class="movie_row_container">
+          @for (movie of movies; track $index) {
+            <app-item [movie]="movie"></app-item>
+          }
+        </div>
       </div>
-    </div>
-  </cdk-virtual-scroll-viewport>
+    </cdk-virtual-scroll-viewport>
+  }
 </div>

@@ -30,15 +30,11 @@ export class MainHeaderComponent implements OnInit, AfterViewInit {
     return !!jwtToken && !!username;
   });
   searchKeyWord = signal('');
-  loading = signal(true);
 
   private readonly authService = inject(AuthService);
   private readonly tmdbService = inject(TmdbService);
 
   ngOnInit(): void {
-    console.log('mark: ', this.isLogin());
-
-    this.loading.set(false);
     this.showSearchForm.set(false);
   }
   ngAfterViewInit(): void {}

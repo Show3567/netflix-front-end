@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideRouter(routes),
     provideAnimations(),
-    provideClientHydration(),
+    // provideClientHydration(),
 
     importProvidersFrom(
       CoreModule.forRoot(),
@@ -31,6 +31,7 @@ export const appConfig: ApplicationConfig = {
         level: NgxLoggerLevel.DEBUG,
         serverLogLevel: NgxLoggerLevel.ERROR,
       }),
-    ), provideAnimationsAsync(),
+    ),
+    provideAnimationsAsync(),
   ],
 };

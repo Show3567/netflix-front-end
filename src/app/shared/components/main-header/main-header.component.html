@@ -19,7 +19,6 @@
       </mat-form-field>
     } -->
 
-    <!-- @if (!loading() && isLogin()) { -->
     @defer {
       @if (isLogin()) {
         <div class="logout_container">
@@ -29,7 +28,6 @@
           </button>
         </div>
       } @else {
-        <!-- @else if (!loading() && !isLogin()) { -->
         <div class="login_container">
           <button
             mat-raised-button
