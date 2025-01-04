@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   Inject,
   OnDestroy,
@@ -35,6 +36,7 @@ import { NgStyle } from '@angular/common';
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movieSignal: Signal<Movie[][]> = computed(() => {
