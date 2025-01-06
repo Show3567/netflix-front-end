@@ -12,14 +12,13 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { NgIf } from '@angular/common';
 
 const RENDERED_KEY = makeStateKey<boolean>('home-rendered');
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgIf, RouterOutlet, SharedModule],
+  imports: [RouterOutlet, SharedModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host: { ngSkipHydration: 'true' },
