@@ -9,7 +9,6 @@
   @defer {
     <cdk-virtual-scroll-viewport
       [itemSize]="itemSizePx"
-      class="viewport"
       (scrolledIndexChange)="onScroll()"
     >
       <div *cdkVirtualFor="let movies of movieSignal()" class="movie_row">
