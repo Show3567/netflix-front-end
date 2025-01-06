@@ -1,48 +1,10 @@
-<div class="movie_list">
-  <!-- <div class="movie_list" cdkVirtualScrollingElement> -->
-  <div
-    class="movie_Recommend"
-    [ngStyle]="{
-      'background-image': 'url(' + showRecommendImg() + ')',
-      'background-size': '100% auto',
-      'background-position': 'center',
-    }"
-  >
-    <app-main-header [(showSearchForm)]="showSearchForm"></app-main-header>
-    <div class="recommend_list">
-      @for (item of recommendSignal(); track $index) {
-        <div
-          class="recommend_item"
-          (mouseover)="handleHoverRecommend(item.id)"
-          (click)="navigateMovie(item.id)"
-        >
-          {{ item.title | overviewControl: 18 }}
-        </div>
-      }
-    </div>
-    <div class="cover_img_bottom">
-      <div class="button_container">
-        <button
-          class="movies"
-          mat-raised-button
-          color="accent"
-          (click)="switchToMoiveList()"
-        >
-          Movies
-        </button>
-        <button
-          class="tv"
-          mat-raised-button
-          color="accent"
-          (click)="switchToTvList()"
-        >
-          Tv Show
-        </button>
-      </div>
-    </div>
-    <div class="cover_img_left"></div>
-    <div class="cover_img_right"></div>
-  </div>
+<div class="movie_list" cdkVirtualScrollingElement>
+  <app-recommend
+    [recommendImg]="showRecommendImg()"
+    [recommend]="recommendSignal()"
+    [searchForm]="showSearchForm()"
+    (hoverRecommend)="handleHoverRecommend($event)"
+  ></app-recommend>
 
   @defer {
     <cdk-virtual-scroll-viewport

@@ -23,6 +23,7 @@ import { MoviesComponent } from './pages/movies/movies.component';
 import { MovieItemComponent } from './pages/movie-item/movie-item.component';
 import { MyPlayerComponent } from './pages/my-player/my-player.component';
 
+// * ~~~~~~~~~~~~~~~~~~~~~~~~~~~ subrouters ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const notFoundRoutes: Routes = [{ path: '', component: PageNotFoundComponent }];
 const homeRoutes: Routes = [{ path: '', component: HomeComponent }];
 const loginRoutes: Routes = [
@@ -65,8 +66,8 @@ const movieDetailsRoutes: Routes = [
   },
 ];
 
+// * ~~~~~~~~~~~~~~~~~~~~~~~~~~~ main router ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export const routes: Routes = [
-  // { path: 'home', component: HomeComponent },
   {
     path: '',
     redirectTo: 'home',
@@ -85,6 +86,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/login/login.component').then((c) => c.LoginComponent),
     loadChildren: () => loginRoutes,
+    data: { renderingMode: 'ssr' },
   },
   {
     path: 'register',
@@ -93,6 +95,7 @@ export const routes: Routes = [
         (c) => c.RegisterComponent,
       ),
     loadChildren: () => registerRoutes,
+    data: { renderingMode: 'ssr' },
   },
   {
     path: 'movies',
@@ -101,7 +104,7 @@ export const routes: Routes = [
     loadChildren: () => moviesRoutes,
 
     /* we cannot use route guard and preloading in the same time! */
-    data: { preload: true, delay: 1000 },
+    data: { preload: true, delay: 1000, renderingMode: 'ssr' },
   },
   {
     path: 'movies/:id',
@@ -116,6 +119,7 @@ export const routes: Routes = [
       credits: movieCreditFnResolver,
       posters: moviePosterFnResolver,
     },
+    data: { renderingMode: 'ssr' },
   },
 
   // {
@@ -129,5 +133,6 @@ export const routes: Routes = [
         (c) => c.PageNotFoundComponent,
       ),
     loadChildren: () => notFoundRoutes,
+    data: { renderingMode: 'ssr' },
   },
 ];

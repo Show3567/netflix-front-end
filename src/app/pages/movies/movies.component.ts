@@ -27,11 +27,11 @@ import { RouterScrollService } from 'src/app/services/scroll/router-scroll.servi
 import { ProdTitle } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ItemComponent } from './components/item/item.component';
-import { NgStyle } from '@angular/common';
+import { RecommendComponent } from './components/recommend/recommend.component';
 
 @Component({
   standalone: true,
-  imports: [SharedModule, ScrollingModule, ItemComponent, NgStyle],
+  imports: [SharedModule, ScrollingModule, ItemComponent, RecommendComponent],
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],

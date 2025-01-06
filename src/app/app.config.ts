@@ -13,6 +13,7 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorFnInterceptor } from './core/interceptors/error-fn.interceptor';
 import { routes } from './routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatNativeDateModule } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +32,8 @@ export const appConfig: ApplicationConfig = {
         level: NgxLoggerLevel.DEBUG,
         serverLogLevel: NgxLoggerLevel.ERROR,
       }),
+
+      MatNativeDateModule,
     ),
     provideAnimationsAsync(),
   ],
