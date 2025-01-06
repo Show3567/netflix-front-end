@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ProdTitle } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -20,7 +20,7 @@ import { MainRowTwoComponent } from './components/main-row-two/main-row-two.comp
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   linkList = [
     'FAQ',
     'Help Center',
@@ -47,6 +47,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('home page created ~~~~~~~~~~~~~~~~~~~~~~!');
     this.titleService.setTitle(`${this.prodTitle}-Home`);
+  }
+  ngOnDestroy(): void {
+    console.log('home page destroied!');
   }
 }

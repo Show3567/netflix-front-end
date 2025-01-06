@@ -66,13 +66,20 @@ const movieDetailsRoutes: Routes = [
 ];
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  // {
-  //   path: 'home',
-  //   loadComponent: () =>
-  //     import('./pages/home/home.component').then((c) => c.HomeComponent),
-  //   loadChildren: () => homeRoutes,
-  // },
+  // { path: 'home', component: HomeComponent },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+    data: { renderingMode: 'ssr' },
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./pages/home/home.component').then((c) => c.HomeComponent),
+    loadChildren: () => homeRoutes,
+    data: { renderingMode: 'ssr' },
+  },
   {
     path: 'login',
     loadComponent: () =>
@@ -111,12 +118,10 @@ export const routes: Routes = [
     },
   },
 
-  {
-    path: 'my-player',
-    component: MyPlayerComponent,
-  },
-
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // {
+  //   path: 'my-player',
+  //   component: MyPlayerComponent,
+  // },
   {
     path: '**',
     loadComponent: () =>
