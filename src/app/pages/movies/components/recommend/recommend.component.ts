@@ -16,6 +16,7 @@ export class RecommendComponent {
   searchForm = input.required<boolean>();
   recommend = input.required<Movie[]>();
   hoverRecommend = output<number>();
+  switchToMovie = output();
 
   private router = inject(Router);
 
@@ -27,7 +28,9 @@ export class RecommendComponent {
     this.router.navigate(['/movies', id]);
   }
 
-  switchToMoiveList() {}
+  switchToMovieList() {
+    this.switchToMovie.emit();
+  }
 
   switchToTvList() {}
 }

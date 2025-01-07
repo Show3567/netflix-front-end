@@ -39,6 +39,7 @@ import { RecommendComponent } from './components/recommend/recommend.component';
 export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   movieSignal: Signal<Movie[][]> = computed(() => {
     const movies = this.tmdbService.movieSignal();
+    console.log('list movies: ', movies);
 
     const list: Movie[][] = [];
     const movieList = [...movies];
@@ -111,6 +112,10 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
         this.setPosition();
       }
     });
+
+    console.log('====================================');
+    console.log(this.itemSizePx);
+    console.log('====================================');
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -153,12 +158,13 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   private setPosition() {
     console.log(
       'check current position: ',
-      this.viewport.measureScrollOffset(),
+      this.viewport.measureScrollOffset('top'),
     );
 
     this.routerScroll.setPositionState(
       this.scrollPositionKey,
-      this.viewport.measureScrollOffset(),
+      // this.viewport.measureScrollOffset(),
+      0,
       0,
     );
   }
@@ -183,6 +189,10 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     //     this.recommend[0].id &&
     //       this.handleHoverRecommend(this.recommend[0].id + '');
     //   });
+    console.log(
+      'check current position: ',
+      this.viewport.measureScrollOffset(),
+    );
   }
   switchToTvList() {
     // this.tmdbService.getDiscoverTV(this.baseSearchTv).subscribe((data) => {
