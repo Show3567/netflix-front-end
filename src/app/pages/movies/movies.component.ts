@@ -151,6 +151,11 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setPosition() {
+    console.log(
+      'check current position: ',
+      this.viewport.measureScrollOffset(),
+    );
+
     this.routerScroll.setPositionState(
       this.scrollPositionKey,
       this.viewport.measureScrollOffset(),

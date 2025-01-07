@@ -27,15 +27,7 @@ export class AppComponent implements OnInit {
   showContent = false;
   transferState = inject(TransferState);
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        console.log('Navigation started to:', event.url);
-      } else if (event instanceof NavigationEnd) {
-        console.log('Navigation ended at:', event.url);
-      }
-    });
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 }
