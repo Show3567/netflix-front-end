@@ -47,10 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // console.log('home page created ~~~~~~~~~~~~~~~~~~~~~~!');
     this.titleService.setTitle(`${this.prodTitle}-Home`);
   }
-  ngOnDestroy(): void {
-    // console.log('home page destroied!');
-  }
+  ngOnDestroy(): void {}
 }

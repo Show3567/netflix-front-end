@@ -4,6 +4,7 @@ import {
   Inject,
   OnDestroy,
   OnInit,
+  PLATFORM_ID,
   Signal,
   ViewChild,
   computed,
@@ -13,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import {
   CdkVirtualScrollViewport,
+  ScrollDispatcher,
   ScrollingModule,
 } from '@angular/cdk/scrolling';
 import { Subject } from 'rxjs';
@@ -28,6 +30,7 @@ import { ProdTitle } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ItemComponent } from './components/item/item.component';
 import { RecommendComponent } from './components/recommend/recommend.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -82,16 +85,20 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   private isloading = signal(false);
   private readonly scrollPositionKey = 'movielist';
   private notifier = new Subject();
+  private currentOffset = 0;
 
   get itemSizePx(): number {
     return this.remToPx(33);
   }
 
+  // * ~~~~~~~~~~ lifecycle ~~~~~~~~~~
   constructor(
     private readonly tmdbService: TmdbService,
     private readonly router: Router,
     private readonly titleService: Title,
     private readonly routerScroll: RouterScrollService,
+
+    @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(ProdTitle) private readonly prodTitle: string, // private zone: NgZone
   ) {}
 
@@ -106,30 +113,27 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.recommendSignal = this.tmdbService.recommendSignal;
-
-    this.router.events.pipe(takeUntil(this.notifier)).subscribe((e) => {
-      if (e instanceof NavigationEnd) {
-        this.setPosition();
-      }
-    });
-
-    console.log('====================================');
-    console.log(this.itemSizePx);
-    console.log('====================================');
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-      const position = this.routerScroll.positions[this.scrollPositionKey];
-      if (position) {
-        this.viewport.scrollToOffset(position[0]);
-      }
+      this.viewport?.checkViewportSize();
+      this.viewport.scrollToOffset(
+        this.routerScroll.positions[this.scrollPositionKey][0],
+        'auto',
+      );
     }, 50);
+    this.viewport.scrolledIndexChange
+      .pipe(takeUntil(this.notifier))
+      .subscribe(() => {
+        this.currentOffset = this.viewport.measureScrollOffset();
+      });
   }
   ngOnDestroy(): void {
     this.setPosition();
     this.stopObs();
   }
 
+  // * ~~~~~~~~~~ lifecycle ~~~~~~~~~~
   handleHoverRecommend(id: number) {
     this.currentId.set(id);
   }
@@ -156,17 +160,13 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setPosition() {
-    console.log(
-      'check current position: ',
-      this.viewport.measureScrollOffset('top'),
-    );
-
-    this.routerScroll.setPositionState(
-      this.scrollPositionKey,
-      // this.viewport.measureScrollOffset(),
-      0,
-      0,
-    );
+    if (isPlatformBrowser(this.platformId)) {
+      this.routerScroll.setPositionState(
+        this.scrollPositionKey,
+        this.currentOffset,
+        0,
+      );
+    }
   }
   private remToPx(rem: number): number {
     return (
