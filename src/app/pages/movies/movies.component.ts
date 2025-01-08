@@ -118,14 +118,15 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.viewport?.checkViewportSize();
       this.viewport.scrollToOffset(
-        this.routerScroll.positions[this.scrollPositionKey][0],
-        'auto',
+        this.routerScroll.positions[this.scrollPositionKey][0] +
+          this.itemSizePx * 2,
+        'smooth',
       );
-    }, 50);
+    }, 100);
     this.viewport.scrolledIndexChange
       .pipe(takeUntil(this.notifier))
       .subscribe(() => {
-        this.currentOffset = this.viewport.measureScrollOffset();
+        this.currentOffset = this.viewport.measureScrollOffset('top');
       });
   }
   ngOnDestroy(): void {
@@ -189,10 +190,6 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
     //     this.recommend[0].id &&
     //       this.handleHoverRecommend(this.recommend[0].id + '');
     //   });
-    console.log(
-      'check current position: ',
-      this.viewport.measureScrollOffset(),
-    );
   }
   switchToTvList() {
     // this.tmdbService.getDiscoverTV(this.baseSearchTv).subscribe((data) => {
