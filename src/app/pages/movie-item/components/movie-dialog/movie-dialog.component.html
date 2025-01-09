@@ -6,6 +6,7 @@
     <button class="video_switcher_right" mat-fab (click)="switchVideo('right')">
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
+
     @if (!movieVideos[0]) {
       <div class="no_signal">
         @if (hasbackdrop_img) {
@@ -18,7 +19,7 @@
         [videoId]="movieVideos[0].key"
         suggestedQuality="highres"
         [playerVars]="{
-          autoplay: 1,
+          autoplay: 0,
           controls: 1,
           playlist: movieVideos[0].key,
           loop: 1,

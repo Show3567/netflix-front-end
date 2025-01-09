@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { YouTubePlayer } from '@angular/youtube-player';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { NgStyle } from '@angular/common';
 
@@ -14,15 +14,10 @@ import { Backdrop, Poster } from 'src/app/services/interfaces/poster.interface';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { ProdTitle } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-// import { VideoItemComponent } from './components/video-item/video-item.component';
 
 @Component({
   standalone: true,
-  imports: [
-    SharedModule,
-    NgStyle,
-    // MovieDialogComponent
-  ],
+  imports: [SharedModule, NgStyle],
   selector: 'app-movie-item',
   templateUrl: './movie-item.component.html',
   styleUrls: ['./movie-item.component.scss'],
@@ -45,16 +40,10 @@ export class MovieItemComponent implements OnInit {
   actors: Cast[] = [];
   posters: Poster[] = [];
 
-  // size = {
-  //   height: visualViewport.height,
-  //   width: visualViewport.width,
-  // };
-
   constructor(
     private readonly tmdbService: TmdbService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly titleService: Title,
-    private readonly router: Router,
     public dialog: MatDialog,
     @Inject(ProdTitle) private readonly prodTitle: string,
   ) {}
