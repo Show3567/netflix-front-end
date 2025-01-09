@@ -8,12 +8,13 @@
   <div
     class="bk-image"
     [ngStyle]="{
-      'background-image': 'url(' + poster_img_high + ')',
+      'background-image': 'url(' + poster_img_high() + ')',
       'background-size': 'cover',
     }"
   >
     <div class="bk-cover"></div>
   </div>
+
   <div class="content">
     <div class="movie_poster">
       @if (hasPoster_img) {

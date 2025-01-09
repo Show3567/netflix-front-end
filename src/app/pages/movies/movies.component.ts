@@ -120,7 +120,7 @@ export class MoviesComponent implements OnInit, AfterViewInit, OnDestroy {
       this.viewport.scrollToOffset(
         this.routerScroll.positions[this.scrollPositionKey][0] +
           this.itemSizePx * 2,
-        'smooth',
+        'auto',
       );
     }, 100);
     this.viewport.scrolledIndexChange

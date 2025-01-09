@@ -20,9 +20,12 @@ export class ItemComponent {
 
   poster_img_high = computed(() => {
     const path = this.movie().poster_path;
+
     if (path) {
       this.hasPoster_img = true;
-      return this.tmdbService.getMovieImagePath('w780', path);
+      const imgPath = this.tmdbService.getMovieImagePath('w780', path);
+      console.log(imgPath);
+      return imgPath;
     } else {
       this.hasPoster_img = false;
       return '';
