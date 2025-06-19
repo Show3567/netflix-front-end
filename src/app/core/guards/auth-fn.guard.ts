@@ -15,9 +15,16 @@ export const authFnGuard: CanActivateFn = (
   const authService = inject(AuthService);
 
   const { jwtToken, role } = authService.userSignal();
-  const claimType: string = route.data.claimType;
+  const claimType = route.data['claimType'];
 
-  if (jwtToken && role && claimType.includes(role)) {
+  // support both string and array of strings
+  const allowedRoles: string[] = Array.isArray(claimType)
+    ? claimType
+    : typeof claimType === 'string'
+      ? [claimType]
+      : [];
+
+  if (jwtToken && role && allowedRoles.includes(role)) {
     return true;
   } else {
     router.navigate(['/register/step4']);
