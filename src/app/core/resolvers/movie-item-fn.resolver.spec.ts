@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { movieItemFnResolver } from './movie-item-fn.resolver';
 
 describe('movieItemFnResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
+  const executeResolver: ResolveFn<any> = (...resolverParameters) =>
       TestBed.runInInjectionContext(() => movieItemFnResolver(...resolverParameters));
 
   beforeEach(() => {

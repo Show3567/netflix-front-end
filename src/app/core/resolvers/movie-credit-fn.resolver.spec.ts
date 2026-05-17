@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { movieCreditFnResolver } from './movie-credit-fn.resolver';
 
 describe('movieCreditFnResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
+  const executeResolver: ResolveFn<any> = (...resolverParameters) =>
       TestBed.runInInjectionContext(() => movieCreditFnResolver(...resolverParameters));
 
   beforeEach(() => {

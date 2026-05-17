@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { moviePosterFnResolver } from './movie-poster-fn.resolver';
 
 describe('moviePosterFnResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
+  const executeResolver: ResolveFn<any> = (...resolverParameters) =>
       TestBed.runInInjectionContext(() => moviePosterFnResolver(...resolverParameters));
 
   beforeEach(() => {
